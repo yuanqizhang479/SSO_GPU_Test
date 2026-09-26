@@ -1,0 +1,55 @@
+\section{Numerical verification of the constants}
+\label{sec:numerics}
+
+The local laws predict constants, not only exponents.  Assertion-based scripts
+therefore test closed-form instances at high precision; the full tables and
+execution details are in the technical supplement.  For the fixed
+\(2\times2\) family
+\(G=\bigl(\begin{smallmatrix}0&b_1\\b_2&c\end{smallmatrix}\bigr)\),
+\(\Theta=e_1e_1^\top\), the three basic normalized limits are:
+\begin{center}
+\begin{tabular}{@{}lll@{}}
+\toprule
+Regime & predicted & computed at the smallest \(\delta\)\\
+\midrule
+regular & \(-16/9=-1.777777778\) & \(-1.777777777\)\\
+strict corank one & \(-5/(4\sqrt{15})=-0.3227486122\) & \(-0.3227486102\)\\
+boundary & \(2^{1/3}=1.259921050\) & \(1.259921042\)\\
+\bottomrule
+\end{tabular}
+\end{center}
+On the same boundary instance, standard Huber instead gives
+\((1-\lambda_\delta^{\rm hub})/\delta=1.99999997\) at
+\(\delta=10^{-8}\), versus the prediction \(1/\beta=2\) in
+\eqref{eq:huber-boundary-rate-main}.
+For the admissible profile
+\(\psi'(x)=x/(1+x^3)^{1/3}\) on \(x\ge0\), the predicted \(p=3\)
+constant is \(1.2778862085\); the computed normalized displacement is
+\(1.2778860473\) at \(\delta=10^{-9}\).  This checks that the exponent
+changes with the tail, not merely between the two named profiles.
+
+For a corank-two check, take
+\(A^\star=\diag(1,1,0,0)\),
+\(\Theta=\diag(3/8,3/8,1,1/2)\), and \(\lambda^\star=1\).
+Here \(\eta_R=0.715080068980\) and
+\(\|K_F-K_R\|_F=0.040996138377\).  At \(\delta=10^{-4}\), the
+pseudo-Huber slope is \(-0.7150801\), while Huber gives the water-filling
+slope \(-0.6000000000\) and recovers \(\Phi_F^\star\) to \(10^{-11}\).
+Because \(P_{\rm big}(s)\) and \(\widetilde B(s)\) are constant on this
+diagonal line, \(\partial_s\mathcal W=0\) proves
+\(t_1=\mathcal M_R=0\).  A non-diagonal rational instance instead predicts
+\(\|\mathcal M_R\|_F=0.671775381\), versus the scaled value
+\(0.671776068\) at \(\delta=10^{-6}\).
+
+The compact-root instance
+\(A^\star=\diag(2,1,0)\), \(\Theta=\diag(1,-1,1)\) verifies the predicted
+cubic coefficient \(-3/8\) and quadratic direction norm \(\sqrt{26}/8\).
+After the second cancellation, the rational \(4\times4\) instance in the
+supplement has \(\chi_2=1/3\) and converges monotonically to the quintic
+coefficient \(-1/8\); its normalized quartic direction converges to the full
+matrix in \eqref{eq:compact-root-quartic-main}.
+
+The moving-family assertions cover boundary, critical, strict-side, and
+oscillatory paths and verify both the cubic root and direction constants.
+Complete data, matrices, and finite-scale sequences are in the supplement;
+the checks test constants but imply no occurrence-frequency law.

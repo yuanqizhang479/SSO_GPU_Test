@@ -1,0 +1,131 @@
+
+=== verify_rate_constants_exact.py ===
+D1 regular law
+  delta=1E-3  ratio=-1.777766452777
+  delta=1E-4  ratio=-1.777777664527
+  delta=1E-5  ratio=-1.777777776645
+D2 strict-kink law
+  delta=1E-5  ratio=-0.322746667748
+  delta=1E-6  ratio=-0.322748417740
+  delta=1E-7  ratio=-0.322748592740
+  delta=1E-8  ratio=-0.322748610240
+D3 boundary two-thirds law
+  delta=1E-6  ratio=1.259841686508
+  delta=1E-9  ratio=1.259920256195
+  delta=1E-12  ratio=1.259921041958
+  delta=1E-15  ratio=1.259921049816
+ALL D1--D3 HIGH-PRECISION ASSERTIONS PASSED
+
+=== verify_unified_crossover.py ===
+Critical window: Delta=zeta*delta^(2/3)
+  zeta=0: y[-1]=1.259921049816E+0, target=1.259921049895E+0, x/xhat[-1]=9.999999999370E-1
+  zeta=1: y[-1]=8.392867550219E-1, target=8.392867552142E-1, x/xhat[-1]=9.999999998145E-1
+  zeta=3: y[-1]=5.524746101910E-1, target=5.524746105311E-1, x/xhat[-1]=9.999999995284E-1
+  zeta=10: y[-1]=3.137759605838E-1, target=3.137759612139E-1, x/xhat[-1]=9.999999984881E-1
+Boundary path: Delta=0
+  x/delta^(2/3)=1.259921049816E+0, target=1.259921049895E+0
+  ||Phi_delta-Phi*||/x=1.224744871327E+0, target=sqrt(3/2)=1.224744871392E+0
+Strict-side path: Delta=delta^(1/3)
+  normalized values: 0.979950782, 0.997994100, 0.999799770, 0.999979992
+  final x/xhat=9.999850000874E-1
+  final ||Phi_delta-Phi*||/x=1.224724459113E+0
+Oscillatory path: alternating boundary, critical, and strict windows
+  last three x/xhat: 9.999999850000E-1, 1.000000000000E+0, 1.000000000000E+0
+ALL UNIFIED-CROSSOVER ASSERTIONS PASSED
+
+=== verify_partial_isometry.py ===
+PASS  partial-isometry/no-clipping equivalence
+PASS  hard and smooth spectral completion formulas
+PASS  certificate-slice uniqueness alternatives
+ALL CERTIFICATE-GEOMETRY ASSERTIONS PASSED
+
+=== verify_direction_rates.py ===
+PASS  regular direction        slope=1.999825  errors=[2.37112085e-04 2.13528892e-05 2.37266841e-06 2.13541438e-07]
+PASS  strict-kink direction    slope=0.999827  errors=[2.23462792e-04 6.70690575e-05 2.23592369e-05 6.70807629e-06]
+PASS  boundary direction       slope=0.666037  errors=[0.00331622 0.00148817 0.00071585 0.0003209 ]
+ALL FIXED-INSTANCE DIRECTION-RATE ASSERTIONS PASSED
+
+=== verify_theorems.py ===
+PASS  T1 primal-dual equality                    error=7.816e-14
+PASS  T5-D1 leading constant                     error=6.889e-09
+PASS  T2 right endpoint a+beta                   error=2.561e-07
+PASS  T2 left endpoint a-beta                    error=1.405e-07
+PASS  T3 canonical tangency                      error=0.000e+00
+PASS  T3 random feasible competitors             accepted=5000
+PASS  T4 compact jump                            error=1.388e-16
+PASS  T4 branch at x=-0.4                        error=8.882e-16
+PASS  T4 branch at x=0.2                         error=1.776e-15
+PASS  T4 branch at x=0.9                         error=8.882e-16
+PASS  T4 branch at x=1.7                         error=3.553e-15
+PASS  SVD-free crossing half-width               max_rel=3.994e-14
+PASS  T5-D2 strict-kink constant                 error=5.820e-06
+PASS  T5-D3 boundary constant                    error=3.683e-04
+PASS  D3 omitted linear term limit               error=2.500e-09
+PASS  T5-D4 transition constant                  error=3.462e-04
+PASS  T5-D4 strict-side constant                 error=1.544e-02
+PASS  T6 feasible repair and gap bound           gap=5.656e+00
+
+All deterministic numerical checks passed.
+
+=== verify_corank2_strict_center.py ===
+corank-two strict center check: PASS
+eta_R = 0.71508006898005253186390559676902280920052575378141146814277204626460400073246359672377168
+||K_F-K_R||_F = 0.0409961383770594161212307228603747377311383016734034986804235468182591607285302557733764860
+delta, lambda_delta-lambda*, ||Phi_delta-Phi_R||_F, ||Phi_delta-Phi_F||_F
+  0.01, -0.00715029599107911850785093793898890814048750156132107660212410548529500760050599133869271605, 0.0000789622680037024886373638506582459209674856188176942064646806593451691700071782427989245677, 0.0409895178252140646480163468007153895453242668653655238230795153486426132470726395443301953
+  0.001, -0.000715079566662929311688194059773333111252801442298184792277883595360117987804069359374858375, 7.85874215161975523807094505819527025688580364245617701505500002727029508518647579443606439E-7, 0.0409960717378403114150034590140894618078154576546051030752796613899891354653753114731828179
+  0.0001, -0.000071508006395930047704568950791795967619577537591492296096339247216587169800357184591338659, 7.85495512950693991128395507844778737648747869714710579182468789484313300943183656811997936E-9, 0.0409961377109139578574300369722379029329497508261981747414647982465589923523784357282096841
+  0.00001, -0.0000071508006892984743418778514535624052475805998536253986758091697070602414555810959437817600, 7.85457604950233783400072710244726740974842759726605291060499247564419936324262478136910825E-11, 0.0409961383703982755850042311676610709882078951451219137879556429507516152035584287523521859
+
+=== verify_arbitrary_corank_strict_law.py ===
+PASS tall unequal nullities           shape=5x3 corank=2 rank(C)=2 a=+0.45000000 beta=1.90000000 prediction=-0.2411012342 ratio(delta=1e-6)=-0.2411011561
+PASS wide unequal nullities           shape=3x5 corank=2 rank(C)=2 a=-0.40000000 beta=1.70000000 prediction=+0.2635514881 ratio(delta=1e-6)=+0.2635513153
+PASS corank-3 rank-deficient C        shape=6x4 corank=3 rank(C)=1 a=+0.35000000 beta=1.30000000 prediction=-0.2150408249 ratio(delta=1e-6)=-0.2150408038
+PASS repeated positive cluster        shape=6x6 corank=4 rank(C)=3 a=+0.60000000 beta=2.40000000 prediction=-0.2970116365 ratio(delta=1e-6)=-0.2970114445
+PASS zero-a vanishing coefficient     shape=4x6 corank=2 rank(C)=1 a=-0.00000000 beta=1.25000000 prediction=+0.0000000000 ratio(delta=1e-6)=-0.0000000000
+All arbitrary-corank strict-law assertions passed.
+
+=== verify_direction_rate_general_corank.py ===
+arbitrary-corank first-order direction check: PASS
+a=0.333333333333, beta=1.000000000000, eta_R=0.644812526657
+delta, (lambda_delta-lambda*)/delta, direction error, local slope
+  1e-02, -0.6378572381, 6.6482820284e-03, --
+  1e-03, -0.6441120386, 6.7105755910e-04, 0.995950
+  1e-04, -0.6447424270, 6.7170337001e-05, 0.999582
+  1e-05, -0.6448055162, 6.7176825436e-06, 0.999958
+  1e-06, -0.6448118256, 6.7177606803e-07, 0.999995
+
+=== verify_intrinsic_constants.py ===
+intrinsic first-order constants: PASS
+||M_R||_F=0.6717753807, t1=0.70105306, cosine=1.0000000000
+sharp compact-root branch: PASS
+predicted multiplier coefficient = -0.375
+predicted direction coefficient = 0.637377439199098103753528013627847748695471368262449550948121350553241704007778024448543606
+delta, displacement/delta^3, direction-error/delta^2
+  0.01, -0.374964425312710784123965707316402158418117487817374631024468114068676856138564707816367926, 0.637326349291019583756504680800995025664195542485033337104152434365099377413401877707006296
+  0.001, -0.374999648015959960285054263046940074209084949851453772308357964358626948034937918704623994, 0.637376933054432015088133691737430085986033717497917114842615178341650222046914461150528545
+  0.0001, -0.374999996483953158408193685039442763792619071248502074022946432831875946874003288718066466, 0.637377434142445847417764402947519474321906462310712027270061625894328561017790205208372489
+  0.00001, -0.374999999964843328128339941308919569009784070135116320258756259771813350232472871226083760, 0.637377439148536379476815154100184889688705619023709023627879149038647585665999078339543317
+
+=== verify_smoothing_family.py ===
+PASS  pseudo-Huber strict slope                                error=4.411e-11
+PASS  Huber strict slope                                       error=4.951e-12
+PASS  pseudo-Huber center K_R                                  error=7.683e-11
+PASS  Huber center K_F                                         error=5.535e-12
+PASS  pseudo-Huber p=2 tail constant                           error=7.940e-07
+PASS  general p=3 tail constant                                error=1.612e-07
+PASS  finite-saturation constant L/beta (L=1)                  error=2.786e-07
+PASS  finite-saturation constant L/beta (L=0.5)                error=8.274e-08
+PASS  Huber multiplier interval at lambda=-1                   error=0.000e+00
+PASS  Huber multiplier interval at lambda=+0                   error=0.000e+00
+PASS  Huber multiplier interval at lambda=+1                   error=0.000e+00
+PASS  quintic coefficient delta=1e-2               error=2.74e-16
+PASS  quintic coefficient delta=1e-3               error=3.28e-16
+PASS  quintic coefficient delta=1e-4               error=3.12e-16
+PASS  quintic coefficient delta=1e-5               error=3.38e-17
+PASS  quintic ratios converge to -1/8                       error=1.651e-7
+PASS  quartic direction matrix                              error=4.193e-6
+PASS  quartic off-diagonal residual                         norm=3.854e-6
+ALL SMOOTHING-FAMILY ASSERTIONS PASSED
+
+ALL VERIFICATION SCRIPTS PASSED.

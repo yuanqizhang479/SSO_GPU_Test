@@ -1,0 +1,469 @@
+\section{The Normal \texorpdfstring{\(\Theta\)}{Theta}: Origin, Geometry, and Computability}
+\label{sec:normal-theta}
+
+This section supplies the geometry of the motivating spectral-level-set
+application.  It answers four distinct questions: what motivates a spectral
+scale, which extra modeling choice creates an exact level set, why its normal is
+\(\Theta=u_1v_1^\top\), and what can actually be certified when the leading
+singular vectors are computed approximately.
+
+\subsection{Spectral scaling is the motivation, not the equality constraint}
+
+Let \(W\in\R^{m\times n}\) represent a hidden linear map \(y=Wx\).  Since
+\[
+ \frac{\|Wx\|_2/\sqrt m}{\|x\|_2/\sqrt n}
+ \le \snorm{W}\sqrt{\frac nm},
+\]
+the spectral formulation of width-stable feature learning motivates the scale
+\citep{yang2023spectral}
+\begin{equation}
+ \snorm{W},\ \snorm{\Delta W}
+ =\Theta\!\left(\sqrt{\frac mn}\right)
+\tag{N1}
+\label{eq:spectral-scaling}
+\end{equation}
+Equation \eqref{eq:spectral-scaling} is an asymptotic order statement.  It does
+\emph{not} require the exact equality \(\snorm{W}=R\) at every iteration.
+The asymptotic notation \(\Theta(\cdot)\) in
+\eqref{eq:spectral-scaling} is unrelated to the matrix normal
+\(\Theta(W)\) defined below; the shared glyph should not be read as a shared
+mathematical object.
+Following Xie et al.~\cite{xie2026controlled}, we make the additional hard-constraint
+modeling choice
+\begin{equation}
+ \mathcal L_R
+ =
+ \{W\in\R^{m\times n}:\snorm{W}=R\},
+ \qquad
+ R\asymp\sqrt{m/n}.
+\tag{N2}
+\label{eq:spectral-level-set}
+\end{equation}
+The normal \(\Theta\) is a consequence of this additional level-set model, not
+an independent optimizer ingredient and not a consequence of \(\mu\)P alone.
+
+\subsection{The smooth stratum and its unit normal}
+
+Write the singular values of \(W\) as
+\(\sigma_1\ge\sigma_2\ge\cdots\ge\sigma_q\), where
+\(q=\min\{m,n\}\).  Throughout this subsection \(R>0\).
+Statements below that invoke \(\sigma_2\), a second singular subspace, or a
+two-leading-value eigensolver assume \(q\ge2\).  The one-dimensional case is
+elementary and is excluded from those statements rather than hidden behind an
+undefined \(\sigma_2\).
+
+\begin{lemma}[Spectral-norm differential and generalized normal]
+\label{lem:spectral-normal}
+If \(\sigma_1(W)>\sigma_2(W)\), then the spectral norm is real analytic in a
+neighborhood of \(W\), and
+\begin{equation}
+ D\snorm{W}[E]
+ =
+ \ip{u_1v_1^\top}{E}.
+\tag{N3}
+\label{eq:spectral-differential}
+\end{equation}
+Consequently
+\begin{equation}
+ \Theta(W):=u_1(W)v_1(W)^\top
+\tag{N4}
+\label{eq:true-normal}
+\end{equation}
+is the unique outward, gradient-oriented Frobenius unit normal to the smooth
+stratum of \(\mathcal L_R\); the unoriented normal space is
+\(\operatorname{span}\{\Theta(W)\}\).  It is invariant under the joint sign change
+\((u_1,v_1)\mapsto(-u_1,-v_1)\), has rank one, and satisfies
+\begin{equation}
+ \snorm{\Theta}=\fnorm{\Theta}=\nnorm{\Theta}=1.
+\tag{N5}
+\end{equation}
+
+If the positive leading singular value has multiplicity \(k>1\), then the
+spectral norm is not differentiable and
+\begin{equation}
+ \partial\snorm{W}
+ =
+ \{U_kSV_k^\top:S\succeq0,\ \tr S=1\}.
+\tag{N6}
+\label{eq:set-valued-weight-normal}
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+Apply simple-eigenvalue perturbation theory to the symmetric dilation
+\[
+ \mathcal H(W)
+ =
+ \begin{pmatrix}0&W\\W^\top&0\end{pmatrix}.
+\]
+Its largest eigenvalue is \(\sigma_1(W)\), with normalized eigenvector
+\((u_1^\top,v_1^\top)^\top/\sqrt2\).  Differentiation gives
+\eqref{eq:spectral-differential}.  Simplicity makes the one-dimensional left
+and right singular spaces unique up to a joint sign, which cancels in the
+outer product.  The norm identities follow because \(\Theta\) has one
+nonzero singular value equal to one.  Formula
+\eqref{eq:set-valued-weight-normal} is the standard spectral-norm
+subdifferential formula \citep{watson1992subdifferential}.
+\end{proof}
+
+\begin{proposition}[Bouligand tangent cone at a repeated leading singular value]
+\label{prop:repeated-top-tangent-cone}
+Let \(W\in\mathcal L_R\) have a positive leading singular value \(R\) of
+multiplicity \(k\), with corresponding matrices \(U_k,V_k\).  Then the
+Bouligand tangent cone of the equality level set is
+\begin{equation}
+ T_{\mathcal L_R}^{\rm B}(W)
+ =
+ \left\{
+ E:
+ \lambda_{\max}\!\left(
+ \operatorname{sym}(U_k^\top E V_k)
+ \right)=0
+ \right\},
+\qquad
+\operatorname{sym}(B)=\frac{B+B^\top}{2}.
+\tag{N6a}
+\label{eq:repeated-top-tangent-cone}
+\end{equation}
+For \(k=1\), this reduces to the hyperplane
+\(\{E:\langle u_1v_1^\top,E\rangle_F=0\}\).  For \(k>1\), it is generally a
+nonlinear, nonconvex cone and cannot be obtained by choosing one convenient
+matrix from \(\partial\snorm{W}\).
+\end{proposition}
+
+\begin{proof}
+The directional derivative of the largest singular value at a multiplicity
+\(k\) cluster is
+\begin{equation}
+ \snorm{\cdot}'(W;E)
+ =
+ \lambda_{\max}\!\left(
+ \operatorname{sym}(U_k^\top E V_k)
+ \right).
+\tag{N6b}
+\label{eq:spectral-directional-derivative}
+\end{equation}
+This follows by compressing the perturbation of the symmetric dilation
+\(\mathcal H(W)\) to its leading eigenspace.
+
+For necessity, take any \(E\in T_{\mathcal L_R}^{\rm B}(W)\).  By definition
+there are \(t_j\downarrow0\) and \(E_j\to E\) such that
+\(W+t_jE_j\in\mathcal L_R\).  The spectral norm is Hadamard directionally
+differentiable, hence
+\[
+ 0
+ =
+ \lim_{j\to\infty}
+ \frac{\snorm{W+t_jE_j}-\snorm{W}}{t_j}
+ =
+ \snorm{\cdot}'(W;E).
+\]
+For sufficiency, suppose the derivative in
+\eqref{eq:spectral-directional-derivative} is zero and define
+\[
+ W(t)=R\,\frac{W+tE}{\snorm{W+tE}}.
+\]
+Then \(W(t)\in\mathcal L_R\) and
+\(\snorm{W+tE}=R+o(t)\), so
+\(W(t)=W+tE+o(t)\).  Thus \(E\) is a Bouligand tangent direction.
+\end{proof}
+
+\begin{boundary}
+\textbf{The dual/weight symmetry gap.}
+The manuscript treats rank deficiency of the \emph{dual matrix}
+\(G+\lambda\Theta\) set-valuedly because that inclusion is the tractable inner
+problem under study.  At a repeated leading singular value of the
+\emph{weight}, it does not select one element of
+\(\partial\snorm{W}\) and call the resulting hyperplane the tangent space.
+\Cref{prop:repeated-top-tangent-cone} shows the actual first-order object.
+The present inner-oracle analysis instead excludes this stratum from any
+outer claim.  That is a genuine asymmetry of scope, not a resolution of the
+global stratified problem; a tangent-cone/normal-cone outer method remains
+open.
+\end{boundary}
+
+\begin{remark}[A normal is not a projector]
+The matrix \(\Theta\) is a unit normal, not a projector.  Under the Frobenius metric the
+orthogonal tangent projector is the linear map
+\[
+ \Pi_{T_W}(E)=E-\ip{\Theta}{E}\Theta.
+\]
+\end{remark}
+
+\begin{lemma}[Dimension-free sensitivity of the normal]
+\label{lem:normal-derivative}
+Let \(\gamma_W=\sigma_1(W)-\sigma_2(W)>0\).  For every perturbation \(E\),
+\begin{equation}
+ \fnorm{D\Theta(W)[E]}
+ \le
+ \frac{\sqrt2}{\gamma_W}\snorm{E}.
+\tag{N7}
+\label{eq:normal-derivative}
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+Choose differentiable singular-vector representatives satisfying
+\(u_1^\top Du_1=v_1^\top Dv_1=0\).  The simple-eigenvector perturbation
+ formula for \(\mathcal H(W)\) gives
+\[
+ \left\|D\left(\frac{u_1}{\sqrt2},\frac{v_1}{\sqrt2}\right)[E]\right\|_2
+ \le \frac{\snorm{E}}{\gamma_W}.
+\]
+Since
+\[
+ D\Theta[E]=(Du_1[E])v_1^\top+u_1(Dv_1[E])^\top
+\]
+and the two summands are Frobenius orthogonal,
+\[
+ \fnorm{D\Theta[E]}^2
+ =\|Du_1[E]\|_2^2+\|Dv_1[E]\|_2^2,
+\]
+which proves \eqref{eq:normal-derivative}.
+\end{proof}
+
+\subsection{Tangent constraint, ball oracle, and the role of retraction}
+
+On the simple-leading-value stratum, the tangent space is the kernel of
+\eqref{eq:spectral-differential}:
+\begin{equation}
+ T_W\mathcal L_R
+ =
+ \{\Phi:\ip{\Theta(W)}{\Phi}=0\}.
+\tag{N8}
+\label{eq:true-tangent-space}
+\end{equation}
+For a step \(E=-\eta R\Phi\), this also follows from
+\begin{equation}
+ \snorm{W-\eta R\Phi}
+ =
+ R-\eta R\ip{\Theta}{\Phi}
+ +O\!\left(\frac{\eta^2R^2}{\gamma_W}\right).
+\tag{N9}
+\end{equation}
+Thus the tangent LMO studied below is
+\begin{equation}
+ p^\star
+ =
+ \max_{\snorm{\Phi}\le1,\ \ip{\Theta}{\Phi}=0}
+ \ip{G}{\Phi}.
+\tag{P}
+\label{eq:normal-primal}
+\end{equation}
+Here \(\Theta\) is computed from the current weight \(W\), whereas \(G\) is a
+loss-gradient or momentum-like matrix supplied to the oracle.  They are
+different inputs.  Their only coupling in the exact dual is through the affine
+line \(G+\lambda\Theta\).
+
+\begin{lemma}[Closed ball versus unit sphere]
+\label{lem:ball-sphere}
+If \(p^\star>0\), every optimizer of \eqref{eq:normal-primal} saturates
+\(\snorm{\Phi}=1\); hence the ball and sphere formulations have the same
+optimal value and the same optimizers.  If \(p^\star=0\), the optimal values
+still agree provided \(mn\ge2\), but the ball formulation also contains
+interior optima.  When \(mn=1\), the tangent hyperplane is \(\{0\}\), so the
+unit-sphere problem has no feasible point.
+\end{lemma}
+
+\begin{proof}
+If an optimizer with positive objective had spectral norm strictly below one,
+positive rescaling would remain tangent and feasible while increasing the
+objective.  If \(p^\star=0\), central symmetry of the feasible set implies
+that \(\ip{G}{\Phi}=0\) for every tangent feasible \(\Phi\): otherwise either
+\(\Phi\) or \(-\Phi\) would have positive objective.  When \(mn\ge2\), the
+nonzero normal \(\Theta\) has a nonzero Frobenius-orthogonal complement.
+Choose \(E\ne0\) in that complement and replace it by
+\(E/\snorm{E}\).  This gives a tangent matrix of unit spectral norm, proving
+equality of the optimal values.  The \(mn=1\) exception is immediate.
+\end{proof}
+
+This lemma explains why convex duality must be established on the closed ball,
+even if an implementation later normalizes a nonzero accepted direction to
+unit spectral norm.
+
+\begin{lemma}[Explicit second-order drift]
+\label{lem:normal-remainder}
+Let \(\gamma_W>0\) and \(\snorm{E}\le\gamma_W/4\).  Then
+\begin{equation}
+ 0
+ \le
+ \snorm{W+E}-\snorm{W}-\ip{\Theta}{E}
+ \le
+ \frac{2\snorm{E}^2}{\gamma_W}.
+\tag{N10}
+\label{eq:normal-remainder}
+\end{equation}
+In particular, a tangent step \(E=-\eta R\Phi\) with
+\(\snorm{\Phi}\le1\) and \(\eta R\le\gamma_W/4\) has radial drift at most
+\begin{equation}
+ \frac{2\eta^2R^2}{\gamma_W}.
+\tag{N11}
+\label{eq:linearization-drift}
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+Convexity gives the lower bound.  In a basis whose first vector is the leading
+eigenvector of \(\mathcal H(W)\), write the symmetric dilation and its
+perturbation as
+\[
+ \mathcal H(W)=\begin{pmatrix}\sigma_1&0\\0&B\end{pmatrix},
+ \qquad
+ \mathcal H(E)=\begin{pmatrix}a&b^\top\\b&C\end{pmatrix},
+\]
+with \(\lambda_{\max}(B)\le\sigma_1-\gamma_W\) and
+\(\rho:=\snorm{E}=\snorm{\mathcal H(E)}\).  The Schur-complement equation for
+the perturbed leading eigenvalue gives
+\[
+ 0\le\widetilde\sigma_1-\sigma_1-a
+ \le \frac{\rho^2}{\gamma_W-2\rho}
+ \le \frac{2\rho^2}{\gamma_W}.
+\]
+Here \(a=\ip{\Theta}{E}\).  The dilation may have additional zero eigenvalues
+when \(m\ne n\); their distance from \(\sigma_1\) is at least
+\(\sigma_1\ge\gamma_W\), so the same bound applies.
+\end{proof}
+
+For \(W+E\ne0\), define the radial retraction
+\begin{equation}
+ \Retr_W(E)=R\frac{W+E}{\snorm{W+E}}.
+\tag{N12}
+\label{eq:radial-retraction}
+\end{equation}
+Its derivative is
+\begin{equation}
+ D\Retr_W(0)[E]
+ =
+ E-\frac WR\ip{\Theta}{E}.
+\tag{N13}
+\label{eq:retraction-derivative}
+\end{equation}
+Thus retraction guarantees exact radial feasibility, whereas the tangent LMO
+chooses the best first-order direction under a prescribed spectral budget.
+They are not interchangeable.  Retraction also does not automatically
+preserve a fixed positive leading spectral gap.
+
+\subsection{Approximate normals live in a projective geometry}
+
+An implementation computes an approximate singular triplet
+\((\hat\sigma,\hat u,\hat v)\), typically by a few power or block iterations,
+and sets
+\begin{equation}
+ \hat\Theta=\hat u\hat v^\top.
+\tag{N14}
+\end{equation}
+For classical bilateral power iteration with a starting vector having nonzero
+leading-component overlap, the right-vector angle obeys
+\begin{equation}
+ \tan\angle(\hat v_k,v_1)
+ \le
+ \left(\frac{\sigma_2(W)}{\sigma_1(W)}\right)^{2k}
+ \tan\angle(\hat v_0,v_1).
+\tag{N14a}
+\label{eq:power-rate}
+\end{equation}
+Thus a fixed iteration budget is reliable only when the leading ratio is
+separated from one.
+
+For a finite iteration budget, \eqref{eq:power-rate} applies with the actual
+initial angle; a warm start changes that initial angle, not the exponent.
+The equality \(\ip{\hat\Theta}{\Phi}=0\) is unchanged under
+\(\hat\Theta\mapsto-\hat\Theta\).  The relevant object is therefore the normal
+\emph{line}, not an oriented normal matrix.
+
+Let
+\begin{equation}
+ \alpha_u=\arccos|u_1^\top\hat u|,
+ \qquad
+ \alpha_v=\arccos|v_1^\top\hat v|,
+ \qquad
+ \alpha_u,\alpha_v\in[0,\pi/2],
+\tag{N15}
+\label{eq:acute-angles}
+\end{equation}
+and put \(\vartheta=\alpha_u+\alpha_v\).
+
+\begin{lemma}[Exact projective distance between rank-one normals]
+\label{lem:projective-normal-distance}
+\begin{equation}
+ \min_{s\in\{\pm1\}}\nnorm{\Theta-s\hat\Theta}
+ =
+ 2\sin\frac{\vartheta}{2},
+\qquad
+ \min_{s\in\{\pm1\}}\fnorm{\Theta-s\hat\Theta}
+ =
+ \sqrt{2-2\cos\alpha_u\cos\alpha_v}.
+\tag{N16}
+\label{eq:projective-distance}
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+Choose \(s\) and a factorization
+\(s\hat\Theta=\tilde u\tilde v^\top\) so that
+\(u_1^\top\tilde u=\cos\alpha_u\ge0\) and
+\(v_1^\top\tilde v=\cos\alpha_v\ge0\).  The difference has rank at most two.
+The sum and product of its two squared singular values are
+\[
+ 2-2\cos\alpha_u\cos\alpha_v,
+ \qquad
+ \sin^2\alpha_u\sin^2\alpha_v.
+\]
+Consequently the squared nuclear norm is
+\[
+ 2-2\cos\alpha_u\cos\alpha_v
+ +2\sin\alpha_u\sin\alpha_v
+ =4\sin^2\frac{\alpha_u+\alpha_v}{2}.
+\]
+The other sign gives the larger of the two projective representatives.
+\end{proof}
+
+\begin{theorem}[Sharp worst-case leakage of an estimated tangent space]
+\label{thm:sharp-normal-leakage}
+For unit rank-one normals \(\Theta,\hat\Theta\),
+\begin{equation}
+ \sup_{\substack{\snorm{\Phi}\le1\\
+                  \ip{\hat\Theta}{\Phi}=0}}
+ |\ip{\Theta}{\Phi}|
+ =
+ \begin{cases}
+ \sin\vartheta,&0\le\vartheta\le\pi/2,\\
+ 1,&\pi/2\le\vartheta\le\pi.
+ \end{cases}
+\tag{N17}
+\label{eq:sharp-normal-leakage}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+The absolute value permits either sign of the objective.  After the projective
+orientation used in the proof of \cref{lem:projective-normal-distance}, apply
+T1 strong duality (Theorem~\ref{thm:T1}) to the oracle with objective \(\Theta\) and
+normal \(\hat\Theta\):
+\[
+ \min_{\lambda\in\R}\nnorm{\Theta+\lambda\hat\Theta}.
+\]
+For \(\lambda=-t\), \(t\ge0\), the squared nuclear norm is
+\[
+ 1+t^2-2t\cos(\alpha_u+\alpha_v).
+\]
+Its minimum is \(\sin^2\vartheta\) when
+\(\cos\vartheta\ge0\), and \(1\) otherwise.  The branch
+\(\lambda=t\ge0\) has squared norm
+\[
+ 1+t^2+2t\cos(\alpha_u-\alpha_v),
+\]
+whose minimum is \(1\) because
+\(|\alpha_u-\alpha_v|\le\pi/2\).  Comparing the branches proves
+\eqref{eq:sharp-normal-leakage}.
+\end{proof}
+
+\begin{boundary}
+\Cref{thm:sharp-normal-leakage} is a sharp \emph{uniform worst-case upper
+bound}.  It is not a lower bound on every realized oracle direction: a
+particular direction may be tangent to both normal hyperplanes.  Likewise, an
+angle measured directly between two normal matrices is not, in general, the
+sum \(\alpha_u+\alpha_v\) appearing in \eqref{eq:sharp-normal-leakage}.  No
+empirical leakage percentage is inferred in this paper because the required
+pair \((\alpha_u,\alpha_v)\) was not recorded.
+\end{boundary}

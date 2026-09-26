@@ -1,0 +1,43 @@
+{
+  "arithmetic": "exact Fraction moments; mpmath 100 digits",
+  "repeated_levels_exact_root_residuals": [
+    "0.0",
+    "0.0",
+    "0.0",
+    "0.0"
+  ],
+  "cubic_two_levels": {
+    "moments": [
+      "0",
+      "3/4"
+    ],
+    "predicted_order": 3,
+    "predicted_coefficient": "3/8",
+    "deltas": [
+      "1e-4",
+      "1e-6"
+    ],
+    "computed_ratios": [
+      "0.37499999648395315840819368503944276",
+      "0.37499999999964843707812533398535059"
+    ]
+  },
+  "quintic_three_levels": {
+    "moments": [
+      "0",
+      "0",
+      "10/3"
+    ],
+    "predicted_order": 5,
+    "predicted_coefficient": "-5/4",
+    "deltas": [
+      "1e-4",
+      "1e-6"
+    ],
+    "computed_ratios": [
+      "-1.2499999855967593963901482944467752",
+      "-1.2499999999985819509259272604267445"
+    ]
+  }
+}
+FINITE CANCELLATION CHECKS PASSED (numerical verification, not formal proof).

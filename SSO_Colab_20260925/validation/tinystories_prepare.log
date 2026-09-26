@@ -1,0 +1,25 @@
+{
+  "output": "validation_work/tiny_real",
+  "sources": [
+    {
+      "name": "tinystories",
+      "weight": 1.0,
+      "tokens": {
+        "train": 4139,
+        "val": 1223,
+        "test": 1075
+      },
+      "documents": {
+        "train": 24,
+        "val": 7,
+        "test": 6
+      },
+      "duplicates_skipped": 0,
+      "requested_quota": {
+        "train": 4096,
+        "val": 1024,
+        "test": 1024
+      }
+    }
+  ]
+}

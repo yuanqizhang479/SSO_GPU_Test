@@ -1,0 +1,61 @@
+\documentclass[10pt]{article}
+
+\input{preamble}
+\hypersetup{pdftitle={Nuclear-Norm Best Approximation at Rank-Deficient Matrix-Line Crossings}}
+\setlength{\parskip}{0.35em}
+\setlist[itemize]{topsep=0.25em,itemsep=0.1em}
+\setlist[enumerate]{topsep=0.25em,itemsep=0.15em}
+
+\title{\textbf{Nuclear-Norm Best Approximation at Rank-Deficient Matrix-Line Crossings}\\
+\large Certificate Geometry and Singular Smoothing}
+\author{Anonymous manuscript}
+\date{August 4, 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We study nuclear-norm best approximation from a matrix line and its dual
+spectral-norm ball intersected with one hyperplane.  At a rank-deficient
+minimizer, exact certificates form a tangency slice of the nuclear-norm
+subdifferential.  We classify its feasibility and uniqueness, derive its
+minimum-Frobenius member by singular-value water-filling, and characterize
+when clipping is unnecessary.  An admissible Fenchel family unifies two
+centers: the Huber regularizer has the water-filled center, whereas
+pseudo-Huber generally selects a different smooth center.  A polynomial
+derivative tail of order \(p\) yields boundary exponent \(p/(p+1)\), while
+finite saturation yields a linear law.  For arbitrary matrix lines, we derive
+the regular expansion and analytic multiplier and direction expansions at
+strict rank-deficient minimizers of arbitrary corank, with computable first
+corrections.  Compact-polar stationarity produces cubic/quadratic
+superconvergence and an explicit quintic/quartic refinement after a second
+cancellation.  At transverse square corank-one boundaries, pseudo-Huber obeys
+the exact two-thirds law, and a moving-crossing normal form gives a uniform
+cubic balance through the strict-to-boundary transition.  Finally, the
+compact-polar selection fails on a nonempty open set even when the approximant
+and exact certificate are unique.
+\end{abstract}
+
+\noindent\textbf{Keywords.}
+Nuclear norm; best approximation; spectral norm; Birkhoff--James
+orthogonality; polar factor; Fenchel smoothing; singular perturbation.
+
+\noindent\textbf{MSC 2020.}
+15A18, 15A60, 41A50, 41A52, 47A30, 49J52, 65F35, 65K10.
+
+\input{sections/01_introduction}
+\input{sections/02_exact_geometry}
+\input{sections/03_failure_completion}
+\input{sections/04_fenchel_selection}
+\input{sections/05_singular_rates}
+\input{sections/05b_numerical}
+\input{sections/06_discussion}
+
+{\footnotesize
+\setlength{\parskip}{0pt}
+\setlength{\bibsep}{0pt plus 0.2ex}
+\bibliographystyle{plainnat}
+\bibliography{references}
+}
+
+\end{document}

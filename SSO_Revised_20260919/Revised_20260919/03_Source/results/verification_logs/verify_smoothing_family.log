@@ -1,0 +1,19 @@
+PASS  pseudo-Huber strict slope                                error=4.411e-11
+PASS  Huber strict slope                                       error=4.951e-12
+PASS  pseudo-Huber center K_R                                  error=7.683e-11
+PASS  Huber center K_F                                         error=5.535e-12
+PASS  pseudo-Huber p=2 tail constant                           error=7.940e-07
+PASS  general p=3 tail constant                                error=1.612e-07
+PASS  finite-saturation constant L/beta (L=1)                  error=2.786e-07
+PASS  finite-saturation constant L/beta (L=0.5)                error=8.274e-08
+PASS  Huber multiplier interval at lambda=-1                   error=0.000e+00
+PASS  Huber multiplier interval at lambda=+0                   error=0.000e+00
+PASS  Huber multiplier interval at lambda=+1                   error=0.000e+00
+PASS  quintic coefficient delta=1e-2               error=2.74e-16
+PASS  quintic coefficient delta=1e-3               error=3.28e-16
+PASS  quintic coefficient delta=1e-4               error=3.12e-16
+PASS  quintic coefficient delta=1e-5               error=3.38e-17
+PASS  quintic ratios converge to -1/8                       error=1.651e-7
+PASS  quartic direction matrix                              error=4.193e-6
+PASS  quartic off-diagonal residual                         norm=3.854e-6
+ALL SMOOTHING-FAMILY ASSERTIONS PASSED

@@ -1,0 +1,4 @@
+PASS  partial-isometry/no-clipping equivalence
+PASS  hard and smooth spectral completion formulas
+PASS  certificate-slice uniqueness alternatives
+ALL CERTIFICATE-GEOMETRY ASSERTIONS PASSED

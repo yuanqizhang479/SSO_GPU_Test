@@ -1,0 +1,484 @@
+\section{Fenchel recovery and center selection}
+\label{sec:smoothing}
+
+For \(\delta>0\), define
+\begin{equation}
+ \psi_\delta(s)=\sqrt{s^2+\delta^2}-\delta,
+ \qquad
+ \Psi_\delta(A)=\sum_{i=1}^{q}\psi_\delta(\sigma_i(A)),
+ \qquad q=\min\{m,n\}.
+ \label{eq:Psi-main}
+\end{equation}
+This is a pseudo-Huber smoothing of the nuclear norm.  The spectral Fenchel
+pair, its gradient formula, and its Frobenius Lipschitz continuity are known
+\citep{mustafi2026move,lobos2025smooth,feoktistov2026softsign}; we use that
+pair after imposing the tangency equality to identify the constrained
+regularized limit inside \eqref{eq:all-directions}.
+
+The scalar conjugate is
+\begin{equation}
+ \psi_\delta^*(z)=
+ \begin{cases}
+ \delta(1-\sqrt{1-z^2}),&|z|\le1,\\
+ +\infty,&|z|>1.
+ \end{cases}
+ \label{eq:scalar-conjugate-main}
+\end{equation}
+Indeed, for \(|z|<1\), stationarity in the conjugate gives
+\(s=\delta z/\sqrt{1-z^2}\), and the endpoints follow by continuity.
+Define
+\begin{equation}
+ R(\Phi)=
+ \begin{cases}
+ \displaystyle\sum_{i=1}^{q}\left(1-\sqrt{1-\sigma_i(\Phi)^2}\right),
+       &\|\Phi\|_2\le1,\\
+ +\infty,&\|\Phi\|_2>1.
+ \end{cases}
+ \label{eq:R-main}
+\end{equation}
+
+\begin{lemma}[Conjugacy, strong convexity, and smooth gradient]
+\label{lem:conjugacy}
+The regularizer \(R\) is \(1\)-strongly convex in the Frobenius norm, and
+\begin{equation}
+ \Psi_\delta=(\delta R)^*.
+ \label{eq:matrix-conjugacy-main}
+\end{equation}
+The function \(\Psi_\delta\) is \(C^\infty\) and strictly convex on the full
+matrix space.  For a full SVD \(A=U\operatorname{diag}(\sigma_i)V^\top\),
+we have
+\begin{equation}
+ Z_\delta(A):=\nabla\Psi_\delta(A)
+ =U\operatorname{diag}\left(
+ \frac{\sigma_i}{\sqrt{\sigma_i^2+\delta^2}}
+ \right)V^\top.
+ \label{eq:Zdelta}
+\end{equation}
+Equivalently,
+\begin{equation}
+ Z_\delta(A)=
+ \begin{cases}
+ A(A^\top A+\delta^2I)^{-1/2},&m\ge n,\\
+ (AA^\top+\delta^2I)^{-1/2}A,&m<n.
+ \end{cases}
+ \label{eq:Zdelta-coordinate-free}
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+On \((-1,1)\), the even scalar function
+\(\rho(t)=1-\sqrt{1-t^2}\) satisfies
+\(\rho''(t)=(1-t^2)^{-3/2}\ge1\).  Hence
+\(\rho(t)-t^2/2\), extended by \(+\infty\) outside \([-1,1]\), is proper,
+closed, and convex.  Spectral lifting of absolutely symmetric closed convex functions
+\citep{lewis1995convex} shows that
+\(R(\Phi)-\|\Phi\|_F^2/2\) is proper, closed, and convex.  Thus \(R\) is
+lower semicontinuous, and this is the asserted strong convexity.
+The same lifting applied to \eqref{eq:scalar-conjugate-main} proves
+\eqref{eq:matrix-conjugacy-main}.
+
+For strict matrix convexity, use the symmetric dilation
+\[
+ \mathcal H(A)=\begin{pmatrix}0&A\\A^\top&0\end{pmatrix},
+ \qquad g_\delta(t)=\sqrt{t^2+\delta^2}.
+\]
+Its spectrum consists of \(\pm\sigma_i(A)\) and \(|m-n|\) zeros, so
+\[
+ \Psi_\delta(A)
+ =\frac12\operatorname{tr}g_\delta(\mathcal H(A))
+ -\frac{m+n}{2}\delta.
+\]
+For a symmetric matrix, the trace-spectral Hessian has divided differences
+\((g_\delta'(x)-g_\delta'(y))/(x-y)\), with the diagonal value
+\(g_\delta''(x)\) \citep{lewis2001twice}.  Since
+\(g_\delta'(t)=t/\sqrt{t^2+\delta^2}\) is strictly increasing, all these
+coefficients are positive.  A nonzero matrix perturbation has a nonzero
+dilation, so the quadratic Hessian form is positive.  This proves strict
+convexity; functional calculus gives smoothness and
+\eqref{eq:Zdelta}--\eqref{eq:Zdelta-coordinate-free}.
+\end{proof}
+
+\begin{theorem}[Unique smooth oracle and Fenchel center path]
+\label{thm:center-path}
+For every \(\Theta\ne0\), the scalar function
+\begin{equation}
+ d_\delta(\lambda)=\Psi_\delta(G+\lambda\Theta)
+ \label{eq:smooth-dual-main}
+\end{equation}
+is coercive and strictly convex.  It has a unique minimizer
+\(\lambda_\delta\), characterized by
+\begin{equation}
+ h_\delta(\lambda)
+ :=\langle\Theta,Z_\delta(G+\lambda\Theta)\rangle=0.
+ \label{eq:smooth-root-main}
+\end{equation}
+The direction
+\begin{equation}
+ \Phi_\delta=Z_\delta(G+\lambda_\delta\Theta)
+ \label{eq:Phi-delta-main}
+\end{equation}
+is exactly tangent and satisfies \(\|\Phi_\delta\|_2<1\).
+
+Moreover, \(\Phi_\delta\) is the unique solution of
+\begin{equation}
+ \max_{\substack{\|\Phi\|_2\le1\\
+                  \langle\Theta,\Phi\rangle=0}}
+ \{\langle G,\Phi\rangle-\delta R(\Phi)\}.
+ \label{eq:regularized-primal}
+\end{equation}
+If \(\mathcal P^\star\) is the exact solution face in
+\eqref{eq:solution-face}, then
+\begin{equation}
+ \Phi_\delta\longrightarrow
+ \Phi_R^\star:=\argmin_{\Phi\in\mathcal P^\star}R(\Phi)
+ \qquad(\delta\downarrow0).
+ \label{eq:center-limit-main}
+\end{equation}
+The center is unique.  If the exact dual minimizer is unique, then
+\(\lambda_\delta\to\lambda^\star\).
+\end{theorem}
+
+\begin{proof}
+Strict convexity follows by restricting \(\Psi_\delta\) to the injective
+affine line \(G+\lambda\Theta\).  Since
+\begin{equation}
+ 0\le\|A\|_*-\Psi_\delta(A)\le q\delta,
+ \label{eq:smoothing-uniform}
+\end{equation}
+the lower bound
+\(d_\delta(\lambda)\ge
+ |\lambda|\|\Theta\|_*-\|G\|_*-q\delta\) proves coercivity.  Differentiation
+gives \eqref{eq:smooth-root-main}; the derivative of a differentiable,
+strictly convex, coercive scalar function has one zero.  Each multiplier in
+\eqref{eq:Zdelta} lies in \([0,1)\), and the root gives tangency, proving
+the first part.
+
+Conjugacy \eqref{eq:matrix-conjugacy-main} gives
+\[
+ \Psi_\delta(G+\lambda\Theta)
+ =\max_{\|\Phi\|_2\le1}
+ \{\langle G+\lambda\Theta,\Phi\rangle-\delta R(\Phi)\}.
+\]
+The feasible set of \eqref{eq:regularized-primal} is compact and contains
+the relative Slater point zero.  Lagrange duality is therefore exact, while
+strong convexity of \(R\) makes the primal optimizer unique.  Fenchel equality
+identifies it with \eqref{eq:Phi-delta-main}.
+
+Let \(p^\star\) denote the unregularized optimum.  Optimality against the
+unique \(R\)-minimizer \(\Phi_R^\star\) on \(\mathcal P^\star\) gives
+\begin{equation}
+ 0\le p^\star-\langle G,\Phi_\delta\rangle
+ \le\delta\{R(\Phi_R^\star)-R(\Phi_\delta)\}.
+ \label{eq:center-gap-main}
+\end{equation}
+In particular, \(R(\Phi_\delta)\le R(\Phi_R^\star)\) and, because
+\(R\ge0\), the linear gap is at most
+\(\delta R(\Phi_R^\star)\to0\).
+Compactness makes every sequence \(\delta_k\downarrow0\) have a convergent
+subsequence.  The linear gap in \eqref{eq:center-gap-main} puts every limit in
+\(\mathcal P^\star\); lower semicontinuity gives an \(R\)-value no larger than
+that of \(\Phi_R^\star\).  Strong convexity makes the center unique, so all
+subsequences have the same limit.
+
+ Finally, the uniform convergence
+ \eqref{eq:smoothing-uniform} and common coercive lower bound imply convergence
+ of the scalar minimizers whenever the exact minimizer is unique.
+\end{proof}
+
+The abstract center has an explicit spectral form for every matrix normal.
+It is generally different from the hard minimum-Frobenius completion
+\eqref{eq:KF-main}.
+
+\begin{theorem}[General pseudo-Huber certificate center]
+\label{thm:general-fenchel-center}
+At a rank-deficient optimum, use \(C\), \(a\), and \(\beta\) from
+\eqref{eq:a-C-beta-main}.  If \(C=0\), then \(a=0\) and \(K_R=0\).
+Otherwise, let
+\(C=P_C\operatorname{diag}(\sigma_1,\ldots,\sigma_{r_C})Q_C^\top\) be a compact
+SVD, where \(r_C=\operatorname{rank}C\).  If \(|a|<\beta\), there is a unique
+\(\eta\ge0\) satisfying
+\begin{equation}
+ \sum_{i=1}^{r_C}
+ \frac{\eta\sigma_i^2}{\sqrt{1+\eta^2\sigma_i^2}}=|a|.
+ \label{eq:eta-R-main}
+\end{equation}
+The kernel block of \(\Phi_R^\star\) is
+\begin{equation}
+ K_R=-\operatorname{sign}(a)P_C
+ \operatorname{diag}\left(
+  \frac{\eta\sigma_i}{\sqrt{1+\eta^2\sigma_i^2}}
+ \right)Q_C^\top,
+ \label{eq:KR-main}
+\end{equation}
+with \(K_R=0\) when \(a=0\).  At \(|a|=\beta\), the formula is understood as
+\(\eta\to\infty\), giving
+\(K_R=-\operatorname{sign}(a)P_CQ_C^\top\).  For rank-one \(C\),
+\eqref{eq:KR-main} reduces exactly to
+\(K_{\rm can}\) in \eqref{eq:Kcan-main}.
+\end{theorem}
+
+\begin{proof}
+In the singular bases,
+\(R(\Phi)=\operatorname{rank}(A^\star)+\mathcal R_0(K)\), where
+\[
+ \mathcal R_0(K)=\sum_j\rho(\sigma_j(K)),
+ \qquad
+ \rho(t)=\begin{cases}1-\sqrt{1-t^2},&|t|\le1,\\
+                         +\infty,&|t|>1.
+          \end{cases}
+\]
+The scalar conjugate is \(\rho^*(z)=\sqrt{1+z^2}-1\).  Spectral lifting gives
+\[
+ \mathcal R_0^*(Y)=
+ \sum_{j=1}^{\min\{\ell,k\}}
+ \bigl(\sqrt{1+\sigma_j(Y)^2}-1\bigr).
+\]
+For \(|a|<\beta\), the feasible point
+\(-(a/\beta)P_CQ_C^\top\) has spectral norm below one, so Slater holds.  The
+KKT condition is
+\(K_R=\nabla\mathcal R_0^*(\mu C)\), with
+\(\mu=-\operatorname{sign}(a)\eta\).  It gives \eqref{eq:KR-main} and
+\[
+ \langle C,K_R\rangle
+ =-\operatorname{sign}(a)\sum_{i=1}^{r_C}
+ \frac{\eta\sigma_i^2}{\sqrt{1+\eta^2\sigma_i^2}}=-a.
+\]
+The left side
+of \eqref{eq:eta-R-main} starts at zero, has derivative
+\[
+ \sum_i\frac{\sigma_i^2}{(1+\eta^2\sigma_i^2)^{3/2}}>0,
+\]
+and tends to \(\sum_i\sigma_i=\beta\), proving existence and uniqueness for
+the strict slice.  At the endpoint, \eqref{eq:endpoint-face} fixes the support
+block and leaves only \(W\); nonnegativity of \(\rho\), with equality only at
+zero, selects \(W=0\).  The case \(C=0\) is the same unconstrained minimum.
+For rank-one \(C\), the spectral center formula has one active coefficient,
+and \eqref{eq:eta-R-main} fixes it at \(|a|/\beta\), yielding
+\eqref{eq:Kcan-main}.
+\end{proof}
+
+\begin{corollary}[Exact agreement of the hard and smooth centers]
+\label{cor:center-agreement-main}
+Let \(C\ne0\) and \(|a|\le\beta\).  Then \(K_F=K_R\) if and only if at least
+one of the following holds: \(a=0\), \(|a|=\beta\), or all positive singular
+values of \(C\) coincide.  Thus, in the strict nonzero regime, the two centers
+agree exactly for scalar multiples of partial isometries.
+\end{corollary}
+
+\begin{proof}
+Agreement is immediate at zero and at the endpoint.  If all positive singular
+values are equal, symmetry makes every active coefficient in both formulas
+equal to \(|a|/\beta\).  Conversely, suppose
+\(0<|a|<\beta\) and the centers agree.  Every coefficient in the smooth
+formula is strictly below one, so the hard formula is unsaturated.  Equality
+of the coefficients gives, for every positive \(\sigma_i\),
+\[
+ \eta_F=\frac{\eta_R}{\sqrt{1+\eta_R^2\sigma_i^2}}.
+\]
+Since \(\eta_R>0\), all \(\sigma_i\) must coincide.
+\end{proof}
+
+\subsection{A smoothing family and two distinguished centers}
+
+For the motivating spectral-sphere normal \(\Theta=uv^\top\), the
+compressed normal \(C=(U_0^\top u)(V_0^\top v)^\top\) has rank at most
+one.  Consequently \(K_F=K_R\) at every exact minimizer, including
+\(C=0\) and endpoint cases.  Different hard and pseudo-Huber centers
+therefore concern general matrix normals with at least two unequal positive
+singular values in \(C\); they are not a distinction between these two
+centers in the rank-one spectral-sphere application.  Their finite-scale
+directions and convergence rates can still differ.
+
+The preceding center is not an isolated artifact of pseudo-Huber smoothing.
+Call a scalar profile \(\psi\) \emph{admissible} if it is even, convex, and
+\(C^1\), with \(\psi(0)=0\), if \(0\le\psi'(x)\le1\) for \(x\ge0\), and if
+\(\psi'\) is nondecreasing with \(\lim_{x\to\infty}\psi'(x)=1\).  We further require
+\begin{equation}
+ c_\psi:=\lim_{x\to\infty}\{x-\psi(x)\}<\infty,
+ \qquad
+ 0\le x<y,\ \psi'(y)<1\ \Longrightarrow\ \psi'(x)<\psi'(y),
+ \tag{A}
+ \label{eq:admissible-profile-main}
+\end{equation}
+and assume that, for some \(\mu_\psi>0\), the extended-value function
+\(z\mapsto\psi^*(z)-\mu_\psi z^2/2\) is convex on \(\mathbb R\); the domain
+of \(\psi^*\) is \([-1,1]\).  The second condition in
+\eqref{eq:admissible-profile-main} means strict increase before possible
+finite saturation; it includes both profiles below.  Define
+\begin{equation}
+ \Psi_\delta^\psi(A)=\delta\sum_{i=1}^q
+ \psi\!\left(\frac{\sigma_i(A)}{\delta}\right),
+ \qquad
+ R_\psi(\Phi)=\sum_{i=1}^q\psi^*(\sigma_i(\Phi)).
+ \label{eq:profile-lifts-main}
+\end{equation}
+The last expression is understood as \(+\infty\) when
+\(\|\Phi\|_2>1\).
+
+\begin{proposition}[Admissible profiles select spectral centers]
+\label{prop:smoothing-family-main}
+For every admissible \(\psi\),
+\(\Psi_\delta^\psi=(\delta R_\psi)^*\), and \(R_\psi\) is strongly convex
+in the Frobenius norm.  If \(\lambda_\delta^\psi\) is any minimizer of
+\(\Psi_\delta^\psi(G+\lambda\Theta)\), then
+\[
+ \Phi_\delta^\psi=\nabla\Psi_\delta^\psi
+   (G+\lambda_\delta^\psi\Theta)
+\]
+is independent of the choice of multiplier and is the unique maximizer of
+\eqref{eq:regularized-primal} with \(R\) replaced by \(R_\psi\).  Moreover,
+\begin{equation}
+ \Phi_\delta^\psi\longrightarrow
+ \Phi_\psi^\star:=\argmin_{\Phi\in\mathcal P^\star}R_\psi(\Phi).
+ \label{eq:profile-center-limit-main}
+\end{equation}
+
+At a strict rank-deficient minimizer, with \(a,C,\beta\) as in
+\eqref{eq:a-C-beta-main}, every choice of \(\lambda_\delta^\psi\) satisfies
+\begin{equation}
+ \frac{\lambda_\delta^\psi-\lambda^\star}{\delta}
+ \longrightarrow t_0^\psi=-\sign(a)\eta_\psi,
+ \qquad
+ \sum_{i=1}^{r_C}\sigma_i\psi'(\eta_\psi\sigma_i)=|a|,
+ \label{eq:profile-strict-rate-main}
+\end{equation}
+where \(\eta_\psi\ge0\) is the unique solution.  The null--null block of
+the center is
+\begin{equation}
+ K_\psi=-\sign(a)P_C\diag\!\bigl(
+ \psi'(\eta_\psi\sigma_i)\bigr)Q_C^\top.
+ \label{eq:profile-center-block-main}
+\end{equation}
+The same sharp-growth argument gives the uniform localization
+\begin{equation}
+ |\lambda_\delta^\psi-\lambda^\star|
+ \le \frac{q c_\psi}{\beta-|a|}\,\delta.
+ \label{eq:profile-strict-bound-main}
+\end{equation}
+For
+\begin{equation}
+ \psi_{\rm ph}(x)=\sqrt{1+x^2}-1,
+ \qquad
+ \psi_{\rm hub}(x)=
+ \begin{cases}x^2/2,&|x|\le1,\\ |x|-1/2,&|x|>1,
+ \end{cases}
+ \label{eq:two-profile-members-main}
+\end{equation}
+these formulas give, respectively, \((\eta_R,K_R)\) and
+\((\eta_F,K_F)\).  In particular,
+\begin{equation}
+ R_{\rm hub}(\Phi)=\tfrac12\|\Phi\|_F^2
+ +\iota_{\{\|\Phi\|_2\le1\}}(\Phi),
+ \label{eq:huber-regularizer-main}
+\end{equation}
+so the hard water-filled completion is itself a Fenchel center.
+\end{proposition}
+
+\begin{proof}
+Scalar perspective conjugacy and spectral lifting give
+\(\Psi_\delta^\psi=(\delta R_\psi)^*\); strong convexity also lifts from
+the absolutely symmetric singular-value function.  Hence the proof of
+\cref{thm:center-path}, without its strict-convexity claim for the scalar
+multiplier, gives the unique regularized certificate and
+\eqref{eq:profile-center-limit-main}.  The uniform bound
+\(0\le |x|-\delta\psi(x/\delta)\le c_\psi\delta\) replaces
+\eqref{eq:smoothing-uniform}.
+
+For the local rate, use the exact analytic cluster frames from
+\cref{thm:direction-strict-general}.  After setting
+\(s=\delta t\), the separated positive cluster contributes \(at+o(1)\),
+whereas the small block contributes
+\(\sum_i\psi(t\sigma_i)+o(1)\), uniformly for bounded \(t\).  Thus the
+rescaled objectives converge compact-uniformly to
+\[
+ F_\psi(t)=at+\sum_{i=1}^{r_C}\psi(t\sigma_i).
+\]
+It is coercive because \(|a|<\beta\).  The map
+\(g_\psi(t)=F_\psi'(t)-a\) is strictly increasing wherever
+\(|g_\psi(t)|<\beta\) by \eqref{eq:admissible-profile-main}.  Since
+\(|a|<\beta\), \(F_\psi'\) has the unique zero in
+\eqref{eq:profile-strict-rate-main}.  The sharp-growth localization used in
+\cref{thm:rate-strict-general} then gives convergence of every minimizing
+multiplier.  Finally, KKT conditions for minimizing the null-block part of
+\(R_\psi\) over \(\mathcal K(C,a)\), or equivalently differentiating its
+spectral conjugate at \(-\sign(a)\eta_\psi C\), give
+\eqref{eq:profile-center-block-main}.
+
+For pseudo-Huber, \(\psi'_{\rm ph}(x)=x/\sqrt{1+x^2}\), recovering
+\eqref{eq:eta-R-main}--\eqref{eq:KR-main}.  For Huber,
+\(\psi'_{\rm hub}(x)=\min\{x,1\}\) on \([0,\infty)\) and
+\(\psi_{\rm hub}^*(z)=z^2/2\) on \([-1,1]\), which gives
+\eqref{eq:huber-regularizer-main}; its scalar equation is exactly the hard
+water-filling equation defining \(\eta_F\) and \(K_F\).
+\end{proof}
+
+\begin{remark}[Variational center versus analytic oracle]
+\label{rem:huber-caveat-main}
+Huber smoothing is \(C^1\), convex, and coercive, so its scalar stationarity
+equation always has a solution.  Its derivative saturates, however, so the
+objective need not be strictly convex and can have locally constant
+multiplier intervals; the clipping map is also nonanalytic at its threshold.
+Thus multiplier uniqueness and the analytic direction expansion of
+\cref{thm:direction-strict-general} do not transfer without extra active-set
+nondegeneracy.  Huber is used here to identify \(K_F\) variationally and to
+separate center selection from the tail mechanism governing boundary rates,
+not to replace the pseudo-Huber oracle.
+For example, if \(G=2I_2\), \(\Theta=\diag(1,-1)\), and \(0<\delta<2\),
+then the full Huber multiplier interval is
+\([-2+\delta,2-\delta]\), while every multiplier produces the same
+certificate \(I_2\).
+\end{remark}
+
+\begin{remark}[Finite polynomial maps require separate analysis]
+\label{rem:finite-ns-boundary-main}
+A finite Newton--Schulz polynomial is not automatically a member of the
+admissible Fenchel family.  Continuity of the computed matrix map alone
+does not establish a convex scalar potential with derivative in \([-1,1]\),
+the perspective scaling in \eqref{eq:profile-lifts-main}, or strong
+convexity of its conjugate.  Thus neither the selected-center formula nor
+the asymptotic laws proved here can be assigned to a finite polynomial
+implementation without checking these assumptions for that particular map.
+The actual returned matrix must be used when measuring its tangency and
+feasible primal--dual gap; substituting the compact polar factor evaluates
+a different oracle.
+\end{remark}
+
+\begin{remark}[Approximant versus certificate regularization]
+\label{rem:legg-ward}
+The canonical trace-class approximation of Legg and Ward~\cite{legg1985canonical} uses the
+limit of Schatten \(c_p\)-approximations as \(p\downarrow1\) to resolve
+possible nonuniqueness on the approximant side.  Our regularization acts on
+the certificate side under the additional tangency equality.  In the no-root
+regime the approximant is unique by \cref{thm:interval}, whereas the
+certificate may or may not be unique by
+\cref{thm:certificate-uniqueness}.  Thus \cref{thm:center-path} is recovery in
+the singleton case and genuine Fenchel-center selection otherwise; the rate
+theory below applies to the corresponding regularized certificate path.
+\end{remark}
+
+\begin{corollary}[Global safety bounds]
+\label{cor:global-bounds}
+For every \(A\), \eqref{eq:smoothing-uniform} holds, and
+\begin{equation}
+ 0\le p^\star-\langle G,\Phi_\delta\rangle\le q\delta,
+ \qquad
+ |\lambda_\delta|
+ \le\frac{2\|G\|_*+q\delta}{\|\Theta\|_*}.
+ \label{eq:smooth-lambda-bound}
+\end{equation}
+\end{corollary}
+
+\begin{proof}
+For \(s\ge0\),
+\(0\le s-(\sqrt{s^2+\delta^2}-\delta)\le\delta\); summing proves
+\eqref{eq:smoothing-uniform}.  Since \(R\le q\) on the spectral unit ball,
+\eqref{eq:center-gap-main} gives the primal bias.  Finally,
+\(d_\delta(\lambda_\delta)\le d_\delta(0)\le\|G\|_*\), whereas the coercive
+lower bound used above gives the multiplier estimate.
+\end{proof}
+
+The exact interval method needs no smoothing if one merely wants an exact
+direction.  The value of \eqref{eq:smooth-root-main} is different: it is a
+continuous strictly monotone equation, avoids an exact-rank branch, and
+recovers or selects the explicit variational center.  The next section quantifies its
+behavior at rank loss.

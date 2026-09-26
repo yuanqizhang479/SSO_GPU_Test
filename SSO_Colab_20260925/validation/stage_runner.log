@@ -1,0 +1,15 @@
+RUN: /opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python /workspace/scratch/d13c66a6d8a2/SSO_Colab_20260925/audit_snapshots.py --root /workspace/scratch/d13c66a6d8a2/validation_final/runner/runs/tinystories --out /workspace/scratch/d13c66a6d8a2/validation_final/runner/audits/tinystories --device cpu
+audit 1/6: step000001_blocks.0.attn.q.weight.npz
+audit 2/6: step000001_blocks.0.ff1.weight.npz
+audit 3/6: step000001_blocks.0.ff2.weight.npz
+audit 4/6: step000004_blocks.0.attn.q.weight.npz
+audit 5/6: step000004_blocks.0.ff1.weight.npz
+audit 6/6: step000004_blocks.0.ff2.weight.npz
+{
+  "snapshot_count": 6,
+  "sso_ns_snapshot_count": 6,
+  "sso_ns_material_residual_count": 0,
+  "normal_illconditioned_count": 0,
+  "ph_reference_failures": 0
+}
+RETURN: /workspace/scratch/d13c66a6d8a2/validation_final/runner/SSO_RETURN_RESULTS.zip bytes= 168402

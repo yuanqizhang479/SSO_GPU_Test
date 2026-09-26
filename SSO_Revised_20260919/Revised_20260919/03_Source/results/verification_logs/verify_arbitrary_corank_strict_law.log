@@ -1,0 +1,6 @@
+PASS tall unequal nullities           shape=5x3 corank=2 rank(C)=2 a=+0.45000000 beta=1.90000000 prediction=-0.2411012342 ratio(delta=1e-6)=-0.2411011561
+PASS wide unequal nullities           shape=3x5 corank=2 rank(C)=2 a=-0.40000000 beta=1.70000000 prediction=+0.2635514881 ratio(delta=1e-6)=+0.2635513153
+PASS corank-3 rank-deficient C        shape=6x4 corank=3 rank(C)=1 a=+0.35000000 beta=1.30000000 prediction=-0.2150408249 ratio(delta=1e-6)=-0.2150408038
+PASS repeated positive cluster        shape=6x6 corank=4 rank(C)=3 a=+0.60000000 beta=2.40000000 prediction=-0.2970116365 ratio(delta=1e-6)=-0.2970114445
+PASS zero-a vanishing coefficient     shape=4x6 corank=2 rank(C)=1 a=-0.00000000 beta=1.25000000 prediction=+0.0000000000 ratio(delta=1e-6)=-0.0000000000
+All arbitrary-corank strict-law assertions passed.

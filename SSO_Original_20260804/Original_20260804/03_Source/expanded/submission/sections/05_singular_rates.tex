@@ -1,0 +1,1012 @@
+\section{Local smoothing laws at regular and singular minimizers}
+\label{sec:rates}
+
+Write
+\[
+ A(\lambda)=G+\lambda\Theta,
+ \qquad s=\lambda-\lambda^\star.
+\]
+All statements in this section are local asymptotics at a fixed instance
+under the printed nondegeneracy assumptions.  The strict rank-deficient law
+below permits arbitrary shape and corank.  Only the boundary and crossover
+laws use a transverse square corank-one crossing, because their proof isolates
+one signed Rellich-analytic small mode.
+
+\subsection{Full-rank regular minimizers}
+
+\begin{theorem}[Quadratic regular displacement]
+\label{thm:rate-regular}
+Assume that \(\lambda^\star\) minimizes \(\phi\), that
+\(A^\star=A(\lambda^\star)\) has full rectangular rank, and that
+\(\kappa=\phi''(\lambda^\star)>0\).  If
+\(A^\star=U\Sigma V^\top\), then
+\begin{equation}
+ \lambda_\delta-\lambda^\star
+ =-\frac{b^\star}{\kappa}\delta^2+o(\delta^2),
+ \qquad
+ b^\star=-\frac12
+ \langle\Theta,U\Sigma^{-2}V^\top\rangle.
+ \label{eq:regular-rate-main}
+\end{equation}
+The matrix in the pairing is basis independent:
+\begin{equation}
+ U\Sigma^{-2}V^\top=
+ \begin{cases}
+ A^\star((A^\star)^\top A^\star)^{-3/2},&m\ge n,\\
+ (A^\star(A^\star)^\top)^{-3/2}A^\star,&m<n.
+ \end{cases}
+ \label{eq:regular-intrinsic-main}
+\end{equation}
+Thus the displacement is \(O(\delta^2)\), and it is
+\(\Theta(\delta^2)\) when \(b^\star\ne0\).
+\end{theorem}
+
+\begin{proof}
+In a full-rank neighborhood,
+\[
+ \frac{\sigma}{\sqrt{\sigma^2+\delta^2}}
+ =1-\frac{\delta^2}{2\sigma^2}+O(\delta^4)
+\]
+uniformly.  Functional calculus therefore gives
+\[
+ Z_\delta(A(\lambda))
+ =\Sc(A(\lambda))
+ -\frac{\delta^2}{2}
+ U(\lambda)\Sigma(\lambda)^{-2}V(\lambda)^\top
+ +O(\delta^4).
+\]
+The displayed matrix functions are analytic and basis independent even at
+repeated positive singular values.  Pairing with \(\Theta\) yields
+\(h_\delta(\lambda)=\phi'(\lambda)+\delta^2b(\lambda)+O(\delta^4)\), with
+\(b(\lambda^\star)=b^\star\).  The scalar implicit function theorem at
+\(\phi'(\lambda^\star)=0\), \(\phi''(\lambda^\star)=\kappa\) proves
+\eqref{eq:regular-rate-main}.
+\end{proof}
+
+\subsection{Strict rank-deficient displacement at arbitrary corank}
+
+\begin{theorem}[Strict displacement at arbitrary corank]
+\label{thm:rate-strict-general}
+Let \(\lambda^\star\) minimize \(\phi\), let
+\(A^\star=A(\lambda^\star)\) be rank deficient, and define \(a,C,\beta\)
+by \eqref{eq:a-C-beta-main}.  Assume the strict condition
+\(|a|<\beta\).  Let
+\(\sigma_1\ge\cdots\ge\sigma_{r_C}>0\) be the positive singular values
+of \(C\), and let \(\eta_R\ge0\) be the unique solution of
+\begin{equation}
+ \sum_{i=1}^{r_C}
+ \frac{\eta_R\sigma_i^2}{\sqrt{1+\eta_R^2\sigma_i^2}}=|a|.
+ \label{eq:eta-strict-rate-main}
+\end{equation}
+Then
+\begin{equation}
+ \frac{\lambda_\delta-\lambda^\star}{\delta}
+ \longrightarrow-\sign(a)\eta_R.
+ \label{eq:strict-general-rate-main}
+\end{equation}
+Moreover, with \(q=\min\{m,n\}\),
+\begin{equation}
+ |\lambda_\delta-\lambda^\star|
+ \le \frac{q}{\beta-|a|}\,\delta.
+ \label{eq:strict-general-bound-main}
+\end{equation}
+No square-shape, corank-one, or rank-one-normal assumption is required.
+The displacement is \(\Theta(\delta)\) exactly when \(a\ne0\); when
+\(a=0\), it is \(o(\delta)\).
+\end{theorem}
+
+\begin{proof}
+Put \(q=\min\{m,n\}\), \(r=\rank A^\star\), and
+\(t_\delta=(\lambda_\delta-\lambda^\star)/\delta\).  Strict optimality
+and \cref{thm:interval} give the global sharp-growth estimate
+\begin{equation}
+ \phi(\lambda)\ge \phi(\lambda^\star)
+ +(\beta-|a|)|\lambda-\lambda^\star|.
+ \label{eq:strict-sharp-growth-main}
+\end{equation}
+Combining it with \eqref{eq:smoothing-uniform} and optimality of
+\(\lambda_\delta\) yields \eqref{eq:strict-general-bound-main}.
+Thus \((t_\delta)\) is bounded before any local expansion is used.
+
+Define the rescaled convex functions
+\[
+ F_\delta(t)=
+ \frac{\Psi_\delta(A(\lambda^\star+\delta t))
+       -\Psi_\delta(A^\star)}{\delta}.
+\]
+Choose a spectral gap separating the \(r\) positive singular values of
+\(A^\star\) from zero.  The sum \(\ell(s)\) of their analytic separated
+cluster is smooth even when singular values inside that cluster cross, and
+\(\ell'(0)=\langle\Theta,U_rV_r^\top\rangle=a\).  Since
+\(\psi_\delta(\sigma)=\sigma-\delta+O(\delta^2)\) uniformly on the
+separated cluster, its contribution to \(F_\delta(t)\) converges to \(at\),
+uniformly for \(t\) in compact sets.
+
+For the small cluster, let \(\Pi_V(s),\Pi_U(s)\) be the Riesz projections of
+\(A(s)^\top A(s)\) and \(A(s)A(s)^\top\) onto the clusters converging to
+zero, where \(A(s)=A(\lambda^\star+s)\).  The fixed gap makes them analytic,
+with analytic orthonormal frames \(V_0(s),U_0(s)\)
+\citep[Chapter~II]{kato1995perturbation}.  Resolvent intertwining gives
+\(A(s)\Pi_V(s)=\Pi_U(s)A(s)\) and its transpose identity, so the cluster
+subspaces reduce \(A(s)\) exactly.  Its small singular values are therefore
+precisely those of
+\[
+ B(s)=U_0(s)^\top A(\lambda^\star+s)V_0(s)=sC+O(s^2)
+\]
+because \(B(0)=0\) and \(B'(0)=U_0^\top\Theta V_0=C\).  Weyl's
+singular-value bound now gives, uniformly near zero,
+\[
+ \sigma_i(A(\lambda^\star+s))
+ =|s|\sigma_i(C)+O(s^2),
+\]
+where zero singular values of \(C\) are included.  Setting \(s=\delta t\)
+and using that \(x\mapsto\sqrt{1+x^2}-1\) is Lipschitz gives compact-uniform
+convergence
+\begin{equation}
+ F_\delta(t)\longrightarrow
+ F(t):=at+\sum_{i=1}^{r_C}
+ \left(\sqrt{1+\sigma_i^2t^2}-1\right).
+ \label{eq:strict-epi-limit-main}
+\end{equation}
+
+The function \(F\) is strictly convex, and
+\(F(t)=at+\beta|t|+o(|t|)\); hence \(|a|<\beta\) makes it coercive.
+Its unique minimizer solves
+\[
+ a+\sum_{i=1}^{r_C}
+ \frac{\sigma_i^2t}{\sqrt{1+\sigma_i^2t^2}}=0,
+\]
+so it equals \(-\sign(a)\eta_R\).  The localization
+\eqref{eq:strict-general-bound-main} puts every minimizer of \(F_\delta\) in
+one fixed compact interval.  Compact-uniform convergence then implies that
+every accumulation point minimizes \(F\); uniqueness proves
+\eqref{eq:strict-general-rate-main}.  The final order statements follow
+because \(\eta_R>0\) if and only if \(a\ne0\).
+\end{proof}
+
+\begin{remark}[One scalar governs both path and limit]
+\label{rem:one-scalar-path-center}
+Throughout this section the subscript \(R\) marks objects attached to the
+pseudo-Huber regularizer, rather than a common tensor type.
+The multiplier \(\eta_R\) in \eqref{eq:strict-general-rate-main} is exactly
+the multiplier in the smooth certificate formula
+\eqref{eq:eta-R-main}--\eqref{eq:KR-main}.  Thus the first displacement of
+the smoothing path and the kernel block of its limiting certificate are two
+manifestations of the same scalar balance.  More precisely,
+\(K_R=Z_1(t_0C)\), where
+\(t_0=-\operatorname{sign}(a)\eta_R\); the next theorem shows that this
+identity is the zero-scale value of an analytic blow-up path.
+\end{remark}
+
+\begin{theorem}[First-order direction law at a strict minimizer]
+\label{thm:direction-strict-general}
+Under the hypotheses of \cref{thm:rate-strict-general}, put
+\(t_0=-\operatorname{sign}(a)\eta_R\).  For the fixed instance there is a
+jointly real-analytic blow-up extension \(\mathcal Z(\varepsilon,t)\), defined
+near \((0,t_0)\), such that, for \(\varepsilon>0\),
+\begin{equation}
+ \mathcal Z(\varepsilon,t)
+ =Z_\varepsilon(A(\lambda^\star+\varepsilon t)),
+ \qquad
+ \mathcal Z(0,t)=U_rV_r^\top+U_0Z_1(tC)V_0^\top.
+ \label{eq:strict-blowup-map-main}
+\end{equation}
+Let
+\[
+ H(\varepsilon,t)=\langle\Theta,\mathcal Z(\varepsilon,t)\rangle,
+ \qquad
+ d_R:=\partial_tH(0,t_0)
+ =\sum_{i=1}^{r_C}
+ \frac{\sigma_i^2}{(1+t_0^2\sigma_i^2)^{3/2}}>0,
+\]
+and set
+\begin{equation}
+ t_1=-\frac{\partial_\varepsilon H(0,t_0)}{d_R},
+ \qquad
+ \mathcal M_R=\partial_\varepsilon\mathcal Z(0,t_0)
+ -\frac{\langle\Theta,\partial_\varepsilon\mathcal Z(0,t_0)\rangle}{d_R}
+  \partial_t\mathcal Z(0,t_0).
+ \label{eq:strict-direction-constant-main}
+\end{equation}
+Then
+\begin{align}
+ \lambda_\delta-\lambda^\star
+ &=\delta t_0+\delta^2t_1+O(\delta^3),
+ \label{eq:strict-multiplier-second-main}\\
+ \Phi_\delta
+ &=\Phi_R^\star+\delta\mathcal M_R+O(\delta^2).
+ \label{eq:strict-direction-first-main}
+\end{align}
+Consequently the returned-direction error is \(O(\delta)\), and it is
+asymptotic to \(\delta\|\mathcal M_R\|_F\) when
+\(\mathcal M_R\ne0\).  If \(\mathcal M_R=0\), it is \(O(\delta^2)\).
+In particular, \(a=0\) forces \(t_0=t_1=0\) and
+\(\mathcal M_R=0\), so that
+\begin{equation}
+ \lambda_\delta-\lambda^\star=O(\delta^3),
+ \qquad
+ \|\Phi_\delta-\Phi_R^\star\|_F=O(\delta^2).
+ \label{eq:strict-zero-superconvergence-main}
+\end{equation}
+The constants are local to the fixed instance; no uniformity as the spectral
+gap or \(\beta-|a|\) tends to zero is asserted.
+\end{theorem}
+
+\begin{proof}
+Let \(r=\operatorname{rank}A^\star\).  The gap between its positive and zero
+singular-value clusters gives local analytic orthogonal frames
+\(U(s)=[U_+(s)\ U_0(s)]\) and \(V(s)=[V_+(s)\ V_0(s)]\) for which
+\[
+ U(s)^\top A(\lambda^\star+s)V(s)
+ =\begin{pmatrix}A_+(s)&0\\0&B(s)\end{pmatrix}.
+\]
+Here \(A_+(s)\in\mathbb R^{r\times r}\) is invertible,
+\(B(s)\in\mathbb R^{(m-r)\times(n-r)}\), and
+\(B(0)=0\), \(B'(0)=C\).  Analytic division gives
+\(B(s)=s\widetilde B(s)\), with \(\widetilde B(0)=C\); unequal left and
+right nullities and zero singular values of \(C\) cause no difficulty.
+The frames are chosen to agree at \(s=0\) with the fixed compact and null
+frames used to define \(a\) and \(C\).
+
+Write
+\[
+ \mathcal E_s(K)=U_0(s)KV_0(s)^\top,
+ \qquad
+ P_\varepsilon(s)=
+ U_+(s)Z_\varepsilon(A_+(s))V_+(s)^\top.
+\]
+Orthogonal equivariance, block separation, and the scaling identity
+\(Z_\varepsilon(B)=Z_1(B/\varepsilon)\) give, for \(\varepsilon>0\),
+\begin{equation}
+ Z_\varepsilon(A(\lambda^\star+\varepsilon t))
+ =P_\varepsilon(\varepsilon t)
+ +\mathcal E_{\varepsilon t}
+  \left[Z_1\!\left(t\widetilde B(\varepsilon t)\right)\right].
+ \label{eq:strict-blowup-block-main}
+\end{equation}
+The positive block is analytic in \((s,\varepsilon^2)\), while \(Z_1\) is
+real analytic on the entire rectangular matrix space.  Thus the right-hand
+side extends jointly analytically across \(\varepsilon=0\) and proves
+\eqref{eq:strict-blowup-map-main}.  This construction uses analytic cluster
+subspaces, not analytic individual singular vectors, so repeated positive
+singular values are allowed \citep[Chapter II]{kato1995perturbation}.
+
+At zero scale,
+\[
+ H(0,t)=a+\langle C,Z_1(tC)\rangle
+ =a+\sum_{i=1}^{r_C}
+   \frac{t\sigma_i^2}{\sqrt{1+t^2\sigma_i^2}}.
+\]
+Its unique zero is \(t_0\), and differentiation gives the stated positive
+constant \(d_R\).  The analytic implicit function theorem therefore gives
+\(t(\varepsilon)=t_0+\varepsilon t_1+O(\varepsilon^2)\).  For positive
+\(\varepsilon\), strict convexity and
+\cref{thm:rate-strict-general} identify this local branch with
+\((\lambda_\varepsilon-\lambda^\star)/\varepsilon\).
+Since \(Z_1(t_0C)=K_R\), Taylor expansion of
+\(\mathcal Z(\delta,t(\delta))\) proves
+\eqref{eq:strict-multiplier-second-main}--\eqref{eq:strict-direction-first-main}
+and \eqref{eq:strict-direction-constant-main}.  When \(a=0\), one has
+\(t_0=0\), while
+\(Z_\varepsilon(A^\star)=\Sc(A^\star)+O(\varepsilon^2)\).  Hence
+\(\partial_\varepsilon H(0,0)=0\) and
+\(\partial_\varepsilon\mathcal Z(0,0)=0\), proving
+\eqref{eq:strict-zero-superconvergence-main}.
+\end{proof}
+
+\begin{proposition}[Intrinsic computable first-correction formula]
+\label{prop:strict-constants-closed-main}
+Use the analytic cluster frames in the proof of
+\cref{thm:direction-strict-general}, write
+\(\widetilde B(s)=B(s)/s\) with its analytic value
+\(\widetilde B(0)=C\), and define the basis-free frozen-scale field
+\begin{equation}
+ \mathcal W(s,t)=P_{\rm big}(s)
+ +U_0(s)Z_1\!\bigl(t\widetilde B(s)\bigr)V_0(s)^\top,
+ \qquad
+ P_{\rm big}(s)=U_+(s)\Sc(A_+(s))V_+(s)^\top.
+ \label{eq:frozen-field-main}
+\end{equation}
+Then \(\mathcal W(0,t_0)=\Phi_R^\star\) and
+\begin{equation}
+ \partial_\varepsilon\mathcal Z(0,t_0)
+ =t_0\partial_s\mathcal W(0,t_0).
+ \label{eq:frozen-chain-main}
+\end{equation}
+Consequently the constants in
+\eqref{eq:strict-direction-constant-main} are
+\begin{align}
+ t_1&=-\frac{t_0
+ \langle\Theta,\partial_s\mathcal W(0,t_0)\rangle}{d_R},
+ \label{eq:t1-closed-main}\\
+ \mathcal M_R&=t_0\left[
+ \partial_s\mathcal W(0,t_0)
+ -\frac{\langle\Theta,\partial_s\mathcal W(0,t_0)\rangle}{d_R}
+  \partial_t\mathcal W(0,t_0)
+ \right].
+ \label{eq:MR-closed-main}
+\end{align}
+In particular, \(t_0=0\) makes both constants vanish.  If \(t_0\ne0\),
+then
+\begin{align*}
+ \mathcal M_R=0
+ &\iff \partial_s\mathcal W(0,t_0)
+       \in\operatorname{span}\{\partial_t\mathcal W(0,t_0)\},\\
+ t_1=0
+ &\iff \langle\Theta,\partial_s\mathcal W(0,t_0)\rangle=0,
+\end{align*}
+and both vanish if and only if
+\(\partial_s\mathcal W(0,t_0)=0\).
+\end{proposition}
+
+\begin{proof}
+Both terms in \eqref{eq:frozen-field-main} are invariant under analytic
+orthogonal changes of the left and right cluster frames, by orthogonal
+equivariance of \(Z_1\).  In \eqref{eq:strict-blowup-block-main}, the positive
+block satisfies
+\(P_\varepsilon(s)=P_{\rm big}(s)+O(\varepsilon^2)\), jointly analytically
+in \((s,\varepsilon^2)\).  All remaining \(\varepsilon\)-dependence enters
+through \(s=\varepsilon t\).  Hence
+\[
+ \mathcal Z(\varepsilon,t)
+ =\mathcal W(\varepsilon t,t)+O(\varepsilon^2),
+\]
+and the chain rule proves \eqref{eq:frozen-chain-main}.  Substitution into
+\eqref{eq:strict-direction-constant-main} gives
+\eqref{eq:t1-closed-main}--\eqref{eq:MR-closed-main}.  Finally,
+\(\langle\Theta,\partial_t\mathcal W(0,t_0)\rangle=d_R>0\);
+the stated vanishing alternatives follow directly.  Notice in particular
+that parallelism alone cancels \(\mathcal M_R\), but need not cancel \(t_1\).
+The full-rank polar-block derivatives in this formula may be evaluated by
+standard Fr\'echet-derivative algorithms \citep{gawlik2017frechet}; the new
+feature here is their coupling to the analytic rank-deficient blow-up.
+\end{proof}
+
+\begin{corollary}[Sharp compact-root superconvergence]
+\label{cor:compact-root-superconvergence-main}
+Under \cref{thm:direction-strict-general}, suppose \(a=0\).  By
+\cref{thm:interval}, this is exactly compact-polar stationarity at
+\(\lambda^\star\).  Let
+\begin{equation}
+ J_\star=U_r\Sigma_r^{-2}V_r^\top,
+ \qquad d_0=\|C\|_F^2,
+ \qquad \chi_\star=\langle\Theta,J_\star\rangle.
+ \label{eq:compact-root-coefficients-main}
+\end{equation}
+where \(J_\star=0\) when the positive singular block is empty.  Strictness
+gives \(C\ne0\), hence \(d_0>0\).
+Then \(\Phi_R^\star=\Sc(A^\star)\), and
+\begin{align}
+ \lambda_\delta-\lambda^\star
+ &=\frac{\chi_\star}{2d_0}\,\delta^3+O(\delta^4),
+ \label{eq:compact-root-cubic-main}\\
+ \Phi_\delta-\Phi_R^\star
+ &=\delta^2\mathcal N_0+O(\delta^3),
+ \qquad
+ \mathcal N_0=-\frac12J_\star
+ +\frac{\chi_\star}{2d_0}U_0CV_0^\top.
+ \label{eq:compact-root-quadratic-main}
+\end{align}
+Moreover,
+\begin{equation}
+ \|\mathcal N_0\|_F^2
+ =\frac14\|J_\star\|_F^2+\frac{\chi_\star^2}{4d_0}.
+ \label{eq:compact-root-direction-norm-main}
+\end{equation}
+Thus the multiplier error is exactly cubic when \(\chi_\star\ne0\), and the
+direction error is exactly quadratic whenever \(\rank A^\star>0\).  If
+\(\chi_\star=0\), put
+\begin{equation}
+ J_2=U_r\Sigma_r^{-4}V_r^\top,
+ \qquad \chi_2=\langle\Theta,J_2\rangle .
+ \label{eq:compact-root-second-coefficients-main}
+\end{equation}
+Then the next coefficients are
+\begin{align}
+ \lambda_\delta-\lambda^\star
+ &=-\frac{3\chi_2}{8d_0}\,\delta^5+O(\delta^6),
+ \label{eq:compact-root-quintic-main}\\
+ \Phi_\delta-\Phi_R^\star
+ &=-\frac{\delta^2}{2}J_\star
+ +\delta^4\left[\frac38J_2
+ -\frac{3\chi_2}{8d_0}U_0CV_0^\top\right]+O(\delta^5).
+ \label{eq:compact-root-quartic-main}
+\end{align}
+In particular, the multiplier error is exactly quintic if \(\chi_2\ne0\).
+\end{corollary}
+
+\begin{proof}
+Here \(t_0=0\), \(d_R=d_0>0\), and
+\[
+ \mathcal Z(\varepsilon,0)=Z_\varepsilon(A^\star)
+ =\Sc(A^\star)-\frac{\varepsilon^2}{2}J_\star+O(\varepsilon^4),
+ \qquad
+ \partial_t\mathcal Z(0,0)=U_0CV_0^\top.
+\]
+It follows that
+\(H(\varepsilon,0)=-\chi_\star\varepsilon^2/2+O(\varepsilon^4)\).
+The analytic implicit solution therefore satisfies
+\[
+ t(\varepsilon)=\frac{\chi_\star}{2d_0}\varepsilon^2
+ +O(\varepsilon^3).
+\]
+Since \(\lambda_\varepsilon-\lambda^\star=\varepsilon t(\varepsilon)\),
+substitution into the analytic blow-up gives
+\eqref{eq:compact-root-cubic-main}--\eqref{eq:compact-root-quadratic-main}.
+The range--range and null--null blocks in \(\mathcal N_0\) are Frobenius
+orthogonal, which proves \eqref{eq:compact-root-direction-norm-main}.
+If \(\chi_\star=0\), the separated positive block has the uniform expansion
+\[
+ \frac{\sigma}{\sqrt{\sigma^2+\varepsilon^2}}
+ =1-\frac{\varepsilon^2}{2\sigma^2}
+  +\frac{3\varepsilon^4}{8\sigma^4}+O(\varepsilon^6).
+\]
+Consequently
+\(H(\varepsilon,0)=3\chi_2\varepsilon^4/8+O(\varepsilon^6)\), and the
+implicit branch satisfies
+\(t(\varepsilon)=-3\chi_2\varepsilon^4/(8d_0)+O(\varepsilon^5)\).
+This proves \eqref{eq:compact-root-quintic-main}.  Now
+\(s=\varepsilon t(\varepsilon)=O(\varepsilon^5)\).  The quartic term of
+the positive block and
+\(t(\varepsilon)\partial_t\mathcal Z(0,0)\), with
+\(\partial_t\mathcal Z(0,0)=U_0CV_0^\top\), give
+\eqref{eq:compact-root-quartic-main}.  Indeed, analyticity yields
+\(\mathcal Z(\varepsilon,t(\varepsilon))
+=\mathcal Z(\varepsilon,0)+t(\varepsilon)\partial_t\mathcal Z(0,0)
++O(\varepsilon|t(\varepsilon)|+t(\varepsilon)^2)\), so every remaining
+term is \(O(\varepsilon^5)\).
+\end{proof}
+
+\begin{remark}[An odd-order multiplier hierarchy]
+\label{rem:compact-root-hierarchy-main}
+The cubic and quintic laws are the first two levels of a complete multiplier
+hierarchy.  For an integer \(k\ge1\), let
+\[
+ b_k=(-1)^k4^{-k}\binom{2k}{k},\qquad
+ J_k=U_r\Sigma_r^{-2k}V_r^\top,\qquad
+ \chi_k=\langle\Theta,J_k\rangle.
+\]
+If an integer \(p\ge1\) satisfies
+\(a=0\) and \(\chi_1=\cdots=\chi_{p-1}=0\), then the binomial expansion
+used above and the analytic implicit function theorem give
+\begin{equation}
+ \lambda_\delta-\lambda^\star
+ =-\frac{b_p\chi_p}{d_0}\,\delta^{2p+1}
+  +O(\delta^{2p+2}).
+ \label{eq:compact-root-hierarchy-main}
+\end{equation}
+Thus each further orthogonality cancellation raises the multiplier by two
+orders; \(p=1\) is \eqref{eq:compact-root-cubic-main} and \(p=2\) is
+\eqref{eq:compact-root-quintic-main}.  This hierarchy is local to the fixed
+strict crossing and does not assert that the cancellations are generic.
+\end{remark}
+
+At a fixed strict rank-deficient minimizer, these results give a sharp
+dichotomy.  Compact-polar stationarity holds exactly when \(a=0\), in which
+case smoothing has cubic multiplier bias and quadratic direction bias with
+the refinements above.  If \(a\ne0\), compact-polar stationarity fails and the
+multiplier bias is necessarily \(\Theta(\delta)\); the direction bias is
+\(\Theta(\delta)\) when \(\mathcal M_R\ne0\), but may cancel to second order.
+
+\subsection{A transverse corank-one normal form for boundary and crossover}
+
+For the remaining results assume \(m=n=q\),
+\(\operatorname{rank}A^\star=q-1\), and let \(u_0,v_0\) be unit left and
+right null vectors.  Put
+\begin{equation}
+ \alpha=u_0^\top\Theta v_0,
+ \qquad \beta=|\alpha|,
+ \qquad \alpha\ne0.
+ \label{eq:alpha-beta-main}
+\end{equation}
+
+\begin{lemma}[Analytic kink normal form]
+\label{lem:kink-normal-form}
+There are real-analytic functions \(\tau,\ell\) near zero such that
+\begin{equation}
+ \tau(s)=\alpha s+O(s^2),
+ \qquad
+ \phi(\lambda^\star+s)=\ell(s)+|\tau(s)|.
+ \label{eq:kink-normal-form}
+\end{equation}
+Moreover,
+\begin{equation}
+ h_\delta(\lambda^\star+s)
+ =\ell_\delta'(s)
+ +\frac{\tau(s)\tau'(s)}
+       {\sqrt{\tau(s)^2+\delta^2}},
+ \qquad
+ \ell_\delta'(s)=\ell'(s)+O(\delta^2)
+ \label{eq:kink-smooth-derivative}
+\end{equation}
+uniformly on a fixed small neighborhood, where \(\ell_\delta'(s)\) denotes the
+contribution to \(h_\delta\) from the separated nonzero singular-value cluster.
+With \(a=\ell'(0)\), the exact
+subdifferential is \([a-\beta,a+\beta]\).
+\end{lemma}
+
+\begin{proof}
+Consider the analytic symmetric dilation
+\[
+ H(s)=\begin{pmatrix}
+ 0&A^\star+s\Theta\\
+ (A^\star+s\Theta)^\top&0
+ \end{pmatrix}.
+\]
+Its zero eigenspace has basis \((u_0,0),(0,v_0)\), and the compression of
+\(H'(0)\) is
+\(\bigl(\begin{smallmatrix}0&\alpha\\\alpha&0\end{smallmatrix}\bigr)\).
+Rellich perturbation theory \citep[Chapter II]{kato1995perturbation} therefore
+gives a signed analytic pair \(\pm\tau(s)\) with
+\(\tau'(0)=\alpha\).  The small singular value is \(|\tau(s)|\).  The sum of
+the separated positive eigenvalue cluster of the dilation is analytic and
+defines \(\ell(s)\), proving \eqref{eq:kink-normal-form}.  The nonzero cluster
+stays uniformly separated from zero, so the regular expansion used in
+\cref{thm:rate-regular} gives
+\(\ell_\delta'=\ell'+O(\delta^2)\).  Differentiating the smoothed small mode
+proves \eqref{eq:kink-smooth-derivative}; the two one-sided derivatives at
+zero are \(a\mp\beta\).
+\end{proof}
+
+\subsection{The corank-one strict specialization and boundary kink}
+
+\begin{corollary}[Linear strict-kink displacement, corank one]
+\label{thm:rate-strict}
+Under \cref{lem:kink-normal-form}, suppose \(|a|<\beta\).  Then
+\begin{equation}
+ \frac{\lambda_\delta-\lambda^\star}{\delta}
+ \longrightarrow
+ t_0=-\frac{a}{\beta\sqrt{\beta^2-a^2}}.
+ \label{eq:strict-rate-main}
+\end{equation}
+The displacement is \(O(\delta)\), and it is \(\Theta(\delta)\) when
+\(a\ne0\).
+\end{corollary}
+
+\begin{proof}
+Here \(C\) has the single positive singular value \(\beta\).
+Equation \eqref{eq:eta-strict-rate-main} gives
+\(\eta_R=|a|/[\beta\sqrt{\beta^2-a^2}]\), so
+\cref{thm:rate-strict-general} reduces to \eqref{eq:strict-rate-main}.
+\end{proof}
+
+At the boundary, the small-mode expansion must be grouped with the complete
+contact-side derivative; expanding the mode separately loses a linear term.
+Here \(\phi'_{\rm con}\) denotes the derivative of the full-rank analytic branch
+continued from the stated contact side.
+The boundary law is not obtained by sending \(|a|\uparrow\beta\) in the
+strict formula: \(\eta_R\to\infty\), so the \(\delta\)-scale balance itself
+breaks down and is replaced by the \(\delta^{2/3}\) scale below.
+
+\begin{theorem}[Boundary-kink two-thirds law]
+\label{thm:rate-boundary}
+Suppose \(|a|=\beta\), and choose the sign of the analytic branch in
+\cref{lem:kink-normal-form} so that \(\alpha=\beta>0\).  Let the full-rank
+contact side be \(s<0\) when \(a=\beta\) and \(s>0\) when \(a=-\beta\), and
+let \(\phi_{\rm con}\) denote the analytic branch continued from that side.
+Then \cref{lem:kink-normal-form} gives
+\begin{equation}
+ \phi'_{\rm con}(\lambda^\star+s)=\kappa s+O(s^2),
+ \qquad
+ \kappa:=
+ \begin{cases}
+  \ell''(0)-\tau''(0),&a=\beta,\\
+  \ell''(0)+\tau''(0),&a=-\beta.
+ \end{cases}
+ \label{eq:contact-curvature-main}
+\end{equation}
+Convexity gives \(\kappa\ge0\); assume only the nondegeneracy
+\(\kappa>0\).  Then
+\begin{equation}
+ \lambda_\delta-\lambda^\star
+ =-\operatorname{sign}(a)
+ \left(\frac{1}{2\beta\kappa}\right)^{1/3}
+ \delta^{2/3}(1+o(1)).
+ \label{eq:boundary-rate-main}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+The expansion in \eqref{eq:contact-curvature-main} is a consequence, not an
+extra hypothesis.  On the contact side one has
+\(\phi_{\rm con}=\ell-\tau\) when \(a=\beta\) and
+\(\phi_{\rm con}=\ell+\tau\) when \(a=-\beta\).  Hence its derivative at
+zero is respectively \(a-\beta=0\) or \(a+\beta=0\), and analyticity gives
+the displayed expansion with the stated second derivative.
+
+It suffices to treat \(a=\beta\); the other case follows after reversing
+\(s\) and the signed analytic branch.  Since
+\(\tau(0)=0\), \eqref{eq:kink-smooth-derivative} gives
+\(h_\delta(\lambda^\star)=\ell_\delta'(0)=a+O(\delta^2)>0\) for all small
+\(\delta\), and \(h_\delta\) is strictly increasing; hence the smooth root
+lies on \(s<0\).
+Put \(\chi(s)=\operatorname{sign}(\tau(s))\tau'(s)\).  Then
+\(\chi(s)=-\beta+O(s)\) and
+\(\tau(s)^2=\beta^2s^2(1+O(s))\) on that side.  In the regime
+\(\delta/|s|\to0\), group the exact contact derivative before expanding:
+\begin{align}
+ h_\delta(\lambda^\star+s)
+ ={}&\phi'_{\rm con}(\lambda^\star+s)
+ +\frac{\delta^2}{2\beta s^2}(1+O(|s|)) \\[-0.2em]
+ &+O(\delta^2)+O(\delta^4/s^4).
+ \label{eq:boundary-balance-main}
+\end{align}
+Set \(s=-c\delta^{2/3}\) and divide by \(\delta^{2/3}\).  Every remainder
+in \eqref{eq:boundary-balance-main} vanishes, and the limiting equation is
+\[
+ -\kappa c+\frac{1}{2\beta c^2}=0.
+\]
+Its positive root is \(c_0=(2\beta\kappa)^{-1/3}\).  Evaluating at fixed
+\(c_-<c_0<c_+\) gives opposite signs for all small \(\delta\), so scalar
+monotonicity brackets the unique root.  This also proves
+\(|s_\delta|\asymp\delta^{2/3}\gg\delta\), validating the expansion.
+Letting the brackets approach \(c_0\) proves \eqref{eq:boundary-rate-main}.
+\end{proof}
+
+The curvature condition is genuine.  For
+\(A(\lambda^\star+s)=\diag(1+s,s)\), one has \(a=\beta=1\), but the contact
+branch is constant on \(-1<s<0\), so \(\kappa=0\) and there is no isolated
+two-thirds balance.
+
+For the orientation \(a=\beta>0\) used in the crossover theorem below,
+this contact curvature is exactly
+\(\kappa=\ell''(0)-\tau''(0)=\kappa_0\).
+
+For the boundary member of \cref{thm:open-2by2} with \(b_1=b_2=c=1\) and
+\(d=0\), one has \(\lambda^\star=1\), \(a=\beta=1/2\), and
+\(\phi'_{\rm con}(1+s)=s/\sqrt{s^2+4}=s/2+O(s^3)\) on the left.  Hence
+\begin{equation}
+ 1-\lambda_\delta\sim2^{1/3}\delta^{2/3}.
+ \label{eq:boundary-example-main}
+\end{equation}
+
+The exponent is not intrinsic to the certificate slice alone: it also records
+how the chosen profile approaches the spectral-ball boundary.
+
+\begin{corollary}[The boundary exponent is a tail law]
+\label{cor:profile-tail-rate-main}
+Under the hypotheses of \cref{thm:rate-boundary}, let
+\(\lambda_\delta^\psi\) be any minimizer of the objective induced by an admissible
+profile from \cref{prop:smoothing-family-main}.
+\begin{enumerate}
+ \item If, for some \(p>1\) and \(\gamma_\psi>0\),
+ \begin{equation}
+  \psi'(x)=1-\gamma_\psi x^{-p}+o(x^{-p})
+  \qquad(x\to\infty),
+  \label{eq:profile-polynomial-tail-main}
+ \end{equation}
+ then
+ \begin{equation}
+  \lambda_\delta^\psi-\lambda^\star
+  =-\sign(a)
+  \left(\frac{\gamma_\psi}{\kappa\beta^{p-1}}\right)^{1/(p+1)}
+  \delta^{p/(p+1)}(1+o(1)).
+  \label{eq:profile-tail-rate-main}
+ \end{equation}
+ \item If \(\psi'\) first reaches one at a finite threshold
+ \(L_\psi>0\) and is identically one thereafter, then
+ \begin{equation}
+  \lambda_\delta^\psi-\lambda^\star
+  =-\sign(a)\frac{L_\psi}{\beta}\,\delta+o(\delta).
+  \label{eq:saturated-boundary-rate-main}
+ \end{equation}
+ For the standard Huber profile in \eqref{eq:two-profile-members-main},
+ \(L_\psi=1\) and the sharper expansion is
+ \begin{equation}
+  \lambda_\delta^{\rm hub}-\lambda^\star
+  =-\sign(a)\frac{\delta}{\beta}+O(\delta^2).
+  \label{eq:huber-boundary-rate-main}
+ \end{equation}
+\end{enumerate}
+Pseudo-Huber has \(p=2\) and \(\gamma_\psi=1/2\), so
+\eqref{eq:profile-tail-rate-main} recovers
+\eqref{eq:boundary-rate-main}; finite saturation yields the separate linear
+boundary regime.
+\end{corollary}
+
+\begin{proof}
+It is enough to take \(a=\beta>0\), for which the contact side is \(s<0\).
+Along a scale with \(\delta/|s|\to0\), the separated positive cluster differs
+from its polar limit by \(o(|s|)\) on the scale obtained below.  Using
+\(\tau(s)=\beta s+O(s^2)\) and grouping against the exact contact derivative,
+\eqref{eq:profile-polynomial-tail-main} gives
+\[
+ h_{\delta}^{\psi}(\lambda^\star+s)
+ =\kappa s+
+ \frac{\gamma_\psi\delta^p}{\beta^{p-1}|s|^p}
+ +o\!\left(|s|+\frac{\delta^p}{|s|^p}\right).
+\]
+Putting \(s=-c\delta^{p/(p+1)}\) and bracketing the monotone root yields
+\(\kappa c^{p+1}=\gamma_\psi/\beta^{p-1}\), proving the first claim.
+
+If saturation first occurs at \(L_\psi\), the separated modes are already
+saturated for all small \(\delta\).  Monotonicity brackets the root immediately
+inside the transition edge \(|\tau(s)|=L_\psi\delta\), and therefore
+\(|s|/(L_\psi\delta/\beta)\to1\), proving
+\eqref{eq:saturated-boundary-rate-main}.  For standard Huber, inside
+\(|\tau(s)|<\delta\) the small mode gives the sharper expansion
+\[
+ h_\delta^{\rm hub}(\lambda^\star+s)
+ =\beta+\frac{\beta^2s}{\delta}
+   +O(|s|+s^2/\delta).
+\]
+The monotone root therefore satisfies
+\(s=-\delta/\beta+O(\delta^2)\).  Reflection handles \(a=-\beta\).
+\end{proof}
+
+\begin{corollary}[Selected-direction upper bounds]
+\label{cor:direction-rates-main}
+In fixed dimension and under the corresponding hypotheses of
+\cref{thm:rate-regular,thm:direction-strict-general,thm:rate-boundary},
+\begin{equation}
+ \|\Phi_\delta-\Phi_R^\star\|_F
+ =O(\delta^2),\qquad O(\delta),\qquad O(\delta^{2/3}),
+ \label{eq:direction-rates-main}
+\end{equation}
+respectively.  These are upper bounds; exact matrix-direction rates require a
+corresponding noncancellation condition.  The strict entry holds for arbitrary
+rectangular shape and corank; \cref{thm:direction-strict-general} gives its
+first-order constant and the sharper \(O(\delta^2)\) rate when \(a=0\).
+\end{corollary}
+
+\begin{proof}
+On the separated cluster, the polar factor and smoothed spectral map are
+analytic in the matrix argument and \(\delta^2\), so their variation is the
+multiplier displacement plus \(O(\delta^2)\); this proves the regular entry.
+The strict entry is \eqref{eq:strict-direction-first-main}.  At a boundary
+kink, both the singular-vector movement and the coefficient
+error are \(O(\delta^{2/3})\) because
+\(|s|=O(\delta^{2/3})\) and
+\(\delta^2/s^2=O(\delta^{2/3})\).
+\end{proof}
+
+\subsection{A local strict-to-boundary crossover}
+
+The fixed-instance constants in
+\cref{thm:direction-strict-general,prop:strict-constants-closed-main}
+deteriorate as \(\beta-|a|\downarrow0\): \(\eta_R\) diverges and \(d_R\)
+vanishes.  The result below is the uniform replacement in precisely that
+degenerating direction, currently for a transverse square corank-one
+crossing.  Thus the boundary law is not confined to one isolated parameter
+value; a moving normal form controls the entire nearby transition.
+
+\begin{lemma}[Moving crossing for general matrix normals]
+\label{lem:moving-crossing-main}
+Let \(A(\lambda,z)=G(z)+\lambda\Theta(z)\), \(z\in\mathbb R^p\), where
+\(G\) and \(\Theta\) are real analytic and \(\Theta(z)\ne0\).  Suppose
+the matrices are square, \(A(\lambda_0,0)\) has corank one, and
+\begin{equation}
+ u_0^\top\Theta(0)v_0\ne0.
+ \label{eq:transverse-family-main}
+\end{equation}
+After shrinking the neighborhood, there are an analytic crossing
+\(\lambda_{\rm sing}(z)\) and jointly analytic functions \(\tau,\ell,w\),
+with \(s=\lambda-\lambda_{\rm sing}(z)\), such that
+\begin{equation}
+ \|A(\lambda_{\rm sing}(z)+s,z)\|_*
+ =\ell(s,z)+|\tau(s,z)|,
+ \qquad
+ \tau(s,z)=s\sqrt{w(s,z)},\qquad w(s,z)>0.
+ \label{eq:moving-normal-form-main}
+\end{equation}
+The sign can be chosen so that
+\(\beta(z)=\partial_s\tau(0,z)>0\), and \(\ell\) is analytic even if
+singular values inside the separated positive cluster cross.
+\end{lemma}
+
+\begin{proof}
+At a corank-one matrix the adjugate is a nonzero multiple of
+\(v_0u_0^\top\).  Condition \eqref{eq:transverse-family-main} makes
+\(\partial_\lambda\det A(\lambda_0,0)\ne0\), so the analytic implicit
+function theorem gives \(\lambda_{\rm sing}(z)\).  Set
+\(\widetilde A(s,z)=A(\lambda_{\rm sing}(z)+s,z)\) and
+\(B(s,z)=\widetilde A(s,z)^\top\widetilde A(s,z)\).  For each nearby \(z\),
+\(B(0,z)\) has a simple zero eigenvalue separated from the rest; its analytic
+continuation \(\mu(s,z)\) satisfies \(\mu(0,z)=0\).  Analytic division gives
+\(\mu=s\mu_1\).  Since \(B\succeq0\), the scalar function
+\(s\mapsto\mu(s,z)\) has a minimum at zero, so a second division gives
+\(\mu=s^2w\).  Transversality makes \(w>0\) after shrinking.
+
+For the remaining modes, a fixed contour around the positive cluster of the
+symmetric dilation defines a jointly analytic Riesz projection.  The trace of
+the dilation against this projection is the analytic eigenvalue sum
+\(\ell(s,z)\), proving \eqref{eq:moving-normal-form-main}.
+\end{proof}
+
+\begin{theorem}[Unified cubic-root crossover]
+\label{thm:crossover-main}
+In \cref{lem:moving-crossing-main}, suppose at \(z=0\)
+\begin{equation}
+ a_0=\partial_s\ell(0,0)=\beta_0>0,
+ \qquad
+ \kappa_0=\partial_{ss}\ell(0,0)-\partial_{ss}\tau(0,0)>0.
+ \label{eq:crossover-boundary-data-main}
+\end{equation}
+Let \(z=z_\delta\to0\) approach from the strict or boundary side and set
+\begin{align*}
+ a_\delta&=\partial_s\ell(0,z_\delta),
+ &\beta_\delta&=\partial_s\tau(0,z_\delta),\\
+ \Delta_\delta&=\beta_\delta-a_\delta\ge0,
+ &\kappa_\delta&=\partial_{ss}\ell(0,z_\delta)
+                    -\partial_{ss}\tau(0,z_\delta).
+\end{align*}
+Let \(\lambda_\delta^\star=\lambda_{\rm sing}(z_\delta)\), let
+\(\lambda_\delta\) be the smoothed minimizer, and put
+\(x_\delta=\lambda_\delta^\star-\lambda_\delta\).  Define
+\(\widehat x_\delta>0\) as the unique positive root of
+\begin{equation}
+ \kappa_\delta\widehat x_\delta^3
+ +\Delta_\delta\widehat x_\delta^2
+ =\frac{\delta^2}{2\beta_\delta}.
+ \label{eq:cubic-root-main}
+\end{equation}
+Then \(x_\delta>0\) for all small \(\delta\), and, along every such path,
+including oscillatory ones,
+\begin{equation}
+ \frac{x_\delta}{\widehat x_\delta}
+ =1+O(\Delta_\delta+\widehat x_\delta).
+ \label{eq:cubic-relative-main}
+\end{equation}
+Consequently:
+\begin{enumerate}
+ \item if \(\Delta_\delta/\delta^{2/3}\to\zeta\in[0,\infty)\), then
+ \begin{equation}
+  \frac{x_\delta}{\delta^{2/3}}\to y_\zeta,
+  \qquad
+  \kappa_0y_\zeta^3+\zeta y_\zeta^2=\frac{1}{2\beta_0};
+  \label{eq:crossover-critical-main}
+ \end{equation}
+ \item if \(\Delta_\delta/\delta^{2/3}\to\infty\), then
+ \begin{equation}
+  \frac{x_\delta\sqrt{\Delta_\delta}}{\delta}
+  \to\frac{1}{\sqrt{2\beta_0}};
+  \label{eq:crossover-inner-main}
+ \end{equation}
+ \item for arbitrary paths,
+ \begin{equation}
+  x_\delta\asymp\widehat x_\delta\asymp
+  \min\left\{\frac{\delta}{\sqrt{\Delta_\delta}},
+              \delta^{2/3}\right\},
+  \label{eq:crossover-scale-main}
+ \end{equation}
+ where the first entry is \(+\infty\) at \(\Delta_\delta=0\).
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+The one-sided derivatives at the moving crossing are
+\(-\Delta_\delta\le0\) and
+\(a_\delta+\beta_\delta\to2\beta_0>0\), so
+\(\lambda_\delta^\star\) is an exact minimizer.  For the instance indexed by
+\(z\), set
+\[
+ h_{\delta,z}(\lambda)
+ =\langle\Theta(z),Z_\delta(A(\lambda,z))\rangle,
+ \quad
+ \Delta(z)=\beta(z)-a(z),
+ \quad
+ \kappa(z)=\partial_{ss}\ell(0,z)-\partial_{ss}\tau(0,z),
+\]
+and \(H_{\delta,z}(x)=h_{\delta,z}(\lambda_{\rm sing}(z)-x)\).  Joint
+analyticity and the grouped expansion in \eqref{eq:boundary-balance-main}
+give constants \(z_0,x_0,\eta_0,C>0\), independent of the path, such that
+whenever \(\|z\|\le z_0\), \(0<x\le x_0\), and
+\(0<\delta\le\eta_0x\),
+\begin{align}
+ H_{\delta,z}(x)
+ ={}&-\Delta(z)-\kappa(z)x
+ +\frac{\delta^2}{2\beta(z)x^2}+E_{\delta,z}(x),
+ \label{eq:crossover-functional-main}\\[-0.2em]
+ |E_{\delta,z}(x)|
+ \le{}&C\left(x^2+\frac{\delta^2}{x}
+                    +\delta^2+\frac{\delta^4}{x^4}\right).
+ \label{eq:crossover-remainder-main}
+\end{align}
+At \(x=0\), \(H_{\delta,z_\delta}(0)=a_\delta+O(\delta^2)>0\), whereas
+it is negative at a sufficiently small fixed \(x_0>0\).  Strict convexity
+places the unique root in \((0,x_0)\).
+
+Put
+\(M_\delta=\Delta_\delta+\kappa_\delta\widehat x_\delta\).  Equation
+\eqref{eq:cubic-root-main} is equivalent to
+\[
+ \frac{\delta^2}{2\beta_\delta\widehat x_\delta^2}=M_\delta.
+\]
+It implies \(\widehat x_\delta,M_\delta\to0\) and
+\(\delta/\widehat x_\delta=\sqrt{2\beta_\delta M_\delta}\to0\), so the
+uniform expansion applies at \(x=c\widehat x_\delta\).  Uniformly for \(c\)
+in a compact subset of \((0,\infty)\), the four terms in the remainder,
+divided by \(M_\delta\), are respectively
+\[
+ O(\widehat x_\delta),\quad O(\widehat x_\delta),\quad
+ O(\widehat x_\delta^2),\quad O(M_\delta).
+\]
+The leading part at this point is
+\[
+ \Delta_\delta(c^{-2}-1)
+ +\kappa_\delta\widehat x_\delta(c^{-2}-c).
+\]
+It is a fixed positive multiple of \(M_\delta\) for fixed \(c<1\), and a
+fixed negative multiple for fixed \(c>1\).  Monotonicity therefore gives
+\(x_\delta/\widehat x_\delta\to1\).  More quantitatively, for
+\(c=1+u\) with \(|u|\) small, the leading term has the sign of \(-u\) and
+magnitude at least \(c_0|u|M_\delta\), whereas the remainder is bounded by
+\(C_1(\Delta_\delta+\widehat x_\delta)M_\delta\), with uniform positive
+constants \(c_0,C_1\).  Taking
+\(u=\pm K(\Delta_\delta+\widehat x_\delta)\) and
+\(K>C_1/c_0\) gives the quantitative bracket
+\eqref{eq:cubic-relative-main}.
+
+The three consequences now follow directly from
+\eqref{eq:cubic-root-main}: divide it by \(\delta^2\) in the critical window,
+drop its cubic term when \(\Delta_\delta/\delta^{2/3}\to\infty\), and compare
+the two nonnegative terms for the two-sided order bound.
+\end{proof}
+
+The cubic also controls the matrix actually returned by the oracle.  The
+comparator must be the center of the moving instance rather than the fixed
+center at \(z=0\).
+
+\begin{corollary}[Direction-level crossover]
+\label{cor:direction-crossover-main}
+Under \cref{thm:crossover-main}, let \(P(s,z)\) be the analytic polar
+contribution of the separated positive singular cluster and let \(D(s,z)\) be
+the analytic signed dyad of the small mode, chosen so that
+\(\langle\Theta(z),D(0,z)\rangle=\beta(z)>0\).  With derivatives evaluated at
+\((s,z)=(0,0)\), define
+ \begin{equation}
+ \mathcal M_0=-\partial_sP(0,0)+\partial_sD(0,0)
+ +\frac{\kappa_0}{\beta_0}D(0,0).
+ \label{eq:direction-M0-main}
+\end{equation}
+Then, relative to the exact Fenchel center \(\Phi_R^\star(z_\delta)\) of the
+moving instance,
+\begin{equation}
+ \frac{\Phi_\delta-\Phi_R^\star(z_\delta)}{x_\delta}
+ \longrightarrow\mathcal M_0.
+ \label{eq:direction-crossover-limit-main}
+\end{equation}
+Hence
+\[
+ \|\Phi_\delta-\Phi_R^\star(z_\delta)\|_F
+ =O(\widehat x_\delta),
+\]
+and if \(\mathcal M_0\ne0\), this norm is asymptotic to
+\(\|\mathcal M_0\|_F\widehat x_\delta\); if \(\mathcal M_0=0\), it is
+\(o(\widehat x_\delta)\).
+\end{corollary}
+
+\begin{proof}
+The smoothed spectral decomposition at \(s=-x_\delta\) is
+\[
+ \Phi_\delta=P_\delta(-x_\delta,z_\delta)
+ +r_\delta(-x_\delta,z_\delta)D(-x_\delta,z_\delta),
+ \quad
+ r_\delta=\frac{\tau}{\sqrt{\tau^2+\delta^2}},
+\]
+where \(P_\delta=P+O(\delta^2)\).  Tangency gives
+\(r_\delta=-\ell_\delta'/\tau'\).  Expanding this quotient and using
+\(a=\beta-\Delta\) and
+\(\kappa=\ell_{ss}-\tau_{ss}\) gives, uniformly,
+\[
+ r_\delta(-x,z)+\frac{a(z)}{\beta(z)}
+ =x\left\{\frac{\kappa(z)}{\beta(z)}
+ +\frac{\Delta(z)\tau_{ss}(0,z)}{\beta(z)^2}\right\}
+ +O(x^2+\delta^2).
+\]
+Since \(\Delta(z_\delta)\to0\) and \(\delta^2/x_\delta\to0\), this yields
+\[
+ \frac{r_\delta(-x_\delta,z_\delta)+a(z_\delta)/\beta(z_\delta)}
+ {x_\delta}\longrightarrow\frac{\kappa_0}{\beta_0}.
+\]
+Since
+\(\Phi_R^\star(z)=P(0,z)-[a(z)/\beta(z)]D(0,z)\), Taylor expansion proves
+\eqref{eq:direction-crossover-limit-main}; the separated-cluster smoothing
+error is negligible because \(\delta^2/x_\delta\to0\).  The norm statements
+follow from \eqref{eq:cubic-relative-main}.
+\end{proof}
+
+The moving-crossing recentering is essential: nonnegativity together with a
+single identity \(\mu(0,0)=0\) would not imply the factorization
+\(\mu=s^2w\).  The theorem is uniform only near one fixed analytic transverse
+corank-one boundary instance.

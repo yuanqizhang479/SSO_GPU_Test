@@ -1,0 +1,81 @@
+{
+  "source": "https://raw.githubusercontent.com/richardodliu/Megatron_benchmark/main/benchmark.zip",
+  "sha256": "904dfc3c2ba874d92d6dfb521ae2fe919951cbbd6a63e69a8ecdaff63f3f5568",
+  "model_inference": false,
+  "tasks": {
+    "csqa/rc_0shot": {
+      "requests": 12210,
+      "groups_if_using_raw_doc_id": 2442,
+      "primary_ids": 1221,
+      "offset_ids": 1221,
+      "all_offset_ids_have_primary_pair": true,
+      "offset_context_examples": [
+        "Answer:"
+      ]
+    },
+    "piqa/rc_0shot": {
+      "requests": 7352,
+      "groups_if_using_raw_doc_id": 3676,
+      "primary_ids": 1838,
+      "offset_ids": 1838,
+      "all_offset_ids_have_primary_pair": true,
+      "offset_context_examples": [
+        "Answer:"
+      ]
+    },
+    "arc_easy/rc_0shot": {
+      "requests": 4562,
+      "groups_if_using_raw_doc_id": 1140,
+      "primary_ids": 570,
+      "offset_ids": 570,
+      "all_offset_ids_have_primary_pair": true,
+      "offset_context_examples": [
+        "Answer:"
+      ]
+    },
+    "arc_challenge/rc_5shot": {
+      "requests": 2388,
+      "groups_if_using_raw_doc_id": 598,
+      "primary_ids": 299,
+      "offset_ids": 299,
+      "all_offset_ids_have_primary_pair": true,
+      "offset_context_examples": [
+        "Answer:"
+      ]
+    },
+    "hellaswag/rc_5shot": {
+      "requests": 8000,
+      "groups_if_using_raw_doc_id": 2000,
+      "primary_ids": 1000,
+      "offset_ids": 1000,
+      "all_offset_ids_have_primary_pair": true,
+      "offset_context_examples": [
+        "Answer:"
+      ]
+    },
+    "boolq/rc_0shot": {
+      "requests": 6540,
+      "groups_if_using_raw_doc_id": 3270,
+      "primary_ids": 3270,
+      "offset_ids": 0,
+      "all_offset_ids_have_primary_pair": true,
+      "offset_context_examples": []
+    },
+    "winogrande/rc_0shot": {
+      "requests": 2534,
+      "groups_if_using_raw_doc_id": 1267,
+      "primary_ids": 1267,
+      "offset_ids": 0,
+      "all_offset_ids_have_primary_pair": true,
+      "offset_context_examples": []
+    },
+    "lambada/ppl_0shot": {
+      "requests": 5153,
+      "groups_if_using_raw_doc_id": 5153,
+      "primary_ids": 5153,
+      "offset_ids": 0,
+      "all_offset_ids_have_primary_pair": true,
+      "offset_context_examples": []
+    }
+  }
+}

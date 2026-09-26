@@ -1,0 +1,81 @@
+\documentclass[10pt]{article}
+
+\usepackage{xr-hyper}
+\externaldocument[][nocite]{main}
+\input{preamble}
+\hypersetup{
+  pdftitle={Technical Supplement: Nuclear-Norm Best Approximation at Rank-Deficient Matrix-Line Crossings},
+  pdfauthor={Anonymous manuscript}
+}
+\setlength{\parskip}{0.35em}
+\renewcommand{\thesection}{S\arabic{section}}
+
+\title{\textbf{Technical Supplement to}\
+\textbf{Nuclear-Norm Best Approximation at Rank-Deficient Matrix-Line Crossings}}
+\author{Anonymous manuscript}
+\date{August 4, 2026}
+
+\begin{document}
+\maketitle
+
+\section{Index and scope of the supplement}
+
+This supplement contains auxiliary results that are useful for implementing
+or embedding the inner oracle but are not needed for the main theorem chain.
+The essential proofs of compact-root failure, certificate completion, Fenchel
+recovery/selection, and the singular rates remain in the main paper.
+
+\begin{enumerate}
+ \item \textbf{Exact interval bisection.}  We record the elementary
+ convergence proof for the set-valued scalar update used by the exact
+ reference oracle.
+ \item \textbf{Spectral-level-set normal geometry.}  We derive the simple-top
+ normal, distinguish the repeated-top Bouligand tangent cone, quantify radial
+ drift, and give exact projective normal-error formulas.  This material
+ justifies the rank-one normal in the motivating
+ spectral-level-set application; the main matrix-line results permit general
+ normals.
+ \item \textbf{Feasible primal--dual certificate.}  We give an exact-real
+ repair and a gap decomposition for an approximate smooth direction, while
+ separating those identities from the stronger requirements of a
+ machine-validated implementation.
+ \item \textbf{Detailed reproducibility tables.}  We report the full
+ constant-level checks for the regular, strict, boundary, moving-crossover,
+ smoothing-family, direction, and higher-order cancellation formulas
+ summarized in the main paper.
+\end{enumerate}
+
+\section{Exact interval bisection}
+
+Let \(L(\lambda)=a(\lambda)-\beta(\lambda)\) and
+\(U(\lambda)=a(\lambda)+\beta(\lambda)\), with the notation of
+Theorem~\ref{thm:interval}.
+
+\begin{proposition}[Set-valued bisection]
+If \(U(\lambda)<0\), every minimizer lies to the right of \(\lambda\); if
+\(L(\lambda)>0\), every minimizer lies to the left; and if
+\(L(\lambda)\le0\le U(\lambda)\), then \(\lambda\) is a minimizer.  Starting
+from the bracket in \eqref{eq:lambda-bound}, midpoint updates either stop at
+an exact minimizer or generate nested intervals converging to one.
+\end{proposition}
+
+\begin{proof}
+The first two cases say that the entire scalar subdifferential is strictly
+negative or strictly positive, so one-dimensional convexity identifies the
+side containing every minimizer.  The third case is
+\(0\in\partial\phi(\lambda)\).  Each update preserves a minimizer, and nested
+closed brackets whose lengths tend to zero converge to a point of the closed
+minimizer set.
+\end{proof}
+
+\input{supplement_sections/03b_normal_theta}
+\input{supplement_sections/10_certificates}
+\input{supplement_sections/05b_numerical_details}
+
+{\footnotesize
+\setlength{\bibsep}{0pt plus 0.2ex}
+\bibliographystyle{plainnat}
+\bibliography{references}
+}
+
+\end{document}

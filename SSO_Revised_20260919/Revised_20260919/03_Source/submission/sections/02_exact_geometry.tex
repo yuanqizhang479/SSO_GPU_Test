@@ -1,0 +1,132 @@
+\section{Exact duality and scalar optimality}
+\label{sec:duality}
+
+We use the Frobenius pairing
+\(\langle X,Y\rangle=\operatorname{tr}(X^\top Y)\).  The spectral and
+nuclear norms are dual.  For a compact SVD \(A=U_r\Sigma_rV_r^\top\), let
+\(U_0,V_0\) be orthonormal null-space bases; a zero-dimensional factor is
+allowed.  The standard formula \eqref{eq:full-subdiff} will be used without a
+choice of bases inside repeated positive singular spaces.
+
+\begin{theorem}[Strong duality and the complete solution face]
+\label{thm:T1}
+For arbitrary \(G\in\mathbb R^{m\times n}\) and nonzero
+\(\Theta\in\mathbb R^{m\times n}\),
+\begin{equation}
+ p^\star
+ =\max_{\substack{\|\Phi\|_2\le1\\
+                   \langle\Theta,\Phi\rangle=0}}
+   \langle G,\Phi\rangle
+ =\min_{\lambda\in\mathbb R}\|G+\lambda\Theta\|_*.
+ \label{eq:strong-duality}
+\end{equation}
+The dual minimizer set is nonempty and compact.  If \(\lambda^\star\) is any
+dual minimizer and \(A^\star=G+\lambda^\star\Theta\), then all primal
+solutions are
+\begin{equation}
+ \mathcal P^\star
+ =\partial\|A^\star\|_*\cap\Theta^\perp.
+ \label{eq:solution-face}
+\end{equation}
+Every dual minimizer satisfies
+\begin{equation}
+ |\lambda^\star|
+ \le \frac{2\|G\|_*}{\|\Theta\|_*}.
+ \label{eq:lambda-bound}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+The support function of the spectral unit ball is the nuclear norm.  Since
+\(\Phi=0\) is feasible and lies in the interior of the ball,
+finite-dimensional Slater--Fenchel duality gives
+\eqref{eq:strong-duality}.  The reverse triangle inequality
+\(\|G+\lambda\Theta\|_*\ge
+|\lambda|\|\Theta\|_*-\|G\|_*\) gives coercivity and, by comparison with
+\(\lambda=0\), \eqref{eq:lambda-bound}.  Finally, equality in the support
+function is equivalent to
+\(\Phi\in\partial\|A^\star\|_*\); imposing tangency yields exactly
+\eqref{eq:solution-face}.
+\end{proof}
+
+At a fixed \(\lambda\), set
+\begin{equation}
+ A=G+\lambda\Theta=U_r\Sigma_rV_r^\top,
+ \qquad
+ a=\langle\Theta,U_rV_r^\top\rangle,
+ \qquad
+ C=U_0^\top\Theta V_0,
+ \qquad
+ \beta=\|C\|_*.
+ \label{eq:a-C-beta-main}
+\end{equation}
+
+\begin{theorem}[Exact scalar interval and compact-root criterion]
+\label{thm:interval}
+For \(\phi(\lambda)=\|G+\lambda\Theta\|_*\),
+\begin{equation}
+ \partial\phi(\lambda)=[a-\beta,a+\beta].
+ \label{eq:scalar-interval}
+\end{equation}
+Consequently, at this specified \(\lambda\):
+\begin{enumerate}
+ \item \(\lambda\) is dual optimal if and only if \(|a|\le\beta\);
+ \item the compact equation \eqref{eq:compact-root} holds if and only if
+ \(a=0\);
+ \item dual optimality holds but compact stationarity fails if and only if
+ \(0<|a|\le\beta\).
+\end{enumerate}
+Globally, \eqref{eq:compact-root} has no solution if and only if
+\(a(\lambda)\ne0\) for every \(\lambda\in\argmin\phi\).  If this happens,
+the dual minimizer is unique and its affine matrix is rank deficient.
+\end{theorem}
+
+\begin{proof}
+The affine chain rule and \eqref{eq:full-subdiff} give
+\(\partial\phi(\lambda)=\{a+\langle C,K\rangle:\|K\|_2\le1\}\), whose
+endpoints are \(a\pm\|C\|_*\).  This proves
+\eqref{eq:scalar-interval} and the three pointwise claims.  If two minimizers
+existed, convexity would make \(\phi\) constant between them; at every
+interior point \(\partial\phi=\{0\}\), hence \(a=\beta=0\) and a compact root
+would exist.  Thus no-root failure forces uniqueness.  Full rectangular rank
+would give \(\beta=0\), and optimality would again force \(a=0\), so the
+unique no-root minimizer is rank deficient.
+\end{proof}
+
+\begin{remark}[Relative-interior nondegeneracy]
+\label{rem:strict-complementarity-main}
+At an optimum with \(\beta>0\), \(|a|<\beta\) is exactly
+\(0\in\operatorname{ri}\partial\phi(\lambda^\star)\); equivalently, the
+tangency hyperplane meets the relative interior of the kernel-block spectral
+unit ball.  At \(|a|=\beta\) it meets only the exposed endpoint face
+\eqref{eq:endpoint-face}.  The case \(\beta=0\) must be separated:
+optimality then forces \(a=0\), so \(\partial\phi(\lambda^\star)=\{0\}\)
+and \(0\in\operatorname{ri}\partial\phi(\lambda^\star)\), although the
+strict inequality \(|a|<\beta\) is false.  The kernel-block slice is then
+the whole spectral unit ball (or the singleton empty block when a nullity
+is zero), rather than a proper exposed endpoint face.  For example,
+\(G=\operatorname{diag}(1,0)\) and
+\(\Theta=\bigl(\begin{smallmatrix}0&1\\1&0\end{smallmatrix}\bigr)\)
+give \(\phi(\lambda)=\sqrt{1+4\lambda^2}\) and a unique rank-deficient
+minimizer at zero with \(a=\beta=0\).
+The nondegenerate case parallels convergence and limiting-center
+phenomena for degenerate semidefinite central paths
+\citep{halicka2002convergence,halicka2005limiting}, while fractional algebraic
+rates are documented by Basu and Mohammad-Nezhad~\cite{basu2022central}.  Our rates follow directly
+from the matrix-line normal forms in \cref{sec:rates}.
+\end{remark}
+
+The compact selection is nevertheless nondecreasing.  Indeed, for
+\(\lambda_1<\lambda_2\), each compact polar factor belongs to the corresponding
+nuclear-norm subdifferential, and monotonicity of the convex subdifferential
+graph gives \(h_{\rm c}(\lambda_1)\le h_{\rm c}(\lambda_2)\).  The obstruction
+is a jump, not a reversal of monotonicity.
+
+\begin{remark}[Exact interval bisection]
+With \(L=a-\beta\) and \(U=a+\beta\), \(U<0\) moves the bracket to the
+right, \(L>0\) moves it to the left, and \(L\le0\le U\) certifies a
+minimizer.  The initial bracket is \eqref{eq:lambda-bound}; on termination one
+applies the completion \eqref{eq:KF-main}.  Unlike compact-polar bisection,
+this test cannot jump over a minimizer, but it requires a numerical-rank
+decision.  The elementary convergence proof is recorded in the supplement.
+\end{remark}

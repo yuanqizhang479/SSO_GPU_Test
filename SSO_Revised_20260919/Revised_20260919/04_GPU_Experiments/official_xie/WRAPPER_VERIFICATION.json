@@ -1,0 +1,9 @@
+{
+  "parser_flag_check": "all passed",
+  "full_schedule_steps": 23841,
+  "smoke_steps": 50,
+  "cuda_run": false,
+  "data_hash_mismatch_rejected": true,
+  "bootstrap_checkouts": "both downloaded and exact commit verified",
+  "note": "CPU command construction, hash rejection and comparison against pinned argument declarations; no Megatron train or binary dataset content validation"
+}

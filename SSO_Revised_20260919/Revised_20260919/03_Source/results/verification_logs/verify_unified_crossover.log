@@ -1,0 +1,15 @@
+Critical window: Delta=zeta*delta^(2/3)
+  zeta=0: y[-1]=1.259921049816E+0, target=1.259921049895E+0, x/xhat[-1]=9.999999999370E-1
+  zeta=1: y[-1]=8.392867550219E-1, target=8.392867552142E-1, x/xhat[-1]=9.999999998145E-1
+  zeta=3: y[-1]=5.524746101910E-1, target=5.524746105311E-1, x/xhat[-1]=9.999999995284E-1
+  zeta=10: y[-1]=3.137759605838E-1, target=3.137759612139E-1, x/xhat[-1]=9.999999984881E-1
+Boundary path: Delta=0
+  x/delta^(2/3)=1.259921049816E+0, target=1.259921049895E+0
+  ||Phi_delta-Phi*||/x=1.224744871327E+0, target=sqrt(3/2)=1.224744871392E+0
+Strict-side path: Delta=delta^(1/3)
+  normalized values: 0.979950782, 0.997994100, 0.999799770, 0.999979992
+  final x/xhat=9.999850000874E-1
+  final ||Phi_delta-Phi*||/x=1.224724459113E+0
+Oscillatory path: alternating boundary, critical, and strict windows
+  last three x/xhat: 9.999999850000E-1, 1.000000000000E+0, 1.000000000000E+0
+ALL UNIFIED-CROSSOVER ASSERTIONS PASSED

@@ -1,0 +1,21 @@
+{
+  "tokenizer": "allenai/OLMo-2-1124-7B",
+  "tokenizer_revision": "main",
+  "train_tokens": 2048,
+  "val_tokens": 512,
+  "test_tokens": 512,
+  "min_val_source_tokens": 512,
+  "validation_permyriad": 2000,
+  "dataset_label": "TinyStories independent small-LM workflow study",
+  "sources": [
+    {
+      "name": "tinystories",
+      "repo": "roneneldan/TinyStories",
+      "split": "train",
+      "revision": "main",
+      "weight": 1
+    }
+  ],
+  "shuffle_seed": 20260919,
+  "shuffle_buffer_size": 64
+}

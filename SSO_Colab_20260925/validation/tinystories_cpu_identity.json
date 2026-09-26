@@ -1,0 +1,77 @@
+{
+  "identity": {
+    "config": {
+      "width": 16,
+      "layers": 1,
+      "heads": 2,
+      "seq_len": 8,
+      "batch_size": 1,
+      "accum_steps": 1,
+      "steps": 4,
+      "warmup_steps": 5,
+      "matrix_lr": 0.01,
+      "aux_lr": 0.0003,
+      "matrix_weight_decay": 0.0,
+      "aux_weight_decay": 0.1,
+      "momentum": 0.9,
+      "ns_steps": 8,
+      "ns_dtype": "float32",
+      "forward_dtype": "float32",
+      "pi_steps": 100,
+      "solver_tol": 0.0001,
+      "max_expand": 10,
+      "grad_clip": 1.0,
+      "eval_batches": 2,
+      "eval_interval": 2,
+      "checkpoint_interval": 2,
+      "diagnostic_interval": 0,
+      "print_interval": 10,
+      "deterministic": true,
+      "data_config": "configs/data_tinystories.json",
+      "snapshot_steps": [
+        1,
+        4
+      ],
+      "snapshot_names": [
+        "blocks.0.attn.q.weight",
+        "blocks.0.ff1.weight",
+        "blocks.0.ff2.weight"
+      ],
+      "optimizer": "sso_ns",
+      "seed": 11
+    },
+    "manifest_sha256": "f52059c275e5bdb3248b07833b3d55b4120b9ba949d8952ec1ad349101dac7ff",
+    "device_type": "cpu",
+    "runtime": {
+      "torch": "2.14.0+cpu",
+      "numpy": "2.3.5",
+      "cuda_runtime": null
+    },
+    "code_sha256": {
+      "audit_snapshots.py": "04b3de9713971f0aa9d098468dea65632f806a5caff440cc73dbec3a425089e5",
+      "common.py": "2520fd3dc5d2fd2c20570d23a8a28138e0a78ef7296fa928880073ea940f7fb6",
+      "optimizers.py": "15a320dc8b977993fc1aa19ea9773fcbb7bb22da66def386f114ce7239c93f1f",
+      "oracles.py": "570a968acce32d3e9900adec13a3cdb35eaf57083026853b4ee2ac056ced5247",
+      "prepare_data.py": "24984e6cf7bbecf574c41bc1b49ddd7199afe4a41a06ca70d02c1bdeda76b6df",
+      "run_stage.py": "3607a494336c946d3e610e395fdbfc06537fb89bfbe7ff40d44224477de729f5",
+      "study.py": "028c5571cad57b66956a29e0167b2cb6388e8f1f4ffe388e9647340c1ce5f01c",
+      "summarize.py": "ea2dcd1c1f44e9ab54ca472f7da42fceed2690ef263871e9cbd694f305175483",
+      "test_smoke.py": "f390362ee9a2213168a7b82062b3eb6d16f5bd33a18b94bb9308dddeba0580ba",
+      "theory_path.py": "370dbe214f2d8d0ac43e7f1d237fa24b607603288ba4c3ed07fa69c128cf5c5a",
+      "train.py": "3512c0cda31a337449f704dfb0bae6d38440634cf1ce964200725c9d2c551877"
+    }
+  },
+  "identity_hash": "fb87fa9d720f46267edc2311a8ccf8dd6bb4d8cdbbee5cd758464aabcbddeb55",
+  "environment": {
+    "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+    "platform": "Linux-6.18.44-x86_64-with-glibc2.39",
+    "torch": "2.14.0+cpu",
+    "numpy": "2.3.5",
+    "cuda_runtime": null,
+    "cuda_available": false,
+    "gpu": null
+  },
+  "init_parameters_sha256": "bf0455fb0283b63fdff8abc5952f9b1c825439313ac30cbe570bffd70a5e77af",
+  "parameter_count": 1607744,
+  "not_claimed": "Not the Xie 100B-token/1.8B-model experiment; independent implementation and architecture."
+}

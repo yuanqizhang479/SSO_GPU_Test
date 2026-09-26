@@ -1,0 +1,436 @@
+{
+  "methods": {
+    "ns5": {
+      "test_losses": [
+        5.515960454940796,
+        5.4802939891815186,
+        5.464858770370483
+      ],
+      "mean": 5.487037738164266,
+      "sample_sd": 0.026209810267105303,
+      "mean_completed_wall_seconds": 0.062453124333842425,
+      "max_peak_allocated_bytes": 0,
+      "unfinished_sessions": 0
+    },
+    "ns8": {
+      "test_losses": [
+        5.515069007873535,
+        5.480629920959473,
+        5.464680194854736
+      ],
+      "mean": 5.486793041229248,
+      "sample_sd": 0.025753565926986785,
+      "mean_completed_wall_seconds": 0.07448585800011642,
+      "max_peak_allocated_bytes": 0,
+      "unfinished_sessions": 0
+    },
+    "ns12": {
+      "test_losses": [
+        5.515763759613037,
+        5.480631351470947,
+        5.464670658111572
+      ],
+      "mean": 5.4870219230651855,
+      "sample_sd": 0.026139162366754624,
+      "mean_completed_wall_seconds": 0.0925777953331514,
+      "max_peak_allocated_bytes": 0,
+      "unfinished_sessions": 0
+    }
+  },
+  "paired_test_loss_differences_vs": "ns8",
+  "paired_differences": {
+    "ns5": [
+      0.0008914470672607422,
+      -0.00033593177795410156,
+      0.0001785755157470703
+    ],
+    "ns12": [
+      0.0006947517395019531,
+      1.430511474609375e-06,
+      -9.5367431640625e-06
+    ]
+  },
+  "seeds": [
+    11,
+    22,
+    33
+  ],
+  "raw_results": {
+    "ns5": [
+      {
+        "completed_steps": 4,
+        "planned_steps": 4,
+        "validation": {
+          "loss": 5.480356931686401,
+          "perplexity": 239.9323315440768,
+          "tokens": 32,
+          "sampling": "fixed independent windows with replacement; identical across all runs",
+          "source_sequence_counts": [
+            4
+          ]
+        },
+        "optimizer": "sso_ns",
+        "seed": 11,
+        "dataset": "OFFLINE SYNTHETIC BYTE FIXTURE (NOT REAL DATA)",
+        "identity_hash": "a5a33b21c89b3385e5e3e2a2be6796ab1bda2cb1c8e4ba5e12630a26fd0ca908",
+        "matrix_lr": 0.03,
+        "aux_lr": 0.001,
+        "train_tokens": 128,
+        "elapsed_training_without_diagnostic_steps": 0.05050322299757681,
+        "elapsed_diagnostic_steps": 0.0,
+        "elapsed_evaluation": 0.002340907998586772,
+        "elapsed_checkpoint": 0.006023329000527156,
+        "invocation_wall_seconds": 0.06306249600129377,
+        "peak_allocated_bytes": 0,
+        "data_reuse": "Random windows sampled with replacement; train_tokens includes repeated exposures.",
+        "gpu_executed": false,
+        "test": {
+          "loss": 5.515960454940796,
+          "perplexity": 248.62865923166353,
+          "tokens": 32,
+          "sampling": "fixed independent windows with replacement; identical across all runs",
+          "source_sequence_counts": [
+            4
+          ]
+        },
+        "test_evaluation_seconds": 0.0014524569996865466,
+        "completed_sessions_wall_seconds": 0.06306249600129377,
+        "unfinished_session_count": 0,
+        "timing_note": "Session wall includes training, diagnostics, evaluation and test through final bookkeeping; startup before model construction and abrupt unclosed sessions are not recovered. Detailed checkpoint counter omits last write on resumed checkpoint; use completed_sessions_wall_seconds for cumulative wall."
+      },
+      {
+        "completed_steps": 4,
+        "planned_steps": 4,
+        "validation": {
+          "loss": 5.4793784618377686,
+          "perplexity": 239.6976798104932,
+          "tokens": 32,
+          "sampling": "fixed independent windows with replacement; identical across all runs",
+          "source_sequence_counts": [
+            4
+          ]
+        },
+        "optimizer": "sso_ns",
+        "seed": 22,
+        "dataset": "OFFLINE SYNTHETIC BYTE FIXTURE (NOT REAL DATA)",
+        "identity_hash": "f57cb7c7c8d38a85381b435d669437a1f52f5cd467ad367f6ca7082043e6b078",
+        "matrix_lr": 0.03,
+        "aux_lr": 0.001,
+        "train_tokens": 128,
+        "elapsed_training_without_diagnostic_steps": 0.05081417300243629,
+        "elapsed_diagnostic_steps": 0.0,
+        "elapsed_evaluation": 0.0022438389987655682,
+        "elapsed_checkpoint": 0.004036012998767546,
+        "invocation_wall_seconds": 0.06136948499988648,
+        "peak_allocated_bytes": 0,
+        "data_reuse": "Random windows sampled with replacement; train_tokens includes repeated exposures.",
+        "gpu_executed": false,
+        "test": {
+          "loss": 5.4802939891815186,
+          "perplexity": 239.9172300773941,
+          "tokens": 32,
+          "sampling": "fixed independent windows with replacement; identical across all runs",
+          "source_sequence_counts": [
+            4
+          ]
+        },
+        "test_evaluation_seconds": 0.0015769839992572088,
+        "completed_sessions_wall_seconds": 0.06136948499988648,
+        "unfinished_session_count": 0,
+        "timing_note": "Session wall includes training, diagnostics, evaluation and test through final bookkeeping; startup before model construction and abrupt unclosed sessions are not recovered. Detailed checkpoint counter omits last write on resumed checkpoint; use completed_sessions_wall_seconds for cumulative wall."
+      },
+      {
+        "completed_steps": 4,
+        "planned_steps": 4,
+        "validation": {
+          "loss": 5.471435070037842,
+          "perplexity": 237.8012094018353,
+          "tokens": 32,
+          "sampling": "fixed independent windows with replacement; identical across all runs",
+          "source_sequence_counts": [
+            4
+          ]
+        },
+        "optimizer": "sso_ns",
+        "seed": 33,
+        "dataset": "OFFLINE SYNTHETIC BYTE FIXTURE (NOT REAL DATA)",
+        "identity_hash": "8f4a2091c9d8f8896f29ff7e1727943837f2f8c847978b7996db70909f070ef6",
+        "matrix_lr": 0.03,
+        "aux_lr": 0.001,
+        "train_tokens": 128,
+        "elapsed_training_without_diagnostic_steps": 0.0513036150005064,
+        "elapsed_diagnostic_steps": 0.0,
+        "elapsed_evaluation": 0.002451971999107627,
+        "elapsed_checkpoint": 0.004441357999894535,
+        "invocation_wall_seconds": 0.06292739200034703,
+        "peak_allocated_bytes": 0,
+        "data_reuse": "Random windows sampled with replacement; train_tokens includes repeated exposures.",
+        "gpu_executed": false,
+        "test": {
+          "loss": 5.464858770370483,
+          "perplexity": 236.24248831362556,
+          "tokens": 32,
+          "sampling": "fixed independent windows with replacement; identical across all runs",
+          "source_sequence_counts": [
+            4
+          ]
+        },
+        "test_evaluation_seconds": 0.0012490600001910934,
+        "completed_sessions_wall_seconds": 0.06292739200034703,
+        "unfinished_session_count": 0,
+        "timing_note": "Session wall includes training, diagnostics, evaluation and test through final bookkeeping; startup before model construction and abrupt unclosed sessions are not recovered. Detailed checkpoint counter omits last write on resumed checkpoint; use completed_sessions_wall_seconds for cumulative wall."
+      }
+    ],
+    "ns8": [
+      {
+        "completed_steps": 4,
+        "planned_steps": 4,
+        "validation": {
+          "loss": 5.47990345954895,
+          "perplexity": 239.82355358259926,
+          "tokens": 32,
+          "sampling": "fixed independent windows with replacement; identical across all runs",
+          "source_sequence_counts": [
+            4
+          ]
+        },
+        "optimizer": "sso_ns",
+        "seed": 11,
+        "dataset": "OFFLINE SYNTHETIC BYTE FIXTURE (NOT REAL DATA)",
+        "identity_hash": "47a33efa0341cc96e6c3f63729fc65e81d39e552f72211219d69481e5f513f3b",
+        "matrix_lr": 0.03,
+        "aux_lr": 0.001,
+        "train_tokens": 128,
+        "elapsed_training_without_diagnostic_steps": 0.06429837500036228,
+        "elapsed_diagnostic_steps": 0.0,
+        "elapsed_evaluation": 0.002252459000374074,
+        "elapsed_checkpoint": 0.004060836001372081,
+        "invocation_wall_seconds": 0.07491358100014622,
+        "peak_allocated_bytes": 0,
+        "data_reuse": "Random windows sampled with replacement; train_tokens includes repeated exposures.",
+        "gpu_executed": false,
+        "test": {
+          "loss": 5.515069007873535,
+          "perplexity": 248.40711870305287,
+          "tokens": 32,
+          "sampling": "fixed independent windows with replacement; identical across all runs",
+          "source_sequence_counts": [
+            4
+          ]
+        },
+        "test_evaluation_seconds": 0.001156931000878103,
+        "completed_sessions_wall_seconds": 0.07491358100014622,
+        "unfinished_session_count": 0,
+        "timing_note": "Session wall includes training, diagnostics, evaluation and test through final bookkeeping; startup before model construction and abrupt unclosed sessions are not recovered. Detailed checkpoint counter omits last write on resumed checkpoint; use completed_sessions_wall_seconds for cumulative wall."
+      },
+      {
+        "completed_steps": 4,
+        "planned_steps": 4,
+        "validation": {
+          "loss": 5.479643106460571,
+          "perplexity": 239.76112290712027,
+          "tokens": 32,
+          "sampling": "fixed independent windows with replacement; identical across all runs",
+          "source_sequence_counts": [
+            4
+          ]
+        },
+        "optimizer": "sso_ns",
+        "seed": 22,
+        "dataset": "OFFLINE SYNTHETIC BYTE FIXTURE (NOT REAL DATA)",
+        "identity_hash": "9b180d47a16f4fedc9470bfdfa16ad7204dd12f8fda42c14ab925ca5356cdf1a",
+        "matrix_lr": 0.03,
+        "aux_lr": 0.001,
+        "train_tokens": 128,
+        "elapsed_training_without_diagnostic_steps": 0.06523627700153156,
+        "elapsed_diagnostic_steps": 0.0,
+        "elapsed_evaluation": 0.0022748229985154467,
+        "elapsed_checkpoint": 0.0038800589991296874,
+        "invocation_wall_seconds": 0.07561382700077957,
+        "peak_allocated_bytes": 0,
+        "data_reuse": "Random windows sampled with replacement; train_tokens includes repeated exposures.",
+        "gpu_executed": false,
+        "test": {
+          "loss": 5.480629920959473,
+          "perplexity": 239.99783943792065,
+          "tokens": 32,
+          "sampling": "fixed independent windows with replacement; identical across all runs",
+          "source_sequence_counts": [
+            4
+          ]
+        },
+        "test_evaluation_seconds": 0.0013704420016438235,
+        "completed_sessions_wall_seconds": 0.07561382700077957,
+        "unfinished_session_count": 0,
+        "timing_note": "Session wall includes training, diagnostics, evaluation and test through final bookkeeping; startup before model construction and abrupt unclosed sessions are not recovered. Detailed checkpoint counter omits last write on resumed checkpoint; use completed_sessions_wall_seconds for cumulative wall."
+      },
+      {
+        "completed_steps": 4,
+        "planned_steps": 4,
+        "validation": {
+          "loss": 5.47156286239624,
+          "perplexity": 237.8316005210498,
+          "tokens": 32,
+          "sampling": "fixed independent windows with replacement; identical across all runs",
+          "source_sequence_counts": [
+            4
+          ]
+        },
+        "optimizer": "sso_ns",
+        "seed": 33,
+        "dataset": "OFFLINE SYNTHETIC BYTE FIXTURE (NOT REAL DATA)",
+        "identity_hash": "b90065adc873d86c17ec185b7fd702a9b7580b6fa68efb434036b5740db10f91",
+        "matrix_lr": 0.03,
+        "aux_lr": 0.001,
+        "train_tokens": 128,
+        "elapsed_training_without_diagnostic_steps": 0.062349501000426244,
+        "elapsed_diagnostic_steps": 0.0,
+        "elapsed_evaluation": 0.0023551700014650123,
+        "elapsed_checkpoint": 0.004289422000510967,
+        "invocation_wall_seconds": 0.07293016599942348,
+        "peak_allocated_bytes": 0,
+        "data_reuse": "Random windows sampled with replacement; train_tokens includes repeated exposures.",
+        "gpu_executed": false,
+        "test": {
+          "loss": 5.464680194854736,
+          "perplexity": 236.20030495600312,
+          "tokens": 32,
+          "sampling": "fixed independent windows with replacement; identical across all runs",
+          "source_sequence_counts": [
+            4
+          ]
+        },
+        "test_evaluation_seconds": 0.0013176760003261734,
+        "completed_sessions_wall_seconds": 0.07293016599942348,
+        "unfinished_session_count": 0,
+        "timing_note": "Session wall includes training, diagnostics, evaluation and test through final bookkeeping; startup before model construction and abrupt unclosed sessions are not recovered. Detailed checkpoint counter omits last write on resumed checkpoint; use completed_sessions_wall_seconds for cumulative wall."
+      }
+    ],
+    "ns12": [
+      {
+        "completed_steps": 4,
+        "planned_steps": 4,
+        "validation": {
+          "loss": 5.480001211166382,
+          "perplexity": 239.84699786869993,
+          "tokens": 32,
+          "sampling": "fixed independent windows with replacement; identical across all runs",
+          "source_sequence_counts": [
+            4
+          ]
+        },
+        "optimizer": "sso_ns",
+        "seed": 11,
+        "dataset": "OFFLINE SYNTHETIC BYTE FIXTURE (NOT REAL DATA)",
+        "identity_hash": "899b37399531811f304af0e8e57e9e1484709422bcf3e183103941a4978d1ef8",
+        "matrix_lr": 0.03,
+        "aux_lr": 0.001,
+        "train_tokens": 128,
+        "elapsed_training_without_diagnostic_steps": 0.07579017599891813,
+        "elapsed_diagnostic_steps": 0.0,
+        "elapsed_evaluation": 0.0027305880012136186,
+        "elapsed_checkpoint": 0.003832619000604609,
+        "invocation_wall_seconds": 0.08646416699957626,
+        "peak_allocated_bytes": 0,
+        "data_reuse": "Random windows sampled with replacement; train_tokens includes repeated exposures.",
+        "gpu_executed": false,
+        "test": {
+          "loss": 5.515763759613037,
+          "perplexity": 248.57975994533396,
+          "tokens": 32,
+          "sampling": "fixed independent windows with replacement; identical across all runs",
+          "source_sequence_counts": [
+            4
+          ]
+        },
+        "test_evaluation_seconds": 0.0014088900006754557,
+        "completed_sessions_wall_seconds": 0.08646416699957626,
+        "unfinished_session_count": 0,
+        "timing_note": "Session wall includes training, diagnostics, evaluation and test through final bookkeeping; startup before model construction and abrupt unclosed sessions are not recovered. Detailed checkpoint counter omits last write on resumed checkpoint; use completed_sessions_wall_seconds for cumulative wall."
+      },
+      {
+        "completed_steps": 4,
+        "planned_steps": 4,
+        "validation": {
+          "loss": 5.479645252227783,
+          "perplexity": 239.76163737922846,
+          "tokens": 32,
+          "sampling": "fixed independent windows with replacement; identical across all runs",
+          "source_sequence_counts": [
+            4
+          ]
+        },
+        "optimizer": "sso_ns",
+        "seed": 22,
+        "dataset": "OFFLINE SYNTHETIC BYTE FIXTURE (NOT REAL DATA)",
+        "identity_hash": "769320300e8a4702cd0a21c0022fe1b5b019acdb4c58e5b3ad8b9fb6bd55199c",
+        "matrix_lr": 0.03,
+        "aux_lr": 0.001,
+        "train_tokens": 128,
+        "elapsed_training_without_diagnostic_steps": 0.08543162799833226,
+        "elapsed_diagnostic_steps": 0.0,
+        "elapsed_evaluation": 0.0023227370002132375,
+        "elapsed_checkpoint": 0.004876197999692522,
+        "invocation_wall_seconds": 0.09719270800087543,
+        "peak_allocated_bytes": 0,
+        "data_reuse": "Random windows sampled with replacement; train_tokens includes repeated exposures.",
+        "gpu_executed": false,
+        "test": {
+          "loss": 5.480631351470947,
+          "perplexity": 239.9981827578294,
+          "tokens": 32,
+          "sampling": "fixed independent windows with replacement; identical across all runs",
+          "source_sequence_counts": [
+            4
+          ]
+        },
+        "test_evaluation_seconds": 0.0015482879989576759,
+        "completed_sessions_wall_seconds": 0.09719270800087543,
+        "unfinished_session_count": 0,
+        "timing_note": "Session wall includes training, diagnostics, evaluation and test through final bookkeeping; startup before model construction and abrupt unclosed sessions are not recovered. Detailed checkpoint counter omits last write on resumed checkpoint; use completed_sessions_wall_seconds for cumulative wall."
+      },
+      {
+        "completed_steps": 4,
+        "planned_steps": 4,
+        "validation": {
+          "loss": 5.4715704917907715,
+          "perplexity": 237.833415039084,
+          "tokens": 32,
+          "sampling": "fixed independent windows with replacement; identical across all runs",
+          "source_sequence_counts": [
+            4
+          ]
+        },
+        "optimizer": "sso_ns",
+        "seed": 33,
+        "dataset": "OFFLINE SYNTHETIC BYTE FIXTURE (NOT REAL DATA)",
+        "identity_hash": "6a0bc8798590c30ce3b5b6538aa9e583e9b96048330a309490bd1c6d6cc05a2a",
+        "matrix_lr": 0.03,
+        "aux_lr": 0.001,
+        "train_tokens": 128,
+        "elapsed_training_without_diagnostic_steps": 0.08292648199858377,
+        "elapsed_diagnostic_steps": 0.0,
+        "elapsed_evaluation": 0.002125317001627991,
+        "elapsed_checkpoint": 0.004703516999143176,
+        "invocation_wall_seconds": 0.0940765109990025,
+        "peak_allocated_bytes": 0,
+        "data_reuse": "Random windows sampled with replacement; train_tokens includes repeated exposures.",
+        "gpu_executed": false,
+        "test": {
+          "loss": 5.464670658111572,
+          "perplexity": 236.1980523851006,
+          "tokens": 32,
+          "sampling": "fixed independent windows with replacement; identical across all runs",
+          "source_sequence_counts": [
+            4
+          ]
+        },
+        "test_evaluation_seconds": 0.0013976150003145449,
+        "completed_sessions_wall_seconds": 0.0940765109990025,
+        "unfinished_session_count": 0,
+        "timing_note": "Session wall includes training, diagnostics, evaluation and test through final bookkeeping; startup before model construction and abrupt unclosed sessions are not recovered. Detailed checkpoint counter omits last write on resumed checkpoint; use completed_sessions_wall_seconds for cumulative wall."
+      }
+    ]
+  },
+  "interpretation": "Three dependent paired contrasts across training seeds; no automatic significance or general superiority claim. Full wall includes SVD repairs."
+}

@@ -1,0 +1,353 @@
+\section{A Feasible Certificate and Its Finite-Precision Boundary}
+\label{sec:certificates}
+
+An approximate matrix output cannot be certified merely by reporting a polar
+residual and a tangent residual.  If the tangent residual is nonzero, the
+matrix is not feasible for the primal oracle, so its objective value need not
+be a valid primal lower bound.
+
+Assume here that \(\Theta=uv^\top\) is a unit rank-one normal.  Given an
+arbitrary approximate matrix \(Z\), define the spectral normalization
+\[
+\bar Z
+=
+\frac{Z}{\max\{1,\snorm{Z}\}},
+\qquad
+c=\ip{\Theta}{\bar Z},
+\tag{54}
+\label{eq:Zbar-c}
+\]
+and the feasible repair
+\[
+\widetilde Z
+=
+\frac{\bar Z-c\Theta}{1+|c|}.
+\tag{55}
+\label{eq:Ztilde}
+\]
+
+\begin{theorem}[T6: feasible repair and valid primal--dual gap in exact arithmetic]
+\label{thm:T6}
+The repaired matrix satisfies
+\[
+\ip{\Theta}{\widetilde Z}=0,
+\qquad
+\snorm{\widetilde Z}\le1.
+\tag{56}
+\label{eq:T6-feas}
+\]
+For any multiplier \(\lambda\), define
+\[
+\Gap(\lambda,Z)
+=
+\nnorm{G+\lambda\Theta}
+-\ip{G}{\widetilde Z}.
+\tag{57}
+\label{eq:true-gap}
+\]
+Then
+\[
+\Gap(\lambda,Z)
+\ge
+p^\star-\ip{G}{\widetilde Z}
+\ge0.
+\tag{58}
+\label{eq:gap-cover}
+\]
+Thus \eqref{eq:true-gap} is a valid upper bound on the primal LMO
+suboptimality.
+
+If
+\[
+r_{\mathrm{pol}}
+=
+\nnorm{G+\lambda\Theta}
+-\ip{G+\lambda\Theta}{\bar Z},
+\tag{59}
+\label{eq:rpol}
+\]
+then \(r_{\mathrm{pol}}\ge0\), and
+\[
+\Gap(\lambda,Z)
+\le
+r_{\mathrm{pol}}
++|\lambda||c|
++\frac{2\nnorm{G}|c|}{1+|c|}.
+\tag{60}
+\label{eq:gap-decomposition}
+\]
+Finally, if a computable quantity \(\widehat\phi(\lambda)\) has been proved to
+satisfy
+\[
+\widehat\phi(\lambda)\ge\nnorm{G+\lambda\Theta},
+\]
+then
+\[
+\widehat\phi(\lambda)-\ip{G}{\widetilde Z}
+\tag{61}
+\label{eq:upper-certificate}
+\]
+is also a valid certificate.
+\end{theorem}
+
+\begin{proofidea}
+First normalize into the spectral ball.  Then subtract the normal component
+and divide by a worst-case triangle-inequality factor so that tangency and
+spectral feasibility both hold exactly.  Only after this repair is the
+dual-minus-primal difference a legitimate gap.
+\end{proofidea}
+
+\begin{intuition}
+T6 turns any approximate polar map---including one affected by truncation,
+finite precision, or an imperfect multiplier---into a direction that the
+downstream method may safely use.  The certificate measures the price of the
+repair rather than silently treating an infeasible matrix as primal feasible.
+\end{intuition}
+
+\begin{proof}
+By definition, \(\snorm{\bar Z}\le1\).  Because the rank-one unit normal
+satisfies \(\ip{\Theta}{\Theta}=\fnorm{\Theta}^2=1\),
+\[
+\ip{\Theta}{\widetilde Z}
+=
+\frac{c-c}{1+|c|}
+=0.
+\]
+Furthermore,
+\[
+\snorm{\bar Z-c\Theta}
+\le
+\snorm{\bar Z}+|c|\snorm{\Theta}
+\le1+|c|.
+\]
+Dividing by \(1+|c|\) proves \eqref{eq:T6-feas}.
+
+Weak duality from Theorem~\ref{thm:T1} gives
+\[
+\nnorm{G+\lambda\Theta}\ge p^\star.
+\]
+Since \(\widetilde Z\) is primal feasible,
+\[
+\ip{G}{\widetilde Z}\le p^\star.
+\]
+Subtracting proves \eqref{eq:gap-cover}.
+
+For the decomposition, put \(A=G+\lambda\Theta\).  Adding and subtracting
+\(\ip{A}{\bar Z}\) gives
+\[
+\begin{aligned}
+\Gap(\lambda,Z)
+&=
+\nnorm{A}-\ip{G}{\widetilde Z}\\
+&=
+r_{\mathrm{pol}}
++\lambda c
++\ip{G}{\bar Z-\widetilde Z}.
+\end{aligned}
+\]
+Equation \eqref{eq:Ztilde} gives
+\[
+\bar Z-\widetilde Z
+=
+\frac{|c|\bar Z+c\Theta}{1+|c|}.
+\]
+By spectral/nuclear duality,
+\[
+\begin{aligned}
+\left|\ip{G}{\bar Z-\widetilde Z}\right|
+&\le
+\frac{|c|\nnorm{G}\snorm{\bar Z}
+      +|c|\nnorm{G}\snorm{\Theta}}
+     {1+|c|}\\
+&\le
+\frac{2\nnorm{G}|c|}{1+|c|}.
+\end{aligned}
+\]
+Using \(\lambda c\le|\lambda||c|\) proves
+\eqref{eq:gap-decomposition}.  Replacing the exact dual value by any proved
+upper bound preserves the coverage inequality, giving
+\eqref{eq:upper-certificate}.
+\end{proof}
+
+\begin{boundary}
+The feasibility and coverage statements above are exact-real-arithmetic
+identities.  A machine-rigorous certificate additionally needs outward-rounded
+upper bounds for the nuclear norm and spectral normalization, a downward-
+rounded primal objective, and enclosures for the tangency calculation.  Plain
+double-precision evaluation is a numerical check, not by itself a validated
+certificate.  These are necessary ingredients, not a complete validated
+implementation: an interval enclosure of the tangency residual alone does
+not certify exact membership in the hyperplane unless the final repair is
+itself performed exactly or with an interval-safe correction.
+\end{boundary}
+
+\begin{corollary}[Optional unit-spectral-norm output]
+\label{cor:unit-repair}
+Let
+\[
+P=\bar Z-c\Theta.
+\]
+If \(P\ne0\), choose
+\[
+s_G=
+\begin{cases}
+1,&\ip{G}{P}\ge0,\\
+-1,&\ip{G}{P}<0,
+\end{cases}
+\qquad
+Z_{\rm unit}=s_G\frac{P}{\snorm{P}}.
+\tag{62}
+\label{eq:unit-repair}
+\]
+Then
+\[
+\ip{\Theta}{Z_{\rm unit}}=0,\qquad
+\snorm{Z_{\rm unit}}=1,
+\]
+and
+\[
+\ip{G}{Z_{\rm unit}}\ge\ip{G}{\widetilde Z}.
+\tag{63}
+\label{eq:unit-repair-objective}
+\]
+Consequently, replacing \(\widetilde Z\) by \(Z_{\rm unit}\) never worsens the
+valid primal--dual certificate.
+
+Likewise, if \(p^\star>0\), then the smooth solution
+\(\Phi_\delta\ne0\) may be replaced by
+\[
+\Phi_\delta^{\rm unit}
+=\frac{\Phi_\delta}{\snorm{\Phi_\delta}}.
+\]
+It remains tangent, has unit spectral norm, and has no smaller original
+linear objective.  If
+\[
+\sigma_1(G+\lambda_\delta\Theta)\ge s_0>0,
+\]
+then the rescaling factor satisfies
+\[
+\frac{1}{\snorm{\Phi_\delta}}
+=
+\sqrt{1+\frac{\delta^2}
+{\sigma_1(G+\lambda_\delta\Theta)^2}}
+=1+O(\delta^2).
+\tag{64}
+\label{eq:smooth-unit-factor}
+\]
+\end{corollary}
+
+\begin{proof}
+Tangency and unit norm in \eqref{eq:unit-repair} are immediate.  Moreover,
+\(\snorm{P}\le1+|c|\), so if \(\ip{G}{P}\ge0\),
+\[
+\ip{G}{Z_{\rm unit}}
+=\frac{\ip{G}{P}}{\snorm{P}}
+\ge\frac{\ip{G}{P}}{1+|c|}
+=\ip{G}{\widetilde Z}.
+\]
+If \(\ip{G}{P}<0\), the left side is positive whereas the right side is
+negative.
+
+For the smooth direction, comparison with the feasible zero direction in
+\eqref{eq:regularized-primal} gives
+\[
+\ip{G}{\Phi_\delta}
+\ge\delta R(\Phi_\delta)\ge0.
+\]
+To see rigorously that \(\Phi_\delta\ne0\) when \(p^\star>0\), let
+\(\Phi^\star\) be an exact primal optimizer.  For sufficiently small
+\(t>0\), the exact identity
+\(1-\sqrt{1-z^2}=z^2/(1+\sqrt{1-z^2})\le z^2\) gives
+\[
+ R(t\Phi^\star)\le t^2\|\Phi^\star\|_F^2.
+\]
+Consequently
+\[
+ \ip{G}{t\Phi^\star}-\delta R(t\Phi^\star)
+ \ge tp^\star-\delta t^2\|\Phi^\star\|_F^2>0,
+\]
+whereas the regularized objective at zero is zero.  Hence the unique smooth
+optimizer is nonzero, and positive radial rescaling cannot decrease its
+linear objective.  Finally,
+\eqref{eq:Zdelta} gives
+\[
+\snorm{\Phi_\delta}
+=
+\frac{\sigma_1(G+\lambda_\delta\Theta)}
+{\sqrt{\sigma_1(G+\lambda_\delta\Theta)^2+\delta^2}},
+\]
+which proves \eqref{eq:smooth-unit-factor}.
+\end{proof}
+
+\begin{boundary}
+The unit repair is certified primal post-processing and an experimental
+scale-control device.  The map \(P\mapsto P/\snorm{P}\) is discontinuous at
+\(P=0\) and may amplify numerical noise nearby.  Moreover,
+\(\Phi_\delta^{\rm unit}\) is no longer the exact optimizer of the
+regularized primal at finite \(\delta\), so its Fenchel center-path identity
+must not be asserted pointwise.  Under the lower bound in
+\eqref{eq:smooth-unit-factor}, however, its rescaling is \(1+O(\delta^2)\)
+and it has the same limiting center.
+\end{boundary}
+
+\subsection{How to read the decomposition}
+
+The three terms in \eqref{eq:gap-decomposition} have different meanings.
+
+\begin{enumerate}
+  \item \(r_{\mathrm{pol}}\) measures matrix-function or polar optimality
+        error.
+  \item \(|\lambda||c|\) measures the coupling between multiplier size and
+        tangent residual.
+  \item The last term is the explicit price of moving the infeasible output
+        into the primal feasible set.
+\end{enumerate}
+
+\paragraph{Certified stopping rule.}
+Given a target inner error budget \(\varepsilon_t\), stop the inner oracle only
+when a valid quantity of the form \eqref{eq:true-gap} or
+\eqref{eq:upper-certificate} is at most \(\varepsilon_t\).  Reporting only
+\(|c|\) is not sufficient.
+
+\subsection{A certifiable reference homotopy oracle}
+
+The theory suggests the following implementation pattern.
+
+\begin{enumerate}
+  \item \textbf{Choose a smoothing level.}
+        Start from a moderate \(\delta\); warm-start it from the previous
+        oracle call when appropriate.
+  \item \textbf{Bracket the smooth multiplier.}
+        Use the proved multiplier bound
+        \eqref{eq:smooth-lambda-bound}, or a tighter bracket whose coverage has
+        been verified.
+  \item \textbf{Solve the continuous root.}
+        Apply bisection or a safeguarded scalar solver to
+        \(h_\delta(\lambda)=0\).  Unlike the compact selection, this function
+        is continuous and strictly increasing.
+  \item \textbf{Form the smooth direction.}
+        Evaluate \(Z_\delta(G+\lambda\Theta)\).  If the scalar root is only
+        approximate or the matrix function is computed in finite precision,
+        apply \eqref{eq:Zbar-c}--\eqref{eq:Ztilde}.
+  \item \textbf{Certify.}
+        Compute \eqref{eq:true-gap}, or a proved upper version
+        \eqref{eq:upper-certificate}.
+  \item \textbf{Refine only when needed.}
+        If the certificate exceeds the requested tolerance \(\varepsilon_t\), reduce
+        \(\delta\), tighten the scalar root, or switch to the exact
+        set-valued SVD oracle.  Otherwise accept the repaired direction.
+\end{enumerate}
+
+This homotopy is ``accuracy on demand'' only after the normal accuracy and any
+assumptions required by a downstream method have been certified independently.
+T6 makes only the \emph{inner} oracle gap computable; it does not certify the
+normal or an outer descent model.
+Consequently this is a certifiable reference workflow, not a claim of a
+fully deployable per-step large-model routine.
+
+\begin{remark}[Conservatism]
+The repair is deliberately simple and globally safe.  It may be conservative:
+projecting onto the exact intersection of a spectral ball and a hyperplane
+could produce a tighter primal value, but would itself require a nontrivial
+optimization.  T6 prioritizes a closed-form guarantee.
+\end{remark}

@@ -1,0 +1,22 @@
+{
+  "tokenizer": "allenai/OLMo-2-1124-7B",
+  "tokenizer_revision": "main",
+  "train_tokens": 2097152,
+  "val_tokens": 65536,
+  "test_tokens": 65536,
+  "min_val_source_tokens": 4096,
+  "validation_permyriad": 500,
+  "dataset_label": "FineWeb-Edu sample-10BT independent general-text extension",
+  "sources": [
+    {
+      "name": "fineweb_edu",
+      "repo": "HuggingFaceFW/fineweb-edu",
+      "subset": "sample-10BT",
+      "split": "train",
+      "revision": "main",
+      "weight": 1
+    }
+  ],
+  "shuffle_seed": 20260925,
+  "shuffle_buffer_size": 1000
+}

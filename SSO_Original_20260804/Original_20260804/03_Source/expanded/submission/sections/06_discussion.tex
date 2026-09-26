@@ -1,0 +1,49 @@
+\section{Discussion and limitations}
+\label{sec:discussion}
+
+The two remedies make different tradeoffs.  Exact interval bisection followed
+by \eqref{eq:KF-main} has no smoothing bias but needs a rank decision.
+Pseudo-Huber gives a strictly monotone equation and converges to \(K_R\),
+whereas the family in \cref{prop:smoothing-family-main} identifies \(K_F\) as
+the Huber Fenchel center.  These centers agree only in the cases of
+\cref{cor:center-agreement-main}.  The boundary bias is profile dependent:
+polynomial tail order \(p\) gives \(\delta^{p/(p+1)}\), pseudo-Huber gives
+\(\delta^{2/3}\), and finite saturation gives \(\delta\).  At fixed strict
+crossings the first direction coefficient is computable from
+\eqref{eq:frozen-field-main}; compact-root instances instead begin at
+cubic/quadratic order and obey the multiplier hierarchy of
+\cref{rem:compact-root-hierarchy-main}.
+
+The strict laws allow arbitrary shape and corank, but boundary and crossover
+laws currently require a transverse square corank-one crossing; multiple
+signed small modes and nontransverse exponents remain open.  The admissible
+family does not cover every vanishing regularizer, and full-space openness
+implies no frequency law without a distribution for \((G,\Theta)\).  No outer
+complexity or learning-performance gain follows without a separate descent
+model and control of the changing normal.
+
+\section{Conclusion}
+
+We characterized the tangency-constrained certificate slice for nuclear-norm
+approximation from a matrix line and identified its hard and Fenchel spectral
+centers.  An admissible smoothing family links center selection and boundary
+exponents, while strict arbitrary-corank paths admit computable analytic
+multiplier and direction expansions.  Transverse corank-one boundaries
+exhibit the sharp pseudo-Huber two-thirds law and a uniform cubic crossover.
+Compact-polar open failure explains why the full certificate slice is
+essential.
+
+\section*{Data and code availability}
+
+No external data are used.  Assertion-based Python scripts reproducing every
+numerical table and constant are included in the supplementary source archive
+submitted with the manuscript; the archive also records the required Python,
+NumPy, SciPy, and mpmath dependencies.
+
+\section*{Declaration on generative AI assistance}
+
+Generative AI tools assisted with language editing, literature discovery,
+algebraic exploration, drafting portions of theorem and proof text, and
+drafting verification code.  The authors independently checked every cited
+source, proof, and computational result and assume responsibility for all
+content.

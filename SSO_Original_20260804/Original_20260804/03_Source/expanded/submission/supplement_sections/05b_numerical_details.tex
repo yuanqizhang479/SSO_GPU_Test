@@ -1,0 +1,251 @@
+\section{Detailed numerical verification}
+\label{sec:supp-numerics}
+
+The local laws of Section~\ref{sec:rates} predict constants, not merely exponents, so
+they can be falsified numerically.  We report closed-form instances in which
+the displayed constants are available in exact arithmetic.  The
+\(2\times2\) checks evaluate the smoothed scalar root of
+\eqref{eq:smooth-root-main} in high-precision decimal arithmetic through the
+closed principal-square-root formula for
+\(Z_\delta(A)=A(A^\top A+\delta^2I)^{-1/2}\); the diagonal corank-two
+instance is evaluated entrywise.  The roots are located by
+bisection on the strictly increasing function \(h_\delta\); assertion-based
+scripts accompany the paper.
+
+For the first group, \(\Theta=e_1e_1^\top\) and
+\(G=\bigl(\begin{smallmatrix}0&b_1\\b_2&c\end{smallmatrix}\bigr)\).
+
+\begin{center}
+\begin{tabular}{@{}llll@{}}
+\toprule
+Regime & Instance and predicted constant & Smoothing & Computed \\
+\midrule
+Theorem~\ref{thm:rate-regular} &
+\(b_1=b_2=1,\ c=\tfrac12\);\ \(\lambda^\star=\tfrac12\), \(\kappa=\tfrac12\) &
+\(\delta=10^{-4}\) & \(-1.777777665\)\\
+\(O(\delta^2)\) &
+\((\lambda_\delta-\lambda^\star)/\delta^2\to-b^\star/\kappa=-\tfrac{16}{9}\)
+&\(\delta=10^{-5}\) & \(-1.777777777\)\\
+\addlinespace
+Corollary~\ref{thm:rate-strict} &
+\(b_1=b_2=\tfrac12,\ c=1\);\ \(\lambda^\star=\tfrac14\),
+\(a=\tfrac15\), \(\beta=\tfrac45\) &
+\(\delta=10^{-6}\) & \(-0.3227484177\)\\
+\(\Theta(\delta)\) &
+\((\lambda_\delta-\lambda^\star)/\delta\to t_0=-\tfrac{5}{4\sqrt{15}}\)
+& \(\delta=10^{-8}\) & \(-0.3227486102\)\\
+\addlinespace
+Theorem~\ref{thm:rate-boundary} &
+\(b_1=b_2=c=1\);\ \(\lambda^\star=1\), \(a=\beta=\tfrac12\), \(\kappa=\tfrac12\) &
+\(\delta=10^{-9}\) & \(1.259920256\)\\
+\(\Theta(\delta^{2/3})\) &
+\((\lambda^\star-\lambda_\delta)/\delta^{2/3}\to(2\beta\kappa)^{-1/3}=2^{1/3}\)
+& \(\delta=10^{-12}\) & \(1.259921042\)\\
+\bottomrule
+\end{tabular}
+
+\smallskip
+{\small
+Exact values: \(-16/9=-1.777777778\),
+\(-5/(4\sqrt{15})=-0.3227486122\),
+\(2^{1/3}=1.259921050\).}
+\end{center}
+
+For the same boundary data, standard Huber gives
+\((\lambda^\star-\lambda_\delta^{\rm hub})/\delta=1.9999999656\) at
+\(\delta=10^{-8}\), versus \(1/\beta=2\).  The scaled-Huber regression in
+the code also confirms that moving the first saturation threshold to
+\(L=1/2\) changes the constant to \(L/\beta=1\), as required by
+\eqref{eq:saturated-boundary-rate-main}.
+
+The preceding instances are \(2\times2\).  To exercise the general
+completion and arbitrary-corank strict law, take
+\[
+ A^\star=\diag(1,1,0,0),\qquad
+ \Theta=\diag\!\left(\tfrac38,\tfrac38,1,\tfrac12\right),\qquad
+ \lambda^\star=1,\qquad G=A^\star-\Theta.
+\]
+Then \(a=3/4\), \(C=\diag(1,1/2)\), and \(\beta=3/2\).  Hard
+water-filling gives
+\(\eta_F=3/5\),
+\(K_F=-\diag(3/5,3/10)\), and
+\(\|K_F\|_F=\sqrt{0.45}\).  The smooth-center equation gives
+\[
+ \eta_R=0.715080068980,\qquad
+ K_R=-\diag(0.581665969555,0.336668060890),
+\]
+with \(\|K_F-K_R\|_F=0.040996138377\).  Writing
+\(\Phi_F^\star\) and \(\Phi_R^\star\) for the two corresponding completed
+certificates, the actual smoothing path gives
+\begin{center}
+\begin{tabular}{@{}llll@{}}
+\toprule
+\(\delta\) & \(\lambda_\delta-\lambda^\star\) &
+\(\|\Phi_\delta-\Phi_R^\star\|_F\) &
+\(\|\Phi_\delta-\Phi_F^\star\|_F\)\\
+\midrule
+\(10^{-2}\) & \(-7.150296\!\times\!10^{-3}\) & \(7.896\!\times\!10^{-5}\) & \(4.0990\!\times\!10^{-2}\)\\
+\(10^{-3}\) & \(-7.150796\!\times\!10^{-4}\) & \(7.859\!\times\!10^{-7}\) & \(4.0996\!\times\!10^{-2}\)\\
+\(10^{-4}\) & \(-7.150801\!\times\!10^{-5}\) & \(7.855\!\times\!10^{-9}\) & \(4.0996\!\times\!10^{-2}\)\\
+\bottomrule
+\end{tabular}
+\end{center}
+Thus the path converges to the smooth rather than the minimum-Frobenius
+center, while
+\((\lambda_\delta-\lambda^\star)/\delta\to-\eta_R\), as predicted by
+Theorems~\ref{thm:general-fenchel-center} and~\ref{thm:rate-strict-general}
+and Corollary~\ref{cor:center-agreement-main}.
+On the same line, the standard Huber path gives slope
+\(-\eta_F=-3/5\) and converges to \(\Phi_F^\star\) to below
+\(10^{-11}\) at \(\delta=10^{-5}\), verifying
+Proposition~\ref{prop:smoothing-family-main} on the same nonsingleton slice.
+
+The preceding corank-two line is diagonal: the relevant singular dyads are
+fixed.  In the notation of Proposition~\ref{prop:strict-constants-closed-main},
+both \(P_{\rm big}(s)\) and \(\widetilde B(s)\) are constant.  Hence
+\(\partial_s\mathcal W=0\), which proves \(t_1=0\) and
+\(\mathcal M_R=0\) rather than merely observing their cancellation.  To test a nonzero first-order
+coefficient without random data, take
+\[
+ A^\star=\diag(1,3/5,0,0),\qquad \lambda^\star=1,
+\]
+\[
+ \Theta=
+ \begin{pmatrix}
+  1/6&0&2/5&0\\
+  0&1/6&0&3/10\\
+  1/5&0&2/3&0\\
+  0&1/10&0&1/3
+ \end{pmatrix},
+ \qquad G=A^\star-\Theta.
+\]
+In the displayed coordinates, \(a=1/3\),
+\(C=\diag(2/3,1/3)\), \(\beta=1\), and
+\(\eta_R=0.644812526657\).  At \(\delta=10^{-5}\), the extended-precision
+multiplier ratio is \(-0.644805516183\), while the deterministic direction
+ratio is \(0.671768254\),
+respectively, already exhibiting a nonzero linear direction term.  Direct evaluation of
+\eqref{eq:t1-closed-main}--\eqref{eq:MR-closed-main} gives
+\[
+ t_1=0.7010530600,
+ \qquad \|\mathcal M_R\|_F=0.6717753807.
+\]
+At \(\delta=10^{-6}\), the observed direction ratio is
+\(0.6717760680\), and the cosine between
+\((\Phi_\delta-\Phi_R^\star)/\delta\) and \(\mathcal M_R\) equals one to
+ten displayed digits.  The corresponding 50-digit finite-scale estimate of
+\(t_1\) at \(\delta=10^{-5}\) is \(0.7010473954\).  Thus the table verifies the
+predicted vector coefficient, not only its exponent.  This demonstrates
+sharpness for one fixed instance; no generic measure statement is inferred.
+
+The compact-root branch of
+Corollary~\ref{cor:compact-root-superconvergence-main} is sharp as well.
+For \(A^\star=\diag(2,1,0)\), \(\Theta=\diag(1,-1,1)\), and
+\(G=A^\star-\Theta\), one has \(a=0\), \(C=(1)\),
+\(J_\star=\diag(1/4,1,0)\), and \(\chi_\star=-3/4\).  Thus the predicted
+coefficients are \(-3/8\) and
+\(\|\mathcal N_0\|_F=\sqrt{26}/8=0.6373774392\ldots\).
+At \(\delta=10^{-4}\), high-precision bisection gives the normalized pair
+\((-0.3749999965,\,0.6373774341)\); the assertion script checks monotone
+convergence over four scales.  Thus, even when the compact-polar equation
+already has a root, the nearby smooth path has nonzero errors beginning at
+cubic and quadratic order.
+
+The doubly cancelled branch in
+\eqref{eq:compact-root-quintic-main} uses
+\[
+ A^\star=\diag(3,2,1,0),\qquad \lambda^\star=1,
+\]
+\[
+ \Theta=\begin{pmatrix}
+  27/10&0&0&3/10\\
+  0&-16/5&0&1/10\\
+  0&0&1/2&1/4\\
+  1/5&-3/20&1/10&1
+ \end{pmatrix},\qquad G=A^\star-\Theta.
+\]
+Here \(a=0\), \(C=(1)\), \(d_0=1\),
+\(\chi_\star=0\), and \(\chi_2=1/3\).  Hence the predicted quintic
+coefficient is \(-1/8\), and the quartic direction coefficient after
+subtracting \(-\delta^2J_\star/2\) is
+\[
+ \diag\!\left(\frac1{216},\frac3{128},\frac38,-\frac18\right).
+\]
+Extended-precision bisection gives
+\begin{center}
+\begin{tabular}{@{}lllll@{}}
+\toprule
+\(\delta\) & \(10^{-2}\) & \(10^{-3}\) & \(10^{-4}\) & \(10^{-5}\)\\
+\midrule
+\((\lambda_\delta-\lambda^\star)/\delta^5\) &
+\(-0.1248207361\)&\(-0.1249833498\)&\(-0.1249983476\)&\(-0.1249998349\)\\
+\bottomrule
+\end{tabular}
+\end{center}
+At \(\delta=10^{-4}\), the diagonal of the normalized quartic direction is
+\[
+ (0.004629629625,,0.023437499951,,0.374999996875,
+   -0.124998347562),
+\]
+while the Frobenius norm of its off-diagonal part is below
+\(4\times10^{-6}\).  The high-precision assertion script checks all four
+scales and the full matrix coefficient.
+
+For Theorem~\ref{thm:crossover-main} we use the one-parameter family
+\(b_1=b_2=1\), \(c=1+\varepsilon\), for which
+\(\beta_0=\kappa_0=\tfrac12\) and
+\(\Delta_\varepsilon=(c^2-1)/(1+c^2)\).  Choosing \(\varepsilon=
+\varepsilon(\delta)\) so that \(\Delta_\delta=\zeta\delta^{2/3}\) places the
+family in the critical window \eqref{eq:crossover-critical-main}, whose
+limit solves \(\tfrac12y^3+\zeta y^2=1\).
+
+\begin{center}
+\begin{tabular}{@{}lllll@{}}
+\toprule
+\(\zeta\) & \(0\) & \(1\) & \(3\) & \(10\)\\
+\midrule
+predicted \(y_\zeta\) &
+\(1.259921050\)&\(0.839286755\)&\(0.552474611\)&\(0.313775961\)\\
+computed \(x_\delta/\delta^{2/3}\), \(\delta=10^{-9}\) &
+\(1.259920256\)&\(0.839284833\)&\(0.552471210\)&\(0.313769661\)\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+For a valid strict-side moving path, take
+\(\Delta_\delta=\delta^{1/3}\); then
+\(\Delta_\delta\to0\) while
+\(\Delta_\delta/\delta^{2/3}\to\infty\).  The normalization in
+\eqref{eq:crossover-inner-main}, whose limit is one for this family, gives
+\begin{center}
+\begin{tabular}{@{}lllll@{}}
+\toprule
+\(\delta\) & \(10^{-6}\) & \(10^{-9}\) & \(10^{-12}\) & \(10^{-15}\)\\
+\midrule
+\(x_\delta\sqrt{\Delta_\delta}/\delta\) &
+\(0.979950782\)&\(0.997994100\)&\(0.999799770\)&\(0.999979992\)\\
+\bottomrule
+\end{tabular}
+\end{center}
+This path respects the moving-family quantifier.  By contrast, fixing
+\(\varepsilon\) and sending \(\delta\) to zero tests the fixed strict-kink
+law, not the crossover theorem.
+
+Finally, the oracle returns a matrix direction, not only a multiplier.  At
+the boundary instance \(b_1=b_2=c=1\), direct differentiation gives
+\[
+ \|\mathcal M_0\|_F=\sqrt{3/2},
+ \qquad
+ \frac{\|\Phi_\delta-\Phi^\star\|_F}{x_\delta}
+ \longrightarrow\sqrt{3/2}.
+\]
+At \(\delta=10^{-15}\), the computed ratio is
+\(1.224744871327\), versus
+\(\sqrt{3/2}=1.224744871392\).  The same verification includes critical,
+strict-side, boundary, and deliberately oscillatory paths for the unified
+ratio \(x_\delta/\widehat x_\delta\).
+
+We emphasize what these tables do and do not support.  They confirm the
+exponents and leading constants of the local laws on instances where those
+constants are known in closed form.  They are not evidence about how often
+rank-deficient crossings occur in any application, and no such claim is made.

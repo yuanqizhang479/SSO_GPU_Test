@@ -1,0 +1,80 @@
+{
+  "scope": "Existing-T6 numerical illustration; NumPy float64, not directed-rounding certification; NS is a float64 polynomial comparison, not production BF16.",
+  "cases": [
+    {
+      "case": "unconstrained_compact_at_zero",
+      "lambda": 0.0,
+      "actual_direction_tangent_residual": 0.7071067811865474,
+      "substituted_compact_residual": 0.7071067811865474,
+      "naive_dual_minus_unrepaired_objective": 0.0,
+      "repaired_gap_float64": 1.1715728752538097,
+      "repaired_true_suboptimality_float64": 0.8431457505076199,
+      "T6_decomposition_upper_float64": 2.343145750507619,
+      "repaired_spectral_norm": 0.6702116225208422,
+      "repaired_tangent_residual": 0.0
+    },
+    {
+      "case": "compact_at_dual_minimizer",
+      "lambda": 0.5,
+      "actual_direction_tangent_residual": 0.19999999999999998,
+      "substituted_compact_residual": 0.19999999999999998,
+      "naive_dual_minus_unrepaired_objective": 0.10000000000000009,
+      "repaired_gap_float64": 0.5,
+      "repaired_true_suboptimality_float64": 0.5,
+      "T6_decomposition_upper_float64": 1.0428090415820632,
+      "repaired_spectral_norm": 0.804737854124365,
+      "repaired_tangent_residual": 0.0
+    },
+    {
+      "case": "completed_exact_optimizer",
+      "lambda": 0.5,
+      "actual_direction_tangent_residual": 0.0,
+      "substituted_compact_residual": 0.19999999999999998,
+      "naive_dual_minus_unrepaired_objective": 4.440892098500626e-16,
+      "repaired_gap_float64": 4.440892098500626e-16,
+      "repaired_true_suboptimality_float64": 4.440892098500626e-16,
+      "T6_decomposition_upper_float64": 4.440892098500626e-16,
+      "repaired_spectral_norm": 1.0,
+      "repaired_tangent_residual": 0.0
+    },
+    {
+      "case": "eight_step_NS_float64",
+      "lambda": 0.4998751568499826,
+      "actual_direction_tangent_residual": 1.840194663316197e-13,
+      "substituted_compact_residual": 0.6000319584100477,
+      "naive_dual_minus_unrepaired_objective": 7.490913160790313e-05,
+      "repaired_gap_float64": 7.490913206842365e-05,
+      "repaired_true_suboptimality_float64": 1.2471339516650914e-09,
+      "T6_decomposition_upper_float64": 7.490913283278767e-05,
+      "repaired_spectral_norm": 0.9999999999998526,
+      "repaired_tangent_residual": 0.0
+    }
+  ],
+  "ri_counterexample": {
+    "G": [
+      [
+        1.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0
+      ]
+    ],
+    "Theta": [
+      [
+        0.0,
+        1.0
+      ],
+      [
+        1.0,
+        0.0
+      ]
+    ],
+    "a": 0.0,
+    "beta": 0.0,
+    "unique_minimizer": 0.0,
+    "phi": "sqrt(1+4 lambda^2)",
+    "conclusion": "0 belongs to ri{0}, although abs(a)<beta is false."
+  }
+}

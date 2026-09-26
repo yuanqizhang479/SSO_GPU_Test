@@ -1,0 +1,40 @@
+[
+  {
+    "file": "submission/main.pdf",
+    "sha256": "7c1c3beba7364ee09beba012f4dad85bb0290be5d8385e9b6cf8acc38f014e25",
+    "bytes": 506060,
+    "pages": 30,
+    "warnings": [
+      "Underfull \\vbox (badness 10000) has occurred while \\output is active []"
+    ],
+    "outside_page_blocks": 0
+  },
+  {
+    "file": "submission/supplement.pdf",
+    "sha256": "225fcb875d6ac446291021e1ebe68cf5865086fb46e605bf034fdbf239bd0df7",
+    "bytes": 401271,
+    "pages": 15,
+    "warnings": [
+      "Underfull \\vbox (badness 10000) has occurred while \\output is active []"
+    ],
+    "outside_page_blocks": 0
+  },
+  {
+    "file": "submission/main_review.pdf",
+    "sha256": "33469b5635018f9d658169f911179aef9ddb41dd0aaebc364f493ae2af06a99f",
+    "bytes": 512947,
+    "pages": 26,
+    "warnings": [
+      "Underfull \\hbox (badness 1728) in paragraph at lines 22--27"
+    ],
+    "outside_page_blocks": 0
+  },
+  {
+    "file": "submission/supplement_review.pdf",
+    "sha256": "81b90596a45fe4cc187d3d6df4398ef35d8ffccf0e6105b10cacbf44313b2603",
+    "bytes": 400507,
+    "pages": 13,
+    "warnings": [],
+    "outside_page_blocks": 0
+  }
+]

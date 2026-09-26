@@ -1,0 +1,148 @@
+{
+  "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+  "executable": "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+  "platform": "Linux-6.18.44-x86_64-with-glibc2.39",
+  "dependencies": {
+    "numpy": "2.3.5",
+    "scipy": "1.17.0",
+    "mpmath": "1.3.0"
+  },
+  "optimize_flag": 0,
+  "thread_environment": {
+    "OPENBLAS_NUM_THREADS": null,
+    "OMP_NUM_THREADS": null,
+    "MKL_NUM_THREADS": null
+  },
+  "scope": "CPU mathematical regression checks; no GPU training and no interval certification.",
+  "scripts": [
+    {
+      "script": "verify_rate_constants_exact.py",
+      "arguments": [],
+      "exit_code": 0,
+      "elapsed_seconds": 0.054,
+      "source_sha256": "3ca6c0bf7cbdf7070b3f47e22f365a570a5beb4f8122611f382c5a2036fb7447",
+      "output_sha256": "81f6c080642487049885f7ec53562a902d3a3f312886feab427d24cdfd5d42ba",
+      "log": "results/verification_logs/verify_rate_constants_exact.log"
+    },
+    {
+      "script": "verify_unified_crossover.py",
+      "arguments": [],
+      "exit_code": 0,
+      "elapsed_seconds": 0.171,
+      "source_sha256": "2301672fe742f89c2b4da10b0d4caf66b5f72f34b956a590402269bc5006afe7",
+      "output_sha256": "1c199ca13dd4bddfdcf18c96d24316dc7480c7beea60127040a8dbe4940d9faf",
+      "log": "results/verification_logs/verify_unified_crossover.log"
+    },
+    {
+      "script": "verify_partial_isometry.py",
+      "arguments": [],
+      "exit_code": 0,
+      "elapsed_seconds": 0.445,
+      "source_sha256": "95bbde9e25358372747ee3a411a036c6fa23fd0ada16d1a01fe83a6b30ea4ccc",
+      "output_sha256": "19df8189bf0a8cfbb0c50b9bfb4a939e420308a5b876f2dfb9a95078df19cd06",
+      "log": "results/verification_logs/verify_partial_isometry.log"
+    },
+    {
+      "script": "verify_direction_rates.py",
+      "arguments": [],
+      "exit_code": 0,
+      "elapsed_seconds": 0.375,
+      "source_sha256": "55cc074732b1092dac7bf6d0843b55b73347016f0952e20832c23cb6d9baa938",
+      "output_sha256": "712cdfded553594628cace0e027878a4704909242feda8c7abe0ba11d76abbc2",
+      "log": "results/verification_logs/verify_direction_rates.log"
+    },
+    {
+      "script": "verify_theorems.py",
+      "arguments": [],
+      "exit_code": 0,
+      "elapsed_seconds": 0.493,
+      "source_sha256": "9f9df32f8ad765a2456e43d5a5612f4566609aecf0e065a8c3da2e9683a1653f",
+      "output_sha256": "d38b87eaa70e6d088d243f30d1f332a5e2f83c61974c2ab6b02016cd33b41a83",
+      "log": "results/verification_logs/verify_theorems.log"
+    },
+    {
+      "script": "verify_corank2_strict_center.py",
+      "arguments": [],
+      "exit_code": 0,
+      "elapsed_seconds": 0.038,
+      "source_sha256": "553be690ea1e0c3540127c3eb8c4188409cd30a9e1ce057a3b316da0f661281e",
+      "output_sha256": "8f1455495341a0f2f42bbb701e66276178f34a7f7155f5a70fb3173d6567bdc3",
+      "log": "results/verification_logs/verify_corank2_strict_center.log"
+    },
+    {
+      "script": "verify_arbitrary_corank_strict_law.py",
+      "arguments": [],
+      "exit_code": 0,
+      "elapsed_seconds": 0.363,
+      "source_sha256": "8102f5fb60ed58062d54049994cefaa0bb6df9f8de37710424753d795ff3ef9e",
+      "output_sha256": "b6b8d8e1dfe2a6b18ce79ffe097c5af47d6c4d992db4a92b5ef5f0c384b7ace9",
+      "log": "results/verification_logs/verify_arbitrary_corank_strict_law.log"
+    },
+    {
+      "script": "verify_direction_rate_general_corank.py",
+      "arguments": [],
+      "exit_code": 0,
+      "elapsed_seconds": 0.398,
+      "source_sha256": "b497d9a0add30578791964f9e25547724900e5ef939019223c48cbe0daa87fd6",
+      "output_sha256": "430abccf03bba64a40c40ff7977daaac8c04ad450e63e5cfc009d8a9de3d8cf5",
+      "log": "results/verification_logs/verify_direction_rate_general_corank.log"
+    },
+    {
+      "script": "verify_intrinsic_constants.py",
+      "arguments": [],
+      "exit_code": 0,
+      "elapsed_seconds": 0.407,
+      "source_sha256": "dfd538eb7f4c40338b617c0d38f16366f81e7bcbb4829627324edcec4b671127",
+      "output_sha256": "60814a61b334a3012f4c988449921178431be324674470e5d046b61bd4fe56f7",
+      "log": "results/verification_logs/verify_intrinsic_constants.log"
+    },
+    {
+      "script": "verify_smoothing_family.py",
+      "arguments": [],
+      "exit_code": 0,
+      "elapsed_seconds": 4.301,
+      "source_sha256": "2be07908785446dc48cea8c4f427530a55e0b659a148fae92e9dd59075f3ae92",
+      "output_sha256": "4b677e49dae65a484f434e4ab881b76954fd1713ef48fa97cab89165a98aae51",
+      "log": "results/verification_logs/verify_smoothing_family.log"
+    },
+    {
+      "script": "verify_publication_tables.py",
+      "arguments": [
+        "--check"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 4.531,
+      "source_sha256": "1950dbb9b6b22a42dad10c1e4a43b5824f5bb0a962e20ba0d7cb2c04d9a45c5c",
+      "output_sha256": "f224484130ef6281d63248bfee5e93f6416e7c3aaef1bdac1dba36e9d25aa712",
+      "log": "results/verification_logs/verify_publication_tables.log"
+    },
+    {
+      "script": "verify_certificate_example.py",
+      "arguments": [],
+      "exit_code": 0,
+      "elapsed_seconds": 0.392,
+      "source_sha256": "b40c48d0ac0620829a732a28d8ffd8a4d4933fb5842d4c016fdf2bb977b7c342",
+      "output_sha256": "e388f511a255fcec4217c946fd8576b440cc09800b800c933b8a98f682f9df0b",
+      "log": "results/verification_logs/verify_certificate_example.log"
+    },
+    {
+      "script": "verify_finite_cancellation.py",
+      "arguments": [],
+      "exit_code": 0,
+      "elapsed_seconds": 0.109,
+      "source_sha256": "4c44743a774a433e67d9d216e71b3561e0ccb1967430699276bccc2e0632a732",
+      "output_sha256": "4cfbc7eb8bcbf50a0303ee71060bceaed8e42023ecc2e5c0fedfd2d59ce16b7f",
+      "log": "results/verification_logs/verify_finite_cancellation.log"
+    },
+    {
+      "script": "verify_boundary_noncancellation.py",
+      "arguments": [],
+      "exit_code": 0,
+      "elapsed_seconds": 0.063,
+      "source_sha256": "018eebd1b88c8927868ec4c83d47dd06eb46aa10ae7b01dbfad7ed880aa494e2",
+      "output_sha256": "275d1048db8379bd647b9b3cf0fc126d9b66908f6fe72d00f531d2a732ac027c",
+      "log": "results/verification_logs/verify_boundary_noncancellation.log"
+    }
+  ],
+  "all_passed": true
+}

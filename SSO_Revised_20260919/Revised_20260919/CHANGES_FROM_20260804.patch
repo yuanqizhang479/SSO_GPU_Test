@@ -1,0 +1,3180 @@
+--- Original_20260804/LITERATURE_TEMPLATE_REVIEW.md
++++ Revised_20260919/LITERATURE_TEMPLATE_REVIEW.md
+@@ -0,0 +1,53 @@
++# 文献与模板修订复核（2026-09-19）
++
++结论：保留矩阵分析主线，采纳明确公式错误修正、最接近文献定位、真实数值输出度量和适用范围限定。不同意把所有近邻都列成“必须补引”，也不同意把 GPU 训练或重做 Xie 全套实验作为证明本文数学结论的必要条件。本轮没有证明不存在其他近邻，也没有完成全部既有文献的逐定理优先权审查。
++
++## 本轮已落实
++
++- 引言公式(1)将距离等式放回最小值；不能把每一个逐点核范数都等同于距离。
++- Xie 的基础论文明确为 *Controlled LLM Training on Spectral Sphere*, arXiv:2601.08393v3，2026-03-05；准确定位为 §3.2 和 Appendix A.2（Theorem A.3 是定理编号，不是附录编号）。删除本轮未核实的“ICML spotlight”出版状态，保留准确版本引文。
++- 不再称 tangency slice 本身为“新对象”；把贡献收窄到明确分类、中心比较、展开系数、消去条件和统一过渡。
++- 明确 rank-one SSO 法向对应的硬/pseudo-Huber 中心重合；一般法向中心差异不能当作 SSO 必然具有的现象。
++- 加入有限 Newton--Schulz 与精确极因子/Fenchel 路径不同的限定。实际输出切向残差与换成另一方向后的残差不同；不能交换对象。
++- 不作训练优越性、失效频率或实验造假结论；应用实验与本文矩阵理论的证据链分开。
++- AI 声明不再替人类作者保证“已经独立检查全部来源和证明”；只准确披露辅助工作，并保留人类作者责任。
++
++## 与最接近工作的具体关系
++
++| 一手来源 | 已核对内容及本文修改 |
++|---|---|
++| [Liu–Vandenberghe，SIMAX 31(3),1235–1256](https://epubs.siam.org/doi/10.1137/090755436)；[作者原文](https://www.seas.ucla.edu/~vandenbe/publications/nucnrm.pdf) | 一般仿射核范数最小化已存在；原文式(6)还给 Huber/Frobenius 正则的谱球对偶表达。因此不能把一般问题、一般对偶或 Huber 平滑本身作为新增贡献。采用电子发表年2009（在线2009-11-04；卷期跨2009–2010）。 |
++| [Hoheisel–Paquette，2023](https://link.springer.com/article/10.1007/s10957-023-02167-7)；[公开原稿](https://arxiv.org/pdf/2205.08442) | 原稿 Theorem3.4、Corollary4.1研究核范数球平坦性和仿射约束最小解唯一性。本文区分 approximant 唯一与附加超平面下 certificate 唯一，不泛称首个唯一性理论。 |
++| [Lewis–Sendov，2005 Part I](https://link.springer.com/article/10.1007/s11228-004-7197-7) | 非光滑奇异值函数的次微分框架是经典基础。原稿已有 BibTeX，本轮补入实质定位；Part II 一并作为应用背景引用。没有声称重新验证其全文每一公式。 |
++| [He–Kan–Song，2026](https://link.springer.com/article/10.1007/s11228-026-00804-7)；[arXiv v2](https://arxiv.org/html/2412.09898v2) | 已读§3及Corollary3.6：秩亏核范数二阶 epi 导数已有明确公式。本文特殊直线上的中心及奇异参数渐近应与一般二阶变分工具区分。使用期刊正式信息：34卷，Article20。 |
++| [Mathias，1993](https://epubs.siam.org/doi/10.1137/0614041) | 极分解扰动与小奇异值相关的敏感性已有经典界。此处只作背景引用；不能声称一般病态性新发现。 |
++| [Skewon，2026-08-06 v1](https://arxiv.org/html/2608.06218v1) | Proposition1式(7)明确列出核块解族；Theorem2用范数保持补全联系精确 Stiefel 联合谱范数 LMO。不能写所有切空间谱 LMO 无闭式，或核补全首次出现。其特殊 Stiefel 结构不同于本文一般单超平面矩阵线。 |
++| [Intrinsic Muon，2026-05-10 v1](https://arxiv.org/html/2605.09238v1) | Appendix H.3 明确 Stiefel block product norm 与 joint ambient norm 不同；P.5使用谱球标量方程。比较时按可行集区别。 |
++| [MCSD，2026-08-13 v2](https://arxiv.org/abs/2601.21487v2) | 已下载并读现行PDF；Remark3.3附近给投影商范数，其单位球是投影后的环境球。更新题名与版本，不把该集合默认为 ball∩tangent。PDF封面写Aug14，arXiv替换日期Aug13，引用说明用后者。 |
++| [Li–Tsuchiya，有限NS，2026-08-26 v1](https://arxiv.org/html/2608.26288v1) | 特别核对§6限制：证明使用预先固定缩放和经典Taylor系数；作者明确不直接覆盖实际调优quintic/随动Frobenius归一化。因此不能用其定理替SSO实际有限精度代码认证。 |
++| [Xie等，2026-03-05 v3](https://arxiv.org/abs/2601.08393v3) | 本文直接应用动机；没有把其GPU表格重新运行、验证或否定写入数学主稿。 |
++
++9/10 审计提出 Roy、Fadili–Nghia–Phan、Faber–Liesen–Tichý、Wang–Li–Lim、IRLS、smoothed polar 等一长串必须补引，作为“继续查阅近邻清单”合理；作为每篇都必须进入主文的硬门槛过强。本轮优先补最直接的仿射问题、唯一性、二阶变分和有限NS邻居。未把泛 matrix-nearness 文献堆入正文，也未为此声称其定理全不重合。
++
++## SIAM 模板与可重编译性
++
++已核对 [SIMAX作者说明](https://epubs.siam.org/journal/simax/instructions-for-authors)、[SIAM作者资源](https://epubs.siam.org/journal-authors#macros) 和 [官方模板说明](https://epubs.siam.org/pb-assets/macros/standard/docsiamart.pdf)。当前类为 `siamart251216.cls`（2025-12-16，v1.4.8）。SIAM强烈建议使用模板；官方说明明确它是可选项。SIMAX有20页政策，但可考虑较长稿，不应把20页解释成绝对禁止。
++
++主/补充已改用官方类入口、官方数字引文样式、官方定理环境、关键词及MSC环境；不伪造作者姓名/单位。未靠缩小页边距制造合规页数。匿名稿仍需作者真实元数据和最终投稿审定。补充材料用官方SM编号。主文保留核心证明，因为SIMAX一般不将补充材料视为完整同行评审对象。
++
++官方整包在本环境的直接下载返回403。通过公开论文源包 `https://arxiv.org/src/2602.09198v1` 取得同名类与bst用于本地排版核对，未修改这些第三方文件。其许可要求与完整宏分发包一同分发，不允许孤立分发类文件，因此不将这两个文件单独放入交付源码。此处不能声称已取得完整官方分发包，亦没有绕过下载限制。
++
++为使源码仍可重编，提供：
++
++1. `python download_siam_template.py`：获取完整官方包，校验8个必需文件存在后保留完整分发；也支持 `--zip PATH` 导入用户已下载的官方ZIP。
++2. `python build_pdfs.py --format siam`：使用上述完整分发生成官方格式；支持 `--template-dir PATH` 指向用户已有模板。
++3. `python build_pdfs.py --format review`：不依赖第三方SIAM类，使用 `main_review.tex` / `supplement_review.tex` 与完全相同正文生成普通article审阅版。只有版式、编号及参考文献样式不同；不将它的页数冒充官方格式页数。
++
++TeX依赖为常规TeX Live或MiKTeX（amsmath、mathtools、ntheorem、algorithm、cleveref、xr-hyper、hyperref等；Debian完整环境可用 latex-extra、fonts-recommended、science 包）。本地缺少algorithm包时，从CTAN公开algorithms分发生成供本地排版，未修改SIAM类。最终PDF页数、警告及视觉检查由最终编译报告记录。
++
++## 仍需作者决策/不能自动声称完成的事项
++
++- 真实作者、单位、致谢、资助、利益冲突、公开归档许可及最终AI披露由作者核准。
++- 全篇证明与文献优先权仍需人工最终审阅；本轮修订不构成录用或数学无误保证。
++- 超20页需要压缩或在cover letter解释；不能为了页数把核心证明移到通常不完整送审的补充材料。
++- 数值脚本通过不是机器严格认证。GPU预备代码没有在本地完成真实GPU训练，亦没有生成可写成已完成的训练表格。
+--- Original_20260804/NUMERICS_REVIEW_20260919.md
++++ Revised_20260919/NUMERICS_REVIEW_20260919.md
+@@ -0,0 +1,93 @@
++# 数值复现复核与修改说明（2026-09-19）
++
++本文件只报告实际执行的 CPU 数学实验与数值文稿修改。没有执行 GPU 训练，没有把合成矩阵实验写成语言模型训练结果，也没有把工作精度或多精度一致性写成机器严格认证。
++
++本次最终执行结果：原始 10/10、修订 14/14 均正常返回。原版与修订版均未修改科学判据容差来消除失败。
++
++## 1. 对既有建议的重新判断
++
++| 建议 | 判断 | 本次落实 |
++|---|---|---|
++| 原始 10 脚本整体复跑 | 合理；能检验给定例子是否复现，不能证明一般定理 | 原始源码保持不动，安装其已声明但当前环境缺失的 `mpmath==1.3.0` 后完整复跑，10/10 通过 |
++| 消除 `python -O` 假绿 | 必须修复 | 所有保留裸 `assert` 的验证入口在优化模式下主动抛错；总入口同样拒绝 `-O` 和 `PYTHONOPTIMIZE=1`；新增两项理论检验使用显式异常 |
++| 非对角例子真正高精度复算 | 必须修复 | 新增 80 位计算和独立 100 位重复；有限尺度比值一致至绝对差小于 `1e-60`，内禀常数一致至小于 `1e-65` |
++| 所有文稿表格从同一程序生成 | 必须修复 | `verify_publication_tables.py` 统一写入 JSON、LaTeX 数字宏和 8 张表；`--check` 重算并逐字比较快照 |
++| 改正 Huber、p=3 与非对角方向比的末位 | 必须修复，属于数值生成链问题 | 全部改为高精度值，理论极限和指数不变 |
++| 补充 p=3、oscillatory 完整表 | 合理；原稿有承诺但未完整展示 | 补齐 profile 多尺度表、明确交替路径及其 9 行结果 |
++| 重复 SVD 不应默认返回同一零空间基 | 合理 | `verify_intrinsic_constants.py` 的 `s=0` 分支复用定义核块时的同一组基 |
++| 实际返回方向与另算 compact polar 分开 | 必须明确 | 加入已有证书修复数值例，并明确 float64 八步多项式不是生产 BF16、也不自动属于 Fenchel 平滑家族 |
++| 增加 GPU 结果才能成立数学定理 | 不成立 | 本文的矩阵分析定理、局部渐近与反例不依赖 GPU；训练实验只能支持额外的应用主张 |
++| 用数值全通过认定论文绝无错误 | 不成立 | 开放集、唯一性分类、一般渐近余项仍须依靠证明；本次执行不构成形式化验证 |
++
++## 2. 可以直接复跑的入口
++
++在修订源码目录中：
++
++```bash
++python -m pip install -r requirements.txt
++python verify_all.py
++```
++
++总入口依次运行原有 10 项与 4 项新增检查，并生成：
++
++- `results/verification_latest.json`：Python、依赖版本、平台、线程环境、每项退出码、耗时、源码与输出 SHA-256；
++- `results/verification_logs/`：逐脚本原始输出；
++- `results/publication_numbers.json`：论文数值的机器可读快照；
++- `results/certificate_example_results.json`：实际输出与替换 compact-polar 的比较；
++- `results/optimization_guard_checks.json`：本次实际运行的三种优化模式拒绝检查。
++
++单独检查或更新表格：
++
++```bash
++python verify_publication_tables.py --check
++python verify_publication_tables.py
++```
++
++第一条重算并核对已交付快照；第二条显式重新生成快照。最终 `verify_all.py` 使用第一条，防止悄悄覆盖已有论文数字后仍宣称“与快照一致”。
++
++## 3. 结果生成与数值修正
++
++| 项目 | 原文/原脚本显示 | 本次高精度值（保留部分位数） | 对结论的影响 |
++|---|---:|---:|---|
++| Huber boundary，δ=10⁻⁸ | 1.9999999656 | 1.9999999500000019 | 不改变线性律及极限 2 |
++| p=3 boundary，δ=10⁻⁹ | 1.2778860473 | 1.277886045147… | 不改变 3/4 指数及极限 |
++| 非对角方向比，δ=10⁻⁵ | 0.671768254 | 0.671768177074147… | 不改变非零一阶方向项 |
++| 非对角方向比，δ=10⁻⁶ | 0.6717760680 | 0.671774660292359… | 不改变其收敛至 0.6717753807… |
++| 非对角有限尺度 t₁，δ=10⁻⁵ | 文稿 0.7010473954；float64 脚本 0.7010476154367672 | 0.70104739544355205579… | 文稿原值正确；本次补上真正高精度复现 |
++
++非对角例的 4×4 矩阵可以按坐标 `(1,3)`、`(2,4)` 分成两个 2×2 块。新程序使用块的显式极平滑公式，并在每个正 δ 上与未使用块结构的 Gram 特征分解公式交叉检查。将 `s=δt` 后解析延拓到 δ=0，利用高精度数值微分计算 `t₁` 和完整方向矩阵 `M_R`，避免 float64 近等数相减。随后在 80、100 位分别从输入有理数重新计算，不把 float64 常数转换成高精度输入。
++
++这里的“80 位”“100 位”和两次结果的一致性表示工作精度与数值一致性，不提供向外舍入的误差包络。并非宣称所有打印出的 60 位都已获严格认证。正文只展示 10–12 位，与理论极限比较时仍显式保留有限 δ 的偏差。
++
++## 4. 数字—数据—代码对应表
++
++当前主文和补充中的这些表均为合成矩阵实验，没有外部训练数据库，也不需下载数据集。
++
++| 文稿对象 | 确定性输入与生成函数 | 快照 |
++|---|---|---|
++| regular / strict / boundary 三分支 | `fixed_data()`；文稿给出的三个 2×2 有理矩阵 | `table_fixed.tex`，JSON `fixed` |
++| Huber、L=1/2、p=3 尾 | `profile_data()`；同一 boundary 矩阵，仅平滑 profile 改变 | `table_profiles.tex`，JSON `profiles` |
++| corank-two 两中心 | `corank_data()`；对角 4×4，核块奇异值 1 与 1/2 | `table_corank.tex`，JSON `corank` |
++| 非对角一阶常数及完整方向 | `non_diag(dps)`；正文固定有理 4×4 矩阵 | `table_nondiagonal.tex`，JSON `nondiagonal` |
++| compact-root cubic/quadratic | `compact_data()`；对角 3×3 | 数字宏，JSON `compact` |
++| 二次消去 quintic/quartic | `quintic_data()`；固定有理 4×4 | `table_quintic.tex`，JSON `quintic` |
++| critical / strict-side / oscillatory crossover | `crossover_data()`；调用原有 100 位 Decimal 闭式函数 | `table_critical.tex`、`table_strict.tex`、`table_oscillatory.tex` |
++| 实际输出的可行修复与 gap | `verify_certificate_example.py`；Xie 论文背景的 2×2 反例与八步系数 | `certificate_example_results.json` |
++| 新增有限消去判据 | `verify_finite_cancellation.py`；Fraction 精确矩与 100 位标量根 | 对应逐脚本日志 |
++| 新增 boundary 方向必非零 | `verify_boundary_noncancellation.py`；固定 2×2 边界模型 | 对应逐脚本日志 |
++
++生成的 LaTeX 位于 `submission/generated/`。主文、技术补充都直接读取这些文件；不能只复制两个 `.tex` 主入口而漏掉 `generated/`。
++
++## 5. 本次执行的环境与边界
++
++本次原版与修订版使用 Python 3.12.14、NumPy 2.3.5、SciPy 1.17.0、mpmath 1.3.0。最终退出状态、精确平台字符串、脚本哈希以 `results/verification_latest.json` 为准。环境中最初缺少 mpmath 是已声明依赖未安装，不是代码缺文件；补装后原版 10 项通过。
++
++新增 4 项是表格快照检查、实际方向证书例、有限消去检验、boundary 方向非消去检验。原 10 项的数值判据没有通过放宽容差来获得通过。新增高精度流程修复了文稿数字与随包代码之间的缺口；它不替代全部原有独立检查。
++
++Python 优化模式的三项实际检查为：`python -O verify_all.py`、`PYTHONOPTIMIZE=1 python verify_all.py`、`python -O verify_rate_constants_exact.py`；均以非零退出码拒绝执行。
++
++## 6. 与 Xie 论文及 GPU 实验的关系
++
++Xie 等的 *Controlled LLM Training on Spectral Sphere* 提供应用动机；本次补入的实际输出诊断明确引用该文，使用其八步多项式系数，但保持独立 float64 数值例身份。这些文件并不是 Xie 的完整训练复现包，也没有生成其训练表格。
++
++如果论文仍定位为矩阵分析，则 GPU 训练不是“缺少了所以理论不能成立”的必要条件。若另外希望主张完成证书会改变真实训练、提高性能、降低耗时，必须新增受控训练实验。没有必要先重复对方所有大模型实验才能检验这些较窄问题；但要宣称“复现了 Xie 的某一张表”，则必须匹配该表的数据处理、模型、token 数、初始化/随机种子、优化器实现、精度、批量、学习率、评测设置及代码版本，并说明任何偏离。
+--- Original_20260804/README.md
++++ Revised_20260919/README.md
+@@ -1,76 +1,88 @@
+-# SIMAX-target twelfth revision package
++# Matrix-line nuclear-norm research: revised 2026-09-19
+ 
+-This package contains the twelfth, theory-expanded revision dated August 4,
+-2026.
++This is a separate revision of the 2026-08-04 twelfth manuscript. The original
++archive is preserved unchanged. This package contains the English manuscript,
++technical supplement, shared LaTeX sources, and CPU mathematical verification.
++The accompanying `gpu_suite/` in the outer delivery package is an independent,
++optional training study, not the source of the numerical tables in this paper.
+ 
+-## Manuscripts
++## Read and rebuild
+ 
+-1. `submission/main.tex` and `submission/main.pdf`: the 22-page main paper,
+-   **Nuclear-Norm Best Approximation at Rank-Deficient Matrix-Line
+-   Crossings: Certificate Geometry and Singular Smoothing**.
+-2. `submission/supplement.tex` and `submission/supplement.pdf`: the 11-page
+-   technical supplement.
+-3. `SUPPLEMENTARY_MATERIALS_INDEX.html`: the SIAM-format index for the
+-   supplementary PDF and reproducibility archive.
++The delivered main and supplement PDFs use SIAM's dated `siamart251216` class.
++Author and institution information has not been invented. A main paper over
++SIAM's usual 20-page policy requires an editorial length decision; successful
++compilation does not establish submission readiness.
+ 
+-The PDFs use a compact anonymous A4 review layout. Before journal upload,
+-recompile in the then-current official SIAM class and recheck the page count,
+-running title, author metadata, and front matter. The present 22 pages do not
+-certify compliance under a different class file.
+-
+-Compile from `submission/`, in this order:
++Two builds use exactly the same section files:
+ 
+ ```bash
+-latexmk -pdf -interaction=nonstopmode -halt-on-error main.tex
+-latexmk -pdf -interaction=nonstopmode -halt-on-error supplement.tex
++python build_pdfs.py --format review
++# Produces submission/main_review.pdf and submission/supplement_review.pdf.
++
++python download_siam_template.py
++python build_pdfs.py --format siam
++# Or: python build_pdfs.py --format siam --template-dir /path/to/official/bundle
+ ```
+ 
+-The supplement imports cross-references from `main.aux`, so compile the main
+-paper first and do not run the two builds concurrently.
++Install a normal TeX Live distribution with latex-extra, recommended fonts and
++science packages (or equivalent MiKTeX packages). The official SIAM macro server
++returned HTTP 403 during this preparation. The official class was obtained for
++local compilation from an identified public academic source archive; its
++redistribution terms prohibit shipping the class alone without its complete
++bundle, so an incomplete bundle is not distributed here. The download script
++retrieves the complete official bundle when that server is accessible. The
++portable article build is self-contained apart from normal TeX dependencies;
++it has different formatting/pagination and is not presented as official SIAM
++format. See `TEMPLATE_PROVENANCE.md` for the exact dependency provenance.
+ 
+-## Deterministic verification
++Build the main document before the supplement because external references
++use its auxiliary file. `build_pdfs.py` does this in order and checks unresolved
++citations/references. The generated TeX table file belongs with the source.
+ 
+-Run the complete suite from the package root:
++## Reproduce the mathematical examples
+ 
+ ```bash
+-python3 -m pip install -r requirements.txt
+-python3 verify_all.py
++python -m pip install -r requirements.txt
++python verify_all.py
+ ```
+ 
+-The following extended-precision checks use Python's standard library:
++The suite runs the original ten scientific checks, a high-precision publication
++table generator/check, the actual-output certificate example, and the finite
++cancellation criterion and nonvanishing boundary-direction coefficient. It records source/output hashes, environment and logs
++under `results/`. A failing check exits nonzero. `python -O verify_all.py` and
++`PYTHONOPTIMIZE=1` are deliberately rejected so scientific assertions cannot
++silently disappear. New checks using explicit exceptions remain active too.
++
++Regenerate display values only after an intended numerical change:
+ 
+ ```bash
+-python3 verify_rate_constants_exact.py
+-python3 verify_unified_crossover.py
+-python3 verify_corank2_strict_center.py
++python verify_publication_tables.py --help
++python verify_publication_tables.py
++python verify_publication_tables.py --check
++python verify_all.py
+ ```
+ 
+-The matrix checks use NumPy and SciPy:
++The precise supported flags are documented by that script; the checked-in JSON
++and TeX are the reference snapshot. High-precision mpmath/Decimal computations
++are numerical evidence, not formal proofs or interval-certified enclosures.
++Finite-difference checks of intrinsic constants remain finite-difference checks;
++they are not called symbolic differentiation.
+ 
+-```bash
+-python3 verify_partial_isometry.py
+-python3 verify_direction_rates.py
+-python3 verify_theorems.py
+-python3 verify_arbitrary_corank_strict_law.py
+-python3 verify_direction_rate_general_corank.py
+-python3 verify_intrinsic_constants.py
+-```
++## Scope
+ 
+-The smoothing-family and fifth-order checks additionally use mpmath:
++The main results concern prescribed matrix lines. Strict-crossing laws permit
++arbitrary rectangular shapes and coranks; the boundary/crossover results retain
++their stated square, transverse corank-one and positive-curvature assumptions.
++The SSO rank-one normal is a special case; hard and pseudo-Huber centers agree
++there under the stated conditions. Neither a full-space open failure set nor
++synthetic examples estimate occurrence rates in training.
+ 
+-```bash
+-python3 verify_smoothing_family.py
+-```
++Actual returned directions, approximate/exact normals, substituted compact-polar
++directions, feasibility residuals and repaired primal-dual gaps are distinct
++quantities. Ordinary floating-point evaluation of an exact-real inequality is
++not a machine-rigorous certificate. The finite-NS code in the separate GPU study
++is not automatically covered by the Fenchel smoothing-family theorem.
+ 
+-`verify_all.py` executes ten assertion-based scripts and exits nonzero on any
+-failure. The suite covers tall and wide shapes, unequal nullities,
+-rank-deficient kernel compression, repeated positive singular values,
+-arbitrary corank, non-diagonal direction coefficients, Huber multiplier
+-nonuniqueness, polynomial and finite-saturation tails, and the sharp
+-cubic/quadratic and quintic/quartic compact-root branches. The legacy
+-`verify_crossover_constants.py` entry point is a compatibility wrapper and is
+-not an additional experiment.
+-
+-The suite was last run successfully on August 4, 2026 with Python 3.12.13,
+-NumPy 2.3.5, SciPy 1.17.0, and mpmath 1.3.0. The PDFs were compiled with
+-latexmk 4.83 and pdfTeX 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian).
++No GPU training result is claimed by this source package. See the outer
++Chinese revision decision, research route and validation report for changes,
++limitations, and the relation to Xie et al., arXiv:2601.08393v3.
+--- Original_20260804/SUPPLEMENTARY_MATERIALS_INDEX.html
++++ Revised_20260919/SUPPLEMENTARY_MATERIALS_INDEX.html
+@@ -1,32 +1,13 @@
+-<html>
+-<body>
+-<p><b>Index of Supplementary Materials</b></p>
+-
+-<p>Title of paper: <i>Nuclear-Norm Best Approximation at Rank-Deficient
+-Matrix-Line Crossings: Certificate Geometry and Singular Smoothing</i></p>
+-
+-<p>Authors: <i>Anonymous manuscript; replace with the final author list before
+-submission</i></p>
+-
+-<p>File: <a href="Nuclear_Norm_Best_Approximation_Technical_Supplement_Twelfth_Revision_2026-08-04.pdf">Nuclear_Norm_Best_Approximation_Technical_Supplement_Twelfth_Revision_2026-08-04.pdf</a></p>
+-<p>Type: PDF technical supplement</p>
+-<p>Contents: Exact set-valued bisection; auxiliary spectral-level-set
+-geometry; exact-real feasible-certificate repair; and detailed deterministic
+-checks for regular, strict, boundary, moving-crossover, smoothing-family,
+-arbitrary-corank direction, and higher-order cancellation formulas.</p>
+-<p>Justification: These auxiliary arguments and expanded checks document the
+-scope and reproducibility of the main results without interrupting the main
+-theorem chain.</p>
+-
+-<p>File: <a href="Nuclear_Norm_Best_Approximation_SIMAX_Twelfth_Revision_Source_2026-08-04.zip">Nuclear_Norm_Best_Approximation_SIMAX_Twelfth_Revision_Source_2026-08-04.zip</a></p>
+-<p>Type: ZIP source and reproducibility archive</p>
+-<p>Contents: Complete LaTeX sources for the manuscript and supplement;
+-bibliography; dependency list; README; ten deterministic assertion-based
+-verification scripts; one compatibility wrapper; and the one-command
+-regression runner.</p>
+-<p>Justification: The archive reproduces every reported numerical constant and
+-rate check, records all parameter choices and dependencies, and permits clean
+-sequential recompilation of both PDFs.</p>
+-
+-</body>
++<!doctype html><html lang="en"><meta charset="utf-8"><title>Supplementary materials: 2026-09-19 revision</title>
++<style>body{max-width:850px;margin:3em auto;font:17px/1.6 system-ui;color:#172838}a{color:#145fa0}code{background:#eef2f5;padding:.1em .3em}</style>
++<h1>Supplementary materials</h1>
++<p>Nuclear-Norm Best Approximation at Rank-Deficient Matrix-Line Crossings: Certificate Geometry and Singular Smoothing. Revision: 19 September 2026.</p>
++<ul><li><a href="submission/main.pdf">Main manuscript (SIAM layout)</a></li>
++<li><a href="submission/supplement.pdf">Technical supplement (SIAM layout)</a></li>
++<li><a href="submission/main_review.pdf">Main manuscript (portable article layout)</a></li>
++<li><a href="submission/supplement_review.pdf">Supplement (portable article layout)</a></li>
++<li><a href="README.md">Build and numerical verification instructions</a></li>
++<li><a href="results/publication_numbers.json">High-precision publication values</a></li>
++<li><a href="results/verification_latest.json">Executed verification record</a></li>
++</ul><p>Run <code>python verify_all.py</code> from the archive root. The supplementary source archive contains all referenced mathematical scripts and generated tables. The outer delivery package also contains a separate optional GPU study. No GPU training result is reported in these manuscripts. Floating-point checks are not interval-certified proofs.</p>
+ </html>
+--- Original_20260804/TEMPLATE_PROVENANCE.md
++++ Revised_20260919/TEMPLATE_PROVENANCE.md
+@@ -0,0 +1,53 @@
++# Template provenance and build instructions
++
++Checked 2026-09-19. The SIAM author resource page currently lists `siamart251216.cls`, version 2025-12-16 v1.4.8. Official sources:
++
++- https://epubs.siam.org/journal-authors#macros
++- https://epubs.siam.org/pb-assets/macros/standard/siamart_251216.zip
++- https://epubs.siam.org/pb-assets/macros/standard/docsiamart.pdf
++- https://epubs.siam.org/journal/simax/instructions-for-authors
++
++The official complete ZIP and individual downloads returned HTTP 403 in the preparation environment. For local format checking only, two unmodified files with the current official names/version were obtained from the publicly available source archive https://arxiv.org/src/2602.09198v1 . They were stored outside this manuscript source archive; this is a public mirror source, not a claim that an official-bundle byte comparison succeeded.
++
++| Local compilation dependency | SHA-256 |
++|---|---|
++| `siamart251216.cls` | `33f2eb091c8bcbda9baed2e868489460da868047b0a518b4ce1b2f2c15fda530` |
++| `siamplain.bst` | `a5df7c482dc7d4459f08b91c28437c3779284dcd82591acf1c977de7508ac6c7` |
++
++The class header explicitly requires distribution together with the complete SIAM macro distribution and prohibits distributing the class alone. We therefore do not redistribute these isolated files. No third-party class was edited. The user-facing source is buildable without these files through the portable review path below. A complete official distribution is needed to reproduce the SIAM layout.
++
++## SIAM layout
++
++Run:
++
++```bash
++python download_siam_template.py
++python build_pdfs.py --format siam
++```
++
++If automated download is blocked, download the **complete standard macro ZIP** from the official author page and import it:
++
++```bash
++python download_siam_template.py --zip /path/to/siamart_251216.zip
++python build_pdfs.py --format siam
++```
++
++The installer checks the eight required named files, preserves the whole ZIP contents without altering the macros, and records bundle provenance. An already installed distribution is supported with `python build_pdfs.py --format siam --template-dir /path/to/template`.
++
++## Portable review layout
++
++```bash
++python build_pdfs.py --format review
++```
++
++This requires no downloaded SIAM class. It uses `submission/main_review.tex` and `submission/supplement_review.tex`, which input the same manuscript bodies. Outputs are `main_review.pdf` and `supplement_review.pdf`. Their page count, bibliography layout, and equation numbering are not the SIAM page count/layout.
++
++## TeX dependencies
++
++Install an up-to-date TeX Live or MiKTeX with amsmath, mathtools, ntheorem, algorithm, float, cleveref, xr-hyper, hyperref, lmodern, microtype, enumitem, booktabs, and longtable. Typical Debian packages are texlive-latex-extra, texlive-fonts-recommended, and texlive-science. The preparation environment lacked algorithm.sty. The complete public CTAN algorithms distribution was downloaded from https://mirrors.ibiblio.org/CTAN/macros/latex/contrib/algorithms.zip and its standard `latex algorithms.ins` installation was used outside this archive; its license and upstream files were retained locally. It is a normal TeX dependency, not a custom replacement class or an omitted research source file.
++
++## Publication status and formatting limits
++
++The manuscript retains anonymous metadata because verified author names/affiliations were not supplied in this task. Replace these before an actual identified submission. The main entry uses the official class without the line-numbered `review` option for a clean reading PDF; adding the SIAM `review` option is available for a journal submission. This is distinct from our `--format review`, which means portable article layout.
++
++SIMAX states a 20-page policy but can consider longer papers. The current official-class PDF may exceed 20 pages; its actual count is reported in the final build results. Using the class does not itself establish submission readiness. The final source archive has not been submitted to any journal or public repository.
+--- Original_20260804/build_pdfs.py
++++ Revised_20260919/build_pdfs.py
+@@ -0,0 +1,64 @@
++#!/usr/bin/env python3
++"""Build the shared manuscript and supplement in SIAM or portable article format."""
++import argparse
++import os
++from pathlib import Path
++import shutil
++import subprocess
++
++ROOT = Path(__file__).resolve().parent
++
++def main():
++    ap = argparse.ArgumentParser(description=__doc__)
++    ap.add_argument('--format', choices=('siam', 'review'), default='siam',
++                    help='siam: official class; review: portable article, same body')
++    ap.add_argument('--template-dir', type=Path,
++                    help='Directory containing a separately installed SIAM macro distribution')
++    args = ap.parse_args()
++    for executable in ('pdflatex', 'bibtex'):
++        if not shutil.which(executable):
++            raise SystemExit('Missing %s. Install TeX Live with latex-extra, fonts-recommended, and science (or equivalent MiKTeX packages).' % executable)
++    env = os.environ.copy()
++    if args.format == 'siam':
++        template = (args.template_dir or ROOT / 'vendor' / 'siam_template').resolve()
++        classes = list(template.rglob('siamart251216.cls')) if template.exists() else []
++        styles = list(template.rglob('siamplain.bst')) if template.exists() else []
++        if not classes or not styles:
++            raise SystemExit('SIAM macros are missing. Run python download_siam_template.py, or supply --template-dir PATH.\nPortable alternative: python build_pdfs.py --format review')
++        env['TEXINPUTS'] = str(classes[0].parent) + os.pathsep + env.get('TEXINPUTS', '')
++        env['BSTINPUTS'] = str(styles[0].parent) + os.pathsep + env.get('BSTINPUTS', '')
++    suffix = '' if args.format == 'siam' else '_review'
++    folder = ROOT / 'submission'
++    for name in ('main' + suffix, 'supplement' + suffix):
++        # Rebuild disposable intermediates; recover cleanly after interrupted TeX.
++        for extension in ('.aux', '.out', '.thm', '.bbl', '.blg'):
++            (folder / (name + extension)).unlink(missing_ok=True)
++        commands = [
++            ['pdflatex', '-interaction=nonstopmode', '-halt-on-error', name + '.tex'],
++            ['bibtex', name],
++            ['pdflatex', '-interaction=nonstopmode', '-halt-on-error', name + '.tex'],
++            ['pdflatex', '-interaction=nonstopmode', '-halt-on-error', name + '.tex'],
++        ]
++        logfile = folder / (name + '_build.log')
++        with logfile.open('w') as handle:
++            for command in commands:
++                handle.write('$ ' + ' '.join(command) + '\n'); handle.flush()
++                result = subprocess.run(command, cwd=folder, env=env, stdout=handle, stderr=subprocess.STDOUT)
++                if result.returncode:
++                    raise SystemExit('Build failed; see ' + str(logfile))
++        final_log = (folder / (name + '.log')).read_text(errors='replace')
++        for _ in range(3):
++            if 'Label(s) may have changed' not in final_log:
++                break
++            with logfile.open('a') as handle:
++                result = subprocess.run(commands[-1], cwd=folder, env=env, stdout=handle, stderr=subprocess.STDOUT)
++            if result.returncode:
++                raise SystemExit('Build failed; see ' + str(logfile))
++            final_log = (folder / (name + '.log')).read_text(errors='replace')
++        if 'There were undefined references' in final_log or 'Citation `' in final_log:
++            raise SystemExit('Unresolved references/citations; see ' + str(logfile))
++        print('Built', folder / (name + '.pdf'))
++    print('The review format contains the same body but has different layout, bibliography style, and pagination.')
++
++if __name__ == '__main__':
++    main()
+--- Original_20260804/download_siam_template.py
++++ Revised_20260919/download_siam_template.py
+@@ -0,0 +1,54 @@
++#!/usr/bin/env python3
++"""Download the complete official SIAM macro bundle (no manuscript upload)."""
++import argparse
++import hashlib
++import io
++import json
++from pathlib import Path, PurePosixPath
++import urllib.request
++import zipfile
++
++URL = 'https://epubs.siam.org/pb-assets/macros/standard/siamart_251216.zip'
++REQUIRED = {'siamart251216.cls', 'siamplain.bst', 'docsiamart.tex',
++            'docsiamart.pdf', 'references.bib', 'ex_article.tex',
++            'ex_supplement.tex', 'ex_shared.tex'}
++
++def main():
++    ap = argparse.ArgumentParser(description=__doc__)
++    ap.add_argument('--zip', type=Path, help='Use an official bundle downloaded manually')
++    args = ap.parse_args()
++    if args.zip:
++        blob = args.zip.read_bytes()
++        source = str(args.zip)
++    else:
++        try:
++            with urllib.request.urlopen(URL, timeout=60) as response:
++                blob = response.read()
++        except Exception as exc:
++            raise SystemExit('Official download failed: %s\nDownload the complete standard macro ZIP from https://epubs.siam.org/journal-authors#macros and run python download_siam_template.py --zip PATH.\nFor an immediate portable build: python build_pdfs.py --format review' % exc)
++        source = URL
++    archive = zipfile.ZipFile(io.BytesIO(blob))
++    names = {PurePosixPath(name).name for name in archive.namelist()}
++    missing = REQUIRED - names
++    if missing:
++        raise SystemExit('Incomplete distribution; missing: ' + ', '.join(sorted(missing)))
++    target = Path(__file__).resolve().parent / 'vendor' / 'siam_template'
++    target.mkdir(parents=True, exist_ok=True)
++    for member in archive.infolist():
++        rel = PurePosixPath(member.filename)
++        if rel.is_absolute() or '..' in rel.parts:
++            raise SystemExit('Unsafe ZIP member: ' + member.filename)
++        if member.is_dir():
++            continue
++        destination = target.joinpath(*rel.parts)
++        destination.parent.mkdir(parents=True, exist_ok=True)
++        destination.write_bytes(archive.read(member))
++    (target / 'bundle_provenance.json').write_text(json.dumps({
++        'source': source, 'official_url': URL,
++        'sha256': hashlib.sha256(blob).hexdigest(),
++        'note': 'Complete distribution retained; official files are unmodified.'
++    }, indent=2) + '\n')
++    print('Installed complete SIAM bundle under', target)
++
++if __name__ == '__main__':
++    main()
+--- Original_20260804/submission/generated/numerical_macros.tex
++++ Revised_20260919/submission/generated/numerical_macros.tex
+@@ -0,0 +1,35 @@
++% Generated by verify_publication_tables.py; do not hand-edit.
++\newcommand{\numBoundaryDirection}{1.224744871327}
++\newcommand{\numBoundaryDirectionLimit}{1.224744871392}
++\newcommand{\numBoundaryLimit}{1.2599210499}
++\newcommand{\numBoundaryRatio}{1.2599210420}
++\newcommand{\numCenterDistance}{0.040996138377}
++\newcommand{\numCompactDirection}{0.6373774341}
++\newcommand{\numCompactDirectionLimit}{0.6373774392}
++\newcommand{\numCompactMultiplier}{-0.3749999965}
++\newcommand{\numCorankEta}{0.715080068980}
++\newcommand{\numCorankKrOne}{0.581665969555}
++\newcommand{\numCorankKrTwo}{0.336668060890}
++\newcommand{\numCorankSlopeFour}{-0.7150801}
++\newcommand{\numHuberBoundaryRatio}{1.9999999500}
++\newcommand{\numNonDiagonalCosineFive}{0.999999999713}
++\newcommand{\numNonDiagonalCosineSix}{0.999999999997}
++\newcommand{\numNonDiagonalDirectionFive}{0.671768177074}
++\newcommand{\numNonDiagonalDirectionSix}{0.671774660292}
++\newcommand{\numNonDiagonalEta}{0.644812526657}
++\newcommand{\numNonDiagonalFiniteTOneFive}{0.701047395444}
++\newcommand{\numNonDiagonalFiniteTOneSix}{0.701052493549}
++\newcommand{\numNonDiagonalMR}{0.6717753807}
++\newcommand{\numNonDiagonalSlopeFive}{-0.644805516183}
++\newcommand{\numNonDiagonalSlopeSix}{-0.644811825605}
++\newcommand{\numNonDiagonalTOne}{0.7010530600}
++\newcommand{\numPowerThreeLimit}{1.2778862085}
++\newcommand{\numPowerThreeRatio}{1.2778860451}
++\newcommand{\numQuarticFour}{-0.124998347562}
++\newcommand{\numQuarticOne}{0.004629629625}
++\newcommand{\numQuarticThree}{0.374999996875}
++\newcommand{\numQuarticTwo}{0.023437499951}
++\newcommand{\numRegularLimit}{-1.7777777778}
++\newcommand{\numRegularRatio}{-1.7777777766}
++\newcommand{\numStrictLimit}{-0.3227486122}
++\newcommand{\numStrictRatio}{-0.3227486102}
+--- Original_20260804/submission/generated/table_corank.tex
++++ Revised_20260919/submission/generated/table_corank.tex
+@@ -0,0 +1,12 @@
++\begin{center}
++\begin{tabular}{@{}llll@{}}
++\toprule
++\(\delta\) & \(\lambda_\delta-\lambda^\star\) & \(\|\Phi_\delta-\Phi_R^\star\|_F\) & \(\|\Phi_\delta-\Phi_F^\star\|_F\)\\
++\midrule
++\(10^{-2}\) & \(-7.150296\times10^{-3}\) & \(7.896227\times10^{-5}\) & \(4.098952\times10^{-2}\)\\
++\(10^{-3}\) & \(-7.150796\times10^{-4}\) & \(7.858742\times10^{-7}\) & \(4.099607\times10^{-2}\)\\
++\(10^{-4}\) & \(-7.150801\times10^{-5}\) & \(7.854955\times10^{-9}\) & \(4.099614\times10^{-2}\)\\
++\(10^{-5}\) & \(-7.150801\times10^{-6}\) & \(7.854576\times10^{-11}\) & \(4.099614\times10^{-2}\)\\
++\bottomrule
++\end{tabular}
++\end{center}
+--- Original_20260804/submission/generated/table_critical.tex
++++ Revised_20260919/submission/generated/table_critical.tex
+@@ -0,0 +1,12 @@
++\begin{center}
++\begin{tabular}{@{}llll@{}}
++\toprule
++\(\zeta\) & \(\delta\) & \(x_\delta/\delta^{2/3}\) & \(y_\zeta\)\\
++\midrule
++0 & \(10^{-9}\) & \(1.259920256195\) & \(1.259921049895\)\\
++1 & \(10^{-9}\) & \(0.839284832515\) & \(0.839286755214\)\\
++3 & \(10^{-9}\) & \(0.552471210127\) & \(0.552474610531\)\\
++10 & \(10^{-9}\) & \(0.313769660579\) & \(0.313775961214\)\\
++\bottomrule
++\end{tabular}
++\end{center}
+--- Original_20260804/submission/generated/table_fixed.tex
++++ Revised_20260919/submission/generated/table_fixed.tex
+@@ -0,0 +1,14 @@
++\begin{center}
++\begin{tabular}{@{}llll@{}}
++\toprule
++Regime & \(\delta\) & Normalized displacement & Limit\\
++\midrule
++regular & \(10^{-4}\) & \(-1.7777776645\) & \(-1.7777777778\)\\
++regular & \(10^{-5}\) & \(-1.7777777766\) & \(-1.7777777778\)\\
++strict & \(10^{-6}\) & \(-0.3227484177\) & \(-0.3227486122\)\\
++strict & \(10^{-8}\) & \(-0.3227486102\) & \(-0.3227486122\)\\
++boundary & \(10^{-9}\) & \(1.2599202562\) & \(1.2599210499\)\\
++boundary & \(10^{-12}\) & \(1.2599210420\) & \(1.2599210499\)\\
++\bottomrule
++\end{tabular}
++\end{center}
+--- Original_20260804/submission/generated/table_nondiagonal.tex
++++ Revised_20260919/submission/generated/table_nondiagonal.tex
+@@ -0,0 +1,13 @@
++\begin{center}
++\begin{tabular}{@{}llll@{}}
++\toprule
++\(\delta\) & \(t_\delta\) & \(\|\Phi_\delta-\Phi_R^\star\|_F/\delta\) & \((t_\delta-t_0)/\delta\)\\
++\midrule
++\(10^{-2}\) & \(-0.637857238093\) & \(0.664828202840\) & \(0.695528856469\)\\
++\(10^{-3}\) & \(-0.644112038622\) & \(0.671057559126\) & \(0.700488035110\)\\
++\(10^{-4}\) & \(-0.644742427015\) & \(0.671703367737\) & \(0.700996427320\)\\
++\(10^{-5}\) & \(-0.644805516183\) & \(0.671768177074\) & \(0.701047395444\)\\
++\(10^{-6}\) & \(-0.644811825605\) & \(0.671774660292\) & \(0.701052493549\)\\
++\bottomrule
++\end{tabular}
++\end{center}
+--- Original_20260804/submission/generated/table_oscillatory.tex
++++ Revised_20260919/submission/generated/table_oscillatory.tex
+@@ -0,0 +1,17 @@
++\begin{center}
++\begin{tabular}{@{}llll@{}}
++\toprule
++\(k\) & Window & \(\delta_k\) & \(x_{\delta_k}/\widehat x_{\delta_k}\)\\
++\midrule
++2 & strict & \(10^{-6}\) & \(0.985083206619\)\\
++3 & boundary & \(10^{-9}\) & \(0.999999370040\)\\
++4 & critical & \(10^{-12}\) & \(0.999999952844\)\\
++5 & strict & \(10^{-15}\) & \(0.999985000087\)\\
++6 & boundary & \(10^{-18}\) & \(0.999999999999\)\\
++7 & critical & \(10^{-21}\) & \(1.000000000000\)\\
++8 & strict & \(10^{-24}\) & \(0.999999985000\)\\
++9 & boundary & \(10^{-27}\) & \(1.000000000000\)\\
++10 & critical & \(10^{-30}\) & \(1.000000000000\)\\
++\bottomrule
++\end{tabular}
++\end{center}
+--- Original_20260804/submission/generated/table_profiles.tex
++++ Revised_20260919/submission/generated/table_profiles.tex
+@@ -0,0 +1,16 @@
++\begin{center}
++\begin{tabular}{@{}llll@{}}
++\toprule
++Profile & \(\delta\) & Normalized displacement & Limit\\
++\midrule
++Huber & \(10^{-4}\) & \(1.999500189915\) & \(2.000000000000\)\\
++Huber & \(10^{-6}\) & \(1.999995000019\) & \(2.000000000000\)\\
++Huber & \(10^{-8}\) & \(1.999999950000\) & \(2.000000000000\)\\
++\(p=3\) & \(10^{-3}\) & \(1.272747989329\) & \(1.277886208493\)\\
++\(p=3\) & \(10^{-6}\) & \(1.277857161983\) & \(1.277886208493\)\\
++\(p=3\) & \(10^{-9}\) & \(1.277886045147\) & \(1.277886208493\)\\
++\(p=3\) & \(10^{-12}\) & \(1.277886207574\) & \(1.277886208493\)\\
++\(L=1/2\) & \(10^{-8}\) & \(0.999999987500\) & \(1.000000000000\)\\
++\bottomrule
++\end{tabular}
++\end{center}
+--- Original_20260804/submission/generated/table_quintic.tex
++++ Revised_20260919/submission/generated/table_quintic.tex
+@@ -0,0 +1,12 @@
++\begin{center}
++\begin{tabular}{@{}ll@{}}
++\toprule
++\(\delta\) & \((\lambda_\delta-1)/\delta^5\)\\
++\midrule
++\(10^{-2}\) & \(-0.1248207361\)\\
++\(10^{-3}\) & \(-0.1249833498\)\\
++\(10^{-4}\) & \(-0.1249983476\)\\
++\(10^{-5}\) & \(-0.1249998349\)\\
++\bottomrule
++\end{tabular}
++\end{center}
+--- Original_20260804/submission/generated/table_strict.tex
++++ Revised_20260919/submission/generated/table_strict.tex
+@@ -0,0 +1,12 @@
++\begin{center}
++\begin{tabular}{@{}lll@{}}
++\toprule
++\(\delta\) & \(x_\delta\sqrt{\Delta_\delta}/\delta\) & \(x_\delta/\widehat x_\delta\)\\
++\midrule
++\(10^{-6}\) & \(0.979950781607\) & \(0.985083206619\)\\
++\(10^{-9}\) & \(0.997994100405\) & \(0.998500862499\)\\
++\(10^{-12}\) & \(0.999799770023\) & \(0.999850008712\)\\
++\(10^{-15}\) & \(0.999979992294\) & \(0.999985000087\)\\
++\bottomrule
++\end{tabular}
++\end{center}
+--- Original_20260804/submission/main.tex
++++ Revised_20260919/submission/main.tex
+@@ -1,15 +1,20 @@
++\ifdefined\SSOReview
+ \documentclass[10pt]{article}
++\else
++\documentclass[hidelinks]{siamart251216}
++\fi
+ 
+ \input{preamble}
+ \hypersetup{pdftitle={Nuclear-Norm Best Approximation at Rank-Deficient Matrix-Line Crossings}}
+-\setlength{\parskip}{0.35em}
+-\setlist[itemize]{topsep=0.25em,itemsep=0.1em}
+-\setlist[enumerate]{topsep=0.25em,itemsep=0.15em}
+ 
+-\title{\textbf{Nuclear-Norm Best Approximation at Rank-Deficient Matrix-Line Crossings}\\
+-\large Certificate Geometry and Singular Smoothing}
++
++
++
++\title{Nuclear-Norm Best Approximation at Rank-Deficient Matrix-Line Crossings:
++Certificate Geometry and Singular Smoothing}
+ \author{Anonymous manuscript}
+-\date{August 4, 2026}
++\date{September 19, 2026}
++\headers{Matrix-Line Approximation}{Anonymous manuscript}
+ 
+ \begin{document}
+ \maketitle
+@@ -36,12 +41,13 @@
+ and exact certificate are unique.
+ \end{abstract}
+ 
+-\noindent\textbf{Keywords.}
+-Nuclear norm; best approximation; spectral norm; Birkhoff--James
+-orthogonality; polar factor; Fenchel smoothing; singular perturbation.
+-
+-\noindent\textbf{MSC 2020.}
+-15A18, 15A60, 41A50, 41A52, 47A30, 49J52, 65F35, 65K10.
++\begin{keywords}
++Nuclear norm, best approximation, spectral norm, Birkhoff--James
++orthogonality, polar factor, Fenchel smoothing, singular perturbation
++\end{keywords}
++\begin{MSCcodes}
++15A18, 15A60, 41A50, 41A52, 47A30, 49J52, 65F35, 65K10
++\end{MSCcodes}
+ 
+ \input{sections/01_introduction}
+ \input{sections/02_exact_geometry}
+@@ -51,11 +57,11 @@
+ \input{sections/05b_numerical}
+ \input{sections/06_discussion}
+ 
+-{\footnotesize
+-\setlength{\parskip}{0pt}
+-\setlength{\bibsep}{0pt plus 0.2ex}
+-\bibliographystyle{plainnat}
++\ifdefined\SSOReview
++\bibliographystyle{plain}
++\else
++\bibliographystyle{siamplain}
++\fi
+ \bibliography{references}
+-}
+ 
+ \end{document}
+--- Original_20260804/submission/main_review.tex
++++ Revised_20260919/submission/main_review.tex
+@@ -0,0 +1,2 @@
++\def\SSOReview{1}
++\input{main}
+--- Original_20260804/submission/preamble.tex
++++ Revised_20260919/submission/preamble.tex
+@@ -2,9 +2,14 @@
+ \usepackage[utf8]{inputenc}
+ \usepackage{lmodern}
+ \usepackage{microtype}
++\ifdefined\SSOReview
+ \usepackage[a4paper,margin=1in]{geometry}
++\fi
+ 
+-\usepackage{amsmath,amssymb,amsthm,mathtools}
++\usepackage{amssymb,mathtools}
++\ifdefined\SSOReview
++\usepackage{amsthm}
++\fi
+ \usepackage{bm}
+ \usepackage{booktabs}
+ \usepackage{array}
+@@ -14,9 +19,15 @@
+ \usepackage{xcolor}
+ \usepackage{graphicx}
+ \usepackage{url}
+-\usepackage{natbib}
++
++\ifdefined\SSOReview
+ \usepackage{hyperref}
+ \usepackage[nameinlink,capitalise,noabbrev]{cleveref}
++\newcommand{\headers}[2]{}
++\newenvironment{keywords}{\par\smallskip\noindent\textbf{Keywords.}}{\par}
++\newenvironment{MSCcodes}{\par\smallskip\noindent\textbf{MSC 2020.}}{\par}
++\fi
++\NewDocumentCommand{\citep}{o m}{\IfNoValueTF{#1}{\cite{#2}}{\cite[#1]{#2}}}
+ 
+ \definecolor{deepblue}{HTML}{173B57}
+ \definecolor{softblue}{HTML}{EAF3F8}
+@@ -39,12 +50,15 @@
+   pdfauthor={Anonymous manuscript}
+ }
+ 
++\ifdefined\SSOReview
+ \setlength{\parindent}{0pt}
+-\setlength{\parskip}{0.55em}
++\setlength{\parskip}{0.35em}
++\fi
+ \setlist[itemize]{topsep=0.35em,itemsep=0.2em}
+ \setlist[enumerate]{topsep=0.35em,itemsep=0.25em}
+ \renewcommand{\arraystretch}{1.15}
+ 
++\ifdefined\SSOReview
+ \newtheoremstyle{reader}
+   {0.8em}{0.8em}
+   {\itshape}{}
+@@ -63,6 +77,12 @@
+ 
+ \theoremstyle{remark}
+ \newtheorem{remark}[theorem]{Remark}
++
++\else
++\newsiamremark{assumption}{Assumption}
++\newsiamremark{example}{Example}
++\newsiamremark{remark}{Remark}
++\fi
+ 
+ \newenvironment{proofidea}
+   {\par\smallskip\begin{center}\begin{minipage}{0.94\textwidth}
+--- Original_20260804/submission/references.bib
++++ Revised_20260919/submission/references.bib
+@@ -107,9 +107,9 @@
+   archivePrefix= {arXiv},
+   primaryClass = {cs.LG},
+   howpublished = {arXiv:2601.08393},
+-  url          = {https://arxiv.org/abs/2601.08393},
++  url          = {https://arxiv.org/abs/2601.08393v3},
+   doi          = {10.48550/arXiv.2601.08393},
+-  note         = {ICML 2026 spotlight; arXiv version 3, revised March 5, 2026}
++  note         = {Version 3, revised March 5, 2026}
+ }
+ 
+ @article{chen2025muonconstraints,
+@@ -304,13 +304,14 @@
+ 
+ @misc{yang2026manifold,
+   author       = {Yang, Kaiwei and Lai, Lexiao},
+-  title        = {Manifold Constrained Steepest Descent},
++  title        = {Manifold Constrained Steepest Descent for Smooth and Closed-Set Optimization},
+   year         = {2026},
+   eprint       = {2601.21487},
+   archivePrefix= {arXiv},
+   primaryClass = {math.OC},
+   howpublished = {arXiv:2601.21487},
+-  url          = {https://arxiv.org/abs/2601.21487}
++  url          = {https://arxiv.org/abs/2601.21487v2},
++  note         = {Version 2, revised August 13, 2026}
+ }
+ 
+ @book{singer1970best,
+@@ -418,3 +419,58 @@
+   year    = {2017},
+   doi     = {10.1137/16M108971X}
+ }
++
++
++@article{liu2009nuclear,
++  author = {Liu, Zhang and Vandenberghe, Lieven},
++  title = {Interior-Point Method for Nuclear Norm Approximation with Application to System Identification},
++  journal = {SIAM Journal on Matrix Analysis and Applications},
++  volume = {31},
++  number = {3},
++  pages = {1235--1256},
++  year = {2009},
++  doi = {10.1137/090755436},
++  note = {Published online November 4, 2009}
++}
++
++@article{he2026twice,
++  author = {He, Jiahuan and Kan, Chao and Song, Wen},
++  title = {Twice Epi-Differentiability of Orthogonally Invariant Matrix Functions and Application},
++  journal = {Set-Valued and Variational Analysis},
++  volume = {34},
++  eid = {20},
++  year = {2026},
++  doi = {10.1007/s11228-026-00804-7},
++  note = {Article 20; preprint arXiv:2412.09898v2}
++}
++
++@article{mathias1993polar,
++  author = {Mathias, Roy},
++  title = {Perturbation Bounds for the Polar Decomposition},
++  journal = {SIAM Journal on Matrix Analysis and Applications},
++  volume = {14},
++  number = {2},
++  pages = {588--597},
++  year = {1993},
++  doi = {10.1137/0614041}
++}
++
++@misc{solonko2026skewon,
++  author = {Solonko, Mikhail and Molozhavenko, Alexander and Rakhuba, Maxim},
++  title = {Muon on the Stiefel Manifold Admits an Exact Closed-Form Update},
++  year = {2026},
++  eprint = {2608.06218},
++  archivePrefix = {arXiv},
++  url = {https://arxiv.org/abs/2608.06218v1},
++  note = {Version 1, submitted August 6, 2026}
++}
++
++@misc{li2026finite,
++  author = {Li, Mingyi and Tsuchiya, Taira},
++  title = {Muon with Finite {Newton--Schulz}: The Smoothing Benefit in Nonsmooth Nonconvex Optimization},
++  year = {2026},
++  eprint = {2608.26288},
++  archivePrefix = {arXiv},
++  url = {https://arxiv.org/abs/2608.26288v1},
++  note = {Version 1, submitted August 26, 2026}
++}
+--- Original_20260804/submission/sections/01_introduction.tex
++++ Revised_20260919/submission/sections/01_introduction.tex
+@@ -5,10 +5,8 @@
+ object is the nuclear-norm distance from \(G\) to the one-dimensional matrix
+ subspace generated by \(\Theta\):
+ \begin{equation}
+- d^\star
+- =\min_{\lambda\in\mathbb R}\phi(\lambda),
+- \qquad
+- \phi(\lambda)=\|G+\lambda\Theta\|_*
++ \phi(\lambda)=\|G+\lambda\Theta\|_*,\qquad
++ d^\star=\min_{\lambda\in\mathbb R}\phi(\lambda)
+  =\operatorname{dist}_{\|\cdot\|_*}
+    \bigl(G,\operatorname{span}\{\Theta\}\bigr).
+  \label{eq:D}
+@@ -29,29 +27,57 @@
+ the compact polar factor.  It is smooth on fixed-rank strata, but under
+ general rank-changing perturbations the zero-kernel completion need not have a
+ continuous extension; see, e.g., the classical polar-decomposition framework
+-of \citet{higham1986polar}.
++of Higham~\cite{higham1986polar}.
+ 
+-When \(\Theta=uv^\top\), \eqref{eq:P} is the tangent LMO on the smooth
+-spectral sphere.  Norm-ball LMOs underlie matrix-aware first-order methods
+-\citep{pethick2025lmo}.  \citet{xie2026controlled} introduced the corresponding
+-compact-polar bisection, and \citet[Appendix P.5]{li2026intrinsic} interpreted
+-it as the spectral-sphere instance of an intrinsic LMO.  Neither work treats
+-rank-deficient crossings.
++When \(u,v\) are unit leading singular vectors at a simple top singular
++value, \(\Theta=uv^\top\) gives the tangent linear maximization oracle
++(LMO) on a smooth spectral level set.  Norm-ball LMOs underlie matrix-aware
++first-order methods \citep{pethick2025lmo}.
++Our motivating example is the Spectral Sphere Optimizer (SSO) of
++Xie et al.~\cite[Section 3.2 and Appendix A.2, version 3]{xie2026controlled}, which uses a
++scalar polar-factor equation; Li et al.~\cite[Appendix P.5]{li2026intrinsic} discuss the
++same spectral-sphere subproblem.  The analysis below isolates the
++rank-deficient certificate recovery needed for that equation.  It does not
++assess the training results reported for SSO.
+ 
+-\paragraph{Classical boundary and the new object.}
++Related manifold oracles must be compared using their actual feasible sets.
++The Stiefel product norm in Li et al.~\cite[Appendix H.3]{li2026intrinsic} and the
++projected quotient norm of Yang and Lai~\cite{yang2026manifold} need not give the ambient
++spectral ball intersected with the tangent space.  By contrast,
++Solonko, Molozhavenko, and Rakhuba~\cite{solonko2026skewon} solve that joint-norm Stiefel problem exactly through
++norm-preserving completion and explicitly include rank-deficient solution
++families.  We make no general claim that tangent spectral LMOs lack closed
++forms or that kernel completion itself is new.
++
++\paragraph{Classical foundations and the scope of this work.}
+ Optimality in \eqref{eq:D} is classical Birkhoff--James orthogonality.
+ Distance duality, matrix-norm subdifferentials, and the associated criteria
+ are established in
+ \citep{singer1970best,watson1992subdifferential,zietak1993faces,
+ watson1993kyfan,bhatia1999orthogonality,grover2014distance,
+ johnston2022trace,grover2026kyfan}; we claim no novelty for those facts.
+-The new object is the tangency slice
+-\(\partial\|A^\star\|_*\cap\Theta^\perp\), its spectral centers, and the
+-singular asymptotics of their regularization paths.
++In particular, Liu and Vandenberghe~\cite{liu2009nuclear} already study nuclear-norm
++minimization of general affine matrix-valued functions, its spectral-ball
++dual, and Huber smoothing.  Hoheisel and Paquette~\cite{hoheisel2023uniqueness} characterize
++flatness and uniqueness of affine nuclear-norm minimizers; uniqueness of
++such an approximant is distinct from uniqueness of its constrained dual
++certificate.  Our focus is the explicit classification and spectral centers
++of the one-hyperplane slice
++\(\partial\|A^\star\|_*\cap\Theta^\perp\), together with local
++regularization-path formulas at its rank-changing points.
++
++Nonsmooth singular-value calculus is classical
++\citep{lewis2005nonsmooth1,lewis2005nonsmooth2}.
++He, Kan, and Song~\cite{he2026twice} give second-order epi-derivatives of the nuclear norm,
++including rank-deficient matrices.  These general variational results are
++background for, rather than claims superseded by, our explicit
++matrix-line centers, coefficients, cancellations, and uniform transition
++laws.  Polar-factor sensitivity near rank loss is also established
++\citep{higham1986polar,mathias1993polar}.
+ 
+ Canonical approximant selection by Schatten limits is also classical:
+-\citet{legg1985canonical} treat \(p\downarrow1\), while
+-\citet{zietak2017strict} surveys the \(p\uparrow\infty\) strict-spectral
++Legg and Ward~\cite{legg1985canonical} treat \(p\downarrow1\), while
++Zi\k{e}tak~\cite{zietak2017strict} surveys the \(p\uparrow\infty\) strict-spectral
+ counterpart, including its conjectural general form.  Our selection instead
+ occurs on the equality-constrained certificate face.
+ If \(A=U_r\Sigma_rV_r^\top\) is a compact singular value decomposition,
+@@ -102,7 +128,7 @@
+  agreement.  A polynomial derivative tail of order \(p>1\) yields exponent
+  \(p/(p+1)\), while finite saturation gives a linear law.  The novelty beyond
+  standard smoothing principles
+- \citep{nesterov2005smooth,lobos2025smooth,attouch1984variational} is the
++ \citep{nesterov2005smooth,liu2009nuclear,lobos2025smooth,attouch1984variational} is the
+  constrained spectral center and its coupling to the singular multiplier.
+ 
+  \item We prove the regular expansion and, at every strict rank-deficient
+@@ -122,6 +148,9 @@
+ 
+ An open failure set implies neither an event-frequency law nor an outer
+ algorithmic or learning-performance gain; those require additional models.
++For the rank-one SSO normal, the projected kernel normal has rank at most one,
++so the hard and pseudo-Huber centers agree.  Their possible disagreement is
++a feature of the more general matrix-line problem.
+ 
+ \subsection{Organization}
+ 
+--- Original_20260804/submission/sections/02_exact_geometry.tex
++++ Revised_20260919/submission/sections/02_exact_geometry.tex
+@@ -95,14 +95,24 @@
+ 
+ \begin{remark}[Relative-interior nondegeneracy]
+ \label{rem:strict-complementarity-main}
+-At an optimum, \(|a|<\beta\) is exactly
++At an optimum with \(\beta>0\), \(|a|<\beta\) is exactly
+ \(0\in\operatorname{ri}\partial\phi(\lambda^\star)\); equivalently, the
+ tangency hyperplane meets the relative interior of the kernel-block spectral
+ unit ball.  At \(|a|=\beta\) it meets only the exposed endpoint face
+-\eqref{eq:endpoint-face}.  This parallels convergence and limiting-center
++\eqref{eq:endpoint-face}.  The case \(\beta=0\) must be separated:
++optimality then forces \(a=0\), so \(\partial\phi(\lambda^\star)=\{0\}\)
++and \(0\in\operatorname{ri}\partial\phi(\lambda^\star)\), although the
++strict inequality \(|a|<\beta\) is false.  The kernel-block slice is then
++the whole spectral unit ball (or the singleton empty block when a nullity
++is zero), rather than a proper exposed endpoint face.  For example,
++\(G=\operatorname{diag}(1,0)\) and
++\(\Theta=\bigl(\begin{smallmatrix}0&1\\1&0\end{smallmatrix}\bigr)\)
++give \(\phi(\lambda)=\sqrt{1+4\lambda^2}\) and a unique rank-deficient
++minimizer at zero with \(a=\beta=0\).
++The nondegenerate case parallels convergence and limiting-center
+ phenomena for degenerate semidefinite central paths
+ \citep{halicka2002convergence,halicka2005limiting}, while fractional algebraic
+-rates are documented by \citet{basu2022central}.  Our rates follow directly
++rates are documented by Basu and Mohammad-Nezhad~\cite{basu2022central}.  Our rates follow directly
+ from the matrix-line normal forms in \cref{sec:rates}.
+ \end{remark}
+ 
+--- Original_20260804/submission/sections/03_failure_completion.tex
++++ Revised_20260919/submission/sections/03_failure_completion.tex
+@@ -197,11 +197,11 @@
+ 
+ Fix a dual minimizer and write
+ \[
++ \begin{gathered}
+  A^\star=G+\lambda^\star\Theta=U_r\Sigma_rV_r^\top,
+- \qquad
+- \ell=m-r,\quad k=n-r,
+- \qquad
++ \qquad \ell=m-r,\quad k=n-r,\\
+  C=U_0^\top\Theta V_0,\qquad \beta=\|C\|_*.
++ \end{gathered}
+ \]
+ By \eqref{eq:solution-face}, every exact certificate is
+ \begin{equation}
+@@ -312,8 +312,10 @@
+ 
+ For the rank-one normal \eqref{eq:rank-one-normal}, put
+ \(x=U_0^\top u\), \(y=V_0^\top v\).  Then
+-\(C=xy^\top\) and \(\beta=\|x\|_2\|y\|_2\).  If \(\beta>0\), no clipping
+-occurs, and
++\(C=xy^\top\) and \(\beta=\|x\|_2\|y\|_2\).  If \(\beta>0\), the
++unconstrained minimum-Frobenius solution is already spectrally feasible:
++no truncation is required, although its spectral constraint is active when
++\(|a|=\beta\).  Thus
+ \begin{equation}
+  K_F=K_{\rm can}
+  =-\frac{a}{\beta}
+--- Original_20260804/submission/sections/04_fenchel_selection.tex
++++ Revised_20260919/submission/sections/04_fenchel_selection.tex
+@@ -29,8 +29,11 @@
+ Define
+ \begin{equation}
+  R(\Phi)=
+- \sum_{i=1}^{q}\left(1-\sqrt{1-\sigma_i(\Phi)^2}\right)
+- +\iota_{\{\|\Phi\|_2\le1\}}(\Phi).
++ \begin{cases}
++ \displaystyle\sum_{i=1}^{q}\left(1-\sqrt{1-\sigma_i(\Phi)^2}\right),
++       &\|\Phi\|_2\le1,\\
++ +\infty,&\|\Phi\|_2>1.
++ \end{cases}
+  \label{eq:R-main}
+ \end{equation}
+ 
+@@ -42,8 +45,8 @@
+  \label{eq:matrix-conjugacy-main}
+ \end{equation}
+ The function \(\Psi_\delta\) is \(C^\infty\) and strictly convex on the full
+-matrix space.  If \(A=U\operatorname{diag}(\sigma_i)V^\top\) is any full SVD,
+-then
++matrix space.  For a full SVD \(A=U\operatorname{diag}(\sigma_i)V^\top\),
++we have
+ \begin{equation}
+  Z_\delta(A):=\nabla\Psi_\delta(A)
+  =U\operatorname{diag}\left(
+@@ -218,9 +221,11 @@
+ In the singular bases,
+ \(R(\Phi)=\operatorname{rank}(A^\star)+\mathcal R_0(K)\), where
+ \[
+- \mathcal R_0(K)=\sum_j\rho(\sigma_j(K))
+- +\iota_{\{\|K\|_2\le1\}}(K),
+- \qquad \rho(t)=1-\sqrt{1-t^2}.
++ \mathcal R_0(K)=\sum_j\rho(\sigma_j(K)),
++ \qquad
++ \rho(t)=\begin{cases}1-\sqrt{1-t^2},&|t|\le1,\\
++                         +\infty,&|t|>1.
++          \end{cases}
+ \]
+ The scalar conjugate is \(\rho^*(z)=\sqrt{1+z^2}-1\).  Spectral lifting gives
+ \[
+@@ -275,17 +280,26 @@
+ 
+ \subsection{A smoothing family and two distinguished centers}
+ 
++For the motivating spectral-sphere normal \(\Theta=uv^\top\), the
++compressed normal \(C=(U_0^\top u)(V_0^\top v)^\top\) has rank at most
++one.  Consequently \(K_F=K_R\) at every exact minimizer, including
++\(C=0\) and endpoint cases.  Different hard and pseudo-Huber centers
++therefore concern general matrix normals with at least two unequal positive
++singular values in \(C\); they are not a distinction between these two
++centers in the rank-one spectral-sphere application.  Their finite-scale
++directions and convergence rates can still differ.
++
+ The preceding center is not an isolated artifact of pseudo-Huber smoothing.
+ Call a scalar profile \(\psi\) \emph{admissible} if it is even, convex, and
+ \(C^1\), with \(\psi(0)=0\), if \(0\le\psi'(x)\le1\) for \(x\ge0\), and if
+ \(\psi'\) is nondecreasing with \(\lim_{x\to\infty}\psi'(x)=1\).  We further require
+-\[
++\begin{equation}
+  c_\psi:=\lim_{x\to\infty}\{x-\psi(x)\}<\infty,
+  \qquad
+  0\le x<y,\ \psi'(y)<1\ \Longrightarrow\ \psi'(x)<\psi'(y),
+  \tag{A}
+  \label{eq:admissible-profile-main}
+-\]
++\end{equation}
+ and assume that, for some \(\mu_\psi>0\), the extended-value function
+ \(z\mapsto\psi^*(z)-\mu_\psi z^2/2\) is convex on \(\mathbb R\); the domain
+ of \(\psi^*\) is \([-1,1]\).  The second condition in
+@@ -415,9 +429,23 @@
+ certificate \(I_2\).
+ \end{remark}
+ 
++\begin{remark}[Finite polynomial maps require separate analysis]
++\label{rem:finite-ns-boundary-main}
++A finite Newton--Schulz polynomial is not automatically a member of the
++admissible Fenchel family.  Continuity of the computed matrix map alone
++does not establish a convex scalar potential with derivative in \([-1,1]\),
++the perspective scaling in \eqref{eq:profile-lifts-main}, or strong
++convexity of its conjugate.  Thus neither the selected-center formula nor
++the asymptotic laws proved here can be assigned to a finite polynomial
++implementation without checking these assumptions for that particular map.
++The actual returned matrix must be used when measuring its tangency and
++feasible primal--dual gap; substituting the compact polar factor evaluates
++a different oracle.
++\end{remark}
++
+ \begin{remark}[Approximant versus certificate regularization]
+ \label{rem:legg-ward}
+-The canonical trace-class approximation of \citet{legg1985canonical} uses the
++The canonical trace-class approximation of Legg and Ward~\cite{legg1985canonical} uses the
+ limit of Schatten \(c_p\)-approximations as \(p\downarrow1\) to resolve
+ possible nonuniqueness on the approximant side.  Our regularization acts on
+ the certificate side under the additional tangency equality.  In the no-root
+--- Original_20260804/submission/sections/05_singular_rates.tex
++++ Revised_20260919/submission/sections/05_singular_rates.tex
+@@ -11,6 +11,51 @@
+ below permits arbitrary shape and corank.  Only the boundary and crossover
+ laws use a transverse square corank-one crossing, because their proof isolates
+ one signed Rellich-analytic small mode.
++
++\begin{lemma}[Exact analytic separation of the small singular cluster]
++\label{lem:analytic-cluster-block-main}
++Let \(A(s)=A^\star+s\Theta\), where \(\operatorname{rank}A^\star=r\).
++Locally there are real-analytic orthogonal frames
++\(U(s)=[U_+(s)\ U_0(s)]\) and \(V(s)=[V_+(s)\ V_0(s)]\), agreeing
++at zero with fixed compact and null frames, such that
++\[
++ U(s)^\top A(s)V(s)=
++ \begin{pmatrix}A_+(s)&0\\0&B(s)\end{pmatrix},
++ \qquad B(s)=sC+s^2E(s),\quad C=U_0^\top\Theta V_0,
++\]
++where \(A_+(s)\in\mathbb R^{r\times r}\) is invertible and \(E\) is
++real analytic.  Empty blocks are allowed.  If \(q=\min\{m,n\}\) and
++singular values are listed in decreasing order, then
++\[
++ \sigma_{r+i}(A(s))=|s|\sigma_i(C)+O(s^2),
++ \qquad 1\le i\le q-r,
++\]
++including the zero singular values of \(C\).
++\end{lemma}
++
++\begin{proof}
++When \(r=0\), choose constant frames; the conclusion is immediate.
++Otherwise a fixed spectral gap separates the zero and positive eigenvalue
++clusters of \(A^\star{}^\top A^\star\) and \(A^\star A^\star{}^\top\).
++The corresponding small-cluster Riesz projections \(\Pi_V(s),\Pi_U(s)\)
++are analytic.  For a common contour enclosing zero and no positive
++eigenvalue, the resolvent identity
++\[
++ A(s)(zI-A(s)^\top A(s))^{-1}
++ =(zI-A(s)A(s)^\top)^{-1}A(s)
++\]
++implies \(A(s)\Pi_V(s)=\Pi_U(s)A(s)\), including unequal left and
++right nullities.  Analytic orthonormal frames for these projections and
++their complements give the exact block decomposition.  Such frames can
++be constructed by projecting the fixed frames and multiplying by the
++inverse square root of their Gram matrices.  Since
++\(A^\star V_0=0\) and \(U_0^\top A^\star=0\), differentiation of
++\(B(s)=U_0(s)^\top A(s)V_0(s)\) gives \(B(0)=0\) and \(B'(0)=C\);
++analytic division gives the stated \(E\).  Finally, the small singular
++values of \(A(s)\) are exactly those of \(B(s)\).  The singular-value
++perturbation bound applied to \(B(s)-sC=O(s^2)\) proves the indexed formula.
++No choice of individual singular vectors within a repeated cluster is used.
++\end{proof}
+ 
+ \subsection{Full-rank regular minimizers}
+ 
+@@ -122,22 +167,12 @@
+ separated cluster, its contribution to \(F_\delta(t)\) converges to \(at\),
+ uniformly for \(t\) in compact sets.
+ 
+-For the small cluster, let \(\Pi_V(s),\Pi_U(s)\) be the Riesz projections of
+-\(A(s)^\top A(s)\) and \(A(s)A(s)^\top\) onto the clusters converging to
+-zero, where \(A(s)=A(\lambda^\star+s)\).  The fixed gap makes them analytic,
+-with analytic orthonormal frames \(V_0(s),U_0(s)\)
+-\citep[Chapter~II]{kato1995perturbation}.  Resolvent intertwining gives
+-\(A(s)\Pi_V(s)=\Pi_U(s)A(s)\) and its transpose identity, so the cluster
+-subspaces reduce \(A(s)\) exactly.  Its small singular values are therefore
+-precisely those of
+-\[
+- B(s)=U_0(s)^\top A(\lambda^\star+s)V_0(s)=sC+O(s^2)
+-\]
+-because \(B(0)=0\) and \(B'(0)=U_0^\top\Theta V_0=C\).  Weyl's
+-singular-value bound now gives, uniformly near zero,
+-\[
+- \sigma_i(A(\lambda^\star+s))
++For the small cluster, \cref{lem:analytic-cluster-block-main} gives,
++uniformly near zero,
++\[
++ \sigma_{r+i}(A(\lambda^\star+s))
+  =|s|\sigma_i(C)+O(s^2),
++ \qquad 1\le i\le q-r,
+ \]
+ where zero singular values of \(C\) are included.  Setting \(s=\delta t\)
+ and using that \(x\mapsto\sqrt{1+x^2}-1\) is Lipschitz gives compact-uniform
+@@ -233,8 +268,8 @@
+ \end{theorem}
+ 
+ \begin{proof}
+-Let \(r=\operatorname{rank}A^\star\).  The gap between its positive and zero
+-singular-value clusters gives local analytic orthogonal frames
++Let \(r=\operatorname{rank}A^\star\).  Apply
++\cref{lem:analytic-cluster-block-main} to obtain local analytic orthogonal frames
+ \(U(s)=[U_+(s)\ U_0(s)]\) and \(V(s)=[V_+(s)\ V_0(s)]\) for which
+ \[
+  U(s)^\top A(\lambda^\star+s)V(s)
+@@ -481,9 +516,45 @@
+ strict crossing and does not assert that the cancellations are generic.
+ \end{remark}
+ 
++\begin{corollary}[Finite cancellation criterion for an exact multiplier]
++\label{cor:finite-cancellation-main}
++Under \cref{thm:direction-strict-general}, suppose \(a=0\), and let
++\(d\) be the number of distinct positive singular values of \(A^\star\).
++If \(d=0\), then \(\lambda_\delta=\lambda^\star\) for every \(\delta>0\).
++If \(d\ge1\), the following statements are equivalent:
++\begin{enumerate}
++ \item \(\chi_1=\cdots=\chi_{d-1}=0\), with no conditions when \(d=1\);
++ \item \(\langle\Theta,U_jV_j^\top\rangle=0\) for each positive
++ singular-value level \(j\), where \(U_j,V_j\) contain its paired frames;
++ \item \(\lambda_\delta=\lambda^\star\) for every \(\delta>0\).
++\end{enumerate}
++Otherwise, the first nonzero \(\chi_p\) occurs with \(1\le p\le d-1\),
++and \eqref{eq:compact-root-hierarchy-main} gives its nonzero leading bias.
++\end{corollary}
++
++\begin{proof}
++If \(d=0\), then \(A^\star=0\) and \(h_\delta(\lambda^\star)=0\).
++For \(d\ge1\), write the distinct positive levels as \(\nu_j\), put
++\(w_j=\langle\Theta,U_jV_j^\top\rangle\), and set \(x_j=\nu_j^{-2}\).
++Then \(a=\sum_jw_j=0\) and \(\chi_k=\sum_jw_jx_j^k\).  The Vandermonde
++matrix with rows \(k=0,\ldots,d-1\) is invertible, proving equivalence of
++the first two statements.  Moreover,
++\[
++ h_\delta(\lambda^\star)
++ =\sum_{j=1}^d\frac{w_j}{\sqrt{1+\delta^2x_j}}.
++\]
++Thus vanishing weights give an exact root for every \(\delta>0\), and
++strict convexity identifies the unique multiplier.  Conversely, a root
++for every positive \(\delta\) makes all Taylor coefficients at zero
++vanish, in particular the first \(d\) moments.  This proves the equivalence
++and the bound on the first nonzero moment.  The group polar matrices
++\(U_jV_j^\top\) are independent of the paired frame chosen within a level.
++\end{proof}
++
+ At a fixed strict rank-deficient minimizer, these results give a sharp
+ dichotomy.  Compact-polar stationarity holds exactly when \(a=0\), in which
+-case smoothing has cubic multiplier bias and quadratic direction bias with
++case smoothing has \(O(\delta^3)\) multiplier bias and \(O(\delta^2)\)
++direction bias with
+ the refinements above.  If \(a\ne0\), compact-polar stationarity fails and the
+ multiplier bias is necessarily \(\Theta(\delta)\); the direction bias is
+ \(\Theta(\delta)\) when \(\mathcal M_R\ne0\), but may cancel to second order.
+@@ -550,7 +621,7 @@
+ 
+ \subsection{The corank-one strict specialization and boundary kink}
+ 
+-\begin{corollary}[Linear strict-kink displacement, corank one]
++\begin{corollary}[Corank-one strict displacement]
+ \label{thm:rate-strict}
+ Under \cref{lem:kink-normal-form}, suppose \(|a|<\beta\).  Then
+ \begin{equation}
+@@ -743,8 +814,11 @@
+  =O(\delta^2),\qquad O(\delta),\qquad O(\delta^{2/3}),
+  \label{eq:direction-rates-main}
+ \end{equation}
+-respectively.  These are upper bounds; exact matrix-direction rates require a
+-corresponding noncancellation condition.  The strict entry holds for arbitrary
++respectively.  The first two statements are upper bounds with the refinements
++already stated.  The boundary rate is always exact under its hypotheses,
++as the nonzero direction coefficient in
++\cref{cor:direction-crossover-main} shows by taking a constant path.
++The strict entry holds for arbitrary
+ rectangular shape and corank; \cref{thm:direction-strict-general} gives its
+ first-order constant and the sharper \(O(\delta^2)\) rate when \(a=0\).
+ \end{corollary}
+@@ -877,7 +951,12 @@
+ The one-sided derivatives at the moving crossing are
+ \(-\Delta_\delta\le0\) and
+ \(a_\delta+\beta_\delta\to2\beta_0>0\), so
+-\(\lambda_\delta^\star\) is an exact minimizer.  For the instance indexed by
++\(\lambda_\delta^\star\) is an exact minimizer.  It is unique: if
++\(\Delta_\delta>0\), the left derivative is strictly negative; if
++\(\Delta_\delta=0\), positive contact curvature makes the derivative
++strictly negative immediately to the left.  The derivative is strictly
++positive immediately to the right in both cases, and convexity then
++precludes any second minimizer.  For the instance indexed by
+ \(z\), set
+ \[
+  h_{\delta,z}(\lambda)
+@@ -887,9 +966,28 @@
+  \quad
+  \kappa(z)=\partial_{ss}\ell(0,z)-\partial_{ss}\tau(0,z),
+ \]
+-and \(H_{\delta,z}(x)=h_{\delta,z}(\lambda_{\rm sing}(z)-x)\).  Joint
+-analyticity and the grouped expansion in \eqref{eq:boundary-balance-main}
+-give constants \(z_0,x_0,\eta_0,C>0\), independent of the path, such that
++and \(H_{\delta,z}(x)=h_{\delta,z}(\lambda_{\rm sing}(z)-x)\).
++Shrink a compact neighborhood of the reference point so that
++\(\beta(z)\), \(\kappa(z)\), and every separated positive singular value
++have fixed positive lower bounds there.  Joint analyticity gives bounded
++derivatives on that neighborhood, and therefore the uniform expansions
++\begin{align*}
++ \ell_s(-x,z)-\tau_s(-x,z)&=-\Delta(z)-\kappa(z)x+O(x^2),\\
++ \tau(-x,z)&=-\beta(z)x+O(x^2),\qquad
++ \tau_s(-x,z)=\beta(z)+O(x).
++\end{align*}
++The separated smoothed cluster differs from \(\ell_s\) by \(O(\delta^2)\)
++uniformly.  On the contact side, \(\tau(-x,z)<0\); its correction relative
++to the unsmoothed small mode is exactly
++\[
++ \tau_s(-x,z)\left[1-
++ \left(1+\frac{\delta^2}{\tau(-x,z)^2}\right)^{-1/2}\right]
++ =\frac{\delta^2}{2\beta(z)x^2}
++  +O\!\left(\frac{\delta^2}{x}+\frac{\delta^4}{x^4}\right).
++\]
++The binomial remainder is uniform when \(\delta/x\) is bounded by a
++sufficiently small fixed constant.  Combining these bounds gives constants
++\(z_0,x_0,\eta_0,C>0\), independent of the path, such that
+ whenever \(\|z\|\le z_0\), \(0<x\le x_0\), and
+ \(0<\delta\le\eta_0x\),
+ \begin{align}
+@@ -966,14 +1064,20 @@
+  \longrightarrow\mathcal M_0.
+  \label{eq:direction-crossover-limit-main}
+ \end{equation}
+-Hence
++Moreover,
++\begin{equation}
++ \langle D(0,0),\mathcal M_0\rangle=\frac{\kappa_0}{\beta_0}>0,
++ \qquad
++ \|\mathcal M_0\|_F\ge\frac{\kappa_0}{\beta_0}.
++ \label{eq:direction-M0-nonzero-main}
++\end{equation}
++Consequently, along every path in the theorem,
+ \[
+  \|\Phi_\delta-\Phi_R^\star(z_\delta)\|_F
+- =O(\widehat x_\delta),
+-\]
+-and if \(\mathcal M_0\ne0\), this norm is asymptotic to
+-\(\|\mathcal M_0\|_F\widehat x_\delta\); if \(\mathcal M_0=0\), it is
+-\(o(\widehat x_\delta)\).
++ \sim\|\mathcal M_0\|_F\widehat x_\delta.
++\]
++In particular, the direction-level crossover cannot lose its leading term
++under the printed positive-curvature assumption.
+ \end{corollary}
+ 
+ \begin{proof}
+@@ -1002,8 +1106,18 @@
+ Since
+ \(\Phi_R^\star(z)=P(0,z)-[a(z)/\beta(z)]D(0,z)\), Taylor expansion proves
+ \eqref{eq:direction-crossover-limit-main}; the separated-cluster smoothing
+-error is negligible because \(\delta^2/x_\delta\to0\).  The norm statements
+-follow from \eqref{eq:cubic-relative-main}.
++error is negligible because \(\delta^2/x_\delta\to0\).
++To show that the limit is nonzero, write \(D=u_0v_0^\top\) in compatible
++analytic unit frames.  Its Frobenius norm is one, so
++\(\langle D,D_s\rangle=0\).  Also
++\(P=U_+Q V_+^\top\), where \(Q\) is the positive-cluster polar factor.
++Differentiation and \(U_+^\top u_0=V_+^\top v_0=0\) give
++\(\langle D,P_s\rangle=0\): each of the three differentiated terms
++retains at least one of these zero factors.  Taking the pairing of
++\eqref{eq:direction-M0-main} with \(D(0,0)\) proves
++\eqref{eq:direction-M0-nonzero-main}, including its norm bound by
++Cauchy--Schwarz.  The asymptotic norm formula follows from
++\eqref{eq:cubic-relative-main}.
+ \end{proof}
+ 
+ The moving-crossing recentering is essential: nonnegativity together with a
+--- Original_20260804/submission/sections/05b_numerical.tex
++++ Revised_20260919/submission/sections/05b_numerical.tex
+@@ -1,45 +1,46 @@
+ \section{Numerical verification of the constants}
+-\label{sec:numerics}
++\label{sec:numerics}\input{generated/numerical_macros}
+ 
+-The local laws predict constants, not only exponents.  Assertion-based scripts
+-therefore test closed-form instances at high precision; the full tables and
+-execution details are in the technical supplement.  For the fixed
++The local laws predict constants, not only exponents.  Deterministic scripts
++therefore test closed-form instances at high precision; one generator
++produces the displayed decimal values and machine-readable snapshots.
++The full tables and execution details are in the technical supplement.  For the fixed
+ \(2\times2\) family
+ \(G=\bigl(\begin{smallmatrix}0&b_1\\b_2&c\end{smallmatrix}\bigr)\),
+ \(\Theta=e_1e_1^\top\), the three basic normalized limits are:
+ \begin{center}
+ \begin{tabular}{@{}lll@{}}
+ \toprule
+-Regime & predicted & computed at the smallest \(\delta\)\\
++Regime & predicted & computed at the stated \(\delta\)\\
+ \midrule
+-regular & \(-16/9=-1.777777778\) & \(-1.777777777\)\\
+-strict corank one & \(-5/(4\sqrt{15})=-0.3227486122\) & \(-0.3227486102\)\\
+-boundary & \(2^{1/3}=1.259921050\) & \(1.259921042\)\\
++regular & \(-16/9\) & \(\numRegularRatio\), \(\delta=10^{-5}\)\\
++strict corank one & \(-5/(4\sqrt{15})\) & \(\numStrictRatio\), \(\delta=10^{-8}\)\\
++boundary & \(2^{1/3}\) & \(\numBoundaryRatio\), \(\delta=10^{-12}\)\\
+ \bottomrule
+ \end{tabular}
+ \end{center}
+ On the same boundary instance, standard Huber instead gives
+-\((1-\lambda_\delta^{\rm hub})/\delta=1.99999997\) at
++\((1-\lambda_\delta^{\rm hub})/\delta=\numHuberBoundaryRatio\) at
+ \(\delta=10^{-8}\), versus the prediction \(1/\beta=2\) in
+ \eqref{eq:huber-boundary-rate-main}.
+ For the admissible profile
+ \(\psi'(x)=x/(1+x^3)^{1/3}\) on \(x\ge0\), the predicted \(p=3\)
+-constant is \(1.2778862085\); the computed normalized displacement is
+-\(1.2778860473\) at \(\delta=10^{-9}\).  This checks that the exponent
++constant is \(\numPowerThreeLimit\); the computed normalized displacement is
++\(\numPowerThreeRatio\) at \(\delta=10^{-9}\).  This checks that the exponent
+ changes with the tail, not merely between the two named profiles.
+ 
+ For a corank-two check, take
+ \(A^\star=\diag(1,1,0,0)\),
+ \(\Theta=\diag(3/8,3/8,1,1/2)\), and \(\lambda^\star=1\).
+-Here \(\eta_R=0.715080068980\) and
+-\(\|K_F-K_R\|_F=0.040996138377\).  At \(\delta=10^{-4}\), the
+-pseudo-Huber slope is \(-0.7150801\), while Huber gives the water-filling
+-slope \(-0.6000000000\) and recovers \(\Phi_F^\star\) to \(10^{-11}\).
++Here \(\eta_R=\numCorankEta\) and
++\(\|K_F-K_R\|_F=\numCenterDistance\).  At \(\delta=10^{-4}\), the
++pseudo-Huber slope is \(\numCorankSlopeFour\), while Huber gives the water-filling
++slope \(-3/5\) and recovers \(\Phi_F^\star\) to \(10^{-11}\).
+ Because \(P_{\rm big}(s)\) and \(\widetilde B(s)\) are constant on this
+ diagonal line, \(\partial_s\mathcal W=0\) proves
+ \(t_1=\mathcal M_R=0\).  A non-diagonal rational instance instead predicts
+-\(\|\mathcal M_R\|_F=0.671775381\), versus the scaled value
+-\(0.671776068\) at \(\delta=10^{-6}\).
++\(\|\mathcal M_R\|_F=\numNonDiagonalMR\), versus the scaled value
++\(\numNonDiagonalDirectionSix\) at \(\delta=10^{-6}\).
+ 
+ The compact-root instance
+ \(A^\star=\diag(2,1,0)\), \(\Theta=\diag(1,-1,1)\) verifies the predicted
+@@ -53,3 +54,11 @@
+ oscillatory paths and verify both the cubic root and direction constants.
+ Complete data, matrices, and finite-scale sequences are in the supplement;
+ the checks test constants but imply no occurrence-frequency law.
++
++These are CPU numerical checks, not GPU training measurements or validated
++interval bounds.  The supplied verification entry point rejects optimized
++Python modes that would remove assertions.  For approximate inner directions,
++the relevant diagnostic is the residual of the direction actually returned,
++together with the repaired primal--dual gap in the supplement; substituting a
++fresh compact polar factor measures a different matrix.  Neither these local
++checks nor a small tangency residual establishes an outer-training benefit.
+--- Original_20260804/submission/sections/06_discussion.tex
++++ Revised_20260919/submission/sections/06_discussion.tex
+@@ -5,8 +5,9 @@
+ by \eqref{eq:KF-main} has no smoothing bias but needs a rank decision.
+ Pseudo-Huber gives a strictly monotone equation and converges to \(K_R\),
+ whereas the family in \cref{prop:smoothing-family-main} identifies \(K_F\) as
+-the Huber Fenchel center.  These centers agree only in the cases of
+-\cref{cor:center-agreement-main}.  The boundary bias is profile dependent:
++the Huber Fenchel center.  These centers agree in precisely the cases of
++\cref{cor:center-agreement-main}; in particular, they agree for rank-one
++normals.  The boundary bias is profile dependent:
+ polynomial tail order \(p\) gives \(\delta^{p/(p+1)}\), pseudo-Huber gives
+ \(\delta^{2/3}\), and finite saturation gives \(\delta\).  At fixed strict
+ crossings the first direction coefficient is computable from
+@@ -22,6 +23,26 @@
+ complexity or learning-performance gain follows without a separate descent
+ model and control of the changing normal.
+ 
++Finite Newton--Schulz iterations are separate numerical maps, not exact
++polar factors or automatically members of our Fenchel family.
++Li and Tsuchiya~\cite{li2026finite} analyze a smoothing benefit of finite iterations for
++nonsmooth nonconvex optimization.  Their guarantees use classical
++Taylor-derived coefficients and a normalization fixed before the run;
++they do not directly cover the tuned quintic with data-dependent
++Frobenius normalization used in common Muon/SSO implementations.  Neither
++an exact compact-root counterexample nor a small finite-iteration scalar
++residual settles the practical method's training performance.  Numerical
++validation should measure tangency, norm feasibility, and a valid
++primal--dual gap on the same returned direction; estimated-normal and
++true-normal residuals should be distinguished.
++
++The experiments in this paper check matrix identities, asymptotic constants,
++and certificate diagnostics.  Language-model training would test a separate
++application claim.  In particular, reproducing all architectures and training
++budgets of Xie et al.~\cite{xie2026controlled} is not required to validate the matrix
++analysis results, whereas a claim of matching or improving their reported
++training outcomes would require a separately matched protocol.
++
+ \section{Conclusion}
+ 
+ We characterized the tangency-constrained certificate slice for nuclear-norm
+@@ -35,15 +56,17 @@
+ 
+ \section*{Data and code availability}
+ 
+-No external data are used.  Assertion-based Python scripts reproducing every
+-numerical table and constant are included in the supplementary source archive
+-submitted with the manuscript; the archive also records the required Python,
+-NumPy, SciPy, and mpmath dependencies.
++The mathematical examples use explicitly specified matrices and no external
++training data.  The accompanying source archive contains the numerical
++verification scripts, high-precision table generation, and dependency
++information.  These computations are reproducibility checks in the recorded
++environment, not machine-rigorous interval certificates or formal proofs.
++Separately supplied GPU application protocols have no reported training
++results in this manuscript.
+ 
+ \section*{Declaration on generative AI assistance}
+ 
+ Generative AI tools assisted with language editing, literature discovery,
+ algebraic exploration, drafting portions of theorem and proof text, and
+-drafting verification code.  The authors independently checked every cited
+-source, proof, and computational result and assume responsibility for all
+-content.
++drafting verification code.  Responsibility for the mathematical arguments, source attribution,
++computational claims, and final submission remains with the human authors.
+--- Original_20260804/submission/supplement.tex
++++ Revised_20260919/submission/supplement.tex
+@@ -1,19 +1,30 @@
++\ifdefined\SSOReview
+ \documentclass[10pt]{article}
++\else
++\documentclass[supplement,hidelinks]{siamart251216}
++\fi
+ 
+ \usepackage{xr-hyper}
++\ifdefined\SSOReview
++\externaldocument[][nocite]{main_review}
++\else
+ \externaldocument[][nocite]{main}
++\fi
+ \input{preamble}
+ \hypersetup{
+   pdftitle={Technical Supplement: Nuclear-Norm Best Approximation at Rank-Deficient Matrix-Line Crossings},
+   pdfauthor={Anonymous manuscript}
+ }
+-\setlength{\parskip}{0.35em}
++
++\ifdefined\SSOReview
+ \renewcommand{\thesection}{S\arabic{section}}
++\fi
+ 
+-\title{\textbf{Technical Supplement to}\
+-\textbf{Nuclear-Norm Best Approximation at Rank-Deficient Matrix-Line Crossings}}
++\title{Nuclear-Norm Best Approximation at Rank-Deficient Matrix-Line Crossings:
++Certificate Geometry and Singular Smoothing}
+ \author{Anonymous manuscript}
+-\date{August 4, 2026}
++\date{September 19, 2026}
++\headers{Matrix-Line Approximation}{Anonymous manuscript}
+ 
+ \begin{document}
+ \maketitle
+@@ -72,10 +83,11 @@
+ \input{supplement_sections/10_certificates}
+ \input{supplement_sections/05b_numerical_details}
+ 
+-{\footnotesize
+-\setlength{\bibsep}{0pt plus 0.2ex}
+-\bibliographystyle{plainnat}
++\ifdefined\SSOReview
++\bibliographystyle{plain}
++\else
++\bibliographystyle{siamplain}
++\fi
+ \bibliography{references}
+-}
+ 
+ \end{document}
+--- Original_20260804/submission/supplement_review.tex
++++ Revised_20260919/submission/supplement_review.tex
+@@ -0,0 +1,2 @@
++\def\SSOReview{1}
++\input{supplement}
+--- Original_20260804/submission/supplement_sections/03b_normal_theta.tex
++++ Revised_20260919/submission/supplement_sections/03b_normal_theta.tex
+@@ -16,21 +16,21 @@
+ \]
+ the spectral formulation of width-stable feature learning motivates the scale
+ \citep{yang2023spectral}
+-\[
++\begin{equation}
+  \snorm{W},\ \snorm{\Delta W}
+  =\Theta\!\left(\sqrt{\frac mn}\right)
+ \tag{N1}
+ \label{eq:spectral-scaling}
+-\]
++\end{equation}
+ Equation \eqref{eq:spectral-scaling} is an asymptotic order statement.  It does
+ \emph{not} require the exact equality \(\snorm{W}=R\) at every iteration.
+ The asymptotic notation \(\Theta(\cdot)\) in
+ \eqref{eq:spectral-scaling} is unrelated to the matrix normal
+ \(\Theta(W)\) defined below; the shared glyph should not be read as a shared
+ mathematical object.
+-Following \citet{xie2026controlled}, we make the additional hard-constraint
++Following Xie et al.~\cite{xie2026controlled}, we make the additional hard-constraint
+ modeling choice
+-\[
++\begin{equation}
+  \mathcal L_R
+  =
+  \{W\in\R^{m\times n}:\snorm{W}=R\},
+@@ -38,7 +38,7 @@
+  R\asymp\sqrt{m/n}.
+ \tag{N2}
+ \label{eq:spectral-level-set}
+-\]
++\end{equation}
+ The normal \(\Theta\) is a consequence of this additional level-set model, not
+ an independent optimizer ingredient and not a consequence of \(\mu\)P alone.
+ 
+@@ -56,37 +56,37 @@
+ \label{lem:spectral-normal}
+ If \(\sigma_1(W)>\sigma_2(W)\), then the spectral norm is real analytic in a
+ neighborhood of \(W\), and
+-\[
++\begin{equation}
+  D\snorm{W}[E]
+  =
+  \ip{u_1v_1^\top}{E}.
+ \tag{N3}
+ \label{eq:spectral-differential}
+-\]
++\end{equation}
+ Consequently
+-\[
++\begin{equation}
+  \Theta(W):=u_1(W)v_1(W)^\top
+ \tag{N4}
+ \label{eq:true-normal}
+-\]
++\end{equation}
+ is the unique outward, gradient-oriented Frobenius unit normal to the smooth
+ stratum of \(\mathcal L_R\); the unoriented normal space is
+ \(\operatorname{span}\{\Theta(W)\}\).  It is invariant under the joint sign change
+ \((u_1,v_1)\mapsto(-u_1,-v_1)\), has rank one, and satisfies
+-\[
++\begin{equation}
+  \snorm{\Theta}=\fnorm{\Theta}=\nnorm{\Theta}=1.
+ \tag{N5}
+-\]
++\end{equation}
+ 
+ If the positive leading singular value has multiplicity \(k>1\), then the
+ spectral norm is not differentiable and
+-\[
++\begin{equation}
+  \partial\snorm{W}
+  =
+  \{U_kSV_k^\top:S\succeq0,\ \tr S=1\}.
+ \tag{N6}
+ \label{eq:set-valued-weight-normal}
+-\]
++\end{equation}
+ \end{lemma}
+ 
+ \begin{proof}
+@@ -111,7 +111,7 @@
+ Let \(W\in\mathcal L_R\) have a positive leading singular value \(R\) of
+ multiplicity \(k\), with corresponding matrices \(U_k,V_k\).  Then the
+ Bouligand tangent cone of the equality level set is
+-\[
++\begin{equation}
+  T_{\mathcal L_R}^{\rm B}(W)
+  =
+  \left\{
+@@ -124,7 +124,7 @@
+ \operatorname{sym}(B)=\frac{B+B^\top}{2}.
+ \tag{N6a}
+ \label{eq:repeated-top-tangent-cone}
+-\]
++\end{equation}
+ For \(k=1\), this reduces to the hyperplane
+ \(\{E:\langle u_1v_1^\top,E\rangle_F=0\}\).  For \(k>1\), it is generally a
+ nonlinear, nonconvex cone and cannot be obtained by choosing one convenient
+@@ -134,7 +134,7 @@
+ \begin{proof}
+ The directional derivative of the largest singular value at a multiplicity
+ \(k\) cluster is
+-\[
++\begin{equation}
+  \snorm{\cdot}'(W;E)
+  =
+  \lambda_{\max}\!\left(
+@@ -142,7 +142,7 @@
+  \right).
+ \tag{N6b}
+ \label{eq:spectral-directional-derivative}
+-\]
++\end{equation}
+ This follows by compressing the perturbation of the symmetric dilation
+ \(\mathcal H(W)\) to its leading eigenspace.
+ 
+@@ -193,13 +193,13 @@
+ \begin{lemma}[Dimension-free sensitivity of the normal]
+ \label{lem:normal-derivative}
+ Let \(\gamma_W=\sigma_1(W)-\sigma_2(W)>0\).  For every perturbation \(E\),
+-\[
++\begin{equation}
+  \fnorm{D\Theta(W)[E]}
+  \le
+  \frac{\sqrt2}{\gamma_W}\snorm{E}.
+ \tag{N7}
+ \label{eq:normal-derivative}
+-\]
++\end{equation}
+ \end{lemma}
+ 
+ \begin{proof}
+@@ -226,30 +226,30 @@
+ 
+ On the simple-leading-value stratum, the tangent space is the kernel of
+ \eqref{eq:spectral-differential}:
+-\[
++\begin{equation}
+  T_W\mathcal L_R
+  =
+  \{\Phi:\ip{\Theta(W)}{\Phi}=0\}.
+ \tag{N8}
+ \label{eq:true-tangent-space}
+-\]
++\end{equation}
+ For a step \(E=-\eta R\Phi\), this also follows from
+-\[
++\begin{equation}
+  \snorm{W-\eta R\Phi}
+  =
+  R-\eta R\ip{\Theta}{\Phi}
+  +O\!\left(\frac{\eta^2R^2}{\gamma_W}\right).
+ \tag{N9}
+-\]
++\end{equation}
+ Thus the tangent LMO studied below is
+-\[
++\begin{equation}
+  p^\star
+  =
+  \max_{\snorm{\Phi}\le1,\ \ip{\Theta}{\Phi}=0}
+  \ip{G}{\Phi}.
+ \tag{P}
+ \label{eq:normal-primal}
+-\]
++\end{equation}
+ Here \(\Theta\) is computed from the current weight \(W\), whereas \(G\) is a
+ loss-gradient or momentum-like matrix supplied to the oracle.  They are
+ different inputs.  Their only coupling in the exact dual is through the affine
+@@ -284,7 +284,7 @@
+ \begin{lemma}[Explicit second-order drift]
+ \label{lem:normal-remainder}
+ Let \(\gamma_W>0\) and \(\snorm{E}\le\gamma_W/4\).  Then
+-\[
++\begin{equation}
+  0
+  \le
+  \snorm{W+E}-\snorm{W}-\ip{\Theta}{E}
+@@ -292,14 +292,14 @@
+  \frac{2\snorm{E}^2}{\gamma_W}.
+ \tag{N10}
+ \label{eq:normal-remainder}
+-\]
++\end{equation}
+ In particular, a tangent step \(E=-\eta R\Phi\) with
+ \(\snorm{\Phi}\le1\) and \(\eta R\le\gamma_W/4\) has radial drift at most
+-\[
++\begin{equation}
+  \frac{2\eta^2R^2}{\gamma_W}.
+ \tag{N11}
+ \label{eq:linearization-drift}
+-\]
++\end{equation}
+ \end{lemma}
+ 
+ \begin{proof}
+@@ -324,20 +324,20 @@
+ \(\sigma_1\ge\gamma_W\), so the same bound applies.
+ \end{proof}
+ 
+-Define the radial retraction
+-\[
++For \(W+E\ne0\), define the radial retraction
++\begin{equation}
+  \Retr_W(E)=R\frac{W+E}{\snorm{W+E}}.
+ \tag{N12}
+ \label{eq:radial-retraction}
+-\]
++\end{equation}
+ Its derivative is
+-\[
++\begin{equation}
+  D\Retr_W(0)[E]
+  =
+  E-\frac WR\ip{\Theta}{E}.
+ \tag{N13}
+ \label{eq:retraction-derivative}
+-\]
++\end{equation}
+ Thus retraction guarantees exact radial feasibility, whereas the tangent LMO
+ chooses the best first-order direction under a prescribed spectral budget.
+ They are not interchangeable.  Retraction also does not automatically
+@@ -348,20 +348,20 @@
+ An implementation computes an approximate singular triplet
+ \((\hat\sigma,\hat u,\hat v)\), typically by a few power or block iterations,
+ and sets
+-\[
++\begin{equation}
+  \hat\Theta=\hat u\hat v^\top.
+ \tag{N14}
+-\]
++\end{equation}
+ For classical bilateral power iteration with a starting vector having nonzero
+ leading-component overlap, the right-vector angle obeys
+-\[
++\begin{equation}
+  \tan\angle(\hat v_k,v_1)
+  \le
+  \left(\frac{\sigma_2(W)}{\sigma_1(W)}\right)^{2k}
+  \tan\angle(\hat v_0,v_1).
+ \tag{N14a}
+ \label{eq:power-rate}
+-\]
++\end{equation}
+ Thus a fixed iteration budget is reliable only when the leading ratio is
+ separated from one.
+ 
+@@ -372,7 +372,7 @@
+ \emph{line}, not an oriented normal matrix.
+ 
+ Let
+-\[
++\begin{equation}
+  \alpha_u=\arccos|u_1^\top\hat u|,
+  \qquad
+  \alpha_v=\arccos|v_1^\top\hat v|,
+@@ -380,12 +380,12 @@
+  \alpha_u,\alpha_v\in[0,\pi/2],
+ \tag{N15}
+ \label{eq:acute-angles}
+-\]
++\end{equation}
+ and put \(\vartheta=\alpha_u+\alpha_v\).
+ 
+ \begin{lemma}[Exact projective distance between rank-one normals]
+ \label{lem:projective-normal-distance}
+-\[
++\begin{equation}
+  \min_{s\in\{\pm1\}}\nnorm{\Theta-s\hat\Theta}
+  =
+  2\sin\frac{\vartheta}{2},
+@@ -395,7 +395,7 @@
+  \sqrt{2-2\cos\alpha_u\cos\alpha_v}.
+ \tag{N16}
+ \label{eq:projective-distance}
+-\]
++\end{equation}
+ \end{lemma}
+ 
+ \begin{proof}
+@@ -421,7 +421,7 @@
+ \begin{theorem}[Sharp worst-case leakage of an estimated tangent space]
+ \label{thm:sharp-normal-leakage}
+ For unit rank-one normals \(\Theta,\hat\Theta\),
+-\[
++\begin{equation}
+  \sup_{\substack{\snorm{\Phi}\le1\\
+                   \ip{\hat\Theta}{\Phi}=0}}
+  |\ip{\Theta}{\Phi}|
+@@ -432,7 +432,7 @@
+  \end{cases}
+ \tag{N17}
+ \label{eq:sharp-normal-leakage}
+-\]
++\end{equation}
+ \end{theorem}
+ 
+ \begin{proof}
+--- Original_20260804/submission/supplement_sections/05b_numerical_details.tex
++++ Revised_20260919/submission/supplement_sections/05b_numerical_details.tex
+@@ -1,62 +1,49 @@
+ \section{Detailed numerical verification}
+-\label{sec:supp-numerics}
+-
+-The local laws of Section~\ref{sec:rates} predict constants, not merely exponents, so
+-they can be falsified numerically.  We report closed-form instances in which
+-the displayed constants are available in exact arithmetic.  The
+-\(2\times2\) checks evaluate the smoothed scalar root of
+-\eqref{eq:smooth-root-main} in high-precision decimal arithmetic through the
+-closed principal-square-root formula for
+-\(Z_\delta(A)=A(A^\top A+\delta^2I)^{-1/2}\); the diagonal corank-two
+-instance is evaluated entrywise.  The roots are located by
+-bisection on the strictly increasing function \(h_\delta\); assertion-based
+-scripts accompany the paper.
++\label{sec:supp-numerics}\input{generated/numerical_macros}
++
++The local laws of Section~\ref{sec:rates} predict constants, not merely
++exponents.  The file \nolinkurl{verify_publication_tables.py} generates every
++numerical table and the displayed decimal constants in this section from one
++machine-readable snapshot.  It uses 80-digit mpmath arithmetic (100-digit
++Decimal arithmetic for the moving family), and repeats the non-diagonal
++calculation at 100 digits.  The repeated ratios agree within \(10^{-60}\)
++and its intrinsic constants within \(10^{-65}\); we report fewer digits.
++These are working precisions and numerical cross-checks, not validated
++error bounds.  Bisection and explicit spectral formulas avoid float64
++subtraction of nearby multipliers or directions.  The full suite also retains
++independent float64 regression tests; no assertion is silently disabled under
++\texttt{python -O}.  The following commands run the suite and compare the
++stored JSON/LaTeX snapshots, respectively:
++\begin{quote}\small\ttfamily
++python verify\_all.py\\
++python verify\_publication\_tables.py --check
++\end{quote}
++Omit \texttt{--check} from the second command to regenerate the snapshots.
+ 
+ For the first group, \(\Theta=e_1e_1^\top\) and
+ \(G=\bigl(\begin{smallmatrix}0&b_1\\b_2&c\end{smallmatrix}\bigr)\).
+ 
+-\begin{center}
+-\begin{tabular}{@{}llll@{}}
+-\toprule
+-Regime & Instance and predicted constant & Smoothing & Computed \\
+-\midrule
+-Theorem~\ref{thm:rate-regular} &
+-\(b_1=b_2=1,\ c=\tfrac12\);\ \(\lambda^\star=\tfrac12\), \(\kappa=\tfrac12\) &
+-\(\delta=10^{-4}\) & \(-1.777777665\)\\
+-\(O(\delta^2)\) &
+-\((\lambda_\delta-\lambda^\star)/\delta^2\to-b^\star/\kappa=-\tfrac{16}{9}\)
+-&\(\delta=10^{-5}\) & \(-1.777777777\)\\
+-\addlinespace
+-Corollary~\ref{thm:rate-strict} &
+-\(b_1=b_2=\tfrac12,\ c=1\);\ \(\lambda^\star=\tfrac14\),
+-\(a=\tfrac15\), \(\beta=\tfrac45\) &
+-\(\delta=10^{-6}\) & \(-0.3227484177\)\\
+-\(\Theta(\delta)\) &
+-\((\lambda_\delta-\lambda^\star)/\delta\to t_0=-\tfrac{5}{4\sqrt{15}}\)
+-& \(\delta=10^{-8}\) & \(-0.3227486102\)\\
+-\addlinespace
+-Theorem~\ref{thm:rate-boundary} &
+-\(b_1=b_2=c=1\);\ \(\lambda^\star=1\), \(a=\beta=\tfrac12\), \(\kappa=\tfrac12\) &
+-\(\delta=10^{-9}\) & \(1.259920256\)\\
+-\(\Theta(\delta^{2/3})\) &
+-\((\lambda^\star-\lambda_\delta)/\delta^{2/3}\to(2\beta\kappa)^{-1/3}=2^{1/3}\)
+-& \(\delta=10^{-12}\) & \(1.259921042\)\\
+-\bottomrule
+-\end{tabular}
+-
+-\smallskip
+-{\small
+-Exact values: \(-16/9=-1.777777778\),
+-\(-5/(4\sqrt{15})=-0.3227486122\),
+-\(2^{1/3}=1.259921050\).}
+-\end{center}
++For the regular row, \(b_1=b_2=1\), \(c=1/2\), and
++\(\lambda^\star=1/2\); the ratio is
++\((\lambda_\delta-\lambda^\star)/\delta^2\).  For the strict row,
++\(b_1=b_2=1/2\), \(c=1\), and \(\lambda^\star=1/4\); the ratio is
++\((\lambda_\delta-\lambda^\star)/\delta\).  For the boundary row,
++\(b_1=b_2=c=1\), \(\lambda^\star=1\), and the ratio is
++\((\lambda^\star-\lambda_\delta)/\delta^{2/3}\).
++\input{generated/table_fixed}
+ 
+ For the same boundary data, standard Huber gives
+-\((\lambda^\star-\lambda_\delta^{\rm hub})/\delta=1.9999999656\) at
++\((\lambda^\star-\lambda_\delta^{\rm hub})/\delta=\numHuberBoundaryRatio\) at
+ \(\delta=10^{-8}\), versus \(1/\beta=2\).  The scaled-Huber regression in
+ the code also confirms that moving the first saturation threshold to
+ \(L=1/2\) changes the constant to \(L/\beta=1\), as required by
+ \eqref{eq:saturated-boundary-rate-main}.
++
++For the admissible profile \(\psi'(x)=x/(1+x^3)^{1/3}\), \(x\ge0\),
++we divide the displacement by \(\delta^{3/4}\); for Huber and scaled
++Huber we divide it by \(\delta\).  Thus the complete profile table tests
++the tail-dependent exponent as well as the leading constant.
++\input{generated/table_profiles}
+ 
+ The preceding instances are \(2\times2\).  To exercise the general
+ completion and arbitrary-corank strict law, take
+@@ -71,25 +58,13 @@
+ \(K_F=-\diag(3/5,3/10)\), and
+ \(\|K_F\|_F=\sqrt{0.45}\).  The smooth-center equation gives
+ \[
+- \eta_R=0.715080068980,\qquad
+- K_R=-\diag(0.581665969555,0.336668060890),
+-\]
+-with \(\|K_F-K_R\|_F=0.040996138377\).  Writing
++ \eta_R=\numCorankEta,\qquad
++ K_R=-\diag(\numCorankKrOne,\numCorankKrTwo),
++\]
++with \(\|K_F-K_R\|_F=\numCenterDistance\).  Writing
+ \(\Phi_F^\star\) and \(\Phi_R^\star\) for the two corresponding completed
+ certificates, the actual smoothing path gives
+-\begin{center}
+-\begin{tabular}{@{}llll@{}}
+-\toprule
+-\(\delta\) & \(\lambda_\delta-\lambda^\star\) &
+-\(\|\Phi_\delta-\Phi_R^\star\|_F\) &
+-\(\|\Phi_\delta-\Phi_F^\star\|_F\)\\
+-\midrule
+-\(10^{-2}\) & \(-7.150296\!\times\!10^{-3}\) & \(7.896\!\times\!10^{-5}\) & \(4.0990\!\times\!10^{-2}\)\\
+-\(10^{-3}\) & \(-7.150796\!\times\!10^{-4}\) & \(7.859\!\times\!10^{-7}\) & \(4.0996\!\times\!10^{-2}\)\\
+-\(10^{-4}\) & \(-7.150801\!\times\!10^{-5}\) & \(7.855\!\times\!10^{-9}\) & \(4.0996\!\times\!10^{-2}\)\\
+-\bottomrule
+-\end{tabular}
+-\end{center}
++\input{generated/table_corank}
+ Thus the path converges to the smooth rather than the minimum-Frobenius
+ center, while
+ \((\lambda_\delta-\lambda^\star)/\delta\to-\eta_R\), as predicted by
+@@ -121,21 +96,26 @@
+ \]
+ In the displayed coordinates, \(a=1/3\),
+ \(C=\diag(2/3,1/3)\), \(\beta=1\), and
+-\(\eta_R=0.644812526657\).  At \(\delta=10^{-5}\), the extended-precision
+-multiplier ratio is \(-0.644805516183\), while the deterministic direction
+-ratio is \(0.671768254\),
+-respectively, already exhibiting a nonzero linear direction term.  Direct evaluation of
++\(\eta_R=\numNonDiagonalEta\).  At \(\delta=10^{-5}\), the multiplier ratio is
++\[
++ (\lambda_\delta-\lambda^\star)/\delta=\numNonDiagonalSlopeFive.
++\]
++The direction ratio is \(\numNonDiagonalDirectionFive\), already exhibiting
++a nonzero linear direction term.  Direct evaluation of
+ \eqref{eq:t1-closed-main}--\eqref{eq:MR-closed-main} gives
+ \[
+- t_1=0.7010530600,
+- \qquad \|\mathcal M_R\|_F=0.6717753807.
++ t_1=\numNonDiagonalTOne,
++ \qquad \|\mathcal M_R\|_F=\numNonDiagonalMR.
+ \]
+ At \(\delta=10^{-6}\), the observed direction ratio is
+-\(0.6717760680\), and the cosine between
++\(\numNonDiagonalDirectionSix\), and the cosine between
+ \((\Phi_\delta-\Phi_R^\star)/\delta\) and \(\mathcal M_R\) equals one to
+-ten displayed digits.  The corresponding 50-digit finite-scale estimate of
+-\(t_1\) at \(\delta=10^{-5}\) is \(0.7010473954\).  Thus the table verifies the
+-predicted vector coefficient, not only its exponent.  This demonstrates
++ten displayed digits (its computed value is \(\numNonDiagonalCosineSix\)).  The finite-scale estimate of
++\(t_1\) at \(\delta=10^{-5}\) is \(\numNonDiagonalFiniteTOneFive\).  Thus the table verifies the
++predicted vector coefficient, not only its exponent.  Writing
++\(t_\delta=(\lambda_\delta-1)/\delta\), the complete sequence is
++\input{generated/table_nondiagonal}
++This demonstrates
+ sharpness for one fixed instance; no generic measure statement is inferred.
+ 
+ The compact-root branch of
+@@ -144,9 +124,9 @@
+ \(G=A^\star-\Theta\), one has \(a=0\), \(C=(1)\),
+ \(J_\star=\diag(1/4,1,0)\), and \(\chi_\star=-3/4\).  Thus the predicted
+ coefficients are \(-3/8\) and
+-\(\|\mathcal N_0\|_F=\sqrt{26}/8=0.6373774392\ldots\).
++\(\|\mathcal N_0\|_F=\sqrt{26}/8=\numCompactDirectionLimit\ldots\).
+ At \(\delta=10^{-4}\), high-precision bisection gives the normalized pair
+-\((-0.3749999965,\,0.6373774341)\); the assertion script checks monotone
++\((\numCompactMultiplier,\,\numCompactDirection)\); the assertion script checks monotone
+ convergence over four scales.  Thus, even when the compact-polar equation
+ already has a root, the nearby smooth path has nonzero errors beginning at
+ cubic and quadratic order.
+@@ -172,20 +152,10 @@
+  \diag\!\left(\frac1{216},\frac3{128},\frac38,-\frac18\right).
+ \]
+ Extended-precision bisection gives
+-\begin{center}
+-\begin{tabular}{@{}lllll@{}}
+-\toprule
+-\(\delta\) & \(10^{-2}\) & \(10^{-3}\) & \(10^{-4}\) & \(10^{-5}\)\\
+-\midrule
+-\((\lambda_\delta-\lambda^\star)/\delta^5\) &
+-\(-0.1248207361\)&\(-0.1249833498\)&\(-0.1249983476\)&\(-0.1249998349\)\\
+-\bottomrule
+-\end{tabular}
+-\end{center}
++\input{generated/table_quintic}
+ At \(\delta=10^{-4}\), the diagonal of the normalized quartic direction is
+ \[
+- (0.004629629625,,0.023437499951,,0.374999996875,
+-   -0.124998347562),
++ (\numQuarticOne,\,\numQuarticTwo,\,\numQuarticThree,\,\numQuarticFour),
+ \]
+ while the Frobenius norm of its off-diagonal part is below
+ \(4\times10^{-6}\).  The high-precision assertion script checks all four
+@@ -199,34 +169,14 @@
+ family in the critical window \eqref{eq:crossover-critical-main}, whose
+ limit solves \(\tfrac12y^3+\zeta y^2=1\).
+ 
+-\begin{center}
+-\begin{tabular}{@{}lllll@{}}
+-\toprule
+-\(\zeta\) & \(0\) & \(1\) & \(3\) & \(10\)\\
+-\midrule
+-predicted \(y_\zeta\) &
+-\(1.259921050\)&\(0.839286755\)&\(0.552474611\)&\(0.313775961\)\\
+-computed \(x_\delta/\delta^{2/3}\), \(\delta=10^{-9}\) &
+-\(1.259920256\)&\(0.839284833\)&\(0.552471210\)&\(0.313769661\)\\
+-\bottomrule
+-\end{tabular}
+-\end{center}
++\input{generated/table_critical}
+ 
+ For a valid strict-side moving path, take
+ \(\Delta_\delta=\delta^{1/3}\); then
+ \(\Delta_\delta\to0\) while
+ \(\Delta_\delta/\delta^{2/3}\to\infty\).  The normalization in
+ \eqref{eq:crossover-inner-main}, whose limit is one for this family, gives
+-\begin{center}
+-\begin{tabular}{@{}lllll@{}}
+-\toprule
+-\(\delta\) & \(10^{-6}\) & \(10^{-9}\) & \(10^{-12}\) & \(10^{-15}\)\\
+-\midrule
+-\(x_\delta\sqrt{\Delta_\delta}/\delta\) &
+-\(0.979950782\)&\(0.997994100\)&\(0.999799770\)&\(0.999979992\)\\
+-\bottomrule
+-\end{tabular}
+-\end{center}
++\input{generated/table_strict}
+ This path respects the moving-family quantifier.  By contrast, fixing
+ \(\varepsilon\) and sending \(\delta\) to zero tests the fixed strict-kink
+ law, not the crossover theorem.
+@@ -240,10 +190,34 @@
+  \longrightarrow\sqrt{3/2}.
+ \]
+ At \(\delta=10^{-15}\), the computed ratio is
+-\(1.224744871327\), versus
+-\(\sqrt{3/2}=1.224744871392\).  The same verification includes critical,
++\(\numBoundaryDirection\), versus
++\(\sqrt{3/2}=\numBoundaryDirectionLimit\).  The same verification includes critical,
+ strict-side, boundary, and deliberately oscillatory paths for the unified
+ ratio \(x_\delta/\widehat x_\delta\).
++
++For completeness, the oscillatory sequence is
++\[ q_k=10^{-k},\qquad \delta_k=q_k^3,\qquad
++\Delta_k=\begin{cases}
++0,& k\equiv0\pmod3,\\
++3q_k^2,& k\equiv1\pmod3,\\
++q_k,& k\equiv2\pmod3.
++\end{cases} \]
++It alternates among boundary, critical, and strict-side windows, so the
++unified ratio has a limit even though the regime changes along the sequence.
++The displayed ones are rounded values, not exact identities.
++\input{generated/table_oscillatory}
++
++The separate \texttt{verify\_certificate\_example.py} illustrates why a
++certificate must be assessed on the actual returned matrix.  For
++\(G=\left(\begin{smallmatrix}0&1\\1&2\end{smallmatrix}\right)\) and
++\(\Theta=e_1e_1^\top\), the exact completed direction is
++\(\left(\begin{smallmatrix}0&1/2\\1/2&3/4\end{smallmatrix}\right)\).
++It is tangent and optimal, whereas the compact polar factor at the same
++multiplier has tangency residual \(1/5\).  The script also compares an
++eight-step float64 polynomial map using the published Newton--Schulz
++coefficients from Xie et al.~\cite{xie2026controlled}.  That diagnostic is not the production BF16 implementation,
++a Fenchel-path assertion, or a GPU-training experiment; its floating-point
++gap is not an interval-certified bound.
+ 
+ We emphasize what these tables do and do not support.  They confirm the
+ exponents and leading constants of the local laws on instances where those
+--- Original_20260804/submission/supplement_sections/10_certificates.tex
++++ Revised_20260919/submission/supplement_sections/10_certificates.tex
+@@ -8,7 +8,7 @@
+ 
+ Assume here that \(\Theta=uv^\top\) is a unit rank-one normal.  Given an
+ arbitrary approximate matrix \(Z\), define the spectral normalization
+-\[
++\begin{equation}
+ \bar Z
+ =
+ \frac{Z}{\max\{1,\snorm{Z}\}},
+@@ -16,58 +16,58 @@
+ c=\ip{\Theta}{\bar Z},
+ \tag{54}
+ \label{eq:Zbar-c}
+-\]
++\end{equation}
+ and the feasible repair
+-\[
++\begin{equation}
+ \widetilde Z
+ =
+ \frac{\bar Z-c\Theta}{1+|c|}.
+ \tag{55}
+ \label{eq:Ztilde}
+-\]
+-
+-\begin{theorem}[T6: feasible repair and valid primal--dual gap in exact arithmetic]
++\end{equation}
++
++\begin{theorem}[Feasible repair and valid primal--dual gap in exact arithmetic]
+ \label{thm:T6}
+ The repaired matrix satisfies
+-\[
++\begin{equation}
+ \ip{\Theta}{\widetilde Z}=0,
+ \qquad
+ \snorm{\widetilde Z}\le1.
+ \tag{56}
+ \label{eq:T6-feas}
+-\]
++\end{equation}
+ For any multiplier \(\lambda\), define
+-\[
++\begin{equation}
+ \Gap(\lambda,Z)
+ =
+ \nnorm{G+\lambda\Theta}
+ -\ip{G}{\widetilde Z}.
+ \tag{57}
+ \label{eq:true-gap}
+-\]
++\end{equation}
+ Then
+-\[
++\begin{equation}
+ \Gap(\lambda,Z)
+ \ge
+ p^\star-\ip{G}{\widetilde Z}
+ \ge0.
+ \tag{58}
+ \label{eq:gap-cover}
+-\]
++\end{equation}
+ Thus \eqref{eq:true-gap} is a valid upper bound on the primal LMO
+ suboptimality.
+ 
+ If
+-\[
++\begin{equation}
+ r_{\mathrm{pol}}
+ =
+ \nnorm{G+\lambda\Theta}
+ -\ip{G+\lambda\Theta}{\bar Z},
+ \tag{59}
+ \label{eq:rpol}
+-\]
++\end{equation}
+ then \(r_{\mathrm{pol}}\ge0\), and
+-\[
++\begin{equation}
+ \Gap(\lambda,Z)
+ \le
+ r_{\mathrm{pol}}
+@@ -75,18 +75,18 @@
+ +\frac{2\nnorm{G}|c|}{1+|c|}.
+ \tag{60}
+ \label{eq:gap-decomposition}
+-\]
++\end{equation}
+ Finally, if a computable quantity \(\widehat\phi(\lambda)\) has been proved to
+ satisfy
+ \[
+ \widehat\phi(\lambda)\ge\nnorm{G+\lambda\Theta},
+ \]
+ then
+-\[
++\begin{equation}
+ \widehat\phi(\lambda)-\ip{G}{\widetilde Z}
+ \tag{61}
+ \label{eq:upper-certificate}
+-\]
++\end{equation}
+ is also a valid certificate.
+ \end{theorem}
+ 
+@@ -98,9 +98,9 @@
+ \end{proofidea}
+ 
+ \begin{intuition}
+-T6 turns any approximate polar map---including one affected by truncation,
++The repair turns any approximate polar map---including one affected by truncation,
+ finite precision, or an imperfect multiplier---into a direction that the
+-downstream method may safely use.  The certificate measures the price of the
++inner oracle may accept at a prescribed objective accuracy.  The certificate measures the price of the
+ repair rather than silently treating an infeasible matrix as primal feasible.
+ \end{intuition}
+ 
+@@ -168,6 +168,32 @@
+ upper bound preserves the coverage inequality, giving
+ \eqref{eq:upper-certificate}.
+ \end{proof}
++
++\begin{remark}[The same repair for an arbitrary nonzero normal]
++\label{rem:general-normal-repair}
++The rank-one normalization makes the formulas particularly simple but is
++not essential.  For any nonzero \(\Theta\), normalize \(Z\) as in
++\eqref{eq:Zbar-c} and put
++\[
++ b=\ip{\Theta}{\bar Z},\qquad
++ d=\frac{b}{\|\Theta\|_F^2},\qquad
++ \eta=|d|\|\Theta\|_2,\qquad
++ \widetilde Z=\frac{\bar Z-d\Theta}{1+\eta}.
++\]
++Then \(\langle\Theta,\widetilde Z\rangle=0\) and
++\(\|\widetilde Z\|_2\le1\).  With
++\(r_{\rm pol}=\|G+\lambda\Theta\|_*
++-\langle G+\lambda\Theta,\bar Z\rangle\), the same calculation gives
++\[
++ 0\le p^\star-\langle G,\widetilde Z\rangle
++ \le\|G+\lambda\Theta\|_*-\langle G,\widetilde Z\rangle
++ \le r_{\rm pol}+|\lambda||b|
++       +\frac{2\|G\|_*\eta}{1+\eta}.
++\]
++Indeed, \(\bar Z-\widetilde Z=(\eta\bar Z+d\Theta)/(1+\eta)\), whose
++spectral norm is at most \(2\eta/(1+\eta)\).  This is an elementary
++extension of the same feasibility argument, not a further smoothing law.
++\end{remark}
+ 
+ \begin{boundary}
+ The feasibility and coverage statements above are exact-real-arithmetic
+@@ -188,7 +214,7 @@
+ P=\bar Z-c\Theta.
+ \]
+ If \(P\ne0\), choose
+-\[
++\begin{equation}
+ s_G=
+ \begin{cases}
+ 1,&\ip{G}{P}\ge0,\\
+@@ -198,18 +224,18 @@
+ Z_{\rm unit}=s_G\frac{P}{\snorm{P}}.
+ \tag{62}
+ \label{eq:unit-repair}
+-\]
++\end{equation}
+ Then
+ \[
+ \ip{\Theta}{Z_{\rm unit}}=0,\qquad
+ \snorm{Z_{\rm unit}}=1,
+ \]
+ and
+-\[
++\begin{equation}
+ \ip{G}{Z_{\rm unit}}\ge\ip{G}{\widetilde Z}.
+ \tag{63}
+ \label{eq:unit-repair-objective}
+-\]
++\end{equation}
+ Consequently, replacing \(\widetilde Z\) by \(Z_{\rm unit}\) never worsens the
+ valid primal--dual certificate.
+ 
+@@ -220,12 +246,15 @@
+ =\frac{\Phi_\delta}{\snorm{\Phi_\delta}}.
+ \]
+ It remains tangent, has unit spectral norm, and has no smaller original
+-linear objective.  If
+-\[
+-\sigma_1(G+\lambda_\delta\Theta)\ge s_0>0,
+-\]
+-then the rescaling factor satisfies
+-\[
++linear objective.  The lower bound
++\[
++\sigma_1(G+\lambda_\delta\Theta)\ge s_0:=p^\star/q>0,
++\qquad q=\min\{m,n\},
++\]
++holds uniformly for every \(\delta>0\), because
++\(q\sigma_1(G+\lambda\Theta)\ge\|G+\lambda\Theta\|_*\ge p^\star\)
++for every \(\lambda\).  Therefore the rescaling factor satisfies
++\begin{equation}
+ \frac{1}{\snorm{\Phi_\delta}}
+ =
+ \sqrt{1+\frac{\delta^2}
+@@ -233,7 +262,7 @@
+ =1+O(\delta^2).
+ \tag{64}
+ \label{eq:smooth-unit-factor}
+-\]
++\end{equation}
+ \end{corollary}
+ 
+ \begin{proof}
+@@ -285,8 +314,8 @@
+ \(P=0\) and may amplify numerical noise nearby.  Moreover,
+ \(\Phi_\delta^{\rm unit}\) is no longer the exact optimizer of the
+ regularized primal at finite \(\delta\), so its Fenchel center-path identity
+-must not be asserted pointwise.  Under the lower bound in
+-\eqref{eq:smooth-unit-factor}, however, its rescaling is \(1+O(\delta^2)\)
++must not be asserted pointwise.  For a fixed instance with \(p^\star>0\),
++however, its rescaling is \(1+O(\delta^2)\)
+ and it has the same limiting center.
+ \end{boundary}
+ 
+@@ -308,6 +337,15 @@
+ when a valid quantity of the form \eqref{eq:true-gap} or
+ \eqref{eq:upper-certificate} is at most \(\varepsilon_t\).  Reporting only
+ \(|c|\) is not sufficient.
++
++The matrix \(Z\) in these diagnostics is the actual returned output of the
++implemented map.  Replacing it by \(\Sc(G+\lambda\Theta)\), or computing
++the tangent residual with an estimated normal while interpreting it as a
++residual for the true normal, changes the quantity being assessed.  A small
++tangent residual alone also does not imply a small \(r_{\rm pol}\) or a
++small feasible gap.  Conversely, a small computed floating-point gap is
++evidence for numerical accuracy only within its recorded norm and pairing
++errors; it is not a machine-rigorous certificate without validated bounds.
+ 
+ \subsection{A certifiable reference homotopy oracle}
+ 
+@@ -340,7 +378,7 @@
+ 
+ This homotopy is ``accuracy on demand'' only after the normal accuracy and any
+ assumptions required by a downstream method have been certified independently.
+-T6 makes only the \emph{inner} oracle gap computable; it does not certify the
++\Cref{thm:T6} makes only the \emph{inner} oracle gap computable; it does not certify the
+ normal or an outer descent model.
+ Consequently this is a certifiable reference workflow, not a claim of a
+ fully deployable per-step large-model routine.
+@@ -349,5 +387,5 @@
+ The repair is deliberately simple and globally safe.  It may be conservative:
+ projecting onto the exact intersection of a spectral ball and a hyperplane
+ could produce a tighter primal value, but would itself require a nontrivial
+-optimization.  T6 prioritizes a closed-form guarantee.
++optimization.  The displayed repair prioritizes a closed-form guarantee.
+ \end{remark}
+--- Original_20260804/verify_all.py
++++ Revised_20260919/verify_all.py
+@@ -1,32 +1,52 @@
+ #!/usr/bin/env python3
+-"""Run the complete deterministic verification suite."""
+-
++"""Run deterministic verification; retain environment, script hashes and logs."""
++if not __debug__:
++    raise RuntimeError('Verification requires assertions: rerun without -O / PYTHONOPTIMIZE.')
+ from pathlib import Path
++import hashlib
++import importlib.metadata
++import json
++import os
++import platform
+ import subprocess
+ import sys
++import time
+ 
+-
+-SCRIPTS = (
+-    "verify_rate_constants_exact.py",
+-    "verify_unified_crossover.py",
+-    "verify_partial_isometry.py",
+-    "verify_direction_rates.py",
+-    "verify_theorems.py",
+-    "verify_corank2_strict_center.py",
+-    "verify_arbitrary_corank_strict_law.py",
+-    "verify_direction_rate_general_corank.py",
+-    "verify_intrinsic_constants.py",
+-    "verify_smoothing_family.py",
++SCRIPTS=(
++    ('verify_rate_constants_exact.py',),
++    ('verify_unified_crossover.py',),
++    ('verify_partial_isometry.py',),
++    ('verify_direction_rates.py',),
++    ('verify_theorems.py',),
++    ('verify_corank2_strict_center.py',),
++    ('verify_arbitrary_corank_strict_law.py',),
++    ('verify_direction_rate_general_corank.py',),
++    ('verify_intrinsic_constants.py',),
++    ('verify_smoothing_family.py',),
++    ('verify_publication_tables.py','--check'),
++    ('verify_certificate_example.py',),
++    ('verify_finite_cancellation.py',),
++    ('verify_boundary_noncancellation.py',),
+ )
+ 
+-
+ def main():
+-    root = Path(__file__).resolve().parent
+-    for script in SCRIPTS:
+-        print(f"\n=== {script} ===", flush=True)
+-        subprocess.run([sys.executable, str(root / script)], check=True)
+-    print("\nALL VERIFICATION SCRIPTS PASSED.")
+-
+-
+-if __name__ == "__main__":
+-    main()
++    root=Path(__file__).resolve().parent
++    out=root/'results';logs=out/'verification_logs';logs.mkdir(parents=True,exist_ok=True)
++    report={
++        'python':sys.version,'executable':sys.executable,'platform':platform.platform(),
++        'dependencies':{name:importlib.metadata.version(name) for name in ('numpy','scipy','mpmath')},
++        'optimize_flag':sys.flags.optimize,
++        'thread_environment':{name:os.environ.get(name) for name in ('OPENBLAS_NUM_THREADS','OMP_NUM_THREADS','MKL_NUM_THREADS')},
++        'scope':'CPU mathematical regression checks; no GPU training and no interval certification.',
++        'scripts':[],
++    }
++    for command in SCRIPTS:
++        name=command[0];print(f'\n=== {name} ===',flush=True);start=time.monotonic()
++        run=subprocess.run([sys.executable,str(root/name),*command[1:]],cwd=root,text=True,stdout=subprocess.PIPE,stderr=subprocess.STDOUT)
++        print(run.stdout,end='',flush=True);log=logs/(Path(name).stem+'.log');log.write_text(run.stdout)
++        row={'script':name,'arguments':list(command[1:]),'exit_code':run.returncode,'elapsed_seconds':round(time.monotonic()-start,3),'source_sha256':hashlib.sha256((root/name).read_bytes()).hexdigest(),'output_sha256':hashlib.sha256(run.stdout.encode()).hexdigest(),'log':str(log.relative_to(root))}
++        report['scripts'].append(row);report['all_passed']=all(x['exit_code']==0 for x in report['scripts']) and len(report['scripts'])==len(SCRIPTS)
++        (out/'verification_latest.json').write_text(json.dumps(report,indent=2)+'\n')
++        if run.returncode:raise SystemExit(f'FAILED: {name}; see {log}')
++    print(f'\nALL {len(SCRIPTS)} VERIFICATION SCRIPTS PASSED.')
++if __name__=='__main__':main()
+--- Original_20260804/verify_arbitrary_corank_strict_law.py
++++ Revised_20260919/verify_arbitrary_corank_strict_law.py
+@@ -5,6 +5,10 @@
+ Theta in singular coordinates of A_star. The prediction is reconstructed
+ from an SVD of the resulting matrices, not from the construction parameters.
+ """
++
++# Scientific assertions must never disappear under python -O / PYTHONOPTIMIZE.
++if not __debug__:
++    raise RuntimeError("Verification requires assertions: rerun without -O / PYTHONOPTIMIZE.")
+ 
+ import numpy as np
+ from numpy.linalg import qr, svd
+--- Original_20260804/verify_boundary_noncancellation.py
++++ Revised_20260919/verify_boundary_noncancellation.py
+@@ -0,0 +1,101 @@
++#!/usr/bin/env python3
++"""100-digit check of the necessarily nonzero boundary direction coefficient.
++
++This checks one explicit boundary model.  The general lower bound follows
++from the orthogonality proof in the manuscript, not from this example.
++"""
++
++import json
++
++import mpmath as mp
++
++
++def require(condition, message):
++    if not condition:
++        raise RuntimeError(message)
++
++
++def frobenius_pair(a, b):
++    return mp.fsum(a[i, j] * b[i, j] for i in range(a.rows) for j in range(a.cols))
++
++
++def spectral_data(lam):
++    distance = mp.sqrt((lam - 1) ** 2 + 4)
++    large = (lam + 1 + distance) / 2
++    small = (lam + 1 - distance) / 2
++    derivative_large = (1 + (lam - 1) / distance) / 2
++    derivative_small = 1 - derivative_large
++    return large, small, derivative_large, derivative_small
++
++
++def smooth_output(lam, delta):
++    large, small, _, _ = spectral_data(lam)
++    a = mp.matrix([[lam, 1], [1, 1]])
++    positive_projector = (a - small * mp.eye(2)) / (large - small)
++    small_projector = mp.eye(2) - positive_projector
++    return (large / mp.sqrt(large ** 2 + delta ** 2) * positive_projector
++            + small / mp.sqrt(small ** 2 + delta ** 2) * small_projector)
++
++
++def smooth_root(delta):
++    def derivative(lam):
++        large, small, dlarge, dsmall = spectral_data(lam)
++        return (large * dlarge / mp.sqrt(large ** 2 + delta ** 2)
++                + small * dsmall / mp.sqrt(small ** 2 + delta ** 2))
++
++    lo, hi = mp.mpf(0), mp.mpf(1)
++    require(derivative(lo) < 0 < derivative(hi), "boundary root bracket failed")
++    for _ in range(360):
++        mid = (lo + hi) / 2
++        if mid == lo or mid == hi:
++            break
++        value = derivative(mid)
++        if value == 0:
++            return mid
++        if value < 0:
++            lo = mid
++        else:
++            hi = mid
++    return (lo + hi) / 2
++
++
++def main():
++    mp.mp.dps = 100
++    half = mp.mpf(1) / 2
++    dyad = mp.matrix([[half, -half], [-half, half]])
++    p_derivative = mp.matrix([[mp.mpf(1) / 4, 0], [0, -mp.mpf(1) / 4]])
++    d_derivative = -p_derivative
++    coefficient = -p_derivative + d_derivative + dyad  # kappa/beta = 1.
++    target = mp.matrix([[0, -half], [-half, 1]])
++    require(coefficient == target, "analytic boundary coefficient mismatch")
++    require(frobenius_pair(dyad, p_derivative) == 0, "positive/null orthogonality failed")
++    require(frobenius_pair(dyad, d_derivative) == 0, "unit-dyad derivative failed")
++    require(frobenius_pair(dyad, coefficient) == 1, "noncancellation pairing failed")
++    require(frobenius_pair(coefficient, coefficient) == mp.mpf(3) / 2,
++            "coefficient norm mismatch")
++
++    exact_center = mp.matrix([[0, 1], [1, 0]])
++    rows = []
++    for delta in map(mp.mpf, ["1e-6", "1e-9"]):
++        lam = smooth_root(delta)
++        x = 1 - lam
++        scaled_direction = (smooth_output(lam, delta) - exact_center) / x
++        difference = scaled_direction - coefficient
++        error = mp.sqrt(frobenius_pair(difference, difference))
++        measured_pairing = frobenius_pair(dyad, scaled_direction)
++        require(error < 2 * delta ** (mp.mpf(2) / 3),
++                "scaled direction failed to approach nonzero coefficient")
++        rows.append({"delta": mp.nstr(delta, 8),
++                     "scaled_direction_error": mp.nstr(error, 30),
++                     "dyad_pairing_of_scaled_direction": mp.nstr(measured_pairing, 30)})
++
++    print(json.dumps({"arithmetic": "mpmath 100 digits, not interval arithmetic",
++                      "kappa_over_beta": "1",
++                      "coefficient": [["0", "-1/2"], ["-1/2", "1"]],
++                      "coefficient_frobenius_norm": mp.nstr(mp.sqrt(mp.mpf(3) / 2), 30),
++                      "results": rows}, indent=2))
++    print("BOUNDARY NONCANCELLATION CHECKS PASSED.")
++
++
++if __name__ == "__main__":
++    main()
+--- Original_20260804/verify_certificate_example.py
++++ Revised_20260919/verify_certificate_example.py
+@@ -0,0 +1,41 @@
++"""Numerical illustration of existing supplement T6, not a new theorem.
++Float64 checks are not interval-validated certificates or training results.
++The polynomial coefficients are the eight-step sequence from Xie et al.,
++Controlled LLM Training on Spectral Sphere, arXiv:2601.08393v3; the evaluation
++here is an independent float64 diagnostic, not the released BF16 operator.
++"""
++if not __debug__:
++    raise RuntimeError("Verification requires assertions: rerun without -O / PYTHONOPTIMIZE.")
++import json
++from pathlib import Path
++import numpy as np
++from scipy.optimize import brentq
++G=np.array([[0.,1.],[1.,2.]])
++Theta=np.diag([1.,0.])
++def nuclear(A):return float(np.linalg.svd(A,compute_uv=False).sum())
++def compact(A):
++ u,s,vh=np.linalg.svd(A,full_matrices=False); keep=s>1e-12*max(1.,s[0]);return u[:,keep]@vh[keep,:]
++coeffs=[(8.2051,-22.9019,16.4607),(4.0664,-2.8612,.5184),(3.9096,-2.8234,.5250),(3.2856,-2.4153,.4853),(2.2779,-1.6198,.3985),(1.8726,-1.2307,.3585),(1.8564,-1.2132,.3568),(1.875,-1.25,.375)]
++def ns64(A):
++ X=A/np.linalg.norm(A)
++ for a,b,c in coeffs:
++  B=X@X.T;X=a*X+(b*B+c*(B@B))@X
++ return X
++lam=brentq(lambda t:float(np.sum(Theta*ns64(G+t*Theta))),.499,.5,xtol=1e-15)
++Phi=np.array([[0.,.5],[.5,.75]])
++cases=[('unconstrained_compact_at_zero',0.,compact(G)),('compact_at_dual_minimizer',.5,compact(G+.5*Theta)),('completed_exact_optimizer',.5,Phi),('eight_step_NS_float64',lam,ns64(G+lam*Theta))]
++rows=[]
++for name,t,Z in cases:
++ Zbar=Z/max(1.,float(np.linalg.norm(Z,2)));c=float(np.sum(Theta*Zbar));repair=(Zbar-c*Theta)/(1+abs(c));A=G+t*Theta
++ rpol=nuclear(A)-float(np.sum(A*Zbar)); gap=nuclear(A)-float(np.sum(G*repair));upper=rpol+abs(t)*abs(c)+2*nuclear(G)*abs(c)/(1+abs(c))
++ d={'case':name,'lambda':t,'actual_direction_tangent_residual':abs(c),'substituted_compact_residual':abs(float(np.sum(Theta*compact(A)))),'naive_dual_minus_unrepaired_objective':nuclear(A)-float(np.sum(G*Zbar)),'repaired_gap_float64':gap,'repaired_true_suboptimality_float64':2.5-float(np.sum(G*repair)),'T6_decomposition_upper_float64':upper,'repaired_spectral_norm':float(np.linalg.norm(repair,2)),'repaired_tangent_residual':abs(float(np.sum(Theta*repair)))}
++ assert d['repaired_spectral_norm']<=1+1e-12
++ assert d['repaired_tangent_residual']<=1e-12
++ assert gap>=d['repaired_true_suboptimality_float64']-1e-12
++ assert gap<=upper+1e-12
++ rows.append(d)
++# Counterexample to the manuscript's unqualified relative-interior equivalence.
++G0=np.diag([1.,0.]);T0=np.array([[0.,1.],[1.,0.]])
++assert all(abs(nuclear(G0+t*T0)-np.sqrt(1+4*t*t))<1e-12 for t in [-1.,-.1,0.,.1,1.])
++res={'scope':'Existing-T6 numerical illustration; NumPy float64, not directed-rounding certification; NS is a float64 polynomial comparison, not production BF16.','cases':rows,'ri_counterexample':{'G':G0.tolist(),'Theta':T0.tolist(),'a':0.,'beta':0.,'unique_minimizer':0.,'phi':'sqrt(1+4 lambda^2)','conclusion':'0 belongs to ri{0}, although abs(a)<beta is false.'}}
++p=Path(__file__).resolve().parent/'results'/'certificate_example_results.json';p.parent.mkdir(exist_ok=True);p.write_text(json.dumps(res,indent=2));print(json.dumps(res,indent=2))
+--- Original_20260804/verify_corank2_strict_center.py
++++ Revised_20260919/verify_corank2_strict_center.py
+@@ -4,6 +4,10 @@
+ Uses only Python's standard-library Decimal module.  Every reported claim is
+ guarded by an assertion; a failed check exits nonzero.
+ """
++
++# Scientific assertions must never disappear under python -O / PYTHONOPTIMIZE.
++if not __debug__:
++    raise RuntimeError("Verification requires assertions: rerun without -O / PYTHONOPTIMIZE.")
+ 
+ from decimal import Decimal, getcontext
+ 
+--- Original_20260804/verify_crossover_constants.py
++++ Revised_20260919/verify_crossover_constants.py
+@@ -1,5 +1,9 @@
+ #!/usr/bin/env python3
+ """Backward-compatible entry point for the unified crossover checks."""
++
++# Scientific assertions must never disappear under python -O / PYTHONOPTIMIZE.
++if not __debug__:
++    raise RuntimeError("Verification requires assertions: rerun without -O / PYTHONOPTIMIZE.")
+ 
+ from verify_unified_crossover import main
+ 
+--- Original_20260804/verify_direction_rate_general_corank.py
++++ Revised_20260919/verify_direction_rate_general_corank.py
+@@ -5,6 +5,10 @@
+ direction coefficient.  This fixed non-diagonal example verifies that the
+ O(delta) law can instead have a nonzero leading term.  It uses no random data.
+ """
++
++# Scientific assertions must never disappear under python -O / PYTHONOPTIMIZE.
++if not __debug__:
++    raise RuntimeError("Verification requires assertions: rerun without -O / PYTHONOPTIMIZE.")
+ 
+ import numpy as np
+ from numpy.linalg import norm, svd
+--- Original_20260804/verify_direction_rates.py
++++ Revised_20260919/verify_direction_rates.py
+@@ -2,6 +2,10 @@
+ """Assertion-based checks of all three fixed-instance direction exponents."""
+ 
+ from __future__ import annotations
++
++# Scientific assertions must never disappear under python -O / PYTHONOPTIMIZE.
++if not __debug__:
++    raise RuntimeError("Verification requires assertions: rerun without -O / PYTHONOPTIMIZE.")
+ 
+ import numpy as np
+ from numpy.linalg import norm, svd
+--- Original_20260804/verify_finite_cancellation.py
++++ Revised_20260919/verify_finite_cancellation.py
+@@ -0,0 +1,105 @@
++#!/usr/bin/env python3
++"""Check the finite cancellation criterion using exact rational moments.
++
++The algebraic part uses fractions, and the scalar pseudo-Huber roots use
++100-digit mpmath arithmetic.  This is numerical verification of examples,
++not interval arithmetic or a formal proof of the general corollary.
++"""
++
++from fractions import Fraction
++import json
++
++import mpmath as mp
++
++
++def require(condition, message):
++    if not condition:
++        raise RuntimeError(message)
++
++
++def moments(levels, weights, count):
++    return [
++        sum((Fraction(w) / Fraction(nu) ** (2 * k)
++             for nu, w in zip(levels, weights)), Fraction(0))
++        for k in range(count)
++    ]
++
++
++def smooth_tangency(lam, delta, diagonal, theta):
++    return mp.fsum(
++        w * (a + lam * w) / mp.sqrt((a + lam * w) ** 2 + delta ** 2)
++        for a, w in zip(diagonal, theta)
++    )
++
++
++def smooth_root(delta, diagonal, theta):
++    lo, hi = mp.mpf(-1), mp.mpf(1)
++    fun = lambda lam: smooth_tangency(lam, delta, diagonal, theta)
++    require(fun(lo) < 0 < fun(hi), "scalar root bracket failed")
++    for _ in range(380):
++        mid = (lo + hi) / 2
++        if mid == lo or mid == hi:
++            break
++        residual = fun(mid)
++        if residual == 0:
++            return mid
++        if residual < 0:
++            lo = mid
++        else:
++            hi = mid
++    return (lo + hi) / 2
++
++
++def main():
++    mp.mp.dps = 100
++    report = {"arithmetic": "exact Fraction moments; mpmath 100 digits"}
++
++    # Repeated positive levels: each entire level has zero paired weight.
++    diagonal = [mp.mpf(x) for x in [1, 1, 2, 2, 0]]
++    theta = [mp.mpf(x) for x in [1, -1, 3, -3, 1]]
++    residuals = []
++    for delta in map(mp.mpf, ["0.000001", "0.1", "1", "100"]):
++        residual = smooth_tangency(mp.mpf(0), delta, diagonal, theta)
++        require(abs(residual) < mp.mpf("1e-90"), "levelwise cancellation failed")
++        residuals.append(mp.nstr(residual, 12))
++    report["repeated_levels_exact_root_residuals"] = residuals
++
++    # Empty positive cluster (A*=0): stationarity is exact for every delta.
++    for delta in map(mp.mpf, ["1e-6", "1", "100"]):
++        require(smooth_tangency(mp.mpf(0), delta, [0, 0], [2, -3]) == 0,
++                "empty positive cluster failed")
++
++    cases = [
++        {"name": "cubic_two_levels", "levels": [1, 2], "weights": [1, -1],
++         "p": 1, "coefficient": Fraction(3, 8)},
++        {"name": "quintic_three_levels", "levels": [1, 2, 3],
++         "weights": [5, -32, 27], "p": 2, "coefficient": Fraction(-5, 4)},
++    ]
++    for case in cases:
++        levels, weights, p = case["levels"], case["weights"], case["p"]
++        chi = moments(levels, weights, len(levels))
++        require(all(value == 0 for value in chi[:p]), "earlier moments must vanish")
++        require(chi[p] != 0 and p <= len(levels) - 1, "first nonzero moment bound failed")
++        diagonal = list(map(mp.mpf, levels + [0]))
++        theta = list(map(mp.mpf, weights + [1]))
++        ratios = []
++        for delta in map(mp.mpf, ["1e-4", "1e-6"]):
++            root = smooth_root(delta, diagonal, theta)
++            ratios.append(root / delta ** (2 * p + 1))
++        expected = mp.mpf(case["coefficient"].numerator) / case["coefficient"].denominator
++        require(abs(ratios[-1] - expected) < mp.mpf("3e-7"),
++                "asymptotic multiplier constant failed")
++        report[case["name"]] = {
++            "moments": [str(value) for value in chi],
++            "predicted_order": 2 * p + 1,
++            "predicted_coefficient": str(case["coefficient"]),
++            "deltas": ["1e-4", "1e-6"],
++            "computed_ratios": [mp.nstr(value, 35) for value in ratios],
++        }
++
++    print(json.dumps(report, indent=2))
++    print("FINITE CANCELLATION CHECKS PASSED (numerical verification, not formal proof).")
++
++
++if __name__ == "__main__":
++    main()
+--- Original_20260804/verify_intrinsic_constants.py
++++ Revised_20260919/verify_intrinsic_constants.py
+@@ -6,6 +6,10 @@
+ check the cubic multiplier and quadratic direction coefficients when the
+ compact-polar equation is already correct at the singular minimizer.
+ """
++
++# Scientific assertions must never disappear under python -O / PYTHONOPTIMIZE.
++if not __debug__:
++    raise RuntimeError("Verification requires assertions: rerun without -O / PYTHONOPTIMIZE.")
+ 
+ from decimal import Decimal, getcontext
+ 
+@@ -63,7 +67,12 @@
+ 
+ def frozen_field(s, t):
+     matrix = G + (LAMBDA_STAR + s) * THETA
+-    u_s, _, v_s_t = svd(matrix, full_matrices=True)
++    # Reuse the same zero-space bases that define c_block at s=0.
++    # Separate SVD calls need not choose the same basis in a degenerate cluster.
++    if s == 0.0:
++        u_s, v_s_t = left, right_t
++    else:
++        u_s, _, v_s_t = svd(matrix, full_matrices=True)
+     p_big = u_s[:, :RANK] @ v_s_t[:RANK, :]
+     u_zero = u_s[:, RANK:]
+     v_zero = v_s_t[RANK:, :].T
+--- Original_20260804/verify_partial_isometry.py
++++ Revised_20260919/verify_partial_isometry.py
+@@ -2,6 +2,10 @@
+ """Assertions for certificate uniqueness and the two spectral completions."""
+ 
+ from __future__ import annotations
++
++# Scientific assertions must never disappear under python -O / PYTHONOPTIMIZE.
++if not __debug__:
++    raise RuntimeError("Verification requires assertions: rerun without -O / PYTHONOPTIMIZE.")
+ 
+ import numpy as np
+ from numpy.linalg import norm, svd
+--- Original_20260804/verify_publication_tables.py
++++ Revised_20260919/verify_publication_tables.py
+@@ -0,0 +1,212 @@
++#!/usr/bin/env python3
++"""Generate/check high-precision numerical JSON and manuscript LaTeX snapshots.
++
++80 working digits; the non-diagonal experiment is repeated at 100 digits.
++This is numerical verification, not interval arithmetic or a formal proof.
++"""
++if not __debug__:
++    raise RuntimeError('Verification requires assertions: rerun without -O / PYTHONOPTIMIZE.')
++import argparse
++import json
++from pathlib import Path
++import mpmath as mp
++ROOT=Path(__file__).resolve().parent
++mp.mp.dps=80
++
++def require(ok,msg):
++    if not ok: raise ArithmeticError(msg)
++
++def root(f,lo,hi):
++    lo,hi=mp.mpf(lo),mp.mpf(hi)
++    require(f(lo)<0<f(hi),'Root is not bracketed')
++    for _ in range(int(mp.mp.dps*3.5)+12):
++        mid=(lo+hi)/2
++        if f(mid)<0:lo=mid
++        else:hi=mid
++    return (lo+hi)/2
++
++def inner(a,b):return mp.fsum(a[i,j]*b[i,j] for i in range(a.rows) for j in range(a.cols))
++def frob(a):return mp.sqrt(inner(a,a))
++def z2(a,d):
++    det=mp.det(a);n=inner(a,a);q=mp.sqrt(det**2+d*d*n+d**4)
++    at=mp.matrix([[a[1,1],-a[1,0]],[-a[0,1],a[0,0]]])
++    return (det*at+(d*d+q)*a)/(q*mp.sqrt(n+2*d*d+2*q))
++def zg(a,d):
++    vals,q=mp.eigsy(a.T*a+d*d*mp.eye(a.cols))
++    return a*q*mp.diag([1/mp.sqrt(v) for v in vals])*q.T
++
++def non_diag(dps):
++    with mp.workdps(dps):
++        R=lambda n,d=1:mp.mpf(n)/d
++        blocks=[(R(1),R(1,6),R(2,5),R(1,5),R(2,3)),(R(3,5),R(1,6),R(3,10),R(1,10),R(1,3))]
++        theta=mp.matrix([[R(1,6),0,R(2,5),0],[0,R(1,6),0,R(3,10)],[R(1,5),0,R(2,3),0],[0,R(1,10),0,R(1,3)]])
++        def field(t,d):
++            out=mp.matrix(4)
++            for ids,(r,a,b,c,e) in zip(((0,2),(1,3)),blocks):
++                A=mp.matrix([[r+a*t*d,b*t*d],[c*t*d,e*t*d]])
++                # Analytic q/d continuation of the exact 2x2 formula at d=0.
++                det_over_d=r*e*t+(a*e-b*c)*t*t*d
++                L=mp.sqrt(det_over_d**2+inner(A,A)+d*d)
++                at=mp.matrix([[A[1,1],-A[1,0]],[-A[0,1],A[0,0]]])
++                Z=(det_over_d*at+(d+L)*A)/(L*mp.sqrt(inner(A,A)+2*d*d+2*d*L))
++                for i in range(2):
++                    for j in range(2):out[ids[i],ids[j]]=Z[i,j]
++            return out
++        h=lambda t,d:inner(theta,field(t,d))
++        t0=root(lambda t:h(t,R(0)),-2,0)
++        t1=-mp.diff(lambda d:h(t0,d),R(0))/mp.diff(lambda t:h(t,R(0)),t0)
++        MR=mp.matrix(4)
++        for i in range(4):
++            for j in range(4):MR[i,j]=mp.diff(lambda d:field(t0,d)[i,j],R(0))+t1*mp.diff(lambda t:field(t,R(0))[i,j],t0)
++        phi=field(t0,R(0));rows=[]
++        for dt in ('1e-2','1e-3','1e-4','1e-5','1e-6'):
++            d=mp.mpf(dt);t=root(lambda t:h(t,d),-2,0);Z=field(t,d);scaled=(Z-phi)/d
++            A=mp.diag([1,R(3,5),0,0])+t*d*theta
++            require(frob(Z-zg(A,d))<mp.mpf(10)**(-dps+20),'Block and general Gram formulas disagree')
++            rows.append(dict(delta=d,multiplier_ratio=t,direction_ratio=frob(scaled),finite_t1=(t-t0)/d,cosine=inner(scaled,MR)/(frob(scaled)*frob(MR)),tangency=abs(h(t,d))))
++        return dict(t0=t0,t1=t1,mr_norm=frob(MR),mr=[[MR[i,j] for j in range(4)] for i in range(4)],rows=rows)
++
++def fixed_data():
++    rows=[];R=lambda n,d=1:mp.mpf(n)/d
++    cases=[('regular',R(1),R(1,2),R(1,2),R(2),('1e-4','1e-5'),-R(16,9)),('strict',R(1,2),R(1),R(1,4),R(1),('1e-6','1e-8'),-R(5)/(4*mp.sqrt(15))),('boundary',R(1),R(1),R(1),R(2,3),('1e-9','1e-12'),mp.root(2,3))]
++    for name,b,c,ls,power,ds,limit in cases:
++        for dt in ds:
++            d=mp.mpf(dt);lam=root(lambda l:z2(mp.matrix([[l,b],[b,c]]),d)[0,0],-2,2)
++            ratio=(lam-ls)/d**power
++            if name=='boundary':ratio=-ratio
++            rows.append(dict(regime=name,delta=d,ratio=ratio,limit=limit))
++    return rows
++
++def profile_data():
++    def h(x,d,profile,L):
++        lam=1-x;disc=mp.sqrt((lam-1)**2+4);lp,lm=(lam+1+disc)/2,(lam+1-disc)/2
++        if profile.startswith('huber'):fn=lambda v:max(-mp.mpf(1),min(mp.mpf(1),v/(L*d)))
++        else:fn=lambda v:v/(d**3+abs(v)**3)**(mp.mpf(1)/3)
++        return fn(lp)*(lam-lm)/disc+fn(lm)*(lp-lam)/disc
++    rows=[]
++    for name,ds,power,limit,L in [('huber',('1e-4','1e-6','1e-8'),mp.mpf(1),mp.mpf(2),mp.mpf(1)),('p3',('1e-3','1e-6','1e-9','1e-12'),mp.mpf(3)/4,mp.root(mp.mpf(8)/3,4),mp.mpf(1)),('huber_L_half',('1e-8',),mp.mpf(1),mp.mpf(1),mp.mpf('0.5'))]:
++        for dt in ds:
++            d=mp.mpf(dt);x=root(lambda x:-h(x,d,name,L),0,1)
++            rows.append(dict(profile=name,delta=d,ratio=x/d**power,limit=limit))
++    return rows
++
++def corank_data():
++    R=lambda n,d=1:mp.mpf(n)/d
++    eta=root(lambda e:e/mp.sqrt(1+e*e)+(e/4)/mp.sqrt(1+e*e/4)-R(3,4),0,10)
++    kr=mp.matrix([1,1,-eta/mp.sqrt(1+eta*eta),-(eta/2)/mp.sqrt(1+eta*eta/4)])
++    kf=mp.matrix([1,1,-R(3,5),-R(3,10)]);rows=[]
++    for dt in ('1e-2','1e-3','1e-4','1e-5'):
++        d=mp.mpf(dt)
++        def phi(t):return mp.matrix([v/mp.sqrt(v*v+d*d) for v in (1+R(3,8)*t*d,1+R(3,8)*t*d,t*d,t*d/2)])
++        coeff=mp.matrix([R(3,8),R(3,8),1,R(1,2)]);t=root(lambda t:inner(coeff,phi(t)),-2,0);z=phi(t)
++        rows.append(dict(delta=d,displacement=t*d,error_R=frob(z-kr),error_F=frob(z-kf)))
++    return dict(eta=eta,kr=[kr[2],kr[3]],center_distance=frob(kr-kf),rows=rows)
++
++def compact_data():
++    rows=[]
++    for dt in ('1e-2','1e-3','1e-4','1e-5'):
++        d=mp.mpf(dt)
++        def phi(t):
++            s=t*d**3;return mp.matrix([(2+s)/mp.sqrt((2+s)**2+d*d),(1-s)/mp.sqrt((1-s)**2+d*d),s/mp.sqrt(s*s+d*d)])
++        t=root(lambda t:phi(t)[0]-phi(t)[1]+phi(t)[2],-1,0)
++        rows.append(dict(delta=d,multiplier_ratio=t,direction_ratio=frob(phi(t)-mp.matrix([1,1,0]))/d**2))
++    return dict(limit_multiplier=-mp.mpf(3)/8,limit_direction=mp.sqrt(26)/8,rows=rows)
++
++def quintic_data():
++    R=lambda n,d=1:mp.mpf(n)/d
++    th=mp.matrix([[R(27,10),0,0,R(3,10)],[0,-R(16,5),0,R(1,10)],[0,0,R(1,2),R(1,4)],[R(1,5),-R(3,20),R(1,10),1]])
++    A=mp.diag([3,2,1,0]);target=mp.diag([1,1,1,0]);J=mp.diag([R(1,9),R(1,4),1,0]);rows=[]
++    for dt in ('1e-2','1e-3','1e-4','1e-5'):
++        d=mp.mpf(dt);t=root(lambda t:inner(th,zg(A+t*d**5*th,d)),-1,0);Q=(zg(A+t*d**5*th,d)-target+d*d*J/2)/d**4
++        rows.append(dict(delta=d,multiplier_ratio=t,quartic_diagonal=[Q[i,i] for i in range(4)],quartic_offdiag=mp.sqrt(mp.fsum(Q[i,j]**2 for i in range(4) for j in range(4) if i!=j))))
++    return rows
++
++def crossover_data():
++    import verify_unified_crossover as v
++    D=v.D;rows=[]
++    for z in (0,1,3,10):
++        d=D('1e-9');gap=D(z)*D('1e-6');x,xh,b,k,derr=v.solve_path(gap,d)
++        rows.append(dict(path='critical',parameter=str(z),delta=str(d),gap=str(gap),normalized=str(x/D('1e-6')),predicted=str(v.predicted_y(D(z))),unified_ratio=str(x/xh),direction_ratio=str(derr/x)))
++    for k in range(2,6):
++        q=D(10)**(-k);d=q**3;x,xh,b,kap,derr=v.solve_path(q,d)
++        rows.append(dict(path='strict',parameter=str(k),delta=str(d),gap=str(q),normalized=str(x*q.sqrt()/d),predicted='1',unified_ratio=str(x/xh),direction_ratio=str(derr/x)))
++    for k in range(2,11):
++        q=D(10)**(-k);d=q**3;mode=k%3;gap=D(0) if mode==0 else (D(3)*q*q if mode==1 else q)
++        x,xh,b,kap,derr=v.solve_path(gap,d)
++        rows.append(dict(path='oscillatory',parameter=str(k),window=('boundary' if mode==0 else 'critical' if mode==1 else 'strict'),delta=str(d),gap=str(gap),normalized=str(x/xh),predicted='1',unified_ratio=str(x/xh),direction_ratio=str(derr/x)))
++    d=D('1e-15');x,xh,b,k,derr=v.solve_path(D(0),d)
++    rows.append(dict(path='boundary',parameter='0',delta=str(d),gap='0',normalized=str(x/D('1e-10')),predicted=str(D(2)**(D(1)/D(3))),unified_ratio=str(x/xh),direction_ratio=str(derr/x)))
++    return rows
++
++def serial(x):
++    if isinstance(x,mp.mpf):return mp.nstr(x,60)
++    if isinstance(x,dict):return {k:serial(v) for k,v in x.items()}
++    if isinstance(x,list):return [serial(v) for v in x]
++    return x
++
++def fmt(x,n=10):
++    x=mp.mpf(x);number=str(int(mp.floor(abs(x)*mp.mpf(10)**n+mp.mpf('.5')))).zfill(n+1)
++    return ('-' if x<0 else '')+number[:-n]+'.'+number[-n:]
++def sci(x,n=6):
++    x=mp.mpf(x)
++    if not x:return '0'
++    e=int(mp.floor(mp.log10(abs(x))));return fmt(x/mp.mpf(10)**e,n)+r'\times10^{'+str(e)+'}'
++def dtex(x):return r'10^{'+str(int(mp.nint(mp.log10(mp.mpf(x)))))+'}'
++def math(x):return r'\('+x+r'\)'
++def table(headers,rows):
++    return '\\begin{center}\n\\begin{tabular}{@{}'+'l'*len(headers)+'@{}}\n\\toprule\n'+' & '.join(headers)+'\\\\\n\\midrule\n'+'\n'.join(' & '.join(row)+r'\\' for row in rows)+'\n\\bottomrule\n\\end{tabular}\n\\end{center}\n'
++
++def latex(data):
++    macros={}
++    def add(k,x,n=10):macros[k]=fmt(x,n)
++    last={r['regime']:r for r in data['fixed']}
++    for label,key in [('Regular','regular'),('Strict','strict'),('Boundary','boundary')]:add(label+'Ratio',last[key]['ratio']);add(label+'Limit',last[key]['limit'])
++    for r in data['profiles']:
++        if r['profile']=='huber' and r['delta']==mp.mpf('1e-8'):add('HuberBoundaryRatio',r['ratio'])
++        if r['profile']=='p3' and r['delta']==mp.mpf('1e-9'):add('PowerThreeRatio',r['ratio']);add('PowerThreeLimit',r['limit'])
++    c=data['corank'];add('CorankSlopeFour',c['rows'][2]['displacement']/c['rows'][2]['delta'],7);add('CorankEta',c['eta'],12);add('CenterDistance',c['center_distance'],12);add('CorankKrOne',-c['kr'][0],12);add('CorankKrTwo',-c['kr'][1],12)
++    n=data['nondiagonal'];add('NonDiagonalEta',-n['t0'],12);add('NonDiagonalTOne',n['t1']);add('NonDiagonalMR',n['mr_norm'])
++    for r in n['rows']:
++        suffix='Five' if r['delta']==mp.mpf('1e-5') else 'Six' if r['delta']==mp.mpf('1e-6') else None
++        if suffix:
++            for name,key in [('Direction','direction_ratio'),('Slope','multiplier_ratio'),('FiniteTOne','finite_t1'),('Cosine','cosine')]:add('NonDiagonal'+name+suffix,r[key],12)
++    co=data['compact'];r=co['rows'][2];add('CompactMultiplier',r['multiplier_ratio']);add('CompactDirection',r['direction_ratio']);add('CompactDirectionLimit',co['limit_direction'])
++    add('BoundaryDirection',data['crossover'][-1]['direction_ratio'],12);add('BoundaryDirectionLimit',mp.sqrt(mp.mpf(3)/2),12)
++    q=data['quintic'][2]
++    for i,x in enumerate(q['quartic_diagonal']):add('Quartic'+('One','Two','Three','Four')[i],x,12)
++    out={'numerical_macros.tex':'% Generated by verify_publication_tables.py; do not hand-edit.\n'+'\n'.join(r'\newcommand{\num'+k+'}{'+v+'}' for k,v in sorted(macros.items()))+'\n'}
++    out['table_fixed.tex']=table(['Regime',math(r'\delta'),'Normalized displacement','Limit'],[[r['regime'],math(dtex(r['delta'])),math(fmt(r['ratio'])),math(fmt(r['limit']))] for r in data['fixed']])
++    out['table_profiles.tex']=table(['Profile',math(r'\delta'),'Normalized displacement','Limit'],[[{'p3':math('p=3'),'huber':'Huber','huber_L_half':math('L=1/2')}[r['profile']],math(dtex(r['delta'])),math(fmt(r['ratio'],12)),math(fmt(r['limit'],12))] for r in data['profiles']])
++    out['table_corank.tex']=table([math(r'\delta'),math(r'\lambda_\delta-\lambda^\star'),math(r'\|\Phi_\delta-\Phi_R^\star\|_F'),math(r'\|\Phi_\delta-\Phi_F^\star\|_F')],[[math(dtex(r['delta']))]+[math(sci(r[k])) for k in ('displacement','error_R','error_F')] for r in c['rows']])
++    out['table_nondiagonal.tex']=table([math(r'\delta'),math(r't_\delta'),math(r'\|\Phi_\delta-\Phi_R^\star\|_F/\delta'),math(r'(t_\delta-t_0)/\delta')],[[math(dtex(r['delta']))]+[math(fmt(r[k],12)) for k in ('multiplier_ratio','direction_ratio','finite_t1')] for r in n['rows']])
++    out['table_quintic.tex']=table([math(r'\delta'),math(r'(\lambda_\delta-1)/\delta^5')],[[math(dtex(r['delta'])),math(fmt(r['multiplier_ratio']))] for r in data['quintic']])
++    for mode in ('critical','strict','oscillatory'):
++        rs=[r for r in data['crossover'] if r['path']==mode]
++        if mode=='critical':headers=[math(r'\zeta'),math(r'\delta'),math(r'x_\delta/\delta^{2/3}'),math(r'y_\zeta')];keys=['parameter','delta','normalized','predicted']
++        elif mode=='strict':headers=[math(r'\delta'),math(r'x_\delta\sqrt{\Delta_\delta}/\delta'),math(r'x_\delta/\widehat x_\delta')];keys=['delta','normalized','unified_ratio']
++        else:headers=[math('k'),'Window',math(r'\delta_k'),math(r'x_{\delta_k}/\widehat x_{\delta_k}')];keys=['parameter','window','delta','unified_ratio']
++        rows=[[r[k] if k in ('parameter','window') else math(dtex(r[k]) if k=='delta' else fmt(r[k],12)) for k in keys] for r in rs]
++        out['table_'+mode+'.tex']=table(headers,rows)
++    return out
++
++def main():
++    parser=argparse.ArgumentParser();parser.add_argument('--check',action='store_true');args=parser.parse_args()
++    print('Computing 80-digit tables; repeating non-diagonal example at 100 digits.',flush=True)
++    n80,n100=non_diag(80),non_diag(100)
++    for key in ('t0','t1','mr_norm'):require(abs(n80[key]-n100[key])<mp.mpf('1e-65'),'Precision disagreement: '+key)
++    for a,b in zip(n80['rows'],n100['rows']):
++        for key in ('multiplier_ratio','direction_ratio','finite_t1','cosine'):require(abs(a[key]-b[key])<mp.mpf('1e-60'),'Precision disagreement: '+key)
++    data=dict(fixed=fixed_data(),profiles=profile_data(),corank=corank_data(),nondiagonal=n80,compact=compact_data(),quintic=quintic_data(),crossover=crossover_data())
++    r=n80['rows'][3];require(abs(r['finite_t1']-mp.mpf('0.70104739544355205579'))<mp.mpf('1e-20'),'Finite t1 regression')
++    require(abs(r['direction_ratio']-mp.mpf('0.671768177074'))<mp.mpf('5e-13'),'Direction regression 1e-5')
++    require(abs(n80['rows'][4]['direction_ratio']-mp.mpf('0.671774660292'))<mp.mpf('5e-13'),'Direction regression 1e-6')
++    require(abs(n80['t1']-mp.mpf('0.7010530600'))<mp.mpf('5e-10'),'Intrinsic t1 regression')
++    ps=[r for r in data['profiles'] if r['profile']=='p3'];require(all(abs(ps[i+1]['ratio']-ps[i+1]['limit'])<abs(ps[i]['ratio']-ps[i]['limit']) for i in range(len(ps)-1)),'p3 convergence regression')
++    metadata=dict(working_digits=80,nondiagonal_repeat_digits=100,nondiagonal_agreement_absolute='1e-60 ratios; 1e-65 constants',precision_warning='Cross-precision agreement is not a validated error bound.',dependencies={'mpmath':mp.__version__},data=serial(data))
++    files={ROOT/'results'/'publication_numbers.json':json.dumps(metadata,indent=2)+'\n'}
++    files.update({ROOT/'submission'/'generated'/k:v for k,v in latex(data).items()})
++    for path,text in files.items():
++        if args.check:require(path.exists() and path.read_text()==text,'Snapshot differs: '+str(path.relative_to(ROOT)))
++        else:path.parent.mkdir(parents=True,exist_ok=True);path.write_text(text)
++    print(('Checked' if args.check else 'Wrote')+f' {len(files)} publication snapshots. High-precision regressions passed.')
++if __name__=='__main__':main()
+--- Original_20260804/verify_rate_constants_exact.py
++++ Revised_20260919/verify_rate_constants_exact.py
+@@ -5,6 +5,10 @@
+ Decimal arithmetic and bisection make the test deterministic.  A failed
+ constant or failed monotone-convergence check raises AssertionError.
+ """
++
++# Scientific assertions must never disappear under python -O / PYTHONOPTIMIZE.
++if not __debug__:
++    raise RuntimeError("Verification requires assertions: rerun without -O / PYTHONOPTIMIZE.")
+ 
+ from decimal import Decimal, getcontext
+ 
+--- Original_20260804/verify_smoothing_family.py
++++ Revised_20260919/verify_smoothing_family.py
+@@ -6,6 +6,10 @@
+ nonuniqueness.  The mpmath block verifies the quintic/quartic compact-root
+ coefficients at 100 digits.
+ """
++
++# Scientific assertions must never disappear under python -O / PYTHONOPTIMIZE.
++if not __debug__:
++    raise RuntimeError("Verification requires assertions: rerun without -O / PYTHONOPTIMIZE.")
+ 
+ import math
+ 
+--- Original_20260804/verify_theorems.py
++++ Revised_20260919/verify_theorems.py
+@@ -5,6 +5,10 @@
+ """
+ 
+ from __future__ import annotations
++
++# Scientific assertions must never disappear under python -O / PYTHONOPTIMIZE.
++if not __debug__:
++    raise RuntimeError("Verification requires assertions: rerun without -O / PYTHONOPTIMIZE.")
+ 
+ import math
+ 
+--- Original_20260804/verify_unified_crossover.py
++++ Revised_20260919/verify_unified_crossover.py
+@@ -14,6 +14,10 @@
+ has no NumPy/SciPy/mpmath dependency.  A failed asymptotic check exits with
+ a nonzero status through an AssertionError.
+ """
++
++# Scientific assertions must never disappear under python -O / PYTHONOPTIMIZE.
++if not __debug__:
++    raise RuntimeError("Verification requires assertions: rerun without -O / PYTHONOPTIMIZE.")
+ 
+ from decimal import Decimal, getcontext
+ 

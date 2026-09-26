@@ -1,0 +1,149 @@
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\ifdefined\SSOReview
+\usepackage[a4paper,margin=1in]{geometry}
+\fi
+
+\usepackage{amssymb,mathtools}
+\ifdefined\SSOReview
+\usepackage{amsthm}
+\fi
+\usepackage{bm}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{longtable}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{url}
+
+\ifdefined\SSOReview
+\usepackage{hyperref}
+\usepackage[nameinlink,capitalise,noabbrev]{cleveref}
+\newcommand{\headers}[2]{}
+\newenvironment{keywords}{\par\smallskip\noindent\textbf{Keywords.}}{\par}
+\newenvironment{MSCcodes}{\par\smallskip\noindent\textbf{MSC 2020.}}{\par}
+\fi
+\NewDocumentCommand{\citep}{o m}{\IfNoValueTF{#1}{\cite{#2}}{\cite[#1]{#2}}}
+
+\definecolor{deepblue}{HTML}{173B57}
+\definecolor{softblue}{HTML}{EAF3F8}
+\definecolor{deepgreen}{HTML}{235D3A}
+\definecolor{softgreen}{HTML}{EAF5EE}
+\definecolor{deeporange}{HTML}{9C4E00}
+\definecolor{softorange}{HTML}{FFF1DF}
+\definecolor{draftred}{HTML}{8F1D1D}
+\definecolor{draftbg}{HTML}{FFF4F4}
+\definecolor{openpurple}{HTML}{5B3F8C}
+\definecolor{softpurple}{HTML}{F2ECFA}
+\definecolor{graytext}{HTML}{4B5563}
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=deepblue,
+  citecolor=deepgreen,
+  urlcolor=deepblue,
+  pdftitle={Nuclear-Norm Best Approximation at Rank-Deficient Matrix-Line Crossings},
+  pdfauthor={Anonymous manuscript}
+}
+
+\ifdefined\SSOReview
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.35em}
+\fi
+\setlist[itemize]{topsep=0.35em,itemsep=0.2em}
+\setlist[enumerate]{topsep=0.35em,itemsep=0.25em}
+\renewcommand{\arraystretch}{1.15}
+
+\ifdefined\SSOReview
+\newtheoremstyle{reader}
+  {0.8em}{0.8em}
+  {\itshape}{}
+  {\bfseries\color{deepblue}}{.}
+  {0.5em}{}
+\theoremstyle{reader}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{assumption}[theorem]{Assumption}
+\newtheorem{example}[theorem]{Example}
+
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\else
+\newsiamremark{assumption}{Assumption}
+\newsiamremark{example}{Example}
+\newsiamremark{remark}{Remark}
+\fi
+
+\newenvironment{proofidea}
+  {\par\smallskip\begin{center}\begin{minipage}{0.94\textwidth}
+   {\color{deepblue}\hrule}\vspace{0.35em}
+   \textbf{\color{deepblue}Proof idea.}\ \color{black}\ignorespaces}
+  {\par\vspace{0.35em}{\color{deepblue}\hrule}
+   \end{minipage}\end{center}\smallskip}
+
+\newenvironment{intuition}
+  {\par\smallskip\begin{center}\begin{minipage}{0.94\textwidth}
+   {\color{deepgreen}\hrule}\vspace{0.35em}
+   \textbf{\color{deepgreen}What this result does.}\ \color{black}\ignorespaces}
+  {\par\vspace{0.35em}{\color{deepgreen}\hrule}
+   \end{minipage}\end{center}\smallskip}
+
+\newenvironment{boundary}
+  {\par\smallskip\begin{center}\begin{minipage}{0.94\textwidth}
+   {\color{deeporange}\hrule}\vspace{0.35em}
+   \textbf{\color{deeporange}Boundary of the claim.}\ \color{black}\ignorespaces}
+  {\par\vspace{0.35em}{\color{deeporange}\hrule}
+   \end{minipage}\end{center}\smallskip}
+
+\newenvironment{openproblem}
+  {\par\smallskip\begin{center}\begin{minipage}{0.94\textwidth}
+   {\color{openpurple}\hrule}\vspace{0.35em}
+   \textbf{\color{openpurple}Open problem.}\ \color{black}\ignorespaces}
+  {\par\vspace{0.35em}{\color{openpurple}\hrule}
+   \end{minipage}\end{center}\smallskip}
+
+\newcommand{\proved}{\textcolor{deepgreen}{\textbf{PROVED}}}
+\newcommand{\localproved}{\textcolor{deeporange}{\textbf{PROVED UNDER LOCAL ASSUMPTIONS}}}
+\newcommand{\observed}{\textcolor{deepblue}{\textbf{NUMERICALLY OBSERVED}}}
+\newcommand{\openstatus}{\textcolor{openpurple}{\textbf{OPEN}}}
+
+\newcommand{\ip}[2]{\left\langle #1,#2\right\rangle}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\norm}[1]{\left\lVert #1\right\rVert}
+\newcommand{\snorm}[1]{\left\lVert #1\right\rVert_{2}}
+\newcommand{\fnorm}[1]{\left\lVert #1\right\rVert_{\mathrm F}}
+\newcommand{\nnorm}[1]{\left\lVert #1\right\rVert_{*}}
+\newcommand{\argmin}{\operatorname*{arg\,min}}
+\newcommand{\argmax}{\operatorname*{arg\,max}}
+\newcommand{\diag}{\operatorname{diag}}
+\newcommand{\rank}{\operatorname{rank}}
+\newcommand{\range}{\operatorname{range}}
+\newcommand{\Retr}{\operatorname{Retr}}
+\newcommand{\Gap}{\operatorname{Gap}}
+\newcommand{\Sc}{S_{\mathrm c}}
+\newcommand{\Kcan}{K_{\mathrm{can}}}
+\newcommand{\Pstar}{\mathcal P^\star}
+\newcommand{\Ctheta}{\mathcal C_{\Theta}}
+
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\dist}{dist}
+\DeclareMathOperator{\sign}{sign}
+
+\crefname{theorem}{theorem}{theorems}
+\crefname{proposition}{proposition}{propositions}
+\crefname{lemma}{lemma}{lemmas}
+\crefname{corollary}{corollary}{corollaries}
+\crefname{definition}{definition}{definitions}
+\crefname{assumption}{assumption}{assumptions}
+\crefname{example}{example}{examples}
+\crefname{remark}{remark}{remarks}

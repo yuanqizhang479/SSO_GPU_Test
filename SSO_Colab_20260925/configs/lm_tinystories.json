@@ -1,0 +1,39 @@
+{
+  "width": 64,
+  "layers": 2,
+  "heads": 4,
+  "seq_len": 128,
+  "batch_size": 2,
+  "accum_steps": 2,
+  "steps": 30,
+  "warmup_steps": 5,
+  "matrix_lr": 0.01,
+  "aux_lr": 0.0003,
+  "matrix_weight_decay": 0.0,
+  "aux_weight_decay": 0.1,
+  "momentum": 0.9,
+  "ns_steps": 8,
+  "ns_dtype": "float32",
+  "forward_dtype": "float32",
+  "pi_steps": 100,
+  "solver_tol": 0.0001,
+  "max_expand": 10,
+  "grad_clip": 1.0,
+  "eval_batches": 8,
+  "eval_interval": 10,
+  "checkpoint_interval": 10,
+  "diagnostic_interval": 0,
+  "print_interval": 10,
+  "deterministic": true,
+  "data_config": "configs/data_tinystories.json",
+  "snapshot_steps": [
+    1,
+    15,
+    30
+  ],
+  "snapshot_names": [
+    "blocks.0.attn.q.weight",
+    "blocks.0.ff1.weight",
+    "blocks.0.ff2.weight"
+  ]
+}

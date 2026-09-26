@@ -1,0 +1,20 @@
+PASS  T1 primal-dual equality                    error=7.816e-14
+PASS  T5-D1 leading constant                     error=6.889e-09
+PASS  T2 right endpoint a+beta                   error=2.561e-07
+PASS  T2 left endpoint a-beta                    error=1.405e-07
+PASS  T3 canonical tangency                      error=0.000e+00
+PASS  T3 random feasible competitors             accepted=5000
+PASS  T4 compact jump                            error=1.388e-16
+PASS  T4 branch at x=-0.4                        error=8.882e-16
+PASS  T4 branch at x=0.2                         error=1.776e-15
+PASS  T4 branch at x=0.9                         error=8.882e-16
+PASS  T4 branch at x=1.7                         error=3.553e-15
+PASS  SVD-free crossing half-width               max_rel=3.994e-14
+PASS  T5-D2 strict-kink constant                 error=5.820e-06
+PASS  T5-D3 boundary constant                    error=3.683e-04
+PASS  D3 omitted linear term limit               error=2.500e-09
+PASS  T5-D4 transition constant                  error=3.462e-04
+PASS  T5-D4 strict-side constant                 error=1.544e-02
+PASS  T6 feasible repair and gap bound           gap=5.656e+00
+
+All deterministic numerical checks passed.

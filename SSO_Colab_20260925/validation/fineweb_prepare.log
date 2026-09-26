@@ -1,0 +1,25 @@
+{
+  "output": "validation_work/fineweb_real",
+  "sources": [
+    {
+      "name": "fineweb_edu",
+      "weight": 1.0,
+      "tokens": {
+        "train": 4206,
+        "val": 2805,
+        "test": 3503
+      },
+      "documents": {
+        "train": 5,
+        "val": 4,
+        "test": 1
+      },
+      "duplicates_skipped": 0,
+      "requested_quota": {
+        "train": 4096,
+        "val": 1024,
+        "test": 1024
+      }
+    }
+  ]
+}

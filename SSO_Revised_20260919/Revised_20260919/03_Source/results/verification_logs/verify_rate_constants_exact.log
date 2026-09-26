@@ -1,0 +1,15 @@
+D1 regular law
+  delta=1E-3  ratio=-1.777766452777
+  delta=1E-4  ratio=-1.777777664527
+  delta=1E-5  ratio=-1.777777776645
+D2 strict-kink law
+  delta=1E-5  ratio=-0.322746667748
+  delta=1E-6  ratio=-0.322748417740
+  delta=1E-7  ratio=-0.322748592740
+  delta=1E-8  ratio=-0.322748610240
+D3 boundary two-thirds law
+  delta=1E-6  ratio=1.259841686508
+  delta=1E-9  ratio=1.259920256195
+  delta=1E-12  ratio=1.259921041958
+  delta=1E-15  ratio=1.259921049816
+ALL D1--D3 HIGH-PRECISION ASSERTIONS PASSED

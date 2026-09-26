@@ -1,0 +1,28 @@
+{
+  "arithmetic": "mpmath 100 digits, not interval arithmetic",
+  "kappa_over_beta": "1",
+  "coefficient": [
+    [
+      "0",
+      "-1/2"
+    ],
+    [
+      "-1/2",
+      "1"
+    ]
+  ],
+  "coefficient_frobenius_norm": "1.22474487139158904909864203735",
+  "results": [
+    {
+      "delta": "1.0e-6",
+      "scaled_direction_error": "0.0000668108568387363167228147973267",
+      "dyad_pairing_of_scaled_direction": "0.999952757920897890416701437597"
+    },
+    {
+      "delta": "1.0e-9",
+      "scaled_direction_error": "0.000000668173383836399849440316288672",
+      "dyad_pairing_of_scaled_direction": "0.999999527530102351891928632265"
+    }
+  ]
+}
+BOUNDARY NONCANCELLATION CHECKS PASSED.

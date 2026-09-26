@@ -1,0 +1,90 @@
+{
+  "date": "2026-09-25",
+  "status": "CPU_EXECUTION_VERIFIED_CUDA_NOT_AVAILABLE",
+  "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+  "versions": {
+    "torch": "2.14.0+cpu",
+    "numpy": "2.3.5",
+    "scipy": "1.17.0",
+    "datasets": "4.8.5",
+    "transformers": "4.57.6",
+    "huggingface_hub": "0.36.2"
+  },
+  "gpu_executed": false,
+  "cuda_available": false,
+  "theory_path": {
+    "all_passed": true,
+    "checks": 36,
+    "slopes": {
+      "regular": {
+        "observed": 1.9998246035467435,
+        "expected": 2.0,
+        "tolerance": 0.04
+      },
+      "strict": {
+        "observed": 0.9998272453928644,
+        "expected": 1.0,
+        "tolerance": 0.04
+      },
+      "boundary": {
+        "observed": 0.6660366987480945,
+        "expected": 0.6666666666666666,
+        "tolerance": 0.04
+      }
+    }
+  },
+  "engineering": {
+    "six_methods_forward_backward": true,
+    "resume_max_abs_parameter_difference": 0.0,
+    "snapshot_update_identity": true,
+    "corruption_and_changed_config_rejected": true
+  },
+  "real_tinystories": {
+    "cpu_steps": 4,
+    "snapshot_count": 6,
+    "ph_reference_failures": 0,
+    "material_screen_flags": 0,
+    "scope": "Small data-interface and tensor-chain validation only"
+  },
+  "real_fineweb_edu": {
+    "download_and_tokenization_small_sample_passed": true,
+    "gpu_training_run": false
+  },
+  "optional_study_integration": {
+    "pilot_select_main_summarize_passed": true,
+    "plan": "precision",
+    "pilot_steps": 2,
+    "main_steps": 4,
+    "pilot_runs": 9,
+    "main_runs": 9,
+    "data": "synthetic byte fixture",
+    "scope": "Protocol and CLI integration on code before final explicit SDPA-math and RNG-seed guards; final numerical training chain separately rechecked."
+  },
+  "stage_runner_and_return_zip": {
+    "audit_stage_passed": true,
+    "return_zip_crc_and_manifest_passed": true
+  },
+  "notebook_code_cells_compile": true,
+  "not_executed": [
+    "Colab session",
+    "CUDA kernels",
+    "GPU memory/timing",
+    "default-size real corpus training",
+    "OLMo-Mix seven-source materialization",
+    "formal multi-seed performance experiments",
+    "entire manuscript proof re-audit"
+  ],
+  "final_source_sha256": {
+    "audit_snapshots.py": "04b3de9713971f0aa9d098468dea65632f806a5caff440cc73dbec3a425089e5",
+    "common.py": "2520fd3dc5d2fd2c20570d23a8a28138e0a78ef7296fa928880073ea940f7fb6",
+    "optimizers.py": "15a320dc8b977993fc1aa19ea9773fcbb7bb22da66def386f114ce7239c93f1f",
+    "oracles.py": "570a968acce32d3e9900adec13a3cdb35eaf57083026853b4ee2ac056ced5247",
+    "prepare_data.py": "24984e6cf7bbecf574c41bc1b49ddd7199afe4a41a06ca70d02c1bdeda76b6df",
+    "run_stage.py": "3607a494336c946d3e610e395fdbfc06537fb89bfbe7ff40d44224477de729f5",
+    "study.py": "028c5571cad57b66956a29e0167b2cb6388e8f1f4ffe388e9647340c1ce5f01c",
+    "summarize.py": "ea2dcd1c1f44e9ab54ca472f7da42fceed2690ef263871e9cbd694f305175483",
+    "test_smoke.py": "f390362ee9a2213168a7b82062b3eb6d16f5bd33a18b94bb9308dddeba0580ba",
+    "theory_path.py": "370dbe214f2d8d0ac43e7f1d237fa24b607603288ba4c3ed07fa69c128cf5c5a",
+    "train.py": "3512c0cda31a337449f704dfb0bae6d38440634cf1ce964200725c9d2c551877"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "identity": {
+    "config": {
+      "width": 16,
+      "layers": 1,
+      "heads": 2,
+      "seq_len": 8,
+      "batch_size": 2,
+      "accum_steps": 1,
+      "steps": 4,
+      "warmup_steps": 1,
+      "matrix_lr": 0.01,
+      "aux_lr": 0.0003,
+      "matrix_weight_decay": 0.0,
+      "aux_weight_decay": 0.1,
+      "momentum": 0.9,
+      "ns_steps": 8,
+      "ns_dtype": "float32",
+      "forward_dtype": "float32",
+      "pi_steps": 20,
+      "solver_tol": 0.0001,
+      "max_expand": 10,
+      "grad_clip": 1.0,
+      "eval_batches": 2,
+      "eval_interval": 2,
+      "checkpoint_interval": 2,
+      "diagnostic_interval": 2,
+      "print_interval": 2,
+      "deterministic": true,
+      "data_config": "configs/data_tinystories.json",
+      "optimizer": "sso_ns",
+      "seed": 11
+    },
+    "manifest_sha256": "29db61d8e836656fc5a7a4a06b19c8854211d6ea87ebdf76ec5bc88a51f7c6ee",
+    "device_type": "cpu",
+    "runtime": {
+      "torch": "2.14.0+cpu",
+      "numpy": "2.3.5",
+      "cuda_runtime": null
+    },
+    "code_sha256": {
+      "common.py": "2520fd3dc5d2fd2c20570d23a8a28138e0a78ef7296fa928880073ea940f7fb6",
+      "optimizers.py": "04af5fb2de2ed8602443be46f0f8dd95a59f9fba2d7a8ed6f4607d0c6c80feb9",
+      "oracle_bench.py": "7b04a0f168c22e150d2c119b8db1776c30f9e2ff664aae769e93f39158095abc",
+      "prepare_data.py": "24984e6cf7bbecf574c41bc1b49ddd7199afe4a41a06ca70d02c1bdeda76b6df",
+      "run_grid.py": "a45d732ef80b44d8bd1b61130e864e03e36947201eddc2f59fdfb1885f6fd1e0",
+      "summarize.py": "ea2dcd1c1f44e9ab54ca472f7da42fceed2690ef263871e9cbd694f305175483",
+      "test_smoke.py": "2f6b6d55ac7245457ff61d2e757bde7519e02b15bc6e9414e559c306a0c20241",
+      "train.py": "a3811545bd21b5bfe2195ce8c658e0633d78bcd0d53a58c88ee6e2c03763afbd"
+    }
+  },
+  "identity_hash": "e9879ed3053c785ca8d2b60d15500eeefca68fc218aa544d84ff5b78c35cdfa1",
+  "environment": {
+    "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+    "platform": "Linux-6.18.44-x86_64-with-glibc2.39",
+    "torch": "2.14.0+cpu",
+    "numpy": "2.3.5",
+    "cuda_runtime": null,
+    "cuda_available": false,
+    "gpu": null
+  },
+  "init_parameters_sha256": "df701a724ba7e8143e4e8728d46a40f010cc42a8fee2a6e01747e746af7ac4a4",
+  "parameter_count": 1607744,
+  "not_claimed": "Not the Xie 100B-token/1.8B-model experiment; independent implementation and architecture."
+}

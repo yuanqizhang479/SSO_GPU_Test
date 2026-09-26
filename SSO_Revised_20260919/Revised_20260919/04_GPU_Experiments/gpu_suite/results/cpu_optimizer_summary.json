@@ -1,0 +1,281 @@
+{
+  "groups": [
+    {
+      "protocol": {
+        "config": {
+          "width": 16,
+          "layers": 1,
+          "heads": 2,
+          "seq_len": 8,
+          "batch_size": 2,
+          "accum_steps": 2,
+          "steps": 4,
+          "warmup_steps": 1,
+          "matrix_lr": 0.003,
+          "aux_lr": 0.001,
+          "matrix_weight_decay": 0.0,
+          "aux_weight_decay": 0.1,
+          "momentum": 0.9,
+          "ns_steps": 8,
+          "ns_dtype": "float32",
+          "forward_dtype": "float32",
+          "pi_steps": 20,
+          "solver_tol": 0.0001,
+          "max_expand": 10,
+          "grad_clip": 1.0,
+          "eval_batches": 2,
+          "eval_interval": 2,
+          "checkpoint_interval": 2,
+          "diagnostic_interval": 2,
+          "print_interval": 4,
+          "deterministic": true,
+          "optimizer": "adamw"
+        },
+        "manifest": "d68e471cf56ef34e19ccd2f529f80efb03ea007a3645016af09fbf5d1a1279fb",
+        "device": "cpu"
+      },
+      "runs": [
+        {
+          "path": "/workspace/scratch/9ac978590e9f/work_0919/gpu_suite/results/final_resume_guard/sso_cpu_l93tc3xi/summary_input/adamw",
+          "seed": 11,
+          "validation_loss": 5.484812498092651,
+          "test_loss": 5.519505977630615,
+          "steady_tokens_per_second": 13750.10474411067,
+          "mean_step_seconds": 0.002327254998817807,
+          "peak_allocated_bytes": 0,
+          "solver_failure_count": 0,
+          "completed_sessions_wall_seconds": 0.022231252998608397,
+          "unfinished_session_count": 0,
+          "actual_tangency_max": null,
+          "mean_radius_relative_error": null
+        }
+      ],
+      "validation_mean": 5.484812498092651,
+      "validation_sample_sd": null,
+      "seed_count": 1,
+      "statistical_note": "Three seeds describe variability; no automatic claim of significance or universality."
+    },
+    {
+      "protocol": {
+        "config": {
+          "width": 16,
+          "layers": 1,
+          "heads": 2,
+          "seq_len": 8,
+          "batch_size": 2,
+          "accum_steps": 2,
+          "steps": 4,
+          "warmup_steps": 1,
+          "matrix_lr": 0.003,
+          "aux_lr": 0.001,
+          "matrix_weight_decay": 0.0,
+          "aux_weight_decay": 0.1,
+          "momentum": 0.9,
+          "ns_steps": 8,
+          "ns_dtype": "float32",
+          "forward_dtype": "float32",
+          "pi_steps": 20,
+          "solver_tol": 0.0001,
+          "max_expand": 10,
+          "grad_clip": 1.0,
+          "eval_batches": 2,
+          "eval_interval": 2,
+          "checkpoint_interval": 2,
+          "diagnostic_interval": 2,
+          "print_interval": 4,
+          "deterministic": true,
+          "optimizer": "muon"
+        },
+        "manifest": "d68e471cf56ef34e19ccd2f529f80efb03ea007a3645016af09fbf5d1a1279fb",
+        "device": "cpu"
+      },
+      "runs": [
+        {
+          "path": "/workspace/scratch/9ac978590e9f/work_0919/gpu_suite/results/final_resume_guard/sso_cpu_l93tc3xi/summary_input/muon",
+          "seed": 11,
+          "validation_loss": 5.509689807891846,
+          "test_loss": 5.526696681976318,
+          "steady_tokens_per_second": 10193.809813273885,
+          "mean_step_seconds": 0.003139159998681862,
+          "peak_allocated_bytes": 0,
+          "solver_failure_count": 0,
+          "completed_sessions_wall_seconds": 0.02976205199956894,
+          "unfinished_session_count": 0,
+          "actual_tangency_max": 0.46390413368710354,
+          "mean_radius_relative_error": 0.0022702530676341113
+        }
+      ],
+      "validation_mean": 5.509689807891846,
+      "validation_sample_sd": null,
+      "seed_count": 1,
+      "statistical_note": "Three seeds describe variability; no automatic claim of significance or universality."
+    },
+    {
+      "protocol": {
+        "config": {
+          "width": 16,
+          "layers": 1,
+          "heads": 2,
+          "seq_len": 8,
+          "batch_size": 2,
+          "accum_steps": 2,
+          "steps": 4,
+          "warmup_steps": 1,
+          "matrix_lr": 0.003,
+          "aux_lr": 0.001,
+          "matrix_weight_decay": 0.0,
+          "aux_weight_decay": 0.1,
+          "momentum": 0.9,
+          "ns_steps": 8,
+          "ns_dtype": "float32",
+          "forward_dtype": "float32",
+          "pi_steps": 20,
+          "solver_tol": 0.0001,
+          "max_expand": 10,
+          "grad_clip": 1.0,
+          "eval_batches": 2,
+          "eval_interval": 2,
+          "checkpoint_interval": 2,
+          "diagnostic_interval": 2,
+          "print_interval": 4,
+          "deterministic": true,
+          "optimizer": "muon_sphere"
+        },
+        "manifest": "d68e471cf56ef34e19ccd2f529f80efb03ea007a3645016af09fbf5d1a1279fb",
+        "device": "cpu"
+      },
+      "runs": [
+        {
+          "path": "/workspace/scratch/9ac978590e9f/work_0919/gpu_suite/results/final_resume_guard/sso_cpu_l93tc3xi/summary_input/muon_sphere",
+          "seed": 11,
+          "validation_loss": 5.509700059890747,
+          "test_loss": 5.526707649230957,
+          "steady_tokens_per_second": 6039.6548656143905,
+          "mean_step_seconds": 0.0052983159985160455,
+          "peak_allocated_bytes": 0,
+          "solver_failure_count": 0,
+          "completed_sessions_wall_seconds": 0.036319136001111474,
+          "unfinished_session_count": 0,
+          "actual_tangency_max": 0.46407425622193926,
+          "mean_radius_relative_error": 0.0015178794882211484
+        }
+      ],
+      "validation_mean": 5.509700059890747,
+      "validation_sample_sd": null,
+      "seed_count": 1,
+      "statistical_note": "Three seeds describe variability; no automatic claim of significance or universality."
+    },
+    {
+      "protocol": {
+        "config": {
+          "width": 16,
+          "layers": 1,
+          "heads": 2,
+          "seq_len": 8,
+          "batch_size": 2,
+          "accum_steps": 2,
+          "steps": 4,
+          "warmup_steps": 1,
+          "matrix_lr": 0.003,
+          "aux_lr": 0.001,
+          "matrix_weight_decay": 0.0,
+          "aux_weight_decay": 0.1,
+          "momentum": 0.9,
+          "ns_steps": 8,
+          "ns_dtype": "float32",
+          "forward_dtype": "float32",
+          "pi_steps": 20,
+          "solver_tol": 0.0001,
+          "max_expand": 10,
+          "grad_clip": 1.0,
+          "eval_batches": 2,
+          "eval_interval": 2,
+          "checkpoint_interval": 2,
+          "diagnostic_interval": 2,
+          "print_interval": 4,
+          "deterministic": true,
+          "optimizer": "sso_ns"
+        },
+        "manifest": "d68e471cf56ef34e19ccd2f529f80efb03ea007a3645016af09fbf5d1a1279fb",
+        "device": "cpu"
+      },
+      "runs": [
+        {
+          "path": "/workspace/scratch/9ac978590e9f/work_0919/gpu_suite/results/final_resume_guard/sso_cpu_l93tc3xi/summary_input/sso_ns",
+          "seed": 11,
+          "validation_loss": 5.509685754776001,
+          "test_loss": 5.526687383651733,
+          "steady_tokens_per_second": 1865.298951948504,
+          "mean_step_seconds": 0.017155426998215262,
+          "peak_allocated_bytes": 0,
+          "solver_failure_count": 0,
+          "completed_sessions_wall_seconds": 0.07996502800233429,
+          "unfinished_session_count": 0,
+          "actual_tangency_max": 0.1063899245317756,
+          "mean_radius_relative_error": 0.00142597173535212
+        }
+      ],
+      "validation_mean": 5.509685754776001,
+      "validation_sample_sd": null,
+      "seed_count": 1,
+      "statistical_note": "Three seeds describe variability; no automatic claim of significance or universality."
+    },
+    {
+      "protocol": {
+        "config": {
+          "width": 16,
+          "layers": 1,
+          "heads": 2,
+          "seq_len": 8,
+          "batch_size": 2,
+          "accum_steps": 2,
+          "steps": 4,
+          "warmup_steps": 1,
+          "matrix_lr": 0.003,
+          "aux_lr": 0.001,
+          "matrix_weight_decay": 0.0,
+          "aux_weight_decay": 0.1,
+          "momentum": 0.9,
+          "ns_steps": 8,
+          "ns_dtype": "float32",
+          "forward_dtype": "float32",
+          "pi_steps": 20,
+          "solver_tol": 0.0001,
+          "max_expand": 10,
+          "grad_clip": 1.0,
+          "eval_batches": 2,
+          "eval_interval": 2,
+          "checkpoint_interval": 2,
+          "diagnostic_interval": 2,
+          "print_interval": 4,
+          "deterministic": true,
+          "optimizer": "sso_ns_repair_svd"
+        },
+        "manifest": "d68e471cf56ef34e19ccd2f529f80efb03ea007a3645016af09fbf5d1a1279fb",
+        "device": "cpu"
+      },
+      "runs": [
+        {
+          "path": "/workspace/scratch/9ac978590e9f/work_0919/gpu_suite/results/final_resume_guard/sso_cpu_l93tc3xi/summary_input/sso_ns_repair_svd",
+          "seed": 11,
+          "validation_loss": 5.509753465652466,
+          "test_loss": 5.526703834533691,
+          "steady_tokens_per_second": 1731.1201469364123,
+          "mean_step_seconds": 0.018485140997654526,
+          "peak_allocated_bytes": 0,
+          "solver_failure_count": 0,
+          "completed_sessions_wall_seconds": 0.08517561400003615,
+          "unfinished_session_count": 0,
+          "actual_tangency_max": 1.3674996888340951e-08,
+          "mean_radius_relative_error": 0.0013692466428782413
+        }
+      ],
+      "validation_mean": 5.509753465652466,
+      "validation_sample_sd": null,
+      "seed_count": 1,
+      "statistical_note": "Three seeds describe variability; no automatic claim of significance or universality."
+    }
+  ],
+  "incomplete_runs_excluded": [],
+  "comparison_rule": "Compare paired seeds only when initialization, data, model, total tokens and hyperparameter-selection budgets match; throughput excludes diagnostic steps and warmup."
+}

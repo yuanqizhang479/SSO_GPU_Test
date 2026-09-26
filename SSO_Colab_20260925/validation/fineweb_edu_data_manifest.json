@@ -1,0 +1,99 @@
+{
+  "schema": 1,
+  "dataset_label": "FineWeb-Edu sample-10BT independent general-text extension",
+  "config": {
+    "tokenizer": "allenai/OLMo-2-1124-7B",
+    "tokenizer_revision": "main",
+    "train_tokens": 4096,
+    "val_tokens": 1024,
+    "test_tokens": 1024,
+    "min_val_source_tokens": 1,
+    "validation_permyriad": 2000,
+    "dataset_label": "FineWeb-Edu sample-10BT independent general-text extension",
+    "sources": [
+      {
+        "name": "fineweb_edu",
+        "repo": "HuggingFaceFW/fineweb-edu",
+        "subset": "sample-10BT",
+        "split": "train",
+        "revision": "main",
+        "weight": 1
+      }
+    ],
+    "shuffle_seed": 20260925,
+    "shuffle_buffer_size": 16
+  },
+  "vocab_size": 100278,
+  "eos_token_id": 100257,
+  "dtype": "<u4",
+  "sources": [
+    {
+      "name": "fineweb_edu",
+      "weight": 1.0,
+      "tokens": {
+        "train": 4206,
+        "val": 2805,
+        "test": 3503
+      },
+      "documents": {
+        "train": 5,
+        "val": 4,
+        "test": 1
+      },
+      "duplicates_skipped": 0,
+      "requested_quota": {
+        "train": 4096,
+        "val": 1024,
+        "test": 1024
+      }
+    }
+  ],
+  "files": {
+    "fineweb_edu_documents.jsonl": {
+      "sha256": "aed735b3c7848c7ec3284501b54f2fed76f15464bc43fc1d58bb02e94e2f28c4",
+      "bytes": 2487
+    },
+    "fineweb_edu_test.bin": {
+      "sha256": "04ed991a97cedb696898212b6a34b9ca4871b76407bf72cfbeed8cd43735f052",
+      "bytes": 14012
+    },
+    "fineweb_edu_train.bin": {
+      "sha256": "83fb4cb974a8a4a4cec21adce41d1670a4e1aa23bb9a471f5a80224ccda937fe",
+      "bytes": 16824
+    },
+    "fineweb_edu_val.bin": {
+      "sha256": "c22f265546f6f56700c6f061a292f2a0760c1b4ff9aed9b525c3037aa0e792ab",
+      "bytes": 11220
+    }
+  },
+  "metadata": {
+    "resolved_sources": [
+      {
+        "name": "fineweb_edu",
+        "repo": "HuggingFaceFW/fineweb-edu",
+        "subset": "sample-10BT",
+        "split": "train",
+        "revision": "main",
+        "weight": 1,
+        "resolved_revision": "87f09149ef4734204d70ed1d046ddc9ca3f2b8f9"
+      }
+    ],
+    "tokenizer": "allenai/OLMo-2-1124-7B",
+    "tokenizer_revision": "7df9a82518afdecae4e8c026b27adccc8c1f0032",
+    "versions": {
+      "datasets": "4.8.5",
+      "transformers": "4.57.6",
+      "huggingface_hub": "0.36.2"
+    }
+  },
+  "split_rule": "sha256(normalized text)[:16] mod 10000",
+  "sampling": "buffered source-wise shuffle, finite prefix until quotas; not uniform across full corpus",
+  "deduplication": "exact normalized text across all accepted and visited sources; no near-dedup guarantee",
+  "tokenizer_files": {
+    "tokenizer/tokenizer_config.json": "91c69c665697785ace4ec7dbd159e1839bc9bb5033ab05a56bb0547521dc9ab0",
+    "tokenizer/tokenizer.json": "73fd5254624f39a88e3faac6a8e11300fc3c735ed37880d4f4f08db898eaecca",
+    "tokenizer/vocab.json": "9e14712c91b37c7aab74b1306baa46ac342d620637a4b44523cdc3aec7d24195",
+    "tokenizer/special_tokens_map.json": "78afb564e81264029b25f9caf24bda2521d5bdaeff5cd3fdbc01d3da2e8ce2f2",
+    "tokenizer/merges.txt": "b6fe424e334903f7fb84d3a106d9730455f4744b9fe3c21ee136d97a00e72502"
+  }
+}

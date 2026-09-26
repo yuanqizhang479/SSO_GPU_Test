@@ -1,0 +1,33 @@
+{
+  "environment": {
+    "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+    "platform": "Linux-6.18.44-x86_64-with-glibc2.39",
+    "torch": "2.14.0+cpu",
+    "numpy": "2.3.5",
+    "cuda_runtime": null,
+    "cuda_available": false,
+    "gpu": null
+  },
+  "gpu_executed": false,
+  "five_optimizers_real_lm_steps": true,
+  "cpu_resume_parameter_max_abs_difference": 0.0,
+  "identical_initialization_all_optimizers": true,
+  "split_document_hashes_disjoint": true,
+  "changed_config_resume_refused": true,
+  "completed_resume_preserves_validation": true,
+  "dirty_output_directory_refused": true,
+  "backward_resume_stop_refused": true,
+  "corrupt_data_refused": true,
+  "run_directory": "/workspace/scratch/9ac978590e9f/work_0919/gpu_suite/results/final_resume_guard/sso_cpu_l93tc3xi",
+  "validation_loss": {
+    "adamw": 5.484812498092651,
+    "muon": 5.509689807891846,
+    "muon_sphere": 5.509700059890747,
+    "sso_ns": 5.509685754776001,
+    "sso_ns_repair_svd": 5.509753465652466
+  },
+  "scope": "Engineering smoke test on synthetic bytes; not evidence of optimizer superiority or real-corpus/GPU replication.",
+  "summary_cli_passed": true,
+  "raw_run_artifacts_retained": false,
+  "raw_run_note": "Temporary checkpoints and fixture tokens removed; rerun test_smoke.py to regenerate."
+}

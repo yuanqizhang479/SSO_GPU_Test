@@ -1,0 +1,64 @@
+{
+  "date": "2026-09-19",
+  "gpu_executed": false,
+  "gpu_reason": "torch.cuda.is_available() == False; CPU wheel environment",
+  "passed": {
+    "python_compile": true,
+    "five_optimizer_cpu_lm_smoke": true,
+    "exact_cpu_checkpoint_restart_max_abs_error": 0.0,
+    "completed_checkpoint_resume": true,
+    "data_checksum_rejection": true,
+    "changed_config_rejection": true,
+    "dirty_output_rejection": true,
+    "identical_initial_parameters": true,
+    "hash_disjoint_train_val_test": true,
+    "summary_cli": true,
+    "grid_cli_dry_run": true,
+    "e0_cpu_cases": 18,
+    "real_tinystories_download_prepare": true,
+    "real_tinystories_cpu_training_steps": 4,
+    "backward_resume_stop_rejected": true
+  },
+  "not_executed": [
+    "Any CUDA training or benchmark",
+    "FineWeb-Edu streaming end-to-end preparation",
+    "OLMo-Mix seven-source end-to-end preparation",
+    "Formal 3-seed pilot/main grid",
+    "Original Xie 100B-token pretraining or downstream benchmark replication"
+  ],
+  "real_data_provenance": {
+    "resolved_sources": [
+      {
+        "name": "tinystories",
+        "repo": "roneneldan/TinyStories",
+        "split": "train",
+        "revision": "main",
+        "weight": 1,
+        "resolved_revision": "f54c09fd23315a6f9c86f9dc80f725de7d8f9c64"
+      }
+    ],
+    "tokenizer": "allenai/OLMo-2-1124-7B",
+    "tokenizer_revision": "7df9a82518afdecae4e8c026b27adccc8c1f0032",
+    "versions": {
+      "datasets": "4.8.5",
+      "transformers": "5.17.0",
+      "huggingface_hub": "1.32.0"
+    }
+  },
+  "real_data_tokens": {
+    "train": 2147,
+    "val": 624,
+    "test": 668
+  },
+  "interpretation": "Engineering evidence only. Four training steps and tiny evaluation windows provide no optimizer-quality estimate.",
+  "retained": "Code, configs, logs, hashes, manifest and summary. Temporary checkpoints, tokenizer and token arrays removed to avoid redistributing dataset/model artifacts.",
+  "versions": {
+    "torch": "2.14.0+cpu",
+    "numpy": "2.3.5",
+    "datasets": "4.8.5",
+    "transformers": "5.17.0",
+    "huggingface_hub": "1.32.0",
+    "httpx": "0.28.1"
+  },
+  "last_change_after_real_data_smoke": "Added input guard refusing resume --stop-after below saved step; full offline suite rerun after the guard. Normal real-data training path unchanged; original execution hashes retained."
+}

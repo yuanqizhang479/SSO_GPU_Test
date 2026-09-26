@@ -1,0 +1,72 @@
+\section{Discussion and limitations}
+\label{sec:discussion}
+
+The two remedies make different tradeoffs.  Exact interval bisection followed
+by \eqref{eq:KF-main} has no smoothing bias but needs a rank decision.
+Pseudo-Huber gives a strictly monotone equation and converges to \(K_R\),
+whereas the family in \cref{prop:smoothing-family-main} identifies \(K_F\) as
+the Huber Fenchel center.  These centers agree in precisely the cases of
+\cref{cor:center-agreement-main}; in particular, they agree for rank-one
+normals.  The boundary bias is profile dependent:
+polynomial tail order \(p\) gives \(\delta^{p/(p+1)}\), pseudo-Huber gives
+\(\delta^{2/3}\), and finite saturation gives \(\delta\).  At fixed strict
+crossings the first direction coefficient is computable from
+\eqref{eq:frozen-field-main}; compact-root instances instead begin at
+cubic/quadratic order and obey the multiplier hierarchy of
+\cref{rem:compact-root-hierarchy-main}.
+
+The strict laws allow arbitrary shape and corank, but boundary and crossover
+laws currently require a transverse square corank-one crossing; multiple
+signed small modes and nontransverse exponents remain open.  The admissible
+family does not cover every vanishing regularizer, and full-space openness
+implies no frequency law without a distribution for \((G,\Theta)\).  No outer
+complexity or learning-performance gain follows without a separate descent
+model and control of the changing normal.
+
+Finite Newton--Schulz iterations are separate numerical maps, not exact
+polar factors or automatically members of our Fenchel family.
+Li and Tsuchiya~\cite{li2026finite} analyze a smoothing benefit of finite iterations for
+nonsmooth nonconvex optimization.  Their guarantees use classical
+Taylor-derived coefficients and a normalization fixed before the run;
+they do not directly cover the tuned quintic with data-dependent
+Frobenius normalization used in common Muon/SSO implementations.  Neither
+an exact compact-root counterexample nor a small finite-iteration scalar
+residual settles the practical method's training performance.  Numerical
+validation should measure tangency, norm feasibility, and a valid
+primal--dual gap on the same returned direction; estimated-normal and
+true-normal residuals should be distinguished.
+
+The experiments in this paper check matrix identities, asymptotic constants,
+and certificate diagnostics.  Language-model training would test a separate
+application claim.  In particular, reproducing all architectures and training
+budgets of Xie et al.~\cite{xie2026controlled} is not required to validate the matrix
+analysis results, whereas a claim of matching or improving their reported
+training outcomes would require a separately matched protocol.
+
+\section{Conclusion}
+
+We characterized the tangency-constrained certificate slice for nuclear-norm
+approximation from a matrix line and identified its hard and Fenchel spectral
+centers.  An admissible smoothing family links center selection and boundary
+exponents, while strict arbitrary-corank paths admit computable analytic
+multiplier and direction expansions.  Transverse corank-one boundaries
+exhibit the sharp pseudo-Huber two-thirds law and a uniform cubic crossover.
+Compact-polar open failure explains why the full certificate slice is
+essential.
+
+\section*{Data and code availability}
+
+The mathematical examples use explicitly specified matrices and no external
+training data.  The accompanying source archive contains the numerical
+verification scripts, high-precision table generation, and dependency
+information.  These computations are reproducibility checks in the recorded
+environment, not machine-rigorous interval certificates or formal proofs.
+Separately supplied GPU application protocols have no reported training
+results in this manuscript.
+
+\section*{Declaration on generative AI assistance}
+
+Generative AI tools assisted with language editing, literature discovery,
+algebraic exploration, drafting portions of theorem and proof text, and
+drafting verification code.  Responsibility for the mathematical arguments, source attribution,
+computational claims, and final submission remains with the human authors.

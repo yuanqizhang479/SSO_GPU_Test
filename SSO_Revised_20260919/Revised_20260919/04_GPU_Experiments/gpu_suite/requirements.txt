@@ -1,0 +1,7 @@
+# Install the CUDA build of torch from https://pytorch.org/get-started/locally/ first.
+# CPU test environment: torch==2.14.0+cpu, numpy==2.3.5 (see results).
+torch>=2.5,<3
+numpy>=1.26,<3
+datasets>=3,<5
+transformers>=4.45,<6
+huggingface_hub>=0.26,<2

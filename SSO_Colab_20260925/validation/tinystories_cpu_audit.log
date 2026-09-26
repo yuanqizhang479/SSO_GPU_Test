@@ -1,0 +1,13 @@
+audit 1/6: step000001_blocks.0.attn.q.weight.npz
+audit 2/6: step000001_blocks.0.ff1.weight.npz
+audit 3/6: step000001_blocks.0.ff2.weight.npz
+audit 4/6: step000004_blocks.0.attn.q.weight.npz
+audit 5/6: step000004_blocks.0.ff1.weight.npz
+audit 6/6: step000004_blocks.0.ff2.weight.npz
+{
+  "snapshot_count": 6,
+  "sso_ns_snapshot_count": 6,
+  "sso_ns_material_residual_count": 0,
+  "normal_illconditioned_count": 0,
+  "ph_reference_failures": 0
+}

@@ -1,0 +1,7 @@
+# Keep Colab preinstalled CUDA torch; do not replace it with a CPU wheel.
+numpy>=1.26,<3
+scipy>=1.11,<2
+datasets>=3,<5
+transformers>=4.45,<5
+huggingface_hub>=0.26,<1
+httpx[socks]>=0.27,<1

@@ -1,0 +1,357 @@
+\section{Structural failure and certificate geometry}
+\label{sec:failure}
+
+The rank-one normal from the motivating tangent oracle supplies a transparent
+witness.  The structural result below then perturbs that witness in the full
+space of matrix normals; the completion theory is rectangular and makes no
+rank assumption on \(\Theta\).
+
+\subsection{A witness and full-space openness}
+
+Let \(b_1,b_2,c>0\), \(d\in\mathbb R\), and
+\begin{equation}
+ \Theta=e_1e_1^\top,
+ \qquad
+ G=\begin{pmatrix}d&b_1\\b_2&c\end{pmatrix}.
+ \label{eq:2by2-data}
+\end{equation}
+Writing \(x=d+\lambda\), set
+\(A(x)=\bigl(\begin{smallmatrix}x&b_1\\b_2&c\end{smallmatrix}\bigr)\).
+
+\begin{theorem}[A strict \(2\times2\) family with no compact root]
+\label{thm:open-2by2}
+If \(0<b_1b_2\le c^2\), then
+\begin{equation}
+ x^\star=\frac{b_1b_2}{c}
+ \label{eq:2by2-minimizer}
+\end{equation}
+is the unique minimizer of \(\|A(x)\|_*\), and the compact scalar selection
+does not attain zero.  At the singular minimizer,
+\begin{equation}
+ \left\langle e_1e_1^\top,\Sc(A(x^\star))\right\rangle
+ =\frac{b_1b_2}{\sqrt{(b_1^2+c^2)(b_2^2+c^2)}}>0.
+ \label{eq:2by2-jump}
+\end{equation}
+The strict condition \(0<b_1b_2<c^2\) is open in the positive parameter orthant.
+\end{theorem}
+
+\begin{proof}
+For a \(2\times2\) matrix,
+\(\|A\|_*^2=\|A\|_F^2+2|\det A|\).  Since
+\(\det A(x)=xc-b_1b_2\),
+\begin{equation}
+ \|A(x)\|_*^2=
+ \begin{cases}
+ (x-c)^2+(b_1+b_2)^2,&x<x^\star,\\
+ (x+c)^2+(b_1-b_2)^2,&x>x^\star.
+ \end{cases}
+ \label{eq:2by2-branches}
+\end{equation}
+Below the crossing, the derivative of the nuclear norm is
+\((x-c)/\sqrt{(x-c)^2+(b_1+b_2)^2}\).  Above it, the derivative is
+\((x+c)/\sqrt{(x+c)^2+(b_1-b_2)^2}\).  They are respectively negative and
+positive because \(x^\star\le c\), proving uniqueness.
+Moreover
+\[
+ A(x^\star)=
+ \begin{pmatrix}b_1\\c\end{pmatrix}
+ \begin{pmatrix}b_2/c&1\end{pmatrix},
+\]
+whose compact polar has the entry in \eqref{eq:2by2-jump}.  The compact
+scalar therefore jumps from a negative to a positive value without attaining
+zero.
+\end{proof}
+
+The equality case \(b_1b_2=c^2\) will be the boundary-kink model in
+\cref{sec:rates}.  Strict instances give a stronger statement than relative
+openness inside the rank-one manifold.  Write
+\[
+ \mathbb S_F^{n^2-1}
+ =\{\Theta\in\mathbb R^{n\times n}:\|\Theta\|_F=1\}.
+\]
+
+\begin{theorem}[Full-space openness of strict compact-polar failure]
+\label{thm:open-all-n}
+For every \(n\ge2\), there are a nonempty relatively open set
+\[
+ \mathcal O_n\subset \mathrm{GL}_n\times\mathbb S_F^{n^2-1}
+\]
+and a real-analytic map
+\((G,\Theta)\mapsto\lambda_{\rm s}(G,\Theta)\) such that
+\(A_{\rm s}=G+\lambda_{\rm s}\Theta\) has rank \(n-1\).  With unit left and
+right null vectors \(u_{\rm s},v_{\rm s}\), define
+\begin{equation}
+ a_{\rm s}=\langle\Theta,\Sc(A_{\rm s})\rangle,
+ \qquad
+ \beta_{\rm s}=|u_{\rm s}^\top\Theta v_{\rm s}|.
+ \label{eq:full-open-ab}
+\end{equation}
+Then
+\begin{equation}
+ 0<|a_{\rm s}|<\beta_{\rm s}.
+ \label{eq:strict-failure}
+\end{equation}
+The crossing \(\lambda_{\rm s}\) is the unique global minimizer and satisfies
+the sharp-growth bound
+\begin{equation}
+ \|G+\lambda\Theta\|_*
+ \ge \|A_{\rm s}\|_*
+ +\bigl(\beta_{\rm s}-|a_{\rm s}|\bigr)
+  |\lambda-\lambda_{\rm s}|
+ \quad(\lambda\in\mathbb R).
+ \label{eq:sharp-growth}
+\end{equation}
+The compact equation \eqref{eq:compact-root} has no solution.  In particular,
+strict failure has nonempty open interior in the full normalized data space,
+which includes full-rank matrix normals.
+\end{theorem}
+
+\begin{proof}
+For \(n=2\), take
+\[
+ G_0=\begin{pmatrix}0&1\\1&2\end{pmatrix},
+ \qquad \Theta_0=e_1e_1^\top,
+ \qquad \lambda_0=\frac12.
+\]
+Then \(G_0\) is invertible and
+\(A_0=\tfrac12(1,2)^\top(1,2)\).  Its normalized range and null vectors are
+\(w=(1,2)^\top/\sqrt5\) and \(z=(-2,1)^\top/\sqrt5\), respectively, so
+\[
+ a_0=\langle\Theta_0,ww^\top\rangle=\frac15,
+ \qquad \beta_0=|z^\top\Theta_0z|=\frac45.
+\]
+For \(n>2\), embed \(G_0\) as the leading block of
+\(\operatorname{diag}(G_0,d_3,\ldots,d_n)\), with \(d_j>0\), and extend
+\(\Theta_0\) by zeros.  The crossing has corank one and retains these strict
+values.
+
+Set \(F(G,\Theta,\lambda)=\det(G+\lambda\Theta)\).  At the witness,
+\(\partial_\lambda F\ne0\), because at a corank-one matrix the adjugate is a
+nonzero multiple of \(v_{\rm s}u_{\rm s}^\top\) and
+\(u_{\rm s}^\top\Theta v_{\rm s}\ne0\).  The analytic implicit-function
+theorem, restricted to the Frobenius sphere, therefore continues the crossing
+as \(\lambda_{\rm s}(G,\Theta)\).  After shrinking the neighborhood,
+\(\partial_\lambda F\ne0\).  Jacobi's formula gives
+\[
+ \partial_\lambda\det A=\tr\!\left(\operatorname{adj}(A)\Theta\right),
+\]
+whereas \(\operatorname{adj}(A)=0\) whenever \(\rank A\le n-2\).
+Thus a zero of \(F\) with \(\partial_\lambda F\ne0\) has rank exactly
+\(n-1\), so the continued crossing remains corank one.  The
+partial polar factor and the null projectors are continuous along this
+fixed-rank crossing manifold, so \(a_{\rm s}\) and \(\beta_{\rm s}\) are
+continuous and the strict inequalities persist.
+
+At the crossing, \cref{thm:interval} gives
+\(\partial\phi(\lambda_{\rm s})=[a_{\rm s}-\beta_{\rm s},
+a_{\rm s}+\beta_{\rm s}]\).  Apply the subgradient inequality with the right
+endpoint for \(\lambda>\lambda_{\rm s}\) and the left endpoint for
+\(\lambda<\lambda_{\rm s}\); both imply \eqref{eq:sharp-growth}.  Thus the
+minimizer is globally unique.  A compact-polar root anywhere would provide a
+zero scalar subgradient and hence another minimizer; at \(\lambda_{\rm s}\)
+the compact scalar equals \(a_{\rm s}\ne0\).  No root exists.  Finally,
+full-rank normals are dense in \(\mathbb S_F^{n^2-1}\), so \(\mathcal O_n\)
+contains such normals.
+\end{proof}
+
+The implicit-function theorem asserts local uniqueness of the continued
+\emph{crossing}, not global uniqueness of all determinant roots; small
+general-normal perturbations may create additional far-away crossings.
+Equation \eqref{eq:sharp-growth} is what makes the continued crossing the
+unique global \emph{minimizer}.  The theorem is topological and makes no
+frequency claim.
+
+For the rank-one normal appearing in the tangent-oracle application, the
+crossing and its half-width admit an SVD-free formula.  Let
+\begin{equation}
+ \Theta=uv^\top,
+ \qquad \|u\|_2=\|v\|_2=1.
+ \label{eq:rank-one-normal}
+\end{equation}
+
+\begin{proposition}[Rank-one crossing formula]
+\label{prop:beta-closed}
+If \(G\in\mathrm{GL}_n\) and
+\(\alpha=v^\top G^{-1}u\ne0\), the rank-one line has a corank-one crossing at
+\(\lambda_{\rm sing}=-\alpha^{-1}\), and
+\begin{equation}
+ \beta=
+ \frac{\alpha^2}
+ {\|G^{-1}u\|_2\,\|G^{-\top}v\|_2}.
+ \label{eq:beta-closed}
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+The determinant lemma gives
+\(\det(G+\lambda uv^\top)=\det(G)(1+\lambda\alpha)\).  The right and left
+null spaces at its root are spanned by \(G^{-1}u\) and \(G^{-\top}v\).
+After normalization, both numerators in
+\(\beta=|u_0^\top u|\,|v_0^\top v|\) equal \(|\alpha|\), which proves
+\eqref{eq:beta-closed}.  The factor
+\(I-\alpha^{-1}G^{-1}uv^\top\) is the identity minus a rank-one projector,
+so the corank is one.
+\end{proof}
+
+\subsection{The complete certificate slice and its uniqueness}
+
+Fix a dual minimizer and write
+\[
+ A^\star=G+\lambda^\star\Theta=U_r\Sigma_rV_r^\top,
+ \qquad
+ \ell=m-r,\quad k=n-r,
+ \qquad
+ C=U_0^\top\Theta V_0,\qquad \beta=\|C\|_*.
+\]
+By \eqref{eq:solution-face}, every exact certificate is
+\begin{equation}
+ \Phi^\star=U_rV_r^\top+U_0KV_0^\top,
+ \qquad
+ K\in\mathcal K(C,a):=
+ \{K:\|K\|_2\le1,\ \langle C,K\rangle=-a\}.
+ \label{eq:all-directions}
+\end{equation}
+
+\begin{theorem}[Feasibility and uniqueness of the certificate slice]
+\label{thm:certificate-uniqueness}
+The slice \(\mathcal K(C,a)\) is nonempty if and only if \(|a|\le\beta\).
+If \(\ell k=0\), then \(C=0\), the kernel-block space consists only of the
+empty zero matrix, and the slice is feasible and a singleton exactly when
+\(a=0\).  Assume henceforth that \(\ell,k\ge1\).  If \(C=0\), feasibility
+forces \(a=0\), and the slice is the entire, non-singleton spectral unit ball.
+If \(C\ne0\), then:
+\begin{enumerate}
+ \item if \(|a|<\beta\), the slice is a singleton if and only if
+ \(\ell k=1\);
+ \item if \(|a|=\beta\), the slice is a singleton if and only if
+ \(\operatorname{rank}C=\min\{\ell,k\}\).
+\end{enumerate}
+In all remaining feasible cases with \(\ell,k\ge1\), it contains infinitely
+many matrices.
+Consequently, at a transverse square corank-one crossing the exact certificate
+is unique in both the strict and boundary regimes.
+\end{theorem}
+
+\begin{proof}
+Feasibility is spectral--nuclear duality.  The zero-dimensional case is
+immediate.  If \(\ell,k\ge1\) and \(C=0\), the slice is the whole spectral
+unit ball.  Now let
+\(r_C=\operatorname{rank}C\), let
+\(C=P_C\Sigma_C Q_C^\top\ne0\) be a compact SVD, and put
+\(S_C=P_CQ_C^\top\).  When
+\(|a|<\beta\), the feasible matrix
+\(K_0=-(a/\beta)S_C\) has spectral norm strictly below one.  If \(\ell k>1\),
+choose nonzero \(H\perp C\); both \(K_0\pm\varepsilon H\) remain feasible for
+small \(\varepsilon\).  If \(\ell k=1\), the equality fixes the only entry.
+
+At \(|a|=\beta\), equality in spectral--nuclear duality gives the complete
+endpoint face
+\begin{equation}
+ \mathcal K(C,a)=
+ \left\{-\operatorname{sign}(a)
+ \bigl(P_CQ_C^\top+P_\perp WQ_\perp^\top\bigr):\|W\|_2\le1\right\},
+ \label{eq:endpoint-face}
+\end{equation}
+where \(W\in\mathbb R^{(\ell-r_C)\times(k-r_C)}\), and
+\(P_\perp,Q_\perp\) complete the singular bases.  Indeed, equality for each
+positive singular pair forces
+\(Kq_i=-\operatorname{sign}(a)p_i\) and
+\(K^\top p_i=-\operatorname{sign}(a)q_i\), which kills both cross blocks.  The face
+is a singleton exactly when one complementary space is zero, equivalently
+when \(\operatorname{rank}C=\min\{\ell,k\}\).
+\end{proof}
+
+Thus compact-polar failure is not an artifact of certificate nonuniqueness:
+in the square corank-one instances governing \cref{sec:rates}, both the
+best approximant and the exact certificate are unique, but the compact choice
+\(K=0\) is still wrong whenever \(a\ne0\).
+
+\subsection{Hard spectral completion and the no-clipping dichotomy}
+
+The minimum-Frobenius member of the complete slice can always be computed from
+one SVD and one monotone scalar equation.  This also supplies step 4 of the
+exact interval oracle.
+
+\begin{theorem}[Minimum-Frobenius spectral completion]
+\label{thm:frobenius-water-filling}
+Let \(C\in\mathbb R^{\ell\times k}\) and suppose
+\(|a|\le\beta:=\|C\|_*\).  If \(C=0\), then \(a=0\) and the unique
+minimum-Frobenius completion is \(K_F=0\).  Otherwise, let
+\(C=P_C\operatorname{diag}(\sigma_1,\ldots,\sigma_{r_C})Q_C^\top\) be a compact
+SVD, where \(r_C=\operatorname{rank}C\) and
+\(\sigma_1\ge\cdots\ge\sigma_{r_C}>0\).  Define
+\[
+ g_F(\eta)=\sum_{i=1}^{r_C}\sigma_i\min\{\eta\sigma_i,1\}.
+\]
+For \(|a|<\beta\), there is a unique
+\(\eta\in[0,1/\sigma_{r_C})\) with \(g_F(\eta)=|a|\); at the endpoint take
+\(\eta=1/\sigma_{r_C}\).  With \(\operatorname{sign}(0)=0\), the unique member of
+\(\mathcal K(C,a)\) of minimum Frobenius norm is
+\begin{equation}
+ K_F=-\operatorname{sign}(a)P_C
+ \operatorname{diag}\bigl(\min\{\eta\sigma_i,1\}\bigr)Q_C^\top.
+ \label{eq:KF-main}
+\end{equation}
+At \(|a|=\beta\), the multiplier parameter need not be unique, but the
+displayed matrix is unique.
+\end{theorem}
+
+\begin{proof}
+The case \(C=0\) is immediate.  Otherwise, projection of \(\mu C\) onto the spectral unit ball clips its singular values
+at one.  The continuous function \(g_F\) increases strictly until it reaches
+\(\beta\), so the stated multiplier exists.  With
+\(\mu=-\operatorname{sign}(a)\eta\), this projection is \(K_F\) and satisfies
+the equality.  For any other feasible \(L\), projection optimality and
+\(\langle C,L-K_F\rangle=0\) give
+\(\langle K_F,L-K_F\rangle\ge0\).  Hence
+\[
+ \|L\|_F^2\ge\|K_F\|_F^2+\|L-K_F\|_F^2,
+\]
+which proves optimality and uniqueness.
+\end{proof}
+
+For the rank-one normal \eqref{eq:rank-one-normal}, put
+\(x=U_0^\top u\), \(y=V_0^\top v\).  Then
+\(C=xy^\top\) and \(\beta=\|x\|_2\|y\|_2\).  If \(\beta>0\), no clipping
+occurs, and
+\begin{equation}
+ K_F=K_{\rm can}
+ =-\frac{a}{\beta}
+ \frac{x}{\|x\|_2}\frac{y^\top}{\|y\|_2}.
+ \label{eq:Kcan-main}
+\end{equation}
+If \(\beta=0\), dual optimality forces \(a=0\), and
+\(K_F=K_{\rm can}=0\).
+
+\begin{proposition}[No-clipping/partial-isometry dichotomy]
+\label{prop:partial-isometry}
+For fixed \(C\ne0\), the unconstrained minimum-Frobenius solution
+\[
+ K_{\rm lin}=-\frac{a}{\|C\|_F^2}C
+\]
+is spectrally feasible if and only if
+\(|a|\le\|C\|_F^2/\|C\|_2\).  Moreover
+\begin{equation}
+ \frac{\|C\|_F^2}{\|C\|_2}\le\|C\|_*,
+ \label{eq:pi-inequality}
+\end{equation}
+with equality if and only if all nonzero singular values of \(C\) coincide.
+Equivalently, \(K_{\rm lin}\) is feasible for every admissible scalar
+right-hand side if and only if \(C\) is a scalar multiple of a partial
+isometry.
+\end{proposition}
+
+\begin{proof}
+The first claim follows from
+\(\|K_{\rm lin}\|_2=|a|\|C\|_2/\|C\|_F^2\).  If \(\sigma_1=\|C\|_2\), then
+\[
+ \|C\|_F^2=\sum_i\sigma_i^2
+ \le\sigma_1\sum_i\sigma_i=\|C\|_2\|C\|_*,
+\]
+with equality exactly when each positive \(\sigma_i\) equals \(\sigma_1\).
+\end{proof}
+
+For a general normal, \eqref{eq:KF-main} replaces the rank-one formula by one
+SVD and one scalar solve.  The smooth analogue below has a different spectral
+profile; \cref{cor:center-agreement-main} gives the exact condition under
+which the two centers agree.

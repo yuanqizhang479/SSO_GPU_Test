@@ -1,0 +1,225 @@
+\section{Detailed numerical verification}
+\label{sec:supp-numerics}\input{generated/numerical_macros}
+
+The local laws of Section~\ref{sec:rates} predict constants, not merely
+exponents.  The file \nolinkurl{verify_publication_tables.py} generates every
+numerical table and the displayed decimal constants in this section from one
+machine-readable snapshot.  It uses 80-digit mpmath arithmetic (100-digit
+Decimal arithmetic for the moving family), and repeats the non-diagonal
+calculation at 100 digits.  The repeated ratios agree within \(10^{-60}\)
+and its intrinsic constants within \(10^{-65}\); we report fewer digits.
+These are working precisions and numerical cross-checks, not validated
+error bounds.  Bisection and explicit spectral formulas avoid float64
+subtraction of nearby multipliers or directions.  The full suite also retains
+independent float64 regression tests; no assertion is silently disabled under
+\texttt{python -O}.  The following commands run the suite and compare the
+stored JSON/LaTeX snapshots, respectively:
+\begin{quote}\small\ttfamily
+python verify\_all.py\\
+python verify\_publication\_tables.py --check
+\end{quote}
+Omit \texttt{--check} from the second command to regenerate the snapshots.
+
+For the first group, \(\Theta=e_1e_1^\top\) and
+\(G=\bigl(\begin{smallmatrix}0&b_1\\b_2&c\end{smallmatrix}\bigr)\).
+
+For the regular row, \(b_1=b_2=1\), \(c=1/2\), and
+\(\lambda^\star=1/2\); the ratio is
+\((\lambda_\delta-\lambda^\star)/\delta^2\).  For the strict row,
+\(b_1=b_2=1/2\), \(c=1\), and \(\lambda^\star=1/4\); the ratio is
+\((\lambda_\delta-\lambda^\star)/\delta\).  For the boundary row,
+\(b_1=b_2=c=1\), \(\lambda^\star=1\), and the ratio is
+\((\lambda^\star-\lambda_\delta)/\delta^{2/3}\).
+\input{generated/table_fixed}
+
+For the same boundary data, standard Huber gives
+\((\lambda^\star-\lambda_\delta^{\rm hub})/\delta=\numHuberBoundaryRatio\) at
+\(\delta=10^{-8}\), versus \(1/\beta=2\).  The scaled-Huber regression in
+the code also confirms that moving the first saturation threshold to
+\(L=1/2\) changes the constant to \(L/\beta=1\), as required by
+\eqref{eq:saturated-boundary-rate-main}.
+
+For the admissible profile \(\psi'(x)=x/(1+x^3)^{1/3}\), \(x\ge0\),
+we divide the displacement by \(\delta^{3/4}\); for Huber and scaled
+Huber we divide it by \(\delta\).  Thus the complete profile table tests
+the tail-dependent exponent as well as the leading constant.
+\input{generated/table_profiles}
+
+The preceding instances are \(2\times2\).  To exercise the general
+completion and arbitrary-corank strict law, take
+\[
+ A^\star=\diag(1,1,0,0),\qquad
+ \Theta=\diag\!\left(\tfrac38,\tfrac38,1,\tfrac12\right),\qquad
+ \lambda^\star=1,\qquad G=A^\star-\Theta.
+\]
+Then \(a=3/4\), \(C=\diag(1,1/2)\), and \(\beta=3/2\).  Hard
+water-filling gives
+\(\eta_F=3/5\),
+\(K_F=-\diag(3/5,3/10)\), and
+\(\|K_F\|_F=\sqrt{0.45}\).  The smooth-center equation gives
+\[
+ \eta_R=\numCorankEta,\qquad
+ K_R=-\diag(\numCorankKrOne,\numCorankKrTwo),
+\]
+with \(\|K_F-K_R\|_F=\numCenterDistance\).  Writing
+\(\Phi_F^\star\) and \(\Phi_R^\star\) for the two corresponding completed
+certificates, the actual smoothing path gives
+\input{generated/table_corank}
+Thus the path converges to the smooth rather than the minimum-Frobenius
+center, while
+\((\lambda_\delta-\lambda^\star)/\delta\to-\eta_R\), as predicted by
+Theorems~\ref{thm:general-fenchel-center} and~\ref{thm:rate-strict-general}
+and Corollary~\ref{cor:center-agreement-main}.
+On the same line, the standard Huber path gives slope
+\(-\eta_F=-3/5\) and converges to \(\Phi_F^\star\) to below
+\(10^{-11}\) at \(\delta=10^{-5}\), verifying
+Proposition~\ref{prop:smoothing-family-main} on the same nonsingleton slice.
+
+The preceding corank-two line is diagonal: the relevant singular dyads are
+fixed.  In the notation of Proposition~\ref{prop:strict-constants-closed-main},
+both \(P_{\rm big}(s)\) and \(\widetilde B(s)\) are constant.  Hence
+\(\partial_s\mathcal W=0\), which proves \(t_1=0\) and
+\(\mathcal M_R=0\) rather than merely observing their cancellation.  To test a nonzero first-order
+coefficient without random data, take
+\[
+ A^\star=\diag(1,3/5,0,0),\qquad \lambda^\star=1,
+\]
+\[
+ \Theta=
+ \begin{pmatrix}
+  1/6&0&2/5&0\\
+  0&1/6&0&3/10\\
+  1/5&0&2/3&0\\
+  0&1/10&0&1/3
+ \end{pmatrix},
+ \qquad G=A^\star-\Theta.
+\]
+In the displayed coordinates, \(a=1/3\),
+\(C=\diag(2/3,1/3)\), \(\beta=1\), and
+\(\eta_R=\numNonDiagonalEta\).  At \(\delta=10^{-5}\), the multiplier ratio is
+\[
+ (\lambda_\delta-\lambda^\star)/\delta=\numNonDiagonalSlopeFive.
+\]
+The direction ratio is \(\numNonDiagonalDirectionFive\), already exhibiting
+a nonzero linear direction term.  Direct evaluation of
+\eqref{eq:t1-closed-main}--\eqref{eq:MR-closed-main} gives
+\[
+ t_1=\numNonDiagonalTOne,
+ \qquad \|\mathcal M_R\|_F=\numNonDiagonalMR.
+\]
+At \(\delta=10^{-6}\), the observed direction ratio is
+\(\numNonDiagonalDirectionSix\), and the cosine between
+\((\Phi_\delta-\Phi_R^\star)/\delta\) and \(\mathcal M_R\) equals one to
+ten displayed digits (its computed value is \(\numNonDiagonalCosineSix\)).  The finite-scale estimate of
+\(t_1\) at \(\delta=10^{-5}\) is \(\numNonDiagonalFiniteTOneFive\).  Thus the table verifies the
+predicted vector coefficient, not only its exponent.  Writing
+\(t_\delta=(\lambda_\delta-1)/\delta\), the complete sequence is
+\input{generated/table_nondiagonal}
+This demonstrates
+sharpness for one fixed instance; no generic measure statement is inferred.
+
+The compact-root branch of
+Corollary~\ref{cor:compact-root-superconvergence-main} is sharp as well.
+For \(A^\star=\diag(2,1,0)\), \(\Theta=\diag(1,-1,1)\), and
+\(G=A^\star-\Theta\), one has \(a=0\), \(C=(1)\),
+\(J_\star=\diag(1/4,1,0)\), and \(\chi_\star=-3/4\).  Thus the predicted
+coefficients are \(-3/8\) and
+\(\|\mathcal N_0\|_F=\sqrt{26}/8=\numCompactDirectionLimit\ldots\).
+At \(\delta=10^{-4}\), high-precision bisection gives the normalized pair
+\((\numCompactMultiplier,\,\numCompactDirection)\); the assertion script checks monotone
+convergence over four scales.  Thus, even when the compact-polar equation
+already has a root, the nearby smooth path has nonzero errors beginning at
+cubic and quadratic order.
+
+The doubly cancelled branch in
+\eqref{eq:compact-root-quintic-main} uses
+\[
+ A^\star=\diag(3,2,1,0),\qquad \lambda^\star=1,
+\]
+\[
+ \Theta=\begin{pmatrix}
+  27/10&0&0&3/10\\
+  0&-16/5&0&1/10\\
+  0&0&1/2&1/4\\
+  1/5&-3/20&1/10&1
+ \end{pmatrix},\qquad G=A^\star-\Theta.
+\]
+Here \(a=0\), \(C=(1)\), \(d_0=1\),
+\(\chi_\star=0\), and \(\chi_2=1/3\).  Hence the predicted quintic
+coefficient is \(-1/8\), and the quartic direction coefficient after
+subtracting \(-\delta^2J_\star/2\) is
+\[
+ \diag\!\left(\frac1{216},\frac3{128},\frac38,-\frac18\right).
+\]
+Extended-precision bisection gives
+\input{generated/table_quintic}
+At \(\delta=10^{-4}\), the diagonal of the normalized quartic direction is
+\[
+ (\numQuarticOne,\,\numQuarticTwo,\,\numQuarticThree,\,\numQuarticFour),
+\]
+while the Frobenius norm of its off-diagonal part is below
+\(4\times10^{-6}\).  The high-precision assertion script checks all four
+scales and the full matrix coefficient.
+
+For Theorem~\ref{thm:crossover-main} we use the one-parameter family
+\(b_1=b_2=1\), \(c=1+\varepsilon\), for which
+\(\beta_0=\kappa_0=\tfrac12\) and
+\(\Delta_\varepsilon=(c^2-1)/(1+c^2)\).  Choosing \(\varepsilon=
+\varepsilon(\delta)\) so that \(\Delta_\delta=\zeta\delta^{2/3}\) places the
+family in the critical window \eqref{eq:crossover-critical-main}, whose
+limit solves \(\tfrac12y^3+\zeta y^2=1\).
+
+\input{generated/table_critical}
+
+For a valid strict-side moving path, take
+\(\Delta_\delta=\delta^{1/3}\); then
+\(\Delta_\delta\to0\) while
+\(\Delta_\delta/\delta^{2/3}\to\infty\).  The normalization in
+\eqref{eq:crossover-inner-main}, whose limit is one for this family, gives
+\input{generated/table_strict}
+This path respects the moving-family quantifier.  By contrast, fixing
+\(\varepsilon\) and sending \(\delta\) to zero tests the fixed strict-kink
+law, not the crossover theorem.
+
+Finally, the oracle returns a matrix direction, not only a multiplier.  At
+the boundary instance \(b_1=b_2=c=1\), direct differentiation gives
+\[
+ \|\mathcal M_0\|_F=\sqrt{3/2},
+ \qquad
+ \frac{\|\Phi_\delta-\Phi^\star\|_F}{x_\delta}
+ \longrightarrow\sqrt{3/2}.
+\]
+At \(\delta=10^{-15}\), the computed ratio is
+\(\numBoundaryDirection\), versus
+\(\sqrt{3/2}=\numBoundaryDirectionLimit\).  The same verification includes critical,
+strict-side, boundary, and deliberately oscillatory paths for the unified
+ratio \(x_\delta/\widehat x_\delta\).
+
+For completeness, the oscillatory sequence is
+\[ q_k=10^{-k},\qquad \delta_k=q_k^3,\qquad
+\Delta_k=\begin{cases}
+0,& k\equiv0\pmod3,\\
+3q_k^2,& k\equiv1\pmod3,\\
+q_k,& k\equiv2\pmod3.
+\end{cases} \]
+It alternates among boundary, critical, and strict-side windows, so the
+unified ratio has a limit even though the regime changes along the sequence.
+The displayed ones are rounded values, not exact identities.
+\input{generated/table_oscillatory}
+
+The separate \texttt{verify\_certificate\_example.py} illustrates why a
+certificate must be assessed on the actual returned matrix.  For
+\(G=\left(\begin{smallmatrix}0&1\\1&2\end{smallmatrix}\right)\) and
+\(\Theta=e_1e_1^\top\), the exact completed direction is
+\(\left(\begin{smallmatrix}0&1/2\\1/2&3/4\end{smallmatrix}\right)\).
+It is tangent and optimal, whereas the compact polar factor at the same
+multiplier has tangency residual \(1/5\).  The script also compares an
+eight-step float64 polynomial map using the published Newton--Schulz
+coefficients from Xie et al.~\cite{xie2026controlled}.  That diagnostic is not the production BF16 implementation,
+a Fenchel-path assertion, or a GPU-training experiment; its floating-point
+gap is not an interval-certified bound.
+
+We emphasize what these tables do and do not support.  They confirm the
+exponents and leading constants of the local laws on instances where those
+constants are known in closed form.  They are not evidence about how often
+rank-deficient crossings occur in any application, and no such claim is made.

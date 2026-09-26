@@ -1,0 +1,70 @@
+{
+  "tokenizer": "allenai/OLMo-2-1124-7B",
+  "tokenizer_revision": "main",
+  "train_tokens": 32000000,
+  "val_tokens": 500000,
+  "test_tokens": 500000,
+  "min_val_source_tokens": 4096,
+  "validation_permyriad": 100,
+  "dataset_label": "OLMo-Mix-1124 seven-source token-weighted subset; not Xie exact indices",
+  "sources": [
+    {
+      "name": "dclm",
+      "repo": "allenai/olmo-mix-1124",
+      "subset": "dclm",
+      "split": "train",
+      "revision": "main",
+      "weight": 3700
+    },
+    {
+      "name": "arxiv",
+      "repo": "allenai/olmo-mix-1124",
+      "subset": "arxiv",
+      "split": "train",
+      "revision": "main",
+      "weight": 20.8
+    },
+    {
+      "name": "pes2o",
+      "repo": "allenai/olmo-mix-1124",
+      "subset": "pes2o",
+      "split": "train",
+      "revision": "main",
+      "weight": 58.6
+    },
+    {
+      "name": "starcoder",
+      "repo": "allenai/olmo-mix-1124",
+      "subset": "starcoder",
+      "split": "train",
+      "revision": "main",
+      "weight": 83
+    },
+    {
+      "name": "algebraic_stack",
+      "repo": "allenai/olmo-mix-1124",
+      "subset": "algebraic-stack",
+      "split": "train",
+      "revision": "main",
+      "weight": 11.8
+    },
+    {
+      "name": "open_web_math",
+      "repo": "allenai/olmo-mix-1124",
+      "subset": "open-web-math",
+      "split": "train",
+      "revision": "main",
+      "weight": 12.2
+    },
+    {
+      "name": "wiki",
+      "repo": "allenai/olmo-mix-1124",
+      "subset": "wiki",
+      "split": "train",
+      "revision": "main",
+      "weight": 3.66
+    }
+  ],
+  "shuffle_seed": 20260919,
+  "shuffle_buffer_size": 10000
+}

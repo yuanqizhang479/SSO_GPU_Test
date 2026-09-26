@@ -1,0 +1,58 @@
+{
+  "retrieved_date": "2026-09-25",
+  "files": [
+    {
+      "file": "upstream_check_lambda.py",
+      "url": "https://raw.githubusercontent.com/Unakar/Spectral-Sphere-Optimizer/304d7a4f67c2221cda04b891831db94e5c049092/numeric_tests/check_lambda.py",
+      "sha256": "5788b09e6a3ddb07584f5fb0fce86943e2f076bfef0a7f4057d93380f4ce4ec2",
+      "bytes": 12341
+    },
+    {
+      "file": "upstream_check_msign.py",
+      "url": "https://raw.githubusercontent.com/Unakar/Spectral-Sphere-Optimizer/304d7a4f67c2221cda04b891831db94e5c049092/numeric_tests/check_msign.py",
+      "sha256": "225cf339623abd48348588b5d61e4304623dc7aeeb0791251a936d0d70511e42",
+      "bytes": 7763
+    },
+    {
+      "file": "upstream_check_power.py",
+      "url": "https://raw.githubusercontent.com/Unakar/Spectral-Sphere-Optimizer/304d7a4f67c2221cda04b891831db94e5c049092/numeric_tests/check_power_iteration.py",
+      "sha256": "17f35be1da8e6841ebba34a67e9bed0a3c6daca2a0240d9081b17a0550b79270",
+      "bytes": 4190
+    },
+    {
+      "file": "pe_official.py",
+      "url": "https://raw.githubusercontent.com/noahamsel/PolarExpress/71cc37943d99cae780024c1d198977f2f8795407/polar_express.py",
+      "sha256": "6b6b5dbe7d59422995a7eb3694af74ba5acad7a230705933650a37a56ad75d09",
+      "bytes": 3781
+    },
+    {
+      "file": "gptopt_readme.md",
+      "url": "https://raw.githubusercontent.com/modichirag/GPT-opt/cf8f059c790a7351843cbf1e6b12a03910bd122a/README.md",
+      "sha256": "50ea5f0d58487fc18145f5e02f32b55e6d19fe97beef6ea118c5a8e2b642805b",
+      "bytes": 2120
+    },
+    {
+      "file": "gptopt_config.yaml",
+      "url": "https://raw.githubusercontent.com/modichirag/GPT-opt/cf8f059c790a7351843cbf1e6b12a03910bd122a/configs/gpt-Large-fine1B.yaml",
+      "sha256": "7d116f2113a048f56ab510c49e08b653ab39867769a378814267f6f4a3665020",
+      "bytes": 1594
+    }
+  ],
+  "repositories": [
+    {
+      "repo": "noahamsel/PolarExpress",
+      "branch": "main",
+      "commit": "71cc37943d99cae780024c1d198977f2f8795407"
+    },
+    {
+      "repo": "Unakar/Spectral-Sphere-Optimizer",
+      "branch": "main",
+      "commit": "304d7a4f67c2221cda04b891831db94e5c049092"
+    },
+    {
+      "repo": "modichirag/GPT-opt",
+      "branch": "polar",
+      "commit": "cf8f059c790a7351843cbf1e6b12a03910bd122a"
+    }
+  ]
+}

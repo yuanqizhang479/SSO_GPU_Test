@@ -1,0 +1,67 @@
+{
+  "output": "/workspace/scratch/d13c66a6d8a2/validation_final/smoke/sso_cpu_n28fanba/data",
+  "sources": [
+    {
+      "name": "fixture",
+      "weight": 1.0,
+      "tokens": {
+        "train": 4145,
+        "val": 1067,
+        "test": 1069
+      },
+      "documents": {
+        "train": 66,
+        "val": 17,
+        "test": 17
+      },
+      "duplicates_skipped": 0,
+      "requested_quota": {
+        "train": 4096,
+        "val": 1024,
+        "test": 1024
+      }
+    }
+  ]
+}
+{"step": 4, "train_loss": 5.508454322814941, "lr": 0.0006954058453981609, "grad_norm": 1.3978325128555298, "tokens_seen": 128, "step_seconds": 0.002932053999757045, "diagnostic_step": false, "snapshot_step": true, "elapsed_training_without_diagnostic_steps": 0.014856879999570083, "elapsed_diagnostic_steps": 0.0, "solver_status_counts": {}, "validation": {"loss": 5.484812498092651, "perplexity": 241.00375109827323, "tokens": 32, "sampling": "fixed independent windows with replacement; identical across all runs", "source_sequence_counts": [4]}}
+{"step": 4, "train_loss": 5.526310920715332, "lr": 0.0006954058453981609, "grad_norm": 1.4033122062683105, "tokens_seen": 128, "step_seconds": 0.013282492000143975, "diagnostic_step": true, "snapshot_step": true, "elapsed_training_without_diagnostic_steps": 0.014499472998068086, "elapsed_diagnostic_steps": 0.025493692999589257, "solver_status_counts": {}, "validation": {"loss": 5.509689807891846, "perplexity": 247.0744746275915, "tokens": 32, "sampling": "fixed independent windows with replacement; identical across all runs", "source_sequence_counts": [4]}}
+{"step": 4, "train_loss": 5.526317834854126, "lr": 0.0006954058453981609, "grad_norm": 1.4035091400146484, "tokens_seen": 128, "step_seconds": 0.013040354999247938, "diagnostic_step": true, "snapshot_step": true, "elapsed_training_without_diagnostic_steps": 0.016980460999548086, "elapsed_diagnostic_steps": 0.02749863499957428, "solver_status_counts": {}, "validation": {"loss": 5.509700059890747, "perplexity": 247.0770076478182, "tokens": 32, "sampling": "fixed independent windows with replacement; identical across all runs", "source_sequence_counts": [4]}}
+{"step": 4, "train_loss": 5.526298761367798, "lr": 0.0006954058453981609, "grad_norm": 1.4029850959777832, "tokens_seen": 128, "step_seconds": 0.024368967999180313, "diagnostic_step": true, "snapshot_step": true, "elapsed_training_without_diagnostic_steps": 0.03614156699950399, "elapsed_diagnostic_steps": 0.04769395799849008, "solver_status_counts": {"converged": 6}, "validation": {"loss": 5.509685754776001, "perplexity": 247.07347320815302, "tokens": 32, "sampling": "fixed independent windows with replacement; identical across all runs", "source_sequence_counts": [4]}}
+{"step": 4, "train_loss": 5.526367902755737, "lr": 0.0006954058453981609, "grad_norm": 1.4034205675125122, "tokens_seen": 128, "step_seconds": 0.02810003800004779, "diagnostic_step": true, "snapshot_step": true, "elapsed_training_without_diagnostic_steps": 0.04341853100049775, "elapsed_diagnostic_steps": 0.05248228500022378, "solver_status_counts": {"converged": 6}, "validation": {"loss": 5.509753704071045, "perplexity": 247.0902622468768, "tokens": 32, "sampling": "fixed independent windows with replacement; identical across all runs", "source_sequence_counts": [4]}}
+{"step": 4, "train_loss": 5.526303291320801, "lr": 0.0006954058453981609, "grad_norm": 1.403139591217041, "tokens_seen": 128, "step_seconds": 0.026127178000024287, "diagnostic_step": true, "snapshot_step": true, "elapsed_training_without_diagnostic_steps": 0.044914993000929826, "elapsed_diagnostic_steps": 0.05472511100015254, "solver_status_counts": {"converged": 6}, "validation": {"loss": 5.509689569473267, "perplexity": 247.07441572045337, "tokens": 32, "sampling": "fixed independent windows with replacement; identical across all runs", "source_sequence_counts": [4]}}
+{"step": 2, "train_loss": 5.556021690368652, "lr": 0.002604594154601839, "grad_norm": 1.3865584135055542, "tokens_seen": 64, "step_seconds": 0.02248243500071112, "diagnostic_step": true, "snapshot_step": true, "elapsed_training_without_diagnostic_steps": 0.019748289001654484, "elapsed_diagnostic_steps": 0.02248243500071112, "solver_status_counts": {"converged": 6}, "validation": {"loss": 5.52314829826355, "perplexity": 250.42220120717093, "tokens": 32, "sampling": "fixed independent windows with replacement; identical across all runs", "source_sequence_counts": [4]}}
+{"step": 4, "train_loss": 5.526298761367798, "lr": 0.0006954058453981609, "grad_norm": 1.4029850959777832, "tokens_seen": 128, "step_seconds": 0.02432298100029584, "diagnostic_step": true, "snapshot_step": true, "elapsed_training_without_diagnostic_steps": 0.03582856800130685, "elapsed_diagnostic_steps": 0.04680541600100696, "solver_status_counts": {"converged": 6}, "validation": {"loss": 5.509685754776001, "perplexity": 247.07347320815302, "tokens": 32, "sampling": "fixed independent windows with replacement; identical across all runs", "source_sequence_counts": [4]}}
+{"groups": 6, "incomplete": 0, "output": "/workspace/scratch/d13c66a6d8a2/validation_final/smoke/summary.json"}
+{
+  "environment": {
+    "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+    "platform": "Linux-6.18.44-x86_64-with-glibc2.39",
+    "torch": "2.14.0+cpu",
+    "numpy": "2.3.5",
+    "cuda_runtime": null,
+    "cuda_available": false,
+    "gpu": null
+  },
+  "gpu_executed": false,
+  "six_optimizers_real_lm_steps": true,
+  "resume_parameter_max_abs_difference": 0.0,
+  "identical_initialization_all_optimizers": true,
+  "full_matrix_snapshot_actual_update_verified": true,
+  "split_document_hashes_disjoint": true,
+  "changed_config_resume_refused": true,
+  "completed_resume_preserves_validation": true,
+  "dirty_output_directory_refused": true,
+  "backward_resume_stop_refused": true,
+  "corrupt_data_refused": true,
+  "run_directory": "/workspace/scratch/d13c66a6d8a2/validation_final/smoke/sso_cpu_n28fanba",
+  "validation_loss": {
+    "adamw": 5.484812498092651,
+    "muon": 5.509689807891846,
+    "muon_sphere": 5.509700059890747,
+    "sso_ns": 5.509685754776001,
+    "sso_ns_repair_svd": 5.509753704071045,
+    "sso_ph_svd": 5.509689569473267
+  },
+  "scope": "Engineering smoke test on synthetic bytes; not evidence of optimizer superiority or real-corpus/GPU replication.",
+  "summary_cli_passed": true
+}

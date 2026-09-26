@@ -1,0 +1,41 @@
+{
+  "completed_steps": 4,
+  "planned_steps": 4,
+  "validation": {
+    "loss": 11.522300720214844,
+    "perplexity": 100941.93406128895,
+    "tokens": 32,
+    "sampling": "fixed independent windows with replacement; identical across all runs",
+    "source_sequence_counts": [
+      4
+    ]
+  },
+  "optimizer": "sso_ns",
+  "seed": 11,
+  "dataset": "TinyStories independent small-LM workflow study",
+  "identity_hash": "e9879ed3053c785ca8d2b60d15500eeefca68fc218aa544d84ff5b78c35cdfa1",
+  "matrix_lr": 0.01,
+  "aux_lr": 0.0003,
+  "train_tokens": 64,
+  "elapsed_training_without_diagnostic_steps": 0.07720410099864239,
+  "elapsed_diagnostic_steps": 0.07352177600114373,
+  "elapsed_evaluation": 0.012076477996743051,
+  "elapsed_checkpoint": 0.08029755499956082,
+  "invocation_wall_seconds": 0.25381122899852926,
+  "peak_allocated_bytes": 0,
+  "data_reuse": "Random windows sampled with replacement; train_tokens includes repeated exposures.",
+  "gpu_executed": false,
+  "test": {
+    "loss": 11.517573833465576,
+    "perplexity": 100465.91889194584,
+    "tokens": 32,
+    "sampling": "fixed independent windows with replacement; identical across all runs",
+    "source_sequence_counts": [
+      4
+    ]
+  },
+  "test_evaluation_seconds": 0.007219016999442829,
+  "completed_sessions_wall_seconds": 0.25381122899852926,
+  "unfinished_session_count": 0,
+  "timing_note": "Session wall includes training, diagnostics, evaluation and test through final bookkeeping; startup before model construction and abrupt unclosed sessions are not recovered. Detailed checkpoint counter omits last write on resumed checkpoint; use completed_sessions_wall_seconds for cumulative wall."
+}
